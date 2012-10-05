@@ -1,3 +1,75 @@
 ﻿# GIT #
-## Change log information ##
+## Ressources ##
+[Fichier de configuration .gitconfig](https://raw.github.com/phil2600/home/master/.gitconfig)
+
+## Useful commands ##
+### Change log information ###
+~~~~~~~
 git filter-branch -f --env-filter "GIT_AUTHOR_NAME='Newname'; GIT_AUTHOR_EMAIL='newemail'; GIT_COMMITTER_NAME='Newname'; GIT_COMMITTER_EMAIL='newemail';" HEAD
+~~~~~~~
+
+### Récupérer les modifications présentes sur le serveur ###
+<pre>
+git fetch
+git rebase origin/<Nom de la branche par rapport à qui se mettre à jour>
+#exemple :
+git rebase origin/master
+</pre>
+
+### Mettre à jour le dépôt local par rapport au dépôt distant ###
+<pre>
+git fra
+</pre>
+
+### Faire un commit local ###
+<pre>
+git status  # voir le status des fichiers
+git add <Nouveaux fichiers>
+git commit -m '<Message de commit>'
+</pre>
+
+### Pousser les modifications sur le serveur ###
+<pre>
+git push
+</pre>
+
+### Créer une branche sur un serveur (remote) ###
+<pre>
+ git push origin master:refs/heads/testing
+ git cob testing          
+ echo chiche_branch > test
+ git ci -a -m 'Chiche test'
+ git push                              # Attention, push toutes les branches où des commits ont été faits
+                                             # Préférez donc cette version du push:
+ git push origin testing    # Vous précisez la branche testing à pusher dans origin (le serveur)
+</pre>
+ou bien 
+<pre>
+git push origin master:refs/heads/testing     # will create the branch staging in the origin repository by copying the local master branch
+</pre>
+
+### Merger 2 branches ###
+<pre>
+git br crazy_idea
+git br
+    experimental
+    crazy_idea
+  * master
+git co crazy_idea
+git merge experimental       # merge experimental dans crazy_idea
+                             # Si il ya des conflits => git diff et git status montreront les problemes
+ git commit -a               # commit all changes
+</pre>
+
+### Supprimer une branche locale ###
+<pre>
+ git branch -d experimental          #Cette commande s'assure que les changement de la branche 'experimental' 
+                                     #  se trouve dans la branche courante.
+ git branch -D crazy_idea            # Si vous développez une idée folle, puis le regrettez, vous pouvez 
+                                     #  toujours effacer cette branche avec -D
+</pre>
+
+### Delete a Remote Branch ###
+<pre>
+git push origin :testing                      #will delete the branch staging from the origin repository.
+</pre>

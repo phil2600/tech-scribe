@@ -17,7 +17,18 @@
 <div id="TOC">
 <ul>
 <li><a href="#git">GIT</a><ul>
+<li><a href="#ressources">Ressources</a></li>
+<li><a href="#useful-commands">Useful commands</a><ul>
 <li><a href="#change-log-information">Change log information</a></li>
+<li><a href="#récupérer-les-modifications-présentes-sur-le-serveur">Récupérer les modifications présentes sur le serveur</a></li>
+<li><a href="#mettre-à-jour-le-dépôt-local-par-rapport-au-dépôt-distant">Mettre à jour le dépôt local par rapport au dépôt distant</a></li>
+<li><a href="#faire-un-commit-local">Faire un commit local</a></li>
+<li><a href="#pousser-les-modifications-sur-le-serveur">Pousser les modifications sur le serveur</a></li>
+<li><a href="#créer-une-branche-sur-un-serveur-remote">Créer une branche sur un serveur (remote)</a></li>
+<li><a href="#merger-2-branches">Merger 2 branches</a></li>
+<li><a href="#supprimer-une-branche-locale">Supprimer une branche locale</a></li>
+<li><a href="#delete-a-remote-branch">Delete a Remote Branch</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#metasploit">Metasploit</a><ul>
 <li><a href="#genration-de-payload-executables">Genration de payload executables</a><ul>
@@ -42,8 +53,77 @@
 </ul>
 </div>
 <h1 id="git"><a href="#TOC">GIT</a></h1>
-<h2 id="change-log-information"><a href="#TOC">Change log information</a></h2>
-<p>git filter-branch -f –env-filter “GIT_AUTHOR_NAME=‘Newname’; GIT_AUTHOR_EMAIL=‘newemail’; GIT_COMMITTER_NAME=‘Newname’; GIT_COMMITTER_EMAIL=‘newemail’;” HEAD</p>
+<h2 id="ressources"><a href="#TOC">Ressources</a></h2>
+<p><a href="https://raw.github.com/phil2600/home/master/.gitconfig">Fichier de configuration .gitconfig</a></p>
+<h2 id="useful-commands"><a href="#TOC">Useful commands</a></h2>
+<h3 id="change-log-information"><a href="#TOC">Change log information</a></h3>
+<pre><code>git filter-branch -f --env-filter &quot;GIT_AUTHOR_NAME=&#39;Newname&#39;; GIT_AUTHOR_EMAIL=&#39;newemail&#39;; GIT_COMMITTER_NAME=&#39;Newname&#39;; GIT_COMMITTER_EMAIL=&#39;newemail&#39;;&quot; HEAD</code></pre>
+<h3 id="récupérer-les-modifications-présentes-sur-le-serveur"><a href="#TOC">Récupérer les modifications présentes sur le serveur</a></h3>
+<pre>
+git fetch
+git rebase origin/<Nom de la branche par rapport à qui se mettre à jour>
+#exemple :
+git rebase origin/master
+</pre>
+
+<h3 id="mettre-à-jour-le-dépôt-local-par-rapport-au-dépôt-distant"><a href="#TOC">Mettre à jour le dépôt local par rapport au dépôt distant</a></h3>
+<pre>
+git fra
+</pre>
+
+<h3 id="faire-un-commit-local"><a href="#TOC">Faire un commit local</a></h3>
+<pre>
+git status  # voir le status des fichiers
+git add <Nouveaux fichiers>
+git commit -m '<Message de commit>'
+</pre>
+
+<h3 id="pousser-les-modifications-sur-le-serveur"><a href="#TOC">Pousser les modifications sur le serveur</a></h3>
+<pre>
+git push
+</pre>
+
+<h3 id="créer-une-branche-sur-un-serveur-remote"><a href="#TOC">Créer une branche sur un serveur (remote)</a></h3>
+<pre>
+ git push origin master:refs/heads/testing
+ git cob testing          
+ echo chiche_branch > test
+ git ci -a -m 'Chiche test'
+ git push                              # Attention, push toutes les branches où des commits ont été faits
+                                             # Préférez donc cette version du push:
+ git push origin testing    # Vous précisez la branche testing à pusher dans origin (le serveur)
+</pre>
+ou bien
+<pre>
+git push origin master:refs/heads/testing     # will create the branch staging in the origin repository by copying the local master branch
+</pre>
+
+<h3 id="merger-2-branches"><a href="#TOC">Merger 2 branches</a></h3>
+<pre>
+git br crazy_idea
+git br
+    experimental
+    crazy_idea
+  * master
+git co crazy_idea
+git merge experimental       # merge experimental dans crazy_idea
+                             # Si il ya des conflits => git diff et git status montreront les problemes
+ git commit -a               # commit all changes
+</pre>
+
+<h3 id="supprimer-une-branche-locale"><a href="#TOC">Supprimer une branche locale</a></h3>
+<pre>
+ git branch -d experimental          #Cette commande s'assure que les changement de la branche 'experimental' 
+                                     #  se trouve dans la branche courante.
+ git branch -D crazy_idea            # Si vous développez une idée folle, puis le regrettez, vous pouvez 
+                                     #  toujours effacer cette branche avec -D
+</pre>
+
+<h3 id="delete-a-remote-branch"><a href="#TOC">Delete a Remote Branch</a></h3>
+<pre>
+git push origin :testing                      #will delete the branch staging from the origin repository.
+</pre>
+
 <h1 id="metasploit"><a href="#TOC">Metasploit</a></h1>
 <h2 id="genration-de-payload-executables"><a href="#TOC">Genration de payload executables</a></h2>
 <h3 id="manuel"><a href="#TOC">Manuel</a></h3>
