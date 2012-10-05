@@ -59,71 +59,37 @@
 <h3 id="change-log-information"><a href="#TOC">Change log information</a></h3>
 <pre><code>git filter-branch -f --env-filter &quot;GIT_AUTHOR_NAME=&#39;Newname&#39;; GIT_AUTHOR_EMAIL=&#39;newemail&#39;; GIT_COMMITTER_NAME=&#39;Newname&#39;; GIT_COMMITTER_EMAIL=&#39;newemail&#39;;&quot; HEAD</code></pre>
 <h3 id="récupérer-les-modifications-présentes-sur-le-serveur"><a href="#TOC">Récupérer les modifications présentes sur le serveur</a></h3>
-<pre>
-git fetch
-git rebase origin/<Nom de la branche par rapport à qui se mettre à jour>
+<pre><code>git fetch
+git rebase origin/&lt;Nom de la branche par rapport à qui se mettre à jour&gt;
 #exemple :
-git rebase origin/master
-</pre>
-
+git rebase origin/master</code></pre>
 <h3 id="mettre-à-jour-le-dépôt-local-par-rapport-au-dépôt-distant"><a href="#TOC">Mettre à jour le dépôt local par rapport au dépôt distant</a></h3>
-<pre>
-git fra
-</pre>
-
+<pre><code>git fra</code></pre>
 <h3 id="faire-un-commit-local"><a href="#TOC">Faire un commit local</a></h3>
-<pre>
-git status  # voir le status des fichiers
-git add <Nouveaux fichiers>
-git commit -m '<Message de commit>'
-</pre>
-
+<pre><code>git status  # voir le status des fichiers
+git add &lt;Nouveaux fichiers&gt;
+git commit -m &#39;&lt;Message de commit&gt;&#39;</code></pre>
 <h3 id="pousser-les-modifications-sur-le-serveur"><a href="#TOC">Pousser les modifications sur le serveur</a></h3>
-<pre>
-git push
-</pre>
-
+<pre><code>git push</code></pre>
 <h3 id="créer-une-branche-sur-un-serveur-remote"><a href="#TOC">Créer une branche sur un serveur (remote)</a></h3>
-<pre>
- git push origin master:refs/heads/testing
- git cob testing          
- echo chiche_branch > test
- git ci -a -m 'Chiche test'
- git push                              # Attention, push toutes les branches où des commits ont été faits
-                                             # Préférez donc cette version du push:
- git push origin testing    # Vous précisez la branche testing à pusher dans origin (le serveur)
-</pre>
-ou bien
-<pre>
-git push origin master:refs/heads/testing     # will create the branch staging in the origin repository by copying the local master branch
-</pre>
-
+<p>~~~~~~~ git push origin master:refs/heads/testing git cob testing<br /> echo chiche_branch &gt; test git ci -a -m ‘Chiche test’ git push # Attention, push toutes les branches où des commits ont été faits # Préférez donc cette version du push: git push origin testing # Vous précisez la branche testing à pusher dans origin (le serveur) ~~~~~~~ ou bien ~~~~~~~ git push origin master:refs/heads/testing # will create the branch staging in the origin repository by copying the local master branch ~~~~~~~</p>
 <h3 id="merger-2-branches"><a href="#TOC">Merger 2 branches</a></h3>
-<pre>
-git br crazy_idea
+<pre><code>git br crazy_idea
 git br
     experimental
     crazy_idea
   * master
 git co crazy_idea
 git merge experimental       # merge experimental dans crazy_idea
-                             # Si il ya des conflits => git diff et git status montreront les problemes
- git commit -a               # commit all changes
-</pre>
-
+                             # Si il ya des conflits =&gt; git diff et git status montreront les problemes
+ git commit -a               # commit all changes</code></pre>
 <h3 id="supprimer-une-branche-locale"><a href="#TOC">Supprimer une branche locale</a></h3>
-<pre>
- git branch -d experimental          #Cette commande s'assure que les changement de la branche 'experimental' 
+<pre><code> git branch -d experimental          #Cette commande s&#39;assure que les changement de la branche &#39;experimental&#39; 
                                      #  se trouve dans la branche courante.
  git branch -D crazy_idea            # Si vous développez une idée folle, puis le regrettez, vous pouvez 
-                                     #  toujours effacer cette branche avec -D
-</pre>
-
+                                     #  toujours effacer cette branche avec -D</code></pre>
 <h3 id="delete-a-remote-branch"><a href="#TOC">Delete a Remote Branch</a></h3>
-<pre>
-git push origin :testing                      #will delete the branch staging from the origin repository.
-</pre>
-
+<pre><code>git push origin :testing                      #will delete the branch staging from the origin repository.</code></pre>
 <h1 id="metasploit"><a href="#TOC">Metasploit</a></h1>
 <h2 id="genration-de-payload-executables"><a href="#TOC">Genration de payload executables</a></h2>
 <h3 id="manuel"><a href="#TOC">Manuel</a></h3>
