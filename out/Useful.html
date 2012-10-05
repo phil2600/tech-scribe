@@ -17,7 +17,11 @@
 <div id="TOC">
 <ul>
 <li><a href="#git">GIT</a><ul>
-<li><a href="#ressources">Ressources</a></li>
+<li><a href="#ressources">Ressources</a><ul>
+<li><a href="#fichier-de-configuration-.gitconfig">Fichier de configuration .gitconfig</a></li>
+<li><a href="#fichier-de-configuration-.gitignore">Fichier de configuration .gitignore</a></li>
+<li><a href="#script-dajout-didentité">Script d’ajout d’identité</a></li>
+</ul></li>
 <li><a href="#useful-commands">Useful commands</a><ul>
 <li><a href="#change-log-information">Change log information</a></li>
 <li><a href="#récupérer-les-modifications-présentes-sur-le-serveur">Récupérer les modifications présentes sur le serveur</a></li>
@@ -54,7 +58,27 @@
 </div>
 <h1 id="git"><a href="#TOC">GIT</a></h1>
 <h2 id="ressources"><a href="#TOC">Ressources</a></h2>
-<p><a href="https://raw.github.com/phil2600/home/master/.gitconfig">Fichier de configuration .gitconfig</a></p>
+<h3 id="fichier-de-configuration-.gitconfig"><a href="#TOC">Fichier de configuration .gitconfig</a></h3>
+<p>Ce fichier permet de paramétrer git, notamment pour préciser les variables d’environnement et les alias de commandes. <a href="../ressources/.gitconfig">Voir dans les ressources</a></p>
+<h3 id="fichier-de-configuration-.gitignore"><a href="#TOC">Fichier de configuration .gitignore</a></h3>
+<p>Ce fichier permet de préciser les fichiers qui doivent être ignorés par Git. Pour ce faire, il doit être mentionné dans le .gitconfig comme suit :</p>
+<pre><code>[core]
+    excludesfile = /home/&lt;username&gt;/.gitignore</code></pre>
+<p>Voici un exemple de fichier :</p>
+<pre><code>_build*
+_inst*
+*.o
+*~
+Thumbs.db</code></pre>
+<h3 id="script-dajout-didentité"><a href="#TOC">Script d’ajout d’identité</a></h3>
+<p>Ce script a pour but de ne plus avoir à saisir le mot de passe de sa clé privé à chaque connexion. /!\ L’utilisation de ce script nuit à votre sécurité.</p>
+<p>Voici le fichier :</p>
+<pre><code>var=`ssh-agent -s`
+eval &quot;$var&quot;
+ssh-add ~/.ssh/id_dsa ~/.ssh/id_rsa
+unset var</code></pre>
+<p>Pour l’utiliser, il faut le sourcer comme suit ou l’intégrer à votre .bashrc :</p>
+<pre><code>. ~/.ssh-add-identity</code></pre>
 <h2 id="useful-commands"><a href="#TOC">Useful commands</a></h2>
 <h3 id="change-log-information"><a href="#TOC">Change log information</a></h3>
 <pre><code>git filter-branch -f --env-filter &quot;GIT_AUTHOR_NAME=&#39;Newname&#39;; GIT_AUTHOR_EMAIL=&#39;newemail&#39;; GIT_COMMITTER_NAME=&#39;Newname&#39;; GIT_COMMITTER_EMAIL=&#39;newemail&#39;;&quot; HEAD</code></pre>
@@ -72,7 +96,15 @@ git commit -m &#39;&lt;Message de commit&gt;&#39;</code></pre>
 <h3 id="pousser-les-modifications-sur-le-serveur"><a href="#TOC">Pousser les modifications sur le serveur</a></h3>
 <pre><code>git push</code></pre>
 <h3 id="créer-une-branche-sur-un-serveur-remote"><a href="#TOC">Créer une branche sur un serveur (remote)</a></h3>
-<p>~~~~~~~ git push origin master:refs/heads/testing git cob testing<br /> echo chiche_branch &gt; test git ci -a -m ‘Chiche test’ git push # Attention, push toutes les branches où des commits ont été faits # Préférez donc cette version du push: git push origin testing # Vous précisez la branche testing à pusher dans origin (le serveur) ~~~~~~~ ou bien ~~~~~~~ git push origin master:refs/heads/testing # will create the branch staging in the origin repository by copying the local master branch ~~~~~~~</p>
+<pre><code> git push origin master:refs/heads/testing
+ git cob testing          
+ echo chiche_branch &gt; test
+ git ci -a -m &#39;Chiche test&#39;
+ git push                              # Attention, push toutes les branches où des commits ont été faits
+                                             # Préférez donc cette version du push:
+ git push origin testing    # Vous précisez la branche testing à pusher dans origin (le serveur)</code></pre>
+<p>ou bien</p>
+<pre><code>git push origin master:refs/heads/testing     # will create the branch staging in the origin repository by copying the local master branch</code></pre>
 <h3 id="merger-2-branches"><a href="#TOC">Merger 2 branches</a></h3>
 <pre><code>git br crazy_idea
 git br
@@ -136,7 +168,7 @@ set PAYLOAD windows/meterpreter/bind_tcp
 set RHOST 192.168.0.1
 set LPORT 8888
 exploit</code></pre>
-<p>https://github.com/MrTchuss/Metasploit-stuff/tree/master/tools</p>
+<p><a href="https://github.com/MrTchuss/Metasploit-stuff/tree/master/tools">https://github.com/MrTchuss/Metasploit-stuff/tree/master/tools</a></p>
 <h1 id="vlc"><a href="#TOC">VLC</a></h1>
 <h2 id="transcoding"><a href="#TOC">Transcoding</a></h2>
 <h3 id="vers-mp4"><a href="#TOC">vers MP4</a></h3>

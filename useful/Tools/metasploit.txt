@@ -59,4 +59,4 @@ set LPORT 8888
 exploit
 ~~~~~~~
 
-https://github.com/MrTchuss/Metasploit-stuff/tree/master/tools
+[https://github.com/MrTchuss/Metasploit-stuff/tree/master/tools](https://github.com/MrTchuss/Metasploit-stuff/tree/master/tools)

@@ -1,0 +1,105 @@
+﻿[user]
+	name = <user name>
+	email = <email>
+[github]
+	user = <GitHub user name>
+[color]
+	status = auto
+	branch = auto
+	diff = auto
+	interactive = auto
+[alias]
+	st = status
+	ci = commit
+	co = checkout
+	br = branch
+	bra = branch -a
+        cat = cat-file
+	cfg = config
+
+	diffi = diff -C --cached
+	diffip = diff --no-color -p --cached
+        dif = diff -C
+        di = diff -C
+        dii = diff -C --cached
+        diffstat = diff -C --stat
+        ds = diff -C --stat
+        dsi = diff -C --stat --cached
+        diffw = diff -C --ignore-all-space
+        diffwi = diff -C --ignore-all-space --cached
+        diffiw = diff -C --ignore-all-space --cached
+        dw = diff -C --ignore-all-space
+        dwi = diff -C --ignore-all-space --cached
+        dsw = diff -C --stat --ignore-all-space
+        dws = diff -C --stat --ignore-all-space
+        dswi = diff -C --stat --ignore-all-space --cached
+        dsiw = diff -C --stat --ignore-all-space --cached
+
+        ls = ls-tree
+
+	sm-st = submodule status
+	sm-status = submodule status
+	sm-init = submodule init
+	sm = submodule
+	smst = submodule status
+	smup = submodule update
+	sm-up = submodule update
+
+	gcp = gc --prune
+        gcpa = gc --prune --aggressive
+        gr=!cd `git rev-parse --git-dir`/.. && git grep
+
+	svnup=!git svn fetch && git svn rebase
+        rewrite=!"d=`git rev-parse --git-dir`; git diff-index --quiet HEAD || { echo dirty index 2>&1; exit 1; }; f() { echo $1 >$d/rewrite; git branch | sed '/^[*] /!d;s///' >>$d/rewrite; test x"$1" = x && rm -f $d/rewrite && echo 'usage: rewrite <sha1>' || :; git checkout $1; }; f"
+        rwdone=!"d=`git rev-parse --git-dir`; test -f $d/rewrite && git rebase --onto HEAD `cat $d/rewrite`"
+
+	# Push only the current branch
+	pushc = !"f() { mybranch=$(git cbr); git push origin \"$mybranch\"; }; f"
+	pushfc = !"f() { mybranch=$(git cbr); git push -f origin \"$mybranch\"; }; f"
+
+	# Diff and log between the origin and the local branch
+	rdiff = !"f() { mybranch=$(git cbr); git dif origin/\"$mybranch\"..\"$mybranch\"; }; f"
+	rlog = !"f() { mybranch=$(git cbr); git log origin/\"$mybranch\"..\"$mybranch\"; }; f"
+	rlogp = !"f() { mybranch=$(git cbr); git log -p origin/\"$mybranch\"..\"$mybranch\"; }; f"
+
+	rebase-i = rebase --interactive
+	rebase-c = rebase --continue
+	rebase-a = rebase --abort
+	rebase-s = rebase --skip
+
+	blame = blame -w
+	lcfg = config --list
+
+	# Current branch
+	cbr = !"f() { git branch --no-color | sed -ne '/^\\* */s///p'; }; f"
+        # New branch
+        nbr = !"f() { test ! "x$1x" = xx && git br $1 && git push origin $1 && git br -d $1 && git cob $1; }; f"
+        # Delete branch
+        dbr = !"f() { test ! "x$1x" = xx && echo \"Deleting $1\" && git push origin :refs/heads/$1 && git br -D $1; }; f"
+	# Checkout --track -b
+	cob = !"f() { echo \"Checkout branch origin/$1\"; git checkout --track -b $1 origin/$1; }; f"
+	# Fetch/rebase
+	fr = !"f() { test ! "x$1x" = xx && echo \"Fetch/rebase on origin/$1\" && git fetch && git rebase origin/$1; }; f"
+	# Fetch/rebase on current branch
+	frc = !"f() { mybranch=$(git cbr); git fr \"$mybranch\"; }; f"
+	# Automatic Fetch/rebase on current branch
+	fra = !"f() { mybranch=$(git branch --no-color | sed -ne '/^\\* */s///p'); git fr \"$mybranch\"; }; f"
+
+        # Rebase on current branch
+        rc = !"f() { mybranch=$(git cbr); git rebase \"origin/$mybranch\"; }; f"
+	# diff branch
+	dbk = !"f() { gitk "master...$1"; }; f"
+	lop = log -C -b -w -p
+[core]
+	excludesfile = /home/<username>/.gitignore
+	editor = emacs
+#        fileMode = false
+#        ignoreCygwinFSTricks = true
+[gui]
+	fontui = -family helvetica -size 12 -weight normal -slant roman -underline 0 -overstrike 0
+	fontdiff = -family fixed -size 12 -weight normal -slant roman -underline 0 -overstrike 0
+[help]
+	format = man
+[status]
+	submodulesummary = true
+	relativePaths = false

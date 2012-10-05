@@ -37,7 +37,11 @@ code > span.er { font-weight: bold; }
 <div id="TOC">
 <ul>
 <li><a href="#git">GIT</a><ul>
-<li><a href="#ressources">Ressources</a></li>
+<li><a href="#ressources">Ressources</a><ul>
+<li><a href="#fichier-de-configuration-.gitconfig">Fichier de configuration .gitconfig</a></li>
+<li><a href="#fichier-de-configuration-.gitignore">Fichier de configuration .gitignore</a></li>
+<li><a href="#script-dajout-didentité">Script d’ajout d’identité</a></li>
+</ul></li>
 <li><a href="#useful-commands">Useful commands</a><ul>
 <li><a href="#change-log-information">Change log information</a></li>
 <li><a href="#récupérer-les-modifications-présentes-sur-le-serveur">Récupérer les modifications présentes sur le serveur</a></li>
@@ -114,6 +118,33 @@ code > span.er { font-weight: bold; }
 </ul></li>
 <li><a href="#lancement-de-handler-1">Lancement de handler</a></li>
 </ul></li>
+<li><a href="#ssh">SSH</a><ul>
+<li><a href="#copy-ssh-keys-to-userhost-to-enable-password-less-ssh-logins">copy ssh keys to user@host to enable password-less ssh logins</a></li>
+<li><a href="#start-a-tunnel-from-some-machines-port-80-to-your-local-post-2001">start a tunnel from some machine’s port 80 to your local post 2001</a></li>
+<li><a href="#output-your-microphone-to-a-remote-computers-speaker">output your microphone to a remote computer’s speaker</a></li>
+<li><a href="#compare-a-remote-file-with-a-local-file">compare a remote file with a local file</a></li>
+<li><a href="#mount-folderfilesystem-through-ssh">mount folder/filesystem through ssh</a></li>
+<li><a href="#ssh-connection-through-host-in-the-middle">ssh connection through host in the middle</a></li>
+<li><a href="#copy-from-host1-to-host2-through-your-host">copy from host1 to host2, through your host</a></li>
+<li><a href="#run-any-gui-program-remotely">run any gui program remotely</a></li>
+<li><a href="#create-a-persistent-connection-to-a-machine">create a persistent connection to a machine</a></li>
+<li><a href="#attach-screen-over-ssh">attach screen over ssh</a></li>
+<li><a href="#port-knocking">port knocking!</a></li>
+<li><a href="#remove-a-line-in-a-text-file.-useful-to-fix">remove a line in a text file. useful to fix</a></li>
+<li><a href="#run-complex-remote-shell-cmds-over-ssh-without-escaping-quotes">run complex remote shell cmds over ssh, without escaping quotes</a></li>
+<li><a href="#copy-a-mysql-database-to-a-new-server-via-ssh-with-one-command">copy a mysql database to a new server via ssh with one command</a></li>
+<li><a href="#remove-a-line-in-a-text-file.-useful-to-fix-ssh-host-key-change-warnings">remove a line in a text file. useful to fix “ssh host key change” warnings</a></li>
+<li><a href="#copy-your-ssh-public-key-to-a-server-from-a-machine-that-doesnt-have-ssh-copy-id">copy your ssh public key to a server from a machine that doesn’t have ssh-copy-id</a></li>
+<li><a href="#live-ssh-network-throughput-test">live ssh network throughput test</a></li>
+<li><a href="#how-to-establish-a-remote-gnu-screen-session-that-you-can-re-connect-to">how to establish a remote gnu screen session that you can re-connect to</a></li>
+<li><a href="#resume-scp-of-a-big-file">resume scp of a big file</a></li>
+<li><a href="#analyze-traffic-remotely-over-ssh-w-wireshark">analyze traffic remotely over ssh w/ wireshark</a></li>
+<li><a href="#have-an-ssh-session-open-forever">have an ssh session open forever</a></li>
+<li><a href="#harder-faster-stronger-ssh-clients">harder, faster, stronger ssh clients</a></li>
+<li><a href="#throttle-bandwidth-with-cstream">throttle bandwidth with cstream</a></li>
+<li><a href="#transfer-ssh-public-key-to-another-machine-in-one-step">transfer ssh public key to another machine in one step</a></li>
+<li><a href="#copy-stdin-to-your-x11-buffer">copy stdin to your x11 buffer</a></li>
+</ul></li>
 <li><a href="#vlc-1">VLC</a><ul>
 <li><a href="#transcoding-1">Transcoding</a><ul>
 <li><a href="#vers-mp4-1">vers MP4</a></li>
@@ -127,7 +158,27 @@ code > span.er { font-weight: bold; }
 </div>
 <h1 id="git"><a href="#TOC">GIT</a></h1>
 <h2 id="ressources"><a href="#TOC">Ressources</a></h2>
-<p><a href="https://raw.github.com/phil2600/home/master/.gitconfig">Fichier de configuration .gitconfig</a></p>
+<h3 id="fichier-de-configuration-.gitconfig"><a href="#TOC">Fichier de configuration .gitconfig</a></h3>
+<p>Ce fichier permet de paramétrer git, notamment pour préciser les variables d’environnement et les alias de commandes. <a href="../ressources/.gitconfig">Voir dans les ressources</a></p>
+<h3 id="fichier-de-configuration-.gitignore"><a href="#TOC">Fichier de configuration .gitignore</a></h3>
+<p>Ce fichier permet de préciser les fichiers qui doivent être ignorés par Git. Pour ce faire, il doit être mentionné dans le .gitconfig comme suit :</p>
+<pre><code>[core]
+    excludesfile = /home/&lt;username&gt;/.gitignore</code></pre>
+<p>Voici un exemple de fichier :</p>
+<pre><code>_build*
+_inst*
+*.o
+*~
+Thumbs.db</code></pre>
+<h3 id="script-dajout-didentité"><a href="#TOC">Script d’ajout d’identité</a></h3>
+<p>Ce script a pour but de ne plus avoir à saisir le mot de passe de sa clé privé à chaque connexion. /!\ L’utilisation de ce script nuit à votre sécurité.</p>
+<p>Voici le fichier :</p>
+<pre><code>var=`ssh-agent -s`
+eval &quot;$var&quot;
+ssh-add ~/.ssh/id_dsa ~/.ssh/id_rsa
+unset var</code></pre>
+<p>Pour l’utiliser, il faut le sourcer comme suit ou l’intégrer à votre .bashrc :</p>
+<pre><code>. ~/.ssh-add-identity</code></pre>
 <h2 id="useful-commands"><a href="#TOC">Useful commands</a></h2>
 <h3 id="change-log-information"><a href="#TOC">Change log information</a></h3>
 <pre><code>git filter-branch -f --env-filter &quot;GIT_AUTHOR_NAME=&#39;Newname&#39;; GIT_AUTHOR_EMAIL=&#39;newemail&#39;; GIT_COMMITTER_NAME=&#39;Newname&#39;; GIT_COMMITTER_EMAIL=&#39;newemail&#39;;&quot; HEAD</code></pre>
@@ -145,7 +196,15 @@ git commit -m &#39;&lt;Message de commit&gt;&#39;</code></pre>
 <h3 id="pousser-les-modifications-sur-le-serveur"><a href="#TOC">Pousser les modifications sur le serveur</a></h3>
 <pre><code>git push</code></pre>
 <h3 id="créer-une-branche-sur-un-serveur-remote"><a href="#TOC">Créer une branche sur un serveur (remote)</a></h3>
-<p>~~~~~~~ git push origin master:refs/heads/testing git cob testing<br /> echo chiche_branch &gt; test git ci -a -m ‘Chiche test’ git push # Attention, push toutes les branches où des commits ont été faits # Préférez donc cette version du push: git push origin testing # Vous précisez la branche testing à pusher dans origin (le serveur) ~~~~~~~ ou bien ~~~~~~~ git push origin master:refs/heads/testing # will create the branch staging in the origin repository by copying the local master branch ~~~~~~~</p>
+<pre><code> git push origin master:refs/heads/testing
+ git cob testing          
+ echo chiche_branch &gt; test
+ git ci -a -m &#39;Chiche test&#39;
+ git push                              # Attention, push toutes les branches où des commits ont été faits
+                                             # Préférez donc cette version du push:
+ git push origin testing    # Vous précisez la branche testing à pusher dans origin (le serveur)</code></pre>
+<p>ou bien</p>
+<pre><code>git push origin master:refs/heads/testing     # will create the branch staging in the origin repository by copying the local master branch</code></pre>
 <h3 id="merger-2-branches"><a href="#TOC">Merger 2 branches</a></h3>
 <pre><code>git br crazy_idea
 git br
@@ -209,7 +268,7 @@ set PAYLOAD windows/meterpreter/bind_tcp
 set RHOST 192.168.0.1
 set LPORT 8888
 exploit</code></pre>
-<p>https://github.com/MrTchuss/Metasploit-stuff/tree/master/tools</p>
+<p><a href="https://github.com/MrTchuss/Metasploit-stuff/tree/master/tools">https://github.com/MrTchuss/Metasploit-stuff/tree/master/tools</a></p>
 <h1 id="vlc"><a href="#TOC">VLC</a></h1>
 <h2 id="transcoding"><a href="#TOC">Transcoding</a></h2>
 <h3 id="vers-mp4"><a href="#TOC">vers MP4</a></h3>
@@ -251,7 +310,6 @@ URL syntax:
 
 v4l2:///dev/video0
 cdrom://</code></pre>
-<p>% Aide Mémoire % SUBTITLE % USERS</p>
 <h1 id="commandes-windows"><a href="#TOC">Commandes Windows</a></h1>
 <h2 id="propriétés"><a href="#TOC">Propriétés</a></h2>
 <ul>
@@ -1217,6 +1275,81 @@ set RHOST 192.168.0.1
 set LPORT 8888
 exploit</code></pre>
 <p>https://github.com/MrTchuss/Metasploit-stuff/tree/master/tools</p>
+<h1 id="ssh"><a href="#TOC">SSH</a></h1>
+<h2 id="copy-ssh-keys-to-userhost-to-enable-password-less-ssh-logins"><a href="#TOC">copy ssh keys to user@host to enable password-less ssh logins</a></h2>
+<pre><code>ssh-copy-id user@host</code></pre>
+<h2 id="start-a-tunnel-from-some-machines-port-80-to-your-local-post-2001"><a href="#TOC">start a tunnel from some machine’s port 80 to your local post 2001</a></h2>
+<pre><code>ssh -N -L2001:localhost:80 somemachine</code></pre>
+<h2 id="output-your-microphone-to-a-remote-computers-speaker"><a href="#TOC">output your microphone to a remote computer’s speaker</a></h2>
+<pre><code>dd if=/dev/dsp | ssh -c arcfour -C username@host dd of=/dev/dsp</code></pre>
+<h2 id="compare-a-remote-file-with-a-local-file"><a href="#TOC">compare a remote file with a local file</a></h2>
+<pre><code>ssh user@host cat /path/to/remotefile | diff /path/to/localfile -</code></pre>
+<h2 id="mount-folderfilesystem-through-ssh"><a href="#TOC">mount folder/filesystem through ssh</a></h2>
+<pre><code>sshfs name@server:/path/to/folder /path/to/mount/point</code></pre>
+<h2 id="ssh-connection-through-host-in-the-middle"><a href="#TOC">ssh connection through host in the middle</a></h2>
+<pre><code>ssh -t reachable_host ssh unreachable_host</code></pre>
+<h2 id="copy-from-host1-to-host2-through-your-host"><a href="#TOC">copy from host1 to host2, through your host</a></h2>
+<pre><code>ssh root@host1 “cd /somedir/tocopy/ &amp;&amp; tar -cf – .” | ssh root@host2 “cd /samedir/tocopyto/ &amp;&amp; tar -xf -”</code></pre>
+<h2 id="run-any-gui-program-remotely"><a href="#TOC">run any gui program remotely</a></h2>
+<pre><code>ssh -fX &lt;user&gt;@&lt;host&gt; &lt;program&gt;
+The SSH server configuration requires: X11Forwarding yes</code></pre>
+<h2 id="create-a-persistent-connection-to-a-machine"><a href="#TOC">create a persistent connection to a machine</a></h2>
+<pre><code>ssh -MNf &lt;user&gt;@&lt;host&gt;
+Create a persistent SSH connection to the host in the background. Combine this with settings in your ~/.ssh/config:
+Host host
+ControlPath ~/.ssh/master-%r@%h:%p
+ControlMaster no</code></pre>
+<h2 id="attach-screen-over-ssh"><a href="#TOC">attach screen over ssh</a></h2>
+<pre><code>ssh -t remote_host screen -r</code></pre>
+<h2 id="port-knocking"><a href="#TOC">port knocking!</a></h2>
+<pre><code>knock &lt;host&gt; 3000 4000 5000 &amp;&amp; ssh -p &lt;port&gt; user@host &amp;&amp; knock &lt;host&gt; 5000 4000 3000</code></pre>
+<p>Knock on ports to open a port to a service (ssh for example) and knock again to close the port. You have to install knockd. See example config file below.</p>
+<pre><code>[options]
+logfile = /var/log/knockd.log
+[openSSH]
+sequence = 3000,4000,5000
+seq_timeout = 5
+command = /sbin/iptables -A INPUT -i eth0 -s %IP% -p tcp –dport 22 -j ACCEPT
+tcpflags = syn
+[closeSSH]
+sequence = 5000,4000,3000
+seq_timeout = 5
+command = /sbin/iptables -D INPUT -i eth0 -s %IP% -p tcp –dport 22 -j ACCEPT
+tcpflags = syn</code></pre>
+<h2 id="remove-a-line-in-a-text-file.-useful-to-fix"><a href="#TOC">remove a line in a text file. useful to fix</a></h2>
+<pre><code>ssh-keygen -R &lt;the_offending_host&gt;</code></pre>
+<h2 id="run-complex-remote-shell-cmds-over-ssh-without-escaping-quotes"><a href="#TOC">run complex remote shell cmds over ssh, without escaping quotes</a></h2>
+<pre><code>ssh host -l user $(&lt;cmd.txt)</code></pre>
+<h2 id="copy-a-mysql-database-to-a-new-server-via-ssh-with-one-command"><a href="#TOC">copy a mysql database to a new server via ssh with one command</a></h2>
+<pre><code>mysqldump –add-drop-table –extended-insert –force –log-error=error.log -uUSER -pPASS OLD_DB_NAME | ssh -C user@newhost “mysql -uUSER -pPASS NEW_DB_NAME”</code></pre>
+<h2 id="remove-a-line-in-a-text-file.-useful-to-fix-ssh-host-key-change-warnings"><a href="#TOC">remove a line in a text file. useful to fix “ssh host key change” warnings</a></h2>
+<pre><code>sed -i 8d ~/.ssh/known_hosts</code></pre>
+<h2 id="copy-your-ssh-public-key-to-a-server-from-a-machine-that-doesnt-have-ssh-copy-id"><a href="#TOC">copy your ssh public key to a server from a machine that doesn’t have ssh-copy-id</a></h2>
+<pre><code>cat ~/.ssh/id_rsa.pub | ssh user@machine “mkdir ~/.ssh; cat &gt;&gt; ~/.ssh/authorized_keys”</code></pre>
+<h2 id="live-ssh-network-throughput-test"><a href="#TOC">live ssh network throughput test</a></h2>
+<pre><code>yes | pv | ssh $host “cat &gt; /dev/null”</code></pre>
+<h2 id="how-to-establish-a-remote-gnu-screen-session-that-you-can-re-connect-to"><a href="#TOC">how to establish a remote gnu screen session that you can re-connect to</a></h2>
+<pre><code>ssh -t user@some.domain.com /usr/bin/screen -xRR</code></pre>
+<h2 id="resume-scp-of-a-big-file"><a href="#TOC">resume scp of a big file</a></h2>
+<pre><code>rsync –partial –progress –rsh=ssh $file_source $user@$host:$destination_file
+It requires rsync installed in both hosts.
+rsync –partial –progress –rsh=ssh $file_source $user@$host:$destination_file local -&gt; remote</code></pre>
+<p>or</p>
+<pre><code>rsync –partial –progress –rsh=ssh $user@$host:$remote_file $destination_file remote -&gt; local</code></pre>
+<h2 id="analyze-traffic-remotely-over-ssh-w-wireshark"><a href="#TOC">analyze traffic remotely over ssh w/ wireshark</a></h2>
+<pre><code>ssh root@server.com ‘tshark -f “port !22? -w -’ | wireshark -k -i -
+ssh root@example.com tcpdump -w – ‘port !22&#39; | wireshark -k -i -</code></pre>
+<h2 id="have-an-ssh-session-open-forever"><a href="#TOC">have an ssh session open forever</a></h2>
+<pre><code>autossh -M50000 -t server.example.com ‘screen -raAd mysession’</code></pre>
+<h2 id="harder-faster-stronger-ssh-clients"><a href="#TOC">harder, faster, stronger ssh clients</a></h2>
+<pre><code>ssh -4 -C -c blowfish-cbc</code></pre>
+<h2 id="throttle-bandwidth-with-cstream"><a href="#TOC">throttle bandwidth with cstream</a></h2>
+<pre><code>tar -cj /backup | cstream -t 777k | ssh host ‘tar -xj -C /backup’
+example: echo w00t, i’m 733+ | cstream -b1 -t2</code></pre>
+<h2 id="transfer-ssh-public-key-to-another-machine-in-one-step"><a href="#TOC">transfer ssh public key to another machine in one step</a></h2>
+<pre><code>ssh-keygen; ssh-copy-id user@host; ssh user@host</code></pre>
+<h2 id="copy-stdin-to-your-x11-buffer"><a href="#TOC">copy stdin to your x11 buffer</a></h2>
+<pre><code>ssh user@host cat /path/to/some/file | xclip</code></pre>
 <h1 id="vlc-1"><a href="#TOC">VLC</a></h1>
 <h2 id="transcoding-1"><a href="#TOC">Transcoding</a></h2>
 <h3 id="vers-mp4-1"><a href="#TOC">vers MP4</a></h3>
