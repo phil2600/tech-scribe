@@ -1,8 +1,7 @@
 ﻿# GIT #
 ## Ressources ##
 ### Fichier de configuration .gitconfig ###
-Ce fichier permet de paramétrer git, notamment pour préciser les variables d'environnement et les alias de commandes.
- [Voir dans les ressources](../ressources/.gitconfig)
+Ce fichier permet de paramétrer git, notamment pour préciser les variables d'environnement et les alias de commandes. Voir [l'exemple](../ressources/Tools/GIT/.gitconfig).
 
 ### Fichier de configuration .gitignore ###
 Ce fichier permet de préciser les fichiers qui doivent être ignorés par Git. Pour ce faire, il doit être mentionné dans le .gitconfig comme suit :
