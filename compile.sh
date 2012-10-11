@@ -38,6 +38,16 @@ compileLaTex()
     pandoc -s -S --toc "--highlight-style=$style" -c "$PATH_EXTRA/pandoc.css" $INPUT -o "$outputName.tex"
 }
 
+#
+# clean
+#
+clean()
+{
+    find . -name '*~' -delete
+}
+
+
+clean
 
 compileHtml tango $OUTPUT_USEFUL useful
 compileHtml tango $OUTPUT_RAW useful raw
