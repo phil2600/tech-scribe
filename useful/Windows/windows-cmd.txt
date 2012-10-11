@@ -30,7 +30,10 @@ xcopy Meterpreter.exe c:\
 | Commande     |  Description                              |
 +==============+===========================================+
 | regedit      | Ouvre l'éditeur de registre               |
++--------------+-------------------------------------------+
 | services.msc | Ouvre le gestionnaire de services         |
++--------------+-------------------------------------------+
 | secpol.msc   | Ouvre les paramètres de sécurités locales |
++--------------+-------------------------------------------+
 | inetcpl.cpl  | Editeur d'option internet                 |
 +--------------+-------------------------------------------+
