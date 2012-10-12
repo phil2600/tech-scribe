@@ -1,9 +1,9 @@
-﻿# GIT #
-## Ressources ##
-### Fichier de configuration .gitconfig ###
+## GIT ##
+### Ressources ###
+#### Fichier de configuration .gitconfig ####
 Ce fichier permet de paramétrer git, notamment pour préciser les variables d'environnement et les alias de commandes. Voir [l'exemple](../ressources/Tools/GIT/.gitconfig).
 
-### Fichier de configuration .gitignore ###
+#### Fichier de configuration .gitignore ####
 Ce fichier permet de préciser les fichiers qui doivent être ignorés par Git. Pour ce faire, il doit être mentionné dans le .gitconfig comme suit :
 
 ~~~~~~~
@@ -21,7 +21,7 @@ _inst*
 Thumbs.db
 ~~~~~~~
 
-### Script d'ajout d'identité ###
+#### Script d'ajout d'identité ####
 Ce script a pour but de ne plus avoir à saisir le mot de passe de sa clé privé à chaque connexion.
 /!\\ L'utilisation de ce script nuit à votre sécurité.
 
@@ -43,13 +43,13 @@ Pour l'utiliser, il faut le sourcer comme suit ou l'intégrer à votre .bashrc :
 
 
 
-## Useful commands ##
-### Change log information ###
+### Useful commands ###
+#### Change log information ####
 ~~~~~~~
 git filter-branch -f --env-filter "GIT_AUTHOR_NAME='Newname'; GIT_AUTHOR_EMAIL='newemail'; GIT_COMMITTER_NAME='Newname'; GIT_COMMITTER_EMAIL='newemail';" HEAD
 ~~~~~~~
 
-### Récupérer les modifications présentes sur le serveur ###
+#### Récupérer les modifications présentes sur le serveur ####
 ~~~~~~~
 git fetch
 git rebase origin/<Nom de la branche par rapport à qui se mettre à jour>
@@ -57,24 +57,24 @@ git rebase origin/<Nom de la branche par rapport à qui se mettre à jour>
 git rebase origin/master
 ~~~~~~~
 
-### Mettre à jour le dépôt local par rapport au dépôt distant ###
+#### Mettre à jour le dépôt local par rapport au dépôt distant ####
 ~~~~~~~
 git fra
 ~~~~~~~
 
-### Faire un commit local ###
+#### Faire un commit local ####
 ~~~~~~~
 git status  # voir le status des fichiers
 git add <Nouveaux fichiers>
 git commit -m '<Message de commit>'
 ~~~~~~~
 
-### Pousser les modifications sur le serveur ###
+#### Pousser les modifications sur le serveur ####
 ~~~~~~~
 git push
 ~~~~~~~
 
-### Créer une branche sur un serveur (remote) ###
+#### Créer une branche sur un serveur (remote) ####
 ~~~~~~~
  git push origin master:refs/heads/testing
  git cob testing          
@@ -91,7 +91,7 @@ ou bien
 git push origin master:refs/heads/testing     # will create the branch staging in the origin repository by copying the local master branch
 ~~~~~~~
 
-### Merger 2 branches ###
+#### Merger 2 branches ####
 ~~~~~~~
 git br crazy_idea
 git br
@@ -104,7 +104,7 @@ git merge experimental       # merge experimental dans crazy_idea
  git commit -a               # commit all changes
 ~~~~~~~
 
-### Supprimer une branche locale ###
+#### Supprimer une branche locale ####
 ~~~~~~~
  git branch -d experimental          #Cette commande s'assure que les changement de la branche 'experimental' 
                                      #  se trouve dans la branche courante.
@@ -112,7 +112,8 @@ git merge experimental       # merge experimental dans crazy_idea
                                      #  toujours effacer cette branche avec -D
 ~~~~~~~
 
-### Delete a Remote Branch ###
+#### Delete a Remote Branch ####
 ~~~~~~~
 git push origin :testing                      #will delete the branch staging from the origin repository.
 ~~~~~~~
+

@@ -1,11 +1,11 @@
-#Linux utils#
-##Affichage de l'adresse IP##
-###Utilisation###
+##Linux utils##
+###Affichage de l'adresse IP###
+####Utilisation####
 ~~~~~~~
 ifdata -pa eth0
 ~~~~~~~
 
-###Instalation###
+####Instalation####
 ~~~~~~~
 apt-get install moreutils
 ~~~~~~~

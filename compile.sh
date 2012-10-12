@@ -17,8 +17,9 @@ compileHtml()
     shift
 
 
-    INPUT=$(find "$@" -type f | tr '\n' ' ')
+    INPUT=$(find "$@" -type f | sort | tr '\n' ' ')
     INPUT="${INPUT%?}"
+    echo $INPUT
     pandoc -s -S --toc "--highlight-style=$style" -c "$PATH_EXTRA/pandoc.css" -A "$PATH_EXTRA/footer.html" $INPUT -o "$outputName.html"
 }
 
@@ -33,7 +34,7 @@ compileLaTex()
     shift
 
 
-    INPUT=$(find "$@" -type f | tr '\n' ' ')
+    INPUT=$(find "$@" -type f | sort | tr '\n' ' ')
     INPUT="${INPUT%?}"
     pandoc -s -S --toc "--highlight-style=$style" -c "$PATH_EXTRA/pandoc.css" $INPUT -o "$outputName.tex"
 }
@@ -47,11 +48,46 @@ clean()
 }
 
 
+compileFolderTree()
+{
+    style=$1
+    shift
+    outputName=$1
+    shift
+
+    tmpFile="out/toto" #$(mktemp)
+    cat > $tmpFile <<EOF
+% Technical cheat sheets
+% Poulpy, Plopi42
+% $(date +%F)
+
+EOF
+
+    for dir in "$@"
+    do
+        for entry in $(find "$dir"/*)
+        do
+   	    if [ -f $entry ]
+   	    then
+   	        cat "$entry" >> $tmpFile
+   	    else
+                titleMark=$(echo "$entry" | sed -e 's_[^/]__g' | tr '/' '#')
+   	        echo "$titleMark $(basename $entry) $titleMark" >> $tmpFile
+   	    fi
+        done
+    done
+
+    rm -f "$outputName.html"
+    pandoc -s -S --toc "--highlight-style=$style" -c "$PATH_EXTRA/pandoc.css" -A "$PATH_EXTRA/footer.html" $tmpFile -o "$outputName.html"
+}
+
 clean
 
-compileHtml tango $OUTPUT_USEFUL useful
-compileHtml tango $OUTPUT_RAW useful raw
+#compileHtml tango $OUTPUT_USEFUL useful
+compileHtml tango $OUTPUT_RAW raw
 
-compileLaTex tango $OUTPUT_USEFUL useful
+#compileLaTex tango $OUTPUT_USEFUL useful
 #compileLaTex tango $OUTPUT_RAW useful raw
+
+compileFolderTree tango $OUTPUT_USEFUL useful
 
