@@ -2,3 +2,107 @@
   &copy; 2012 <a href="http://https://github.com/phil2600/tech-scribe/">Tech-Scribe</a>
 </div>
 
+<script language="JavaScript">
+
+function getRootNode(rootName)
+{
+  var toc = document.getElementById(rootName);
+  var navList = null;
+
+  for (var i = 0; i < toc.childNodes.length; i++)
+  {
+    var node = toc.childNodes[i];
+    if (node.tagName == "UL")
+    {
+      return node;
+    }
+  }
+}
+
+function expandListHideAll(rootName)
+{
+  lvl0 = getRootNode(rootName);
+
+  for (var i = 0; i < lvl0.childNodes.length; i++)
+  {
+    var lvl1 = lvl0.childNodes[i];
+    if (lvl1.tagName == "LI")
+    {
+      for (var j = 0; j < lvl1.childNodes.length; j++)
+      {
+        var lvl2 = lvl1.childNodes[j];
+        if (lvl2.tagName == "UL")
+        {
+          for (var k = 0; k < lvl2.childNodes.length; k++)
+          {
+            var node = lvl2.childNodes[k];
+            if (node.tagName == "LI")
+            {
+              for (var l = 0; l < node.childNodes.length; l++)
+              {
+                var childNode = node.childNodes[l];
+                if (childNode.tagName == "UL")
+                {
+                  childNode.style.display = "none";
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+function expandListExpand(e, parent)
+{
+  expandListHideAll(parent);
+
+  for (var j = 0; j < e.childNodes.length; j++)
+  {
+    if (e.childNodes[j].tagName == "UL")
+    {
+      e.childNodes[j].style.display = "block";
+    }
+  }
+}
+
+function expandListAdd(rootName)
+{
+  lvl0 = getRootNode(rootName);
+
+  for (var i = 0; i < lvl0.childNodes.length; i++)
+  {
+    var lvl1 = lvl0.childNodes[i];
+    if (lvl1.tagName == "LI")
+    {
+      for (var j = 0; j < lvl1.childNodes.length; j++)
+      {
+        var lvl2 = lvl1.childNodes[j];
+        if (lvl2.tagName == "UL")
+        {
+          for (var k = 0; k < lvl2.childNodes.length; k++)
+          {
+            var node = lvl2.childNodes[k];
+            if (node.tagName == "LI")
+            {
+              node.onmouseover = function(){expandListExpand(this, rootName)};
+
+              for (var l = 0; l < node.childNodes.length; l++)
+              {
+                var childNode = node.childNodes[l];
+                if (childNode.tagName == "UL")
+                {
+                  childNode.style.display = "none";
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+expandListAdd("TOC");
+</script>
