@@ -19,7 +19,6 @@ compileHtml()
 
     INPUT=$(find "$@" -type f | sort | tr '\n' ' ')
     INPUT="${INPUT%?}"
-    echo $INPUT
     pandoc -s -S --toc "--highlight-style=$style" -c "$PATH_EXTRA/pandoc.css" -A "$PATH_EXTRA/footer.html" $INPUT -o "$outputName.html"
 }
 
@@ -55,7 +54,7 @@ compileFolderTree()
     outputName=$1
     shift
 
-    tmpFile="out/toto" #$(mktemp)
+    tmpFile=$(TMPDIR=. mktemp)
     cat > $tmpFile <<EOF
 % Technical cheat sheets
 % Poulpy, Plopi42
@@ -79,6 +78,7 @@ EOF
 
     rm -f "$outputName.html"
     pandoc -s -S --toc "--highlight-style=$style" -c "$PATH_EXTRA/pandoc.css" -A "$PATH_EXTRA/footer.html" $tmpFile -o "$outputName.html"
+    rm $tmpFile
 }
 
 clean
