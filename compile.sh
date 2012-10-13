@@ -19,7 +19,7 @@ compileHtml()
 
     INPUT=$(find "$@" -type f | sort | tr '\n' ' ')
     INPUT="${INPUT%?}"
-    pandoc -s -S --toc "--highlight-style=$style" -c "$PATH_EXTRA/pandoc.css" -A "$PATH_EXTRA/footer.html" $INPUT -o "$outputName.html"
+    pandoc -s -S --toc "--highlight-style=$style" -c "$PATH_EXTRA/pandoc.css" -A "$PATH_OUT/$PATH_EXTRA/footer.html" $INPUT -o "$outputName.html"
 }
 
 #
@@ -35,7 +35,7 @@ compileLaTex()
 
     INPUT=$(find "$@" -type f | sort | tr '\n' ' ')
     INPUT="${INPUT%?}"
-    pandoc -s -S --toc "--highlight-style=$style" -c "$PATH_EXTRA/pandoc.css" $INPUT -o "$outputName.tex"
+    pandoc -s -S --toc "--highlight-style=$style" -c "$PATH_OUT/$PATH_EXTRA/pandoc.css" $INPUT -o "$outputName.tex"
 }
 
 #
@@ -77,7 +77,7 @@ EOF
     done
 
     rm -f "$outputName.html"
-    pandoc -s -S --toc "--highlight-style=$style" -c "$PATH_EXTRA/pandoc.css" -A "$PATH_EXTRA/footer.html" $tmpFile -o "$outputName.html"
+    pandoc -s -S --toc "--highlight-style=$style" -c "$PATH_EXTRA/pandoc.css" -A "$PATH_OUT/$PATH_EXTRA/footer.html" $tmpFile -o "$outputName.html"
     rm $tmpFile
 }
 
