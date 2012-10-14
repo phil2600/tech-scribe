@@ -1,0 +1,43 @@
+##Base 64##
+###Description###
+La base 64 est un encodage de données utilisant 64 caractères standards et un caractère de complément '=' utilisé comme bourage. Il est utilisé dans les messages électroniques
+(SMTP, POP, IMAP ...) et dans les pages WEB. Il permet la transmission de tout type de données (images, vidéos, doc ...) en mode texte. Il est défini en tant que codage MIME.
+
+Le résultat est plus important que la taille d'origine : 3octets = 4octets encodés.
+
+###Tables de conversion###
+####Table de conversion base 64 standard####
+![Table de conversion base 64 standard](../ressources/Cryptographie_et_Encodage/Base64/Base64-regular.png "Table de conversion base 64 standard")
+
+
+
+####Table de conversion base 64 pour les URL####
+![Table de conversion base 64 pour les URL](../ressources/Cryptographie_et_Encodage/Base64/Base64-url.png "Table de conversion base 64 pour les URL")
+
+
+###Exemples###
+####Exemple détaillé####
+![Exemple détaillé](../ressources/Cryptographie_et_Encodage/Base64/Base64-exemple.png "Exemple détaillé")
+
+
+####Autres exemples####
+~~~~~~~
+$ echo -n 'A' | base64
+QQ==
+~~~~~~~
+
+~~~~~~~
+$ echo -n 'AB' | base64
+QUI=
+~~~~~~~
+
+~~~~~~~
+$ echo -n 'ABC' | base64
+QUJD
+~~~~~~~
+
+~~~~~~~
+$ echo -n 'ABCA' | base64
+QUJDQQ==
+~~~~~~~
+
