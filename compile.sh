@@ -62,6 +62,8 @@ compileFolderTree()
 
 EOF
 
+    IFS="
+"
     for dir in "$@"
     do
         for entry in $(find "$dir"/*)
@@ -71,7 +73,7 @@ EOF
    	        cat "$entry" >> $tmpFile
    	    else
                 titleMark=$(echo "$entry" | sed -e 's_[^/]__g' | tr '/' '#')
-   	        echo "$titleMark $(basename $entry) $titleMark" >> $tmpFile
+   	        echo "$titleMark $(basename $entry | tr '_' ' ') $titleMark" >> $tmpFile
    	    fi
         done
     done
