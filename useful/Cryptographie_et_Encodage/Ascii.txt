@@ -1,0 +1,4 @@
+##ASCII##
+###Table ASCII###
+![Table ASCII](../ressources/Cryptographie_et_Encodage/Ascii/Ascii.png)
+
