@@ -1,0 +1,40 @@
+## Configuration de windows en ligne de commande ##
+### Configuration de Internet Explorer en ligne de commande ###
+#### Modifier le proxy utilisé ####
+~~~~~~~
+REM Modifying the proxy server
+Reg Add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v ProxyServer /t REG_SZ /d 999.999.999.999:8080 /f
+~~~~~~~
+
+#### Activer le proxy ####
+~~~~~~~
+REM Activation of the proxy server
+Reg Add "HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings" /v ProxyEnable /t REG_DWORD /d 00000001 /f
+~~~~~~~
+
+
+
+### Configuration de la carte réseau en ligne de commande ###
+#### Mise en place d'une IP statique ####
+~~~~~~~
+REM SPECIFICATION ADRESSE IP
+netsh interface ip set address "Connexion" static XXX.XXX.XXX.XXX 255.255.255.0 XXX.XXX.XXX.XXX 2
+~~~~~~~
+
+#### Mise en place de DNS ####
+~~~~~~~
+REM SPECIFICATION ADRESSE DNS
+netsh interface ip set dns "Connexion" static XXX.XXX.XXX.XXX primary
+~~~~~~~
+
+~~~~~~~
+REM SPECIFICATION ADRESSE DNS SECONDAIRE
+netsh interface ip add dns "Connexion" XXX.XXX.XXX.XXX index=2
+~~~~~~~
+
+#### Mise en place de WINS ####
+~~~~~~~
+REM SPECIFICATION WINS (pas sûr que ce soit nécessaire)
+netsh interface ip set wins "Connexion" XXX.XXX.XXX.XXX
+~~~~~~~
+
