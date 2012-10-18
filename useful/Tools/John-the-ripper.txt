@@ -1,0 +1,8 @@
+##John the ripper##
+###Hash LM vers Hash NTLM###
+Une fois les hashs LM découvert, il est souvent utiles de casser les hashs NTLM afin d'otenir le mot de passe à la casse prêt.
+
+~~~~~~bash
+john --rules=NT --wordlist=lmcracked.txt --format=nt hashdump.txt
+~~~~~~
+
