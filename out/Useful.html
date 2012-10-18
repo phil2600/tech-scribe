@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Poulpy, Plopi42" />
-  <meta name="date" content="2012-10-14" />
+  <meta name="date" content="2012-10-18" />
   <title>Technical cheat sheets</title>
   <style type="text/css">
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
@@ -33,11 +33,14 @@ code > span.er { font-weight: bold; }
 <div id="header">
 <h1 class="title">Technical cheat sheets</h1>
 <h2 class="author">Poulpy, Plopi42</h2>
-<h3 class="date">2012-10-14</h3>
+<h3 class="date">2012-10-18</h3>
 </div>
 <div id="TOC">
 <ul>
 <li><a href="#cryptographie-et-encodage">Cryptographie et Encodage</a><ul>
+<li><a href="#ascii">ASCII</a><ul>
+<li><a href="#table-ascii">Table ASCII</a></li>
+</ul></li>
 <li><a href="#base-64">Base 64</a><ul>
 <li><a href="#description">Description</a></li>
 <li><a href="#tables-de-conversion">Tables de conversion</a><ul>
@@ -85,6 +88,9 @@ code > span.er { font-weight: bold; }
 <li><a href="#delete-a-remote-branch">Delete a Remote Branch</a></li>
 </ul></li>
 </ul></li>
+<li><a href="#john-the-ripper">John the ripper</a><ul>
+<li><a href="#hash-lm-vers-hash-ntlm">Hash LM vers Hash NTLM</a></li>
+</ul></li>
 <li><a href="#metasploit">Metasploit</a><ul>
 <li><a href="#genération-de-payload-exécutables">Genération de payload exécutables</a><ul>
 <li><a href="#manuel">Manuel</a></li>
@@ -110,6 +116,17 @@ code > span.er { font-weight: bold; }
 </ul></li>
 </ul></li>
 <li><a href="#windows-1">Windows</a><ul>
+<li><a href="#configuration-de-windows-en-ligne-de-commande">Configuration de windows en ligne de commande</a><ul>
+<li><a href="#configuration-de-internet-explorer-en-ligne-de-commande">Configuration de Internet Explorer en ligne de commande</a><ul>
+<li><a href="#modifier-le-proxy-utilisé">Modifier le proxy utilisé</a></li>
+<li><a href="#activer-le-proxy">Activer le proxy</a></li>
+</ul></li>
+<li><a href="#configuration-de-la-carte-réseau-en-ligne-de-commande">Configuration de la carte réseau en ligne de commande</a><ul>
+<li><a href="#mise-en-place-dune-ip-statique">Mise en place d’une IP statique</a></li>
+<li><a href="#mise-en-place-de-dns">Mise en place de DNS</a></li>
+<li><a href="#mise-en-place-de-wins">Mise en place de WINS</a></li>
+</ul></li>
+</ul></li>
 <li><a href="#ligne-de-commande-windows">Ligne de commande Windows</a><ul>
 <li><a href="#gestion-des-utilisateurs">Gestion des utilisateurs</a><ul>
 <li><a href="#activation-dun-utilisateur">activation d’un utilisateur</a></li>
@@ -123,6 +140,11 @@ code > span.er { font-weight: bold; }
 </ul>
 </div>
 <h1 id="cryptographie-et-encodage"><a href="#TOC">Cryptographie et Encodage</a></h1>
+<h2 id="ascii"><a href="#TOC">ASCII</a></h2>
+<h3 id="table-ascii"><a href="#TOC">Table ASCII</a></h3>
+<div class="figure">
+<img src="../ressources/Cryptographie_et_Encodage/Ascii/Ascii.png" alt="Table ASCII" /><p class="caption">Table ASCII</p>
+</div>
 <h2 id="base-64"><a href="#TOC">Base 64</a></h2>
 <h3 id="description"><a href="#TOC">Description</a></h3>
 <p>La base 64 est un encodage de données utilisant 64 caractères standards et un caractère de complément ‘=’ utilisé comme bourage. Il est utilisé dans les messages électroniques (SMTP, POP, IMAP …) et dans les pages WEB. Il permet la transmission de tout type de données (images, vidéos, doc …) en mode texte. Il est défini en tant que codage MIME.</p>
@@ -493,6 +515,10 @@ git merge experimental       # merge experimental dans crazy_idea
                                      #  toujours effacer cette branche avec -D</code></pre>
 <h4 id="delete-a-remote-branch"><a href="#TOC">Delete a Remote Branch</a></h4>
 <pre><code>git push origin :testing                      #will delete the branch staging from the origin repository.</code></pre>
+<h2 id="john-the-ripper"><a href="#TOC">John the ripper</a></h2>
+<h3 id="hash-lm-vers-hash-ntlm"><a href="#TOC">Hash LM vers Hash NTLM</a></h3>
+<p>Une fois les hashs LM découvert, il est souvent utiles de casser les hashs NTLM afin d’otenir le mot de passe à la casse prêt.</p>
+<pre class="sourceCode bash"><code class="sourceCode bash">john --rules=NT --wordlist=lmcracked.txt --format=nt hashdump.txt</code></pre>
 <h2 id="metasploit"><a href="#TOC">Metasploit</a></h2>
 <h3 id="genération-de-payload-exécutables"><a href="#TOC">Genération de payload exécutables</a></h3>
 <h4 id="manuel"><a href="#TOC">Manuel</a></h4>
@@ -584,6 +610,26 @@ URL syntax:
 v4l2:///dev/video0
 cdrom://</code></pre>
 <h1 id="windows-1"><a href="#TOC">Windows</a></h1>
+<h2 id="configuration-de-windows-en-ligne-de-commande"><a href="#TOC">Configuration de windows en ligne de commande</a></h2>
+<h3 id="configuration-de-internet-explorer-en-ligne-de-commande"><a href="#TOC">Configuration de Internet Explorer en ligne de commande</a></h3>
+<h4 id="modifier-le-proxy-utilisé"><a href="#TOC">Modifier le proxy utilisé</a></h4>
+<pre><code>REM Modifying the proxy server
+Reg Add &quot;HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings&quot; /v ProxyServer /t REG_SZ /d 999.999.999.999:8080 /f</code></pre>
+<h4 id="activer-le-proxy"><a href="#TOC">Activer le proxy</a></h4>
+<pre><code>REM Activation of the proxy server
+Reg Add &quot;HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings&quot; /v ProxyEnable /t REG_DWORD /d 00000001 /f</code></pre>
+<h3 id="configuration-de-la-carte-réseau-en-ligne-de-commande"><a href="#TOC">Configuration de la carte réseau en ligne de commande</a></h3>
+<h4 id="mise-en-place-dune-ip-statique"><a href="#TOC">Mise en place d’une IP statique</a></h4>
+<pre><code>REM SPECIFICATION ADRESSE IP
+netsh interface ip set address &quot;Connexion&quot; static XXX.XXX.XXX.XXX 255.255.255.0 XXX.XXX.XXX.XXX 2</code></pre>
+<h4 id="mise-en-place-de-dns"><a href="#TOC">Mise en place de DNS</a></h4>
+<pre><code>REM SPECIFICATION ADRESSE DNS
+netsh interface ip set dns &quot;Connexion&quot; static XXX.XXX.XXX.XXX primary</code></pre>
+<pre><code>REM SPECIFICATION ADRESSE DNS SECONDAIRE
+netsh interface ip add dns &quot;Connexion&quot; XXX.XXX.XXX.XXX index=2</code></pre>
+<h4 id="mise-en-place-de-wins"><a href="#TOC">Mise en place de WINS</a></h4>
+<pre><code>REM SPECIFICATION WINS (pas sûr que ce soit nécessaire)
+netsh interface ip set wins &quot;Connexion&quot; XXX.XXX.XXX.XXX</code></pre>
 <h2 id="ligne-de-commande-windows"><a href="#TOC">Ligne de commande Windows</a></h2>
 <h3 id="gestion-des-utilisateurs"><a href="#TOC">Gestion des utilisateurs</a></h3>
 <h4 id="activation-dun-utilisateur"><a href="#TOC">activation d’un utilisateur</a></h4>
