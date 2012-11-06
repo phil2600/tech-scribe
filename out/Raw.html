@@ -1249,6 +1249,7 @@ function expandListHideAll(rootName)
           for (var k = 0; k < lvl2.childNodes.length; k++)
           {
             var node = lvl2.childNodes[k];
+            node.className = "Folded";
             if (node.tagName == "LI")
             {
               for (var l = 0; l < node.childNodes.length; l++)
@@ -1270,6 +1271,7 @@ function expandListHideAll(rootName)
 function expandListExpand(e, parent)
 {
   expandListHideAll(parent);
+  e.className = "Expanded";
 
   for (var j = 0; j < e.childNodes.length; j++)
   {
@@ -1297,9 +1299,19 @@ function expandListAdd(rootName)
           for (var k = 0; k < lvl2.childNodes.length; k++)
           {
             var node = lvl2.childNodes[k];
+            node.className = "Folded";
             if (node.tagName == "LI")
             {
-              node.onmouseover = function(){expandListExpand(this, rootName)};
+              node.onclick = function(){
+                if (this.className == "Expanded")
+                {
+                  return true;
+                }
+
+                expandListExpand(this, rootName);
+                return false;
+              };
+              //node.ondblclick = function(){document.location = node.href};
 
               for (var l = 0; l < node.childNodes.length; l++)
               {
@@ -1318,6 +1330,7 @@ function expandListAdd(rootName)
 }
 
 expandListAdd("TOC");
+
 </script>
 </body>
 </html>
