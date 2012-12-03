@@ -162,3 +162,9 @@ ssh-keygen; ssh-copy-id user@host; ssh user@host
 ~~~~~~~
 ssh user@host cat /path/to/some/file | xclip
 ~~~~~~~
+
+## Create an encrypted tunnel over ssh for your synergy client to use  ##
+~~~~~~~
+ssh -f -N -L 24800:localhost:24800 synergyserver 
+see : http://synergy-foss.org
+~~~~~~~
