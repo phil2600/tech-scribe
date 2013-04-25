@@ -1,0 +1,88 @@
+###Envoie de mail via outlook 2007###
+~~~~~~~C
+const int ledPin = 13;
+int doit = 0;
+
+void pressKeyWithModifier(uint8_t modifier, uint8_t key)
+{
+  Keyboard.set_modifier(modifier);
+  Keyboard.set_key1(key);
+  Keyboard.send_now();
+  delay(45);
+
+  Keyboard.set_modifier(0);
+  Keyboard.set_key1(0);
+  Keyboard.send_now();
+  delay(45);
+}
+
+void launchCmd(const char* cmd)
+{
+  pressKeyWithModifier(MODIFIERKEY_GUI, KEY_R);
+  Keyboard.println(cmd);
+}
+
+void waitAndBlink(int waitTime, int blinkDelay)
+{
+  delay(waitTime);
+  digitalWrite(ledPin, LOW);
+  delay(blinkDelay);
+  digitalWrite(ledPin, HIGH);
+}
+
+void setup()
+{
+  pinMode(ledPin, OUTPUT);
+  digitalWrite(ledPin, HIGH);
+
+  doit = 0;
+}
+
+void writeMail(const char* to, const char* subject, const char* content, const char* sign)
+{
+  waitAndBlink(200, 200);
+
+  pressKeyWithModifier(MODIFIERKEY_GUI, KEY_R);
+  waitAndBlink(200, 200);
+  Keyboard.print("mailto:");
+  Keyboard.print(to);
+  Keyboard.print("?subject=");
+  Keyboard.print(subject);
+  Keyboard.print("&body=");
+  Keyboard.print(content);
+  Keyboard.print("%0A%0A--%20%0A");
+  Keyboard.print(sign);
+  Keyboard.println("");
+
+  waitAndBlink(1000, 200);
+  //Send
+  pressKeyWithModifier(MODIFIERKEY_ALT, KEY_V);
+  waitAndBlink(200, 200);
+}
+
+void loop()
+{
+  char *to;
+  delay(1900);
+
+  if (!doit)
+  {
+    to = "tata@yopmail.com";
+  }
+  else
+  {
+    to = "toto@yopmail.com";
+  }
+
+  writeMail(to, "Croissants mardi",
+                "Bonjour,%0A%0AJ'offre%20à%20toute%20l'équipe%20des%20croissants%20et%20des%20pains%20au%20chocolat%20mardi%20matin.",
+                "Teensy%20by%20Me");
+
+  digitalWrite(ledPin, HIGH);
+  delay(500);
+  digitalWrite(ledPin, LOW);
+  delay(20000);
+
+}
+~~~~~~~
+

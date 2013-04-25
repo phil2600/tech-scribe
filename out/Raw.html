@@ -107,6 +107,7 @@ code > span.er { font-weight: bold; }
 <li><a href="#throttle-bandwidth-with-cstream">throttle bandwidth with cstream</a></li>
 <li><a href="#transfer-ssh-public-key-to-another-machine-in-one-step">transfer ssh public key to another machine in one step</a></li>
 <li><a href="#copy-stdin-to-your-x11-buffer">copy stdin to your x11 buffer</a></li>
+<li><a href="#create-an-encrypted-tunnel-over-ssh-for-your-synergy-client-to-use">Create an encrypted tunnel over ssh for your synergy client to use</a></li>
 </ul></li>
 <li><a href="#vlc">VLC</a><ul>
 <li><a href="#transcoding">Transcoding</a><ul>
@@ -1170,6 +1171,9 @@ example: echo w00t, i’m 733+ | cstream -b1 -t2</code></pre>
 <pre><code>ssh-keygen; ssh-copy-id user@host; ssh user@host</code></pre>
 <h2 id="copy-stdin-to-your-x11-buffer"><a href="#TOC">copy stdin to your x11 buffer</a></h2>
 <pre><code>ssh user@host cat /path/to/some/file | xclip</code></pre>
+<h2 id="create-an-encrypted-tunnel-over-ssh-for-your-synergy-client-to-use"><a href="#TOC">Create an encrypted tunnel over ssh for your synergy client to use</a></h2>
+<pre><code>ssh -f -N -L 24800:localhost:24800 synergyserver 
+see : http://synergy-foss.org</code></pre>
 <h1 id="vlc"><a href="#TOC">VLC</a></h1>
 <h2 id="transcoding"><a href="#TOC">Transcoding</a></h2>
 <h3 id="vers-mp4"><a href="#TOC">vers MP4</a></h3>
