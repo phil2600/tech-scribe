@@ -11,3 +11,49 @@ apt-get install moreutils
 ~~~~~~~
 
 
+###Bash tricks###
+The following tricks use the bash history.
+
+~~~~~~~
+$ echo toto
+toto
+
+$ echo !$
+echo toto
+toto
+~~~~~~~
+
+~~~~~~~
+$ echo toto titi
+toto titi
+
+$ echo !-1:1
+echo toto
+toto
+~~~~~~~
+
+~~~~~~~
+$ echo tata toto titi
+tata toto titi
+
+$ echo toto titi
+toto titi
+
+$ echo !-2:2
+echo toto
+toto
+~~~~~~~
+
+~~~~~~~
+$ echo tata toto titi
+tata toto titi
+
+$ echo toto titi
+toto titi
+
+$ echo !-2:1
+echo tata
+tata
+~~~~~~~
+
+
