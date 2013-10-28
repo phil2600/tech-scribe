@@ -1,0 +1,36 @@
+## GRUB (exploitation) ##
+### Affichage du fichier shadow ###
+Il faut tout d'abord accéder au shell de GRUB. Pour ce faire, il suffit de presser la touche __c__ quand le menu de sélection de grub s'affiche :
+
+![Menu](../ressources/Tools/GRUB/grub-menu.png "Grub menu")
+
+Ensuite, il faut trouver le fichier shadow. Pour cela, il est possible d'utiliser la commande __ls__ pour lister les devices disponibles :
+
+![Ls](../ressources/Tools/GRUB/grub-shell-ls.png "Grub command line : ls")
+
+Pour faire plus simple, il est possible d'utiliser la commande __search__ :
+
+![Search](../ressources/Tools/GRUB/grub-shell-search.png "Grub command line : search")
+
+Une fois le fichier trouvé, il ne reste plus qu'à afficher le fichier avec la commande __cat__ :
+
+![](../ressources/Tools/GRUB/grub-shell-cat1.png "Grub command line : cat")
+
+![](../ressources/Tools/GRUB/grub-shell-cat2.png "Grub command line : cat")
+
+
+### Récupération d'un shell root ###
+Il faut tout d'abord accéder à la modification du boot. Pour ce faire, il suffit de __sélectionner le système cible__, puis de presser la touche __e__ :
+
+![Mode édition](../ressources/Tools/GRUB/grub-edit.png "Grub boot edit")
+
+Il faut rajouter le paramètre suivant à la ligne de chargement du kernel, celle-ci commence par __linux__ :
+
+~~~~~~~
+init=/bin/sh
+~~~~~~~
+
+En pressant Ctrl-X, le système démarre et nous présente un shell root :
+
+![Shell root](../ressources/Tools/GRUB/grub-modified-init.png "Linux root shell")
+
