@@ -39,3 +39,7 @@ xcopy Meterpreter.exe c:\
 +--------------+-------------------------------------------+
 
 
+### Téléchargement d'un fichier ###
+~~~~~~~
+bitsadmin /transfer myDownloadJob /download /priority normal http://downloadsrv/10mb.zip c:\10mb.zip
+~~~~~~~
