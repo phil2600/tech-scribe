@@ -1,0 +1,29 @@
+## Liste de paquets utiles (debian) ##
+
+~~~~~~~
+xorg awesome awesome-extra
+open-vm-tools open-vm-toolbox
+
+ntfs-3g cifs-utils
+
+apache2 mysql-server php5 php5-mysql php5-cli php-mail
+
+build-essential
+gdb
+linux-headers-$(uname -r)
+
+imagemagick
+emacs
+pandoc
+moreutils
+nmap
+python-scapy
+tcpdump
+
+iceweasel
+easytag
+gparted
+vlc
+wireshark
+~~~~~~~
+
