@@ -1,5 +1,7 @@
-﻿#Commandes Windows#
+﻿# Commandes Windows #
+
 ## Propriétés ##
+
 * ACCESS.CPL : ouvre les options d'accessibilité (Pour XP uniquement)
 * APPWIZ.CPL : ouvre l'outil Ajouter/Supprimer un programme
 * AZMAN.MSC : ouvre le gestionnaire d'autorisations (Pour Vista uniquement)
