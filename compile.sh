@@ -4,6 +4,8 @@ PATH_OUT=out
 PATH_EXTRA=extra
 OUTPUT_USEFUL=out/Useful
 OUTPUT_RAW=out/Raw
+#CSS_FILENAME=pandoc.css
+CSS_FILENAME=buttondown.css
 
 
 #
@@ -19,7 +21,7 @@ compileHtml()
 
     INPUT=$(find "$@" -type f | sort | tr '\n' ' ')
     INPUT="${INPUT%?}"
-    pandoc -s -S --toc "--highlight-style=$style" -c "$PATH_EXTRA/pandoc.css" -A "$PATH_OUT/$PATH_EXTRA/footer.html" $INPUT -o "$outputName.html"
+    pandoc -s -S --toc "--highlight-style=$style" -c "$PATH_EXTRA/$CSS_FILENAME" -A "$PATH_OUT/$PATH_EXTRA/footer.html" $INPUT -o "$outputName.html"
 }
 
 #
@@ -35,7 +37,7 @@ compileLaTex()
 
     INPUT=$(find "$@" -type f | sort | tr '\n' ' ')
     INPUT="${INPUT%?}"
-    pandoc -s -S --toc "--highlight-style=$style" -c "$PATH_OUT/$PATH_EXTRA/pandoc.css" $INPUT -o "$outputName.tex"
+    pandoc -s -S --toc "--highlight-style=$style" -c "$PATH_OUT/$PATH_EXTRA/$CSS_FILENAME" $INPUT -o "$outputName.tex"
 }
 
 #
@@ -79,17 +81,19 @@ EOF
     done
 
     rm -f "$outputName.html"
-    pandoc -s -S --toc "--highlight-style=$style" -c "$PATH_EXTRA/pandoc.css" -A "$PATH_OUT/$PATH_EXTRA/footer.html" $tmpFile -o "$outputName.html"
-    rm $tmpFile
+    pandoc -s -S --toc "--highlight-style=$style" -c "$PATH_EXTRA/$CSS_FILENAME" -A "$PATH_OUT/$PATH_EXTRA/footer.html" $tmpFile -o "$outputName.html"
+	rm $tmpFile
 }
 
 clean
 
 #compileHtml tango $OUTPUT_USEFUL useful
-compileHtml tango $OUTPUT_RAW raw
+#compileHtml tango $OUTPUT_RAW raw useful
 
 #compileLaTex tango $OUTPUT_USEFUL useful
-#compileLaTex tango $OUTPUT_RAW useful raw
+#compileLaTex tango $OUTPUT_RAW raw useful
 
 compileFolderTree tango $OUTPUT_USEFUL useful
+compileFolderTree tango $OUTPUT_RAW raw useful
+
 
