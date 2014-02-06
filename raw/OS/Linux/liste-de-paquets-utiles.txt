@@ -1,4 +1,4 @@
-## Liste de paquets utiles (debian) ##
+### Liste de paquets utiles (debian) ###
 
 ~~~~~~~
 xorg awesome awesome-extra
