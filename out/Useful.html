@@ -197,6 +197,10 @@ unset var</code></pre>
 <p>Pour l’utiliser, il faut le sourcer comme suit ou l’intégrer à votre .bashrc :</p>
 <pre><code>. ~/.ssh-add-identity</code></pre>
 <h3 id="useful-commands"><a href="#useful-commands">Useful commands</a></h3>
+<h4 id="keeping-a-github-fork-updated"><a href="#keeping-a-github-fork-updated">Keeping A GitHub Fork Updated</a></h4>
+<pre><code>git remote add upstream git@github.com:&lt;USER&gt;/&lt;REPO&gt;.git
+git fetch upstream
+git rebase upstream/master</code></pre>
 <h4 id="change-log-information"><a href="#change-log-information">Change log information</a></h4>
 <pre><code>git filter-branch -f --env-filter &quot;GIT_AUTHOR_NAME=&#39;Newname&#39;; GIT_AUTHOR_EMAIL=&#39;newemail&#39;; GIT_COMMITTER_NAME=&#39;Newname&#39;; GIT_COMMITTER_EMAIL=&#39;newemail&#39;;&quot; HEAD</code></pre>
 <h4 id="récupérer-les-modifications-présentes-sur-le-serveur"><a href="#récupérer-les-modifications-présentes-sur-le-serveur">Récupérer les modifications présentes sur le serveur</a></h4>
