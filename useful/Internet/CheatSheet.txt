@@ -1,0 +1,36 @@
+## CheatSheet ##
+
+[local path : 2014-02-06](../ressources/CheatSheet/)
+
+###SQLi###
+
+[The SQL Injection Knowledge Base](http://www.websec.ca/kb/sql_injection)
+
+[SQL Injection Cheat Sheet](http://ferruh.mavituna.com/sql-injection-cheatsheet-oku/)
+
+[MS Access SQL Injection Cheat Sheet](http://nibblesec.org/files/MSAccessSQLi/MSAccessSQLi.html)
+
+[SQLite3 Injection Cheat Sheet](https://sites.google.com/site/0x7674/home/sqlite3injectioncheatsheet)
+
+[sqli-filter-evasion-cheat-sheet-mysql](https://websec.wordpress.com/2010/12/04/sqli-filter-evasion-cheat-sheet-mysql/)
+
+[A guide to preventing SQL injection](http://bobby-tables.com/)
+
+
+### HTML ###
+
+[HTML5 Security Cheatsheet](http://html5sec.org/)
+
+
+### Multiples categories ###
+
+Shell, SQLi, Tools
+
+[Pentestmonkey](http://pentestmonkey.net/cheat-sheet)
+
+[averagesecurityguy](http://averagesecurityguy.info/cheat-sheet/)
+
+[Virtual Patching Cheat Sheet](https://www.owasp.org/index.php/Virtual_Patching_Cheat_Sheet)
+
+[Theoretical Computer Science Cheat Sheet](http://www.tug.org/texshowcase/cheat.pdf)
+
