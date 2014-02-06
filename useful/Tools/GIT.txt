@@ -80,15 +80,15 @@ git push
  git cob testing          
  echo chiche_branch > test
  git ci -a -m 'Chiche test'
- git push                              # Attention, push toutes les branches où des commits ont été faits
-                                             # Préférez donc cette version du push:
- git push origin testing    # Vous précisez la branche testing à pusher dans origin (le serveur)
+ git push origin testing
 ~~~~~~~
 
 ou bien 
 
+will create the branch staging in the origin repository by copying the local master branch
+
 ~~~~~~~
-git push origin master:refs/heads/testing     # will create the branch staging in the origin repository by copying the local master branch
+git push origin master:refs/heads/testing
 ~~~~~~~
 
 #### Merger 2 branches ####
@@ -99,21 +99,28 @@ git br
     crazy_idea
   * master
 git co crazy_idea
-git merge experimental       # merge experimental dans crazy_idea
-                             # Si il ya des conflits => git diff et git status montreront les problemes
- git commit -a               # commit all changes
+# merge experimental dans crazy_idea
+git merge experimental
+git commit -a
 ~~~~~~~
 
 #### Supprimer une branche locale ####
+Cette commande s'assure que les changement de la branche 'experimental' se trouve dans la branche courante.
+
 ~~~~~~~
- git branch -d experimental          #Cette commande s'assure que les changement de la branche 'experimental' 
-                                     #  se trouve dans la branche courante.
- git branch -D crazy_idea            # Si vous développez une idée folle, puis le regrettez, vous pouvez 
-                                     #  toujours effacer cette branche avec -D
+git branch -d experimental
+~~~~~~~
+
+Si vous développez une idée folle, puis le regrettez, vous pouvez toujours effacer cette branche avec -D
+
+~~~~~~~
+git branch -D crazy_idea
 ~~~~~~~
 
 #### Delete a Remote Branch ####
+will delete the branch staging from the origin repository.
+
 ~~~~~~~
-git push origin :testing                      #will delete the branch staging from the origin repository.
+git push origin :testing
 ~~~~~~~
 

@@ -1,5 +1,5 @@
-## GRUB (configuration) ##
-### Modification de la taille du terminal ###
+## GRUB ##
+### Configuration - Modification de la taille du terminal ###
 Pour Grub2, il suffit de :
 * Surcharger la valeur de GRUB_GFXMODE dans /etc/default/grub ;
 * Surcharger la valeur de GRUB_GFXPAYLOAD_LINUX dans /etc/default/grub ;
@@ -16,7 +16,6 @@ reboot
 ~~~~~~~
 
 
-## GRUB (exploitation) ##
 ### Affichage du fichier shadow ###
 Il faut tout d'abord accéder au shell de GRUB. Pour ce faire, il suffit de presser la touche __c__ quand le menu de sélection de grub s'affiche :
 

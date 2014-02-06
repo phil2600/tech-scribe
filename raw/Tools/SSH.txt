@@ -1,52 +1,64 @@
-﻿# SSH #
-## copy ssh keys to user@host to enable password-less ssh logins ##
+﻿## SSH ##
+copy ssh keys to user@host to enable password-less ssh logins
+
+
 ~~~~~~~
 ssh-copy-id user@host
 ~~~~~~~
+------------
 
-## start a tunnel from some machine’s port 80 to your local post 2001 ##
+start a tunnel from some machine’s port 80 to your local post 2001 
+
 ~~~~~~~
 ssh -N -L2001:localhost:80 somemachine
 ~~~~~~~
+------------
 
+output your microphone to a remote computer’s speaker 
 
-## output your microphone to a remote computer’s speaker ##
 ~~~~~~~
 dd if=/dev/dsp | ssh -c arcfour -C username@host dd of=/dev/dsp
 ~~~~~~~
+------------
 
+compare a remote file with a local file 
 
-## compare a remote file with a local file ##
 ~~~~~~~
 ssh user@host cat /path/to/remotefile | diff /path/to/localfile -
 ~~~~~~~
+------------
 
+mount folder/filesystem through ssh 
 
-## mount folder/filesystem through ssh ##
 ~~~~~~~
 sshfs name@server:/path/to/folder /path/to/mount/point
 ~~~~~~~
+------------
 
+ssh connection through host in the middle 
 
-## ssh connection through host in the middle ##
 ~~~~~~~
 ssh -t reachable_host ssh unreachable_host
 ~~~~~~~
+------------
 
+copy from host1 to host2, through your host 
 
-## copy from host1 to host2, through your host ##
 ~~~~~~~
 ssh root@host1 “cd /somedir/tocopy/ && tar -cf – .” | ssh root@host2 “cd /samedir/tocopyto/ && tar -xf -”
 ~~~~~~~
+------------
 
+run any gui program remotely 
 
-## run any gui program remotely ##
 ~~~~~~~
 ssh -fX <user>@<host> <program>
 The SSH server configuration requires: X11Forwarding yes
 ~~~~~~~
+------------
 
-## create a persistent connection to a machine ##
+create a persistent connection to a machine 
+
 ~~~~~~~
 ssh -MNf <user>@<host>
 Create a persistent SSH connection to the host in the background. Combine this with settings in your ~/.ssh/config:
@@ -54,13 +66,17 @@ Host host
 ControlPath ~/.ssh/master-%r@%h:%p
 ControlMaster no
 ~~~~~~~
+------------
 
-## attach screen over ssh ##
+attach screen over ssh 
+
 ~~~~~~~
 ssh -t remote_host screen -r
 ~~~~~~~
+------------
 
-## port knocking! ##
+port knocking
+
 ~~~~~~~
 knock <host> 3000 4000 5000 && ssh -p <port> user@host && knock <host> 5000 4000 3000
 ~~~~~~~
@@ -82,43 +98,59 @@ seq_timeout = 5
 command = /sbin/iptables -D INPUT -i eth0 -s %IP% -p tcp –dport 22 -j ACCEPT
 tcpflags = syn
 ~~~~~~~
+------------
 
-## remove a line in a text file. useful to fix ##
+remove a line in a text file. useful to fix 
+
 ~~~~~~~
 ssh-keygen -R <the_offending_host>
 ~~~~~~~
+------------
 
-## run complex remote shell cmds over ssh, without escaping quotes ##
+run complex remote shell cmds over ssh, without escaping quotes 
+
 ~~~~~~~
 ssh host -l user $(<cmd.txt)
 ~~~~~~~
+------------
 
-## copy a mysql database to a new server via ssh with one command ##
+copy a mysql database to a new server via ssh with one command 
+
 ~~~~~~~
 mysqldump –add-drop-table –extended-insert –force –log-error=error.log -uUSER -pPASS OLD_DB_NAME | ssh -C user@newhost “mysql -uUSER -pPASS NEW_DB_NAME”
 ~~~~~~~
+------------
 
-## remove a line in a text file. useful to fix “ssh host key change” warnings ##
+remove a line in a text file. useful to fix “ssh host key change” warnings 
+
 ~~~~~~~
 sed -i 8d ~/.ssh/known_hosts
 ~~~~~~~
+------------
 
-## copy your ssh public key to a server from a machine that doesn’t have ssh-copy-id ##
+copy your ssh public key to a server from a machine that doesn’t have ssh-copy-id 
+
 ~~~~~~~
 cat ~/.ssh/id_rsa.pub | ssh user@machine “mkdir ~/.ssh; cat >> ~/.ssh/authorized_keys”
 ~~~~~~~
+------------
 
-## live ssh network throughput test ##
+live ssh network throughput test 
+
 ~~~~~~~
 yes | pv | ssh $host “cat > /dev/null”
 ~~~~~~~
+------------
 
-## how to establish a remote gnu screen session that you can re-connect to ##
+how to establish a remote gnu screen session that you can re-connect to 
+
 ~~~~~~~
 ssh -t user@some.domain.com /usr/bin/screen -xRR
 ~~~~~~~
+------------
 
-## resume scp of a big file ##
+resume scp of a big file 
+
 ~~~~~~~
 rsync –partial –progress –rsh=ssh $file_source $user@$host:$destination_file
 It requires rsync installed in both hosts.
@@ -130,41 +162,56 @@ or
 ~~~~~~~
 rsync –partial –progress –rsh=ssh $user@$host:$remote_file $destination_file remote -> local
 ~~~~~~~
+------------
 
-## analyze traffic remotely over ssh w/ wireshark ##
+analyze traffic remotely over ssh w/ wireshark 
+
 ~~~~~~~
 ssh root@server.com ‘tshark -f “port !22? -w -’ | wireshark -k -i -
 ssh root@example.com tcpdump -w – ‘port !22' | wireshark -k -i -
 ~~~~~~~
+------------
 
-## have an ssh session open forever ##
+have an ssh session open forever 
+
 ~~~~~~~
 autossh -M50000 -t server.example.com ‘screen -raAd mysession’
 ~~~~~~~
+------------
 
-## harder, faster, stronger ssh clients ##
+harder, faster, stronger ssh clients 
+
 ~~~~~~~
 ssh -4 -C -c blowfish-cbc
 ~~~~~~~
+------------
 
-## throttle bandwidth with cstream ##
+throttle bandwidth with cstream 
+
 ~~~~~~~
 tar -cj /backup | cstream -t 777k | ssh host ‘tar -xj -C /backup’
-example: echo w00t, i’m 733+ | cstream -b1 -t2
+example: echo w00t, i'm 733+ | cstream -b1 -t2
 ~~~~~~~
+------------
 
-## transfer ssh public key to another machine in one step ##
+transfer ssh public key to another machine in one step 
+
 ~~~~~~~
 ssh-keygen; ssh-copy-id user@host; ssh user@host
 ~~~~~~~
+------------
 
-## copy stdin to your x11 buffer ##
+copy stdin to your x11 buffer 
+
 ~~~~~~~
 ssh user@host cat /path/to/some/file | xclip
 ~~~~~~~
+------------
 
-## Create an encrypted tunnel over ssh for your synergy client to use  ##
+Create an encrypted tunnel over ssh for your synergy client to use  
+
 ~~~~~~~
 ssh -f -N -L 24800:localhost:24800 synergyserver 
 see : http://synergy-foss.org
 ~~~~~~~
+

@@ -1,33 +1,37 @@
-﻿# VLC #
-##Transcoding##
-###vers MP4###
+
+##VLC##
+### Transcoding ###
+
+#### Vers MP4 ####
+
 ~~~~~~~
 "C:\Program Files\VideoLAN\VLC\vlc.exe" VIDEO0030.3gp :sout="#transcode{vcodec=mp4v,vb=1800,fps=25 acodec=mpga,ab=192,scale=1,channels=2}:standard{access=file,mux=avi,dst='output.avi'}" 
 "C:\Program Files\VideoLAN\VLC\vlc.exe" VIDEO0030.3gp :sout="#transcode{vcodec=mp4v,vb=1800,fps=25 acodec=mp4a}:std{access=file,mux=mp4,dst='output.mp4'}" 
 ~~~~~~~
  
-###vers AVI###
+####vers AVI####
 ~~~~~~~
 "C:\Program Files\VideoLAN\VLC\vlc.exe" VIDEO0030.3gp:sout="#transcode{vcodec=div3,vb=4000,fps=25,acodec=mp3,ab=192,channels=2,samplerate=48000,audio-sync,deinterlace,scale=1}:std{access=file,mux=avi,dst='output.avi'}" 
 ~~~~~~~
  
-##Options utiles##
+###Options utiles###
 ~~~~~~~
---audio, --no-audio Activer l'audio (activé par défaut)
---start-time <second> Démarre la vidéo à un temps donné
---stop-time <second> Arrêtes la vidéo à un temps donné
+--audio, --no-audio Activer l'audio (active par defaut)
+--start-time <second> Demarre la video a un temps donne
+--stop-time <second> Arretes la video a un temps donne
 -I dummy N'ouvre pas l'interface graphique
 vlc://quit A mettre en fin de ligne pour fermer vlc
 ~~~~~~~
 
-##Net casting http##
+
+###Net casting http###
 ~~~~~~~
 vlc -I dummy v4l2:///dev/video0 --no-audio --sout '#transcode{vcodec=mp4v,acodec=mpga,vb=900,ab=128}:std{access=http,mux=ogg,dst=192.168.0.227:8080}'
 
 vlc http://ip:port
 ~~~~~~~
 
-##Devices##
+###Devices###
 ~~~~~~~
 Stream MRL syntax:
   [[access][/demux]://]URL[#[title][:chapter][-[title][:chapter]]]
@@ -53,3 +57,4 @@ URL syntax:
 v4l2:///dev/video0
 cdrom://
 ~~~~~~~
+

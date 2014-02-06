@@ -1,4 +1,4 @@
-##Linux utils##
+## Linux tricks ##
 ###Affichage de l'adresse IP###
 ####Utilisation####
 ~~~~~~~
